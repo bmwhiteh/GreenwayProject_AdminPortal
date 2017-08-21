@@ -1,10 +1,12 @@
 # GreenwayProject_AdminPortal
 This is Team 3 Repository for the IPFW/ City of Fort Wayne Admin Portal
 
+# List of Commented Pages
+1. AppPoolInfo.aspx - gets the current username 
+2. Default.aspx - landing page for login, currently displays many graphs
+3. HeatMap.aspx - Provides the Heat Map with activity received from users on Trail Use.
+
 # List of Files that need commenting:
-1. AppPoolInfo.aspx
-2. Default.aspx
-3. HeatMap.aspx
 4. Login.aspx
 5. Master.Master
 6. packages.config
