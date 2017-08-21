@@ -1,6 +1,15 @@
-﻿<%@ Page Title="Heat Map" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="HeatMap.aspx.cs" Inherits="web_application.HeatMap" %>
+﻿
+    <%--Name: Default
+    Edits:
+          - 8/16/17 Bailey Whitehill
+    --%>
+        
+
+<%--Equivalent to the HTML header I believe--%>
+<%@ Page Title="Heat Map" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="HeatMap.aspx.cs" Inherits="web_application.HeatMap" %>
 
 
+<%--This is the top gradient gray header of the web page--%>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
       #grad {
@@ -10,24 +19,35 @@
         left: 50px;   
         height: 100px;
         width: 300px;
-        background: -webkit-linear-gradient(left, rgba(0,255, 255,1), rgba(0,127,255,1), rgba(0,0,255,1), rgba(0,0,191,1), rgba(0,0,127,1), rgba(63, 0, 127,1), rgba(127, 0, 63,1), rgba(255,0, 0,1)); /* For Safari 5.1 to 6.0 */
-        background: -o-linear-gradient(right, rgba(0,255, 255,1), rgba(0,127,255,1), rgba(0,0,255,1), rgba(0,0,191,1), rgba(0,0,127,1), rgba(63, 0, 127,1), rgba(127, 0, 63,1), rgba(255,0, 0,1)); /* For Opera 11.1 to 12.0 */
-        background: -moz-linear-gradient(right, rgba(0,255, 255,1), rgba(0,127,255,1), rgba(0,0,255,1), rgba(0,0,191,1), rgba(0,0,127,1), rgba(63, 0, 127,1), rgba(127, 0, 63,1), rgba(255,0, 0,1)); /* For Fx 3.6 to 15 */
-        background: linear-gradient(to right, rgba(0,255, 255,1), rgba(0,127,255,1), rgba(0,0,255,1), rgba(0,0,191,1), rgba(0,0,127,1), rgba(63, 0, 127,1), rgba(127, 0, 63,1), rgba(255,0, 0,1)); /* Standard syntax (must be last) */
+
+        /* For Safari 5.1 to 6.0 */
+        background: -webkit-linear-gradient(left, rgba(0,255, 255,1), rgba(0,127,255,1), rgba(0,0,255,1), rgba(0,0,191,1), rgba(0,0,127,1), rgba(63, 0, 127,1), rgba(127, 0, 63,1), rgba(255,0, 0,1)); 
+        
+        /* For Opera 11.1 to 12.0 */
+        background: -o-linear-gradient(right, rgba(0,255, 255,1), rgba(0,127,255,1), rgba(0,0,255,1), rgba(0,0,191,1), rgba(0,0,127,1), rgba(63, 0, 127,1), rgba(127, 0, 63,1), rgba(255,0, 0,1)); 
+        
+        /* For Fx 3.6 to 15 */
+        background: -moz-linear-gradient(right, rgba(0,255, 255,1), rgba(0,127,255,1), rgba(0,0,255,1), rgba(0,0,191,1), rgba(0,0,127,1), rgba(63, 0, 127,1), rgba(127, 0, 63,1), rgba(255,0, 0,1)); 
+        
+        /* Standard syntax (must be last) */
+        background: linear-gradient(to right, rgba(0,255, 255,1), rgba(0,127,255,1), rgba(0,0,255,1), rgba(0,0,191,1), rgba(0,0,127,1), rgba(63, 0, 127,1), rgba(127, 0, 63,1), rgba(255,0, 0,1)); 
 }
     </style>
 </asp:Content>
 
+
+<%-- This is the heat map section of the page--%>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentBody" runat="server">
 
-    <!--  start page-heading -->
+     <%--Page Title--%>
     <div id="page-heading">
         <h1>Heat Map</h1>
         <hr style="width: 98%; color: lightgray;" />
     </div>
 
-    <!-- end page-heading -->
+     <%--End Page Title--%>
 
+    <%-- This is the bar that shows the color coordination for the graph  --%>
     <div style="height: 100%; margin: 0 auto;">
         <div id="heatmapContents">
             <div id="contents">
@@ -45,6 +65,7 @@
             </div>
         </div>
 
+        <%-- Javascript using the Google Maps service and KML file to overlay the trail network--%>
         <script>
             // This example requires the Visualization library. Include the libraries=visualization
             // parameter when you first load the API. For example:
@@ -52,6 +73,8 @@
 
             var map, heatmap;
             var pathUrl = "23.97.29.252:50000/Capstone/datarelay.svc/trails/api/1/Path/All";
+
+            <%--Initialize the heat map to a basic overlay of KML file onto Google Map--%>
             function initMap()
             {
                 // create the map object
@@ -67,7 +90,9 @@
                     data: getPaths(),
                     map: map
                 });
+
                 // overlay of the Fort Wayne Regional Trail Network
+                <%--We need a way to allow user input of this file rather than linking directly to the Github account it is stored in--%>
                 var ctaLayer = new google.maps.KmlLayer(
                 {
                     url: 'https://gist.githubusercontent.com/scottyseus/ec2e4892d5f53920390e/raw/47128a99e128ba78ea8b5d7b476544766b0e5f5c/overlay.kml',
@@ -76,10 +101,15 @@
 
                 
             }
+
+
+            <%--Allow User to move the Heat Map around to focus on a specific section--%>
             function toggleHeatmap()
             {
                 heatmap.setMap(heatmap.getMap() ? null : map);
             }
+
+
             function changeGradient()
             {
                 var gradient =
@@ -101,15 +131,20 @@
                 ]
                 heatmap.set('gradient', heatmap.get('gradient') ? null : gradient);
             }
+
+
             function changeRadius()
             {
                 heatmap.set('radius', heatmap.get('radius') ? null : 20);
             }
+
+
             function changeOpacity()
             {
                 heatmap.set('opacity', heatmap.get('opacity') ? null : 0.2);
             }
 
+            <%--This obtains the Trails Network using the API--%>
             function getPaths()
             {
                 $.ajax({
@@ -128,6 +163,7 @@
                 })
             }
 
+            <%--This displays the paths that have been retrieved from the API onto the Heat Map--%>
             function displayPaths(paths)
             {
                 var points = [];
@@ -164,6 +200,7 @@
                 heatmap.set('radius', 20);
             }
 
+            <%--This goes through the paths and determines where to place a point on the map--%>
             function parsePath(path)
             {
                 var points = [];
@@ -180,6 +217,7 @@
                 return points;
             }
 
+            <%--Not sure what this is--%>
             String.prototype.isEmpty = function ()
             {
                 return (this.length === 0 || !this.trim());
