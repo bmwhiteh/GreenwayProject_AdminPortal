@@ -38,18 +38,15 @@
                 <%--<a href=""><img src="images/shared/logo.png" width="156" height="40" alt="" /></a>--%>
                 <h1 style="color: white; margin-top: 20px;">Greenways Portal </h1>
             </div>
-            <!-- end logo -->
 
             <div class="clear"></div>
 
         </div>
-        <!-- End: page-top -->
     </div>
-    <!-- End: page-top-outer -->
 
     <div class="clear">&nbsp;</div>
 
-    <!--  start nav-outer-repeat................................................................................................. START -->
+    <!--  start nav-outer-repeat -->
     <div class="nav-outer-repeat">
         <!--  start nav-outer -->
         <div class="nav-outer">
@@ -59,26 +56,34 @@
 
                 <div class="clear"></div>
             </div>
-            <!--  start nav -->
 
         </div>
         <div class="clear"></div>
-        <!--  start nav-outer -->
     </div>
 
     <h1 style="position: absolute; margin-top: 125px; margin-left: 600px;">Login</h1>
-    <!--  start loginbox ................................................................................. -->
+
+    <!--Login Form-->
     <div id="loginbox" style="margin: 0 auto; margin-top: 150px;">
         <div id="login-inner">
             <form id="form1" runat="server">
+
+                <%--The asp:Login allows for user authentication--%>
                 <asp:Login ID="Login1" runat="server" OnAuthenticate="ValidateUser">
+
+                    <%--Not sure what LayoutTemplate is for--%>
                     <LayoutTemplate>
+
+                        <%--Table element holds User Login Interface--%>
                         <table border="0" cellpadding="0" cellspacing="0">
                             <tr>
                                 <td class="table-head" style="padding-bottom: 10px"><b>Username</b>
                                 </td>
                                 <td>
+                                    <%--I think they used the asp:Textbox to allow for "Remember Me" function--%>
                                     <asp:TextBox CssClass="login-inp" ID="UserName" runat="server" autocomplete="disabled"></asp:TextBox>
+
+                                    <%--Check to make sure the user is valid--%>
                                     <asp:RequiredFieldValidator ID="UserNameRequired" runat="server" ControlToValidate="UserName" ErrorMessage="User Name is required." ToolTip="User Name is required." ValidationGroup="Login1">*</asp:RequiredFieldValidator>
                                 </td>
                             </tr>
@@ -94,11 +99,14 @@
                             <tr>
                                 <th></th>
                                 <td valign="top">
+                                    <%--The Remember Me functionality doesn't work currently--%>
                                     <%--<input type="checkbox" class="checkbox-size" id="login-check" /><label for="login-check">Remember me</label></td>--%>
+                                </td>
                             </tr>
                             <tr>
                                 <th></th>
                                 <td>
+                                    <%---ASP button used in place of normal submit button--%>
                                     <asp:Button ID="LoginButton" CssClass="submit-login" runat="server" CommandName="Login" Text="Log In" ValidationGroup="Login1" />
 
                                 </td>
@@ -106,13 +114,17 @@
                         </table>
                     </LayoutTemplate>
 
-                    <%--<div>
+                    <%--Don't know what this was for
+                        
+                        <div>
                             <asp:Literal ID="FailureText" runat="server" EnableViewState="False"></asp:Literal>
                         </div>--%>
                 </asp:Login>
             </form>
         </div>
         <div class="clear"></div>
+
+        <%--Login page should have ability to reset passwords--%>
         <%--<a href="" class="forgot-pwd">Forgot Password?</a>--%>
     </div>
 
@@ -120,17 +132,18 @@
         &nbsp;
     </div>
 
-    <!-- start footer -->
+    <!-- This footer should appear on all pages -->
     <div id="footer">
-        <!-- <div id="footer-pad">&nbsp;</div> -->
+
         <!--  start footer-left -->
         <div id="footer-left">
             Greenways Portal &copy; Copyright IPFW Computer Science Department. All rights reserved.
         </div>
-        <!--  end footer-left -->
+
         <div class="clear">&nbsp;</div>
+
+
     </div>
-    <!-- end footer -->
 
 </body>
 </html>
