@@ -14,17 +14,19 @@ This is Team 3 Repository for the IPFW/ City of Fort Wayne Admin Portal
 10. test.aspx - Not 100% sure that this is correct, but I think this tests the Database connection
 11. Tickets.aspx - This shows a list of the current active tickets and a button to create a new ticket.
 12. Tickets_Closed.aspx - This shows a list of the tickets that have been closed.
+16. css/default.css - The css associated with defaults.
+19. css/screen.css  - The css associated with the screen.
+21. css/tickets.css - The css associated with tickets.
 
 # List of Files that need commenting:
+15. SQL/LoginDB.sql
+20. css/style.css
+
+# List of Files that Andrea doesn't think need commenting (Bailey, please verify)
 13. User_Login_CS.csproj
 14. Web.config
-15. SQL/LoginDB.sql
-16. css/default.css
 17. css/pro_dropline.css
 18. css/pro_dropline_ie.css
-19. css/screen.css
-20. css/style.css
-21. css/tickets.css
 
 # Example of Comment block
 /*
