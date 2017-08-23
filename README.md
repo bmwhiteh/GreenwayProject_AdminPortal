@@ -5,13 +5,13 @@ This is Team 3 Repository for the IPFW/ City of Fort Wayne Admin Portal
 1. AppPoolInfo.aspx - gets the current username 
 2. Default.aspx - landing page for login, currently displays many graphs
 3. HeatMap.aspx - Provides the Heat Map with activity received from users on Trail Use.
+4. Login.aspx - User Interface for Login, uses ASP elements for username/password/submit and validation, "Remember Me" & "Forgot User" do not work
+5. Master.Master - Looks to be the main underlying page with Navigation Toolbar, Logout button, and Footer
+6. packages.config - Seems to be the needed drivers, plugins, etc. to allow the functionality of the admin portal
+7. serverInfo.aspx - I think this page gets the HTTP Request Responses when a Request is made, looks to set it up to print out somewhere
+8. Statistics.aspx - Shows Graphical information regarding the collected data all on one page in a vertical segment
 
 # List of Files that need commenting:
-4. Login.aspx
-5. Master.Master
-6. packages.config
-7. serverInfo.aspx
-8. Statistics.aspx
 9. style.css
 10. test.aspx
 11. Tickets.aspx
