@@ -1,3 +1,9 @@
+/*  Name: screen.css
+    Edits:
+          - 8/23/2017 Andrea Moorman
+                 The CSS formatting for html, body, #page-top-outer , #page-top-outer, #page-top,
+                 #logo, #logo a, #page-heading , h1, h2, and h3
+*/
 * {
     margin: 0;
     padding: 0;
@@ -8,8 +14,8 @@ html, body {
 }
 
 body {
-    background-color: #D3D9DF;
-    color: #393939;
+    background-color: #D3D9DF; /* This color is a light grayish-blue */
+    color: #393939; /* This color is a dark dark bluish gray */
     font-family: Arial;
     /*font-size: 12px;
 	line-height: 1.5;*/
@@ -17,7 +23,7 @@ body {
 
 #page-top-outer {
     background: url(../images/shared/top_bg.jpg) top center repeat-x;
-    border-bottom: 1px solid #7e7e7e;
+    border-bottom: 1px solid #7e7e7e; /* This color is gray */
     height: 92px;
 }
 

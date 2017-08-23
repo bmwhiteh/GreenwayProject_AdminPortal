@@ -1,4 +1,10 @@
-﻿.quick_stats_div{
+﻿/*  Name: default.css
+    Edits:
+          - 8/23/2017 Andrea Moorman
+                 The CSS formatting for .quick_stats_div , .quick_stats_table , table td and th , and .default_div
+*/
+
+.quick_stats_div{
     width: 85%;
     margin: 0 auto;
 }

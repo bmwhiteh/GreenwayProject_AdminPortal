@@ -1,10 +1,19 @@
-﻿
+﻿/*  Name: default.css
+    Edits:
+          - 8/23/2017 Andrea Moorman
+                 The CSS formatting for bottom-right-ticket-border, bottom-left-ticket-border, bottom-center-ticket-border,
+                btn-close, btn-close:hover, #overlay, #divMain, #table, #ticketDiv, #r1c1 , #r1c2, #r1c3, #r2c1, #r2c2, #r2c3,
+                #r3c1, .modal, .modal-content, .close, .close:hover, .close:focus, label, input.text, .validateTips, #myImg, 
+                #myImg:hover, .modal, .modal-content, #caption, .modal-content #caption, @-webit-keyframes zoom, @keyframes zoom,
+                .close, and .close:focus
+                 
+*/
 
 .bottom-right-ticket-border {
     -moz-border-radius: 0 0 15px 0;
     -webkit-border-radius: 0 0 15px 0;
-    border: 3px solid #D3D9DF;
-    background-color: #D3D9DF;
+    border: 3px solid #D3D9DF; /* This is a light bluish gray */
+    background-color: #D3D9DF; /* This is a light bluish gray */
     border-left: 0;
     padding-right: 10px;
 }
@@ -12,15 +21,15 @@
 .bottom-left-ticket-border {
     -moz-border-radius: 0 0 0 15px;
     -webkit-border-radius: 0 0 0 15px;
-    border: 1px solid #D3D9DF;
-    background-color: #D3D9DF;
+    border: 1px solid #D3D9DF; /* This is a light bluish gray */
+    background-color: #D3D9DF; /* This is a light bluish gray */
     border-right: 0;
     padding-left: 10px;
 }
 
 .bottom-center-ticket-border {
-    border: 3px solid #D3D9DF;
-    background-color: #D3D9DF;
+    border: 3px solid #D3D9DF; /* This is a light bluish gray */
+    background-color: #D3D9DF; /* This is a light bluish gray */
 }
 
 .btn-close {
