@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!--The title of the login page -->
+    <title>CoFW Trail Network Admin Portal</title>
+
+    <!--Links the CSS stylesheet to the login.html page -->
+    <link rel="stylesheet" type="text/css" href="/css/styles.css"/>
+</head>
+
+<body>
+<div class="header">
+    <!-- The logo that appears on the fixed header at the top of the page. -->
+    <div class="logo">
+        <h1>CoFW Trail Network Admin Portal</h1>
+    </div>
+</div>
+
+<div class="container">
+
+    <!-- The login form
+    action: links the php code to validate the user and login to the system
+    -->
+    <form action="/phpFiles/login.php">
+
+        <!--The "username" field -->
+        <label><b>Username</b></label>
+        <input type="text" placeholder="Enter Username" name="uname" style="backgound-color:gray" required>
+        <br/>
+
+        <!--The "password" field -->
+        <label><b>Password</b></label>
+        <input type="password" placeholder="Enter Password" name="psw" style="backgound-color:gray" required>
+        <br/><br/>
+
+        <!-- The "Submit" button -->
+        <button type="submit"><b>Login</b></button>
+        <input type="checkbox"> Remember me
+
+    </form>
+</div>
+
+</body>
+</html>
