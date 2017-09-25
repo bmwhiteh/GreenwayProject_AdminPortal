@@ -33,15 +33,28 @@ button:hover {
     opacity: 0.8;
 }
 
-.container {
+.login {
     padding: 16px;
     vertical-align: middle;
     width:35%;
     margin-top:18%;
     margin-left:32%;
     background-color: rgba(211, 211, 211,0.8) ;
+}
+
+.about {
+    padding: 16px;
+    vertical-align: middle;
+    width:45%;
+    margin-top:10%;
+    margin-left:26%;
+    position: fixed;
+    background-color: rgba(211, 211, 211,0.8) ;
 
 
+}
+a{
+    text-decoration: none;
 }
 form{
     display: inline-block;
