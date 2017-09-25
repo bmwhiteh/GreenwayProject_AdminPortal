@@ -8,7 +8,7 @@
             width: 100%;
             margin: auto;
             margin: 0 auto;
-            background-color: rgb(208,240,192);
+            background-color: #AADFEF;
         }
 
         .container {
