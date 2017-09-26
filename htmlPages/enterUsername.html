@@ -9,12 +9,6 @@
     <link rel="stylesheet" type="text/css" href="/GreenwayProject_AdminPortal/css/styles.css"/>
 </head>
 
-<script>
-    function myFunction() {
-        location.href = "/GreenwayProject_AdminPortal/htmlPages/securityQuestions.html"
-    }
-</script>
-
 <body>
 <div class="header">
     <!-- The logo that appears on the fixed header at the top of the page. -->
@@ -24,7 +18,7 @@
 </div>
 
 <div class="username">
-    <form>
+    <form action="/GreenwayProject_AdminPortal/htmlPages/securityQuestions.html" method="get">
 
         <!--The "username" field -->
         <label><b>Username</b></label>
@@ -32,7 +26,7 @@
         <br/>
 
         <!-- The "Submit" button -->
-        <button type="submit" onClick="myFunction() "><b>Submit</b></button>
+        <button type="submit"><b>Submit</b></button>
         <br>
 
     </form>

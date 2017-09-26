@@ -9,12 +9,6 @@
     <link rel="stylesheet" type="text/css" href="/GreenwayProject_AdminPortal/css/styles.css"/>
 </head>
 
-<script>
-    function myFunction() {
-        window.location.href = "/GreenwayProject_AdminPortal/htmlPages/passwordReset.php"
-    }
-</script>
-
 <body>
 <div class="header">
     <!-- The logo that appears on the fixed header at the top of the page. -->
@@ -24,7 +18,7 @@
 </div>
 
 <div class="security">
-    <form>
+    <form action="/GreenwayProject_AdminPortal/htmlPages/passwordReset.php" method="get">
         <label><b>Security Question 1</b></label>
         <input type="text" placeholder="Enter Response" required>
         <br/>

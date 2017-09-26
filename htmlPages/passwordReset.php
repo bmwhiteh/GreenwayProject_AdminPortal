@@ -8,12 +8,6 @@
         <link rel="stylesheet" type="text/css" href="/GreenwayProject_AdminPortal/css/styles.css"/>
     </head>
 
-    <script>
-        function myFunction() {
-            window.location.href = "/GreenwayProject_AdminPortal/htmlPages/login.html"
-        }
-    </script>
-
     <body>
     <div class="header">
         <!-- The logo that appears on the fixed header at the top of the page. -->
@@ -23,7 +17,7 @@
     </div>
 
     <div class="password">
-        <form>
+        <form  action="/GreenwayProject_AdminPortal/htmlPages/login.html" method="get">
             <!--The "username" field -->
             <label><b>New Password</b></label>
             <input type="text" placeholder="Enter Password" required>
