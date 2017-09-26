@@ -24,24 +24,16 @@
 
     <div class="password">
         <form>
-            <label><b>Security Question 1</b></label>
-            <input type="text" placeholder="Enter Response" required>
-            <br/>
-
-            <label><b>Security Question 2</b></label>
-            <input type="text" placeholder="Enter Response" required>
-            <br/>
-
             <!--The "username" field -->
             <label><b>New Password</b></label>
             <input type="text" placeholder="Enter Password" required>
             <br/>
 
             <!--The "password" field -->
-            <label><b>Confirm New Password</b></label>
+            <label><b>Confirm Password</b></label>
             <input type="password" placeholder="Re-enter Password" required>
             <br/><br/>
-            <button type="returnToLogin" onClick="myFunction() "><b>Reset Password</b></button>
+            <button type="submit" onClick="myFunction() "><b>Reset Password</b></button>
         </form>
     </div>
 

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!--The title of the login page -->
+    <title>Security Questions</title>
+
+    <!--Links the CSS stylesheet to the login.html page -->
+    <link rel="stylesheet" type="text/css" href="/GreenwayProject_AdminPortal/css/styles.css"/>
+</head>
+
+<script>
+    function myFunction() {
+        window.location.href = "/GreenwayProject_AdminPortal/htmlPages/passwordReset.php"
+    }
+</script>
+
+<body>
+<div class="header">
+    <!-- The logo that appears on the fixed header at the top of the page. -->
+    <div class="logo">
+        <h1>CoFW Trail Network Admin Portal</h1>
+    </div>
+</div>
+
+<div class="security">
+    <form>
+        <label><b>Security Question 1</b></label>
+        <input type="text" placeholder="Enter Response" required>
+        <br/>
+
+        <label><b>Security Question 2</b></label>
+        <input type="text" placeholder="Enter Response" required>
+        <br/>
+
+        <!-- The "Submit" button -->
+        <button type="submit" onClick="myFunction() "><b>Submit</b></button>
+        <br>
+    </form>
+</div>
+
+</body>
+</html>
