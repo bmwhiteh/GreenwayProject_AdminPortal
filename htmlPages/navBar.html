@@ -3,12 +3,12 @@
 <html>
 <head>
     <style>
-
         ul {
             list-style-type: none;
-            margin: 0 ;
+            margin: 0;
             padding: 0;
             overflow: hidden;
+            background-color: #333;
         }
 
         li {
@@ -17,31 +17,24 @@
 
         li a {
             display: block;
-            padding: 8px;
-            width: 130px;
+            color: white;
             text-align: center;
-            color: black;
-            text-decoration:none;
+            padding: 14px 16px;
+            text-decoration: none;
         }
 
-        .navigation {
-            padding: 16px;
-            vertical-align: middle;
-            width:75%;
-            margin-left:21%;
-
+        li a:hover:not(.active) {
+            background-color: #111;
         }
 
-        .logo{
-            background-color: rgba(211,211,211,0.0);
-            margin-top:8%;
-            margin-left:38%;
+        .active {
+            background-color: #4CAF50;
         }
     </style>
 </head>
 <body>
 <div class="logo">
-    <h3>CoFW Trail Network Admin Portal</h3>
+    <img src="../images/Temporary Picture.jpg" width="100%" height="300px"/>
 </div>
 
 <div class="navigation">
@@ -52,6 +45,8 @@
             <li><a href="#analytics">Analytics</a></li>
             <li><a href="#tickets">Tickets</a></li>
             <li><a href="#calendar">Calendar</a></li>
+            <li style="float:right"><a href="#about" style="float:right">About</a></li>
+
         </ul>
     </nav>
 </div>
