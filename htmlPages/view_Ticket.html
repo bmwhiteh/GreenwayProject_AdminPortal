@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tickets</title>
+    <script src="//code.jquery.com/jquery.min.js"></script>
+    <script>
+        $.get("navBar.html", function (data) {
+            $("#navigationBar").replaceWith(data);
+        });
+    </script>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+        }
+
+    </style>
+
+</head>
+<body>
+<div id="navigationBar"></div>
+
+<table class="ticket">
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+
+</table>
+
+
+</body>
+</html>
