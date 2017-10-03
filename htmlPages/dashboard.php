@@ -37,19 +37,19 @@
         }
         .topBox{
             height: 30%;
-            background-color: #b3b3b3
+            background-color: #448b41;
         }
 
         .midBox{
             height: 30%;
             margin-top: 5%;
-            background-color: #ccc
+            background-color: #55ad52;
         }
 
         .bottomBox{
             height: 30%;
             margin-top: 5%;
-            background-color: #ddd
+            background-color: #77be74;
         }
 
     </style>
@@ -61,9 +61,9 @@
     <?php include "navBar.html"; ?>
 <div class="contentBox">
     <div class="leftSide">
-        <div class="topBox"></div>
-        <div class="midBox"></div>
-        <div class="bottomBox"></div>
+        <div class="topBox"> Number of Current People on the Trail</div>
+        <div class="midBox"> Number of Open Tickets </div>
+        <div class="bottomBox"> Number of Tickets closed in the last 7 days</div>
     </div>
     <div class="heatMap">
         <img src="../images/Temporary Picture.jpg" width="100%" height="253px"/>
