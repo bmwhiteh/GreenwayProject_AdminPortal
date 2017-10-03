@@ -10,16 +10,46 @@
             background-color: #1B371A ;
         }
 
-
-
-        .twitter{
-            margin-left:68%;
+        .contentBox{
+            background-color: #8c8c8c;
+            margin: 0px 100px 50px 100px;
+            display: -webkit-flex;
+            display: flex;
+        }
+        .leftSide{
+            -webkit-flex: 1;
+            -ms-flex: 1;
+            flex: 1;
+            margin: 3% 1.5% 3% 3%
+        }
+        .heatMap{
+            -webkit-flex: 2;
+            -ms-flex: 2;
+            flex: 2;
+            margin: 3% 1.5% 3% 1.5%;
         }
 
-        .contentBox{
-            background-color: #aaaaaa;
-            margin: 0px 100px 50px 100px;
+        .twitter{
+            -webkit-flex: 1;
+            -ms-flex: 1;
+            flex: 1;
+            margin: 3% 3% 3% 1.5%
+        }
+        .topBox{
+            height: 30%;
+            background-color: #b3b3b3
+        }
 
+        .midBox{
+            height: 30%;
+            margin-top: 5%;
+            background-color: #ccc
+        }
+
+        .bottomBox{
+            height: 30%;
+            margin-top: 5%;
+            background-color: #ddd
         }
 
     </style>
@@ -30,6 +60,14 @@
 
     <?php include "navBar.html"; ?>
 <div class="contentBox">
+    <div class="leftSide">
+        <div class="topBox"></div>
+        <div class="midBox"></div>
+        <div class="bottomBox"></div>
+    </div>
+    <div class="heatMap">
+        <img src="../images/Temporary Picture.jpg" width="100%" height="253px"/>
+    </div>
     <div class="twitter">
         <a class="twitter-timeline" data-width="400" data-height="400" href="https://twitter.com/FortWayneTrails">Tweets by @FortWayneTrails</a>
         <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
