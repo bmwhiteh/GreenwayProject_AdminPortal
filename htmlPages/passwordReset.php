@@ -9,10 +9,9 @@
     </head>
 
     <body>
-    <div class="header">
-        <!-- The logo that appears on the fixed header at the top of the page. -->
+    <div class="container">
         <div class="logo">
-            <h1>CoFW Trail Network Admin Portal</h1>
+            <img src="../images/Viridian Banner.png" width="100%" height="300px"/>
         </div>
     </div>
 
