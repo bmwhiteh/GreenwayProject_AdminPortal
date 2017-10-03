@@ -3,6 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Tickets</title>
+
+    <!--Links the CSS stylesheet to the login.html page -->
+    <link rel="stylesheet" type="text/css" href="/GreenwayProject_AdminPortal/css/styles.css"/>
+
+    <!-- includes navbar into html page, might want to change to include_once(navbar.php) -->
     <script src="//code.jquery.com/jquery.min.js"></script>
     <script>
         $.get("navBar.html", function (data) {
@@ -10,38 +15,36 @@
         });
     </script>
     <style>
-        table, th, td {
-            border: 1px solid black;
-        }
+
 
     </style>
 
 </head>
 <body>
 <div id="navigationBar"></div>
+<div class="about">
+    <table class="ticketTable" style="text-align:center;" width="100%">
+        <tr>
+            <td>ID#</td>
+            <td>There is a tree that has fallen on the path</td>
+            <td>Tree Branch</td>
+        </tr>
+        <tr>
+            <td>Status</td>
+            <td>Comments</td>
+            <td></td>
+            <td></td>
+        </tr>
 
-<table class="ticket">
-    <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-    </tr>
-    <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-    </tr>
+        <tr>
+            <td>Icons</td>
+            <td></td>
+            <td>Submission date</td>
+            <td>submission author</td>
+        </tr>
 
-    <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-    </tr>
-
-</table>
+    </table>
+</div>
 
 
 </body>
