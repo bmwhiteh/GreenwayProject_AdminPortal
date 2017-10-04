@@ -3,31 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <title>Tickets</title>
-
-    <!--Links the CSS stylesheet to the login.html page -->
     <link rel="stylesheet" type="text/css" href="/GreenwayProject_AdminPortal/css/styles.css"/>
-
-    <!-- includes navbar into html page, might want to change to include_once(navbar.php) -->
-    <script src="//code.jquery.com/jquery.min.js"></script>
-    <script>
-        $.get("navBar.html", function (data) {
-            $("#navigationBar").replaceWith(data);
-        });
-    </script>
-    <style>
-
-
-    </style>
-
 </head>
-<body>
-<div id="navigationBar"></div>
-<div class="about">
+<body class="genericBody">
+<?php include "navBar.html"; ?>
+
+<div class="contentBox">
     <table class="ticketTable" style="text-align:center;" width="100%">
         <tr>
             <td>ID#</td>
             <td>There is a tree that has fallen on the path</td>
             <td>Tree Branch</td>
+            <td class="severe">SEVERE</td>
         </tr>
         <tr>
             <td>Status</td>

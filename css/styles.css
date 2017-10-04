@@ -8,8 +8,8 @@ body{
     -o-background-size: cover;
     background-size: cover;
     height:100%;
-
 }
+
 input[type=text], input[type=password] {
     width: 100%;
     padding: 12px 20px;
@@ -101,10 +101,15 @@ span.psw {
     position:fixed;
 }
 
+/*Generic style for ticket tables*/
 .ticketTable {
-    border: 2px solid darkblue;
+    border: 2px solid white;
     background-color:white;
-    border-radius: 25px;
+
+    margin: 0 auto;
+    margin-top:2%;
+    max-width:40%;
+    overflow:hidden;
 }
 
 
@@ -117,4 +122,25 @@ span.psw {
     .cancelbtn {
         width: 100%;
     }
+}
+
+.genericBody{
+    background:0;
+    width: 100%;
+    overflow: hidden;
+    background-color: #1B371A !important;
+}
+
+.contentBox{
+    background-color: #8c8c8c;
+    margin: 0px 100px 50px 100px;
+    display: -webkit-flex;
+    display: flex;
+}
+
+td.severe {
+    background-color:red;
+    border: 2px solid white;
+    border-radius: 25px;
+
 }
