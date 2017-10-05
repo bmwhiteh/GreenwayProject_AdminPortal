@@ -1,24 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Push Notifications</title>
-
+    <title>Home</title>
     <style>
-        * {
-            box-sizing: border-box;
+        body{
+            width: 100%;
+            overflow: hidden;
+            background-color: #1B371A ;
         }
 
-        body {
-            margin: 0;
+        .contentBox{
+            background-color: #8c8c8c;
+            margin: 0px 100px 50px 100px;
+            display: -webkit-flex;
+            display: flex;
         }
-
-
-
         /* Create three equal columns that floats next to each other */
         .column {
             float: left;
-            width: 33.33%;
+            width: 31.6%;
             padding: 10px;
             height: 500px;
         }
@@ -82,99 +83,95 @@
             padding: 20px;
         }
     </style>
+
 </head>
+
 <body>
-<div class="header">
-    <?php
-        include("navbar.html");
 
-    ?>
-</div>
+<?php include "navBar.html"; ?>
+<div class="contentBox">
 
-    <br/>
+    <div class="row">
 
 
-<div class="row">
+        <div class="column" style="background-color:#aaa;">
+            <!---Display Quick Stats of the push notifications---->
+            <h2>Quick Stats for Push Notifications</h2>
+            <table >
+                <tr>
+                    <th>Sent Today</th>
+                    <th>&nbsp;</th>
+                    <td class="quick_stats_box">Query Result</td>
+                </tr>
+                <tr>
+                    <th>&nbsp;</th>
+                </tr>
+                <tr>
+                    <th>Users Signed Up</th>
+                    <th>&nbsp;</th>
+                    <td class="quick_stats_box">Query Result</td>
+                </tr>
+                <tr>
+                    <th>&nbsp;</th>
+                </tr>
+                <tr>
+                    <th>Total Sent</th>
+                    <th>&nbsp;</th>
+                    <td class="quick_stats_box">Query Result</td>
+                </tr>
+
+            </table>
+        </div>
+
+        <div class="column" style="background-color:#bbb;">
+            <!---Display the 20 most recent push notifications distributed--->
+            <h2>Most Recent Push Notifications Sent</h2>
+            <table>
+                <tr>
+                    <th>Column 1</th>
+                    <th>Column 2</th>
+                    <th>Column 3</th>
+                    <th>Column 4</th>
+                </tr>
+
+                <!---Will need a php loop through query here--->
+                <tr>
+                    <td>Data 1</td>
+                    <td>Data 2</td>
+                    <td>Data 3</td>
+                    <td>Data 4</td>
+                </tr>
+            </table>
+        </div>
 
 
-    <div class="column" style="background-color:#aaa;">
-        <!---Display Quick Stats of the push notifications---->
-        <h2>Quick Stats for Push Notifications</h2>
-        <table >
-            <tr>
-                <th>Sent Today</th>
-                <th>&nbsp;</th>
-                <td class="quick_stats_box">Query Result</td>
-            </tr>
-            <tr>
-                <th>&nbsp;</th>
-            </tr>
-            <tr>
-                <th>Users Signed Up</th>
-                <th>&nbsp;</th>
-                <td class="quick_stats_box">Query Result</td>
-            </tr>
-            <tr>
-                <th>&nbsp;</th>
-            </tr>
-            <tr>
-                <th>Total Sent</th>
-                <th>&nbsp;</th>
-                <td class="quick_stats_box">Query Result</td>
-            </tr>
+        <div class="column" style="background-color:#ccc;">
+            <h2>Send New Push Notification</h2>
+            <form action="/sendPushNotification.php">
+                <label for="content">Message</label>
+                <input type="text" id="content" name="content" placeholder="Message..">
 
-        </table>
+
+
+
+                <label for="dtSend">Send Date</label>
+                <input type="date" id="dtSend" name="dtSend">
+
+                <label for="strNotificationType">Type</label>
+                <select id="strNotificationType" name="strNotificationType">
+                    <option value="event">Local Event</option>
+                    <option value="closure">Trail Closure</option>
+                </select>
+
+                <input type="submit" value="Submit">
+            </form>
+        </div>
     </div>
 
-    <div class="column" style="background-color:#bbb;">
-        <!---Display the 20 most recent push notifications distributed--->
-        <h2>Most Recent Push Notifications Sent</h2>
-        <table>
-            <tr>
-                <th>Column 1</th>
-                <th>Column 2</th>
-                <th>Column 3</th>
-                <th>Column 4</th>
-            </tr>
-
-            <!---Will need a php loop through query here--->
-            <tr>
-                <td>Data 1</td>
-                <td>Data 2</td>
-                <td>Data 3</td>
-                <td>Data 4</td>
-            </tr>
-        </table>
-    </div>
-
-
-<div class="column" style="background-color:#ccc;">
-    <h2>Send New Push Notification</h2>
-    <form action="/sendPushNotification.php">
-        <label for="content">Message</label>
-        <input type="text" id="content" name="content" placeholder="Message..">
-
-
-
-
-        <label for="dtSend">Send Date</label>
-        <input type="date" id="dtSend" name="dtSend">
-
-        <label for="strNotificationType">Type</label>
-        <select id="strNotificationType" name="strNotificationType">
-            <option value="event">Local Event</option>
-            <option value="closure">Trail Closure</option>
-        </select>
-
-        <input type="submit" value="Submit">
-    </form>
 </div>
-</div>
-
 <div class="footer">
     <p>Footer</p>
 </div>
-
 
 </body>
 </html>
