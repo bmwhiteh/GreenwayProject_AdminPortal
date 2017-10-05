@@ -101,18 +101,6 @@ span.psw {
     position:fixed;
 }
 
-/*Generic style for ticket tables*/
-.ticketTable {
-    border: 2px solid white;
-    background-color:white;
-
-    margin: 0 auto;
-    margin-top:2%;
-    max-width:40%;
-    overflow:hidden;
-}
-
-
 /* Change styles for span and cancel button on extra small screens */
 @media screen and (max-width: 300px) {
     span.psw {
@@ -138,9 +126,37 @@ span.psw {
     display: flex;
 }
 
-td.severe {
-    background-color:red;
+
+
+/*Generic style for ticket tables*/
+.ticketTable {
+
+    background-color:white;
+    border-collapse:collapse;
+    border-radius: 25px;
+    margin: 0 auto;
+    margin-top:2%;
+    max-width:40%;
+    overflow:hidden;
+}
+
+tr.ticket:nth-child(odd){
+    background-color:#f2f2f2;
+}
+
+td > div.severe{   background-color:red;
+    border: 4px solid #f2f2f2;
+    border-radius: 25px;
+    background-clip: padding-box;
+}
+
+td.active{
+    background-color:green;
     border: 2px solid white;
     border-radius: 25px;
+}
 
+td.map{
+    width:20%;
+    height:20%;
 }

@@ -10,20 +10,24 @@
 
 <div class="contentBox">
     <table class="ticketTable" style="text-align:center;" width="100%">
-        <tr>
+        <tr class="ticket">
             <td>ID#</td>
             <td>There is a tree that has fallen on the path</td>
             <td>Tree Branch</td>
-            <td class="severe">SEVERE</td>
+            <td ><div class="severe">SEVERE</div></td>
         </tr>
-        <tr>
-            <td>Status</td>
+        <tr class="ticket">
+            <td class="active"><div>ACTIVE</div></td>
             <td>Comments</td>
-            <td></td>
-            <td></td>
-        </tr>
+            <td class="map" colspan="2" ><iframe
+                        frameborder="0" style="border:0"
+                        src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDlMzRTCnLXQFtVWBaQgp5BOQY9sZxGW04
+    &q=IPFW">
+                </iframe></td>
 
-        <tr>
+        </tr >
+
+        <tr class="ticket">
             <td>Icons</td>
             <td></td>
             <td>Submission date</td>
