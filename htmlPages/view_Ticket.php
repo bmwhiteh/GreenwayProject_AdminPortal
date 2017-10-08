@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Tickets</title>
     <link rel="stylesheet" type="text/css" href="/GreenwayProject_AdminPortal/css/styles.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" src="/GreenwayProject_AdminPortal/js/ticketView.js"></script>
 </head>
 <body class="genericBody">
@@ -46,7 +47,7 @@
                 <td class="active">Active</td>
                 <td>There is a tree that has fallen on the path</td>
                 <td><div class="severe">SEVERE</div></td>
-                <td><button type="button" id="view" onclick="showModal(0);">View</button></td>
+                <td><button type="button" class="view">View</button></td>
             </tr>
         </table>
     </div>
