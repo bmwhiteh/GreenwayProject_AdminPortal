@@ -4,12 +4,16 @@
     <meta charset="UTF-8">
     <title>Tickets</title>
     <link rel="stylesheet" type="text/css" href="/GreenwayProject_AdminPortal/css/styles.css"/>
+    <script type="text/javascript" src="/GreenwayProject_AdminPortal/js/ticketView.js"></script>
 </head>
 <body class="genericBody">
 <?php include "navBar.html"; ?>
 
 <div class="contentBox">
-    <table class="ticketTable" style="text-align:center;" width="100%">
+
+
+    <table class="ticketModal" style="text-align:center;" width="100%">
+
         <tr class="ticket">
             <td>ID#</td>
             <td>There is a tree that has fallen on the path</td>
@@ -33,8 +37,19 @@
             <td>Submission date</td>
             <td>submission author</td>
         </tr>
-
     </table>
+
+
+    <div class="ticketPreview">
+        <table >
+            <tr>
+                <td class="active">Active</td>
+                <td>There is a tree that has fallen on the path</td>
+                <td><div class="severe">SEVERE</div></td>
+                <td><button type="button" id="view" onclick="showModal(0);">View</button></td>
+            </tr>
+        </table>
+    </div>
 </div>
 
 
