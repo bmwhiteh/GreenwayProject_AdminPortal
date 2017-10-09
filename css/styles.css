@@ -131,7 +131,8 @@ span.psw {
 /*Generic style for ticket tables*/
 .ticketModal {
 
-    display: none; /* Hidden by default */
+
+    display:none;
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
     width: 75%;
@@ -177,7 +178,7 @@ td > div.severe{   background-color:red;
     background-clip: padding-box;
 }
 
- .view {
+td.view {
     background-color: #c1c4c9;
      border: 1px solid black;
      border-radius: 15px;
