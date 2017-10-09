@@ -159,13 +159,14 @@ span.psw {
 
 
 .ticketPreview{
+   
     background-color:white;
     border-collapse:collapse;
     border-radius: 25px;
     margin: 0 auto;
     margin-top:2%;
-    max-width:40%;
     overflow:hidden;
+    width:80%
 }
 
 tr.ticket:nth-child(odd){
@@ -175,19 +176,32 @@ tr.ticket:nth-child(odd){
 td > div.severe{   background-color:red;
     border: 1px solid #f2f2f2;
     border-radius: 20px;
+    padding:10px;
     background-clip: padding-box;
 }
 
-td.view {
-    background-color: #c1c4c9;
+.ticketPreviewWrapper{
+    padding-left:33%;
+}
+.view {
+     background-color: #c1c4c9;
      border: 1px solid black;
      border-radius: 15px;
+
 }
 
-td.active{
+
+.active{
     background-color:green;
     border: 2px solid white;
     border-radius: 25px;
+
+}
+
+.closeModalButton{
+    background-color: #c1c4c9;
+    border: 1px solid black;
+    border-radius: 15px;
 }
 
 td.map{
