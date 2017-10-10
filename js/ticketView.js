@@ -1,6 +1,5 @@
 $(document).ready(function () {
 
-
     //if a view button is clocked
     $('.view').click(function () {
         //get list of buttons
@@ -11,10 +10,11 @@ $(document).ready(function () {
         for (var i = 0; i < buttons.length; i++) {
             //once we find the index of the button that was clicked
             if (buttons[i] == this) {
-                console.log('yes');
                 //show the modal of matching index if it is hidden
                 if($(tickets[i]).is(':hidden')){
                     $(tickets[i]).toggle();
+                    $('#createTicketModal').hide();
+
                 }
             }
         }
@@ -24,12 +24,18 @@ $(document).ready(function () {
     $('.closeModalButton').click(function () {
         $('.ticketModal').hide();
     });
+
+    $('#createTicketButton').click(function () {
+
+        $('#createTicketModal').show();
+    });
+
     $(document).on('keydown',function(key){
         if(key.keyCode == 27){
             $('.ticketModal').hide();
         }
-
     });
+
 
 
 });

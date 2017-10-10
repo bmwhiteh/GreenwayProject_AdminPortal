@@ -13,6 +13,32 @@
 <div class="contentBox">
 
 
+
+
+    <table id="createTicketModal">
+        <tr>
+            <td><label>Description: </label></td>
+            <td><input type="text" name="description"></td>
+            <td><label>Category: </label><select>
+                    <option value="branch">Tree Branch</option>
+                    <option value="pothole">Pot hole</option>
+                    <option value="trashcan">Trash full</option>
+                    <option value="litter">litter</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td><label>Comments: </label></td>
+            <td><textarea name="comment"></textarea></td>
+            <td><labeL>Severity:</labeL></td>
+            <td><select>
+                    <option value="severe">Severe</option>
+                    <option value="mild">Mild</option>
+                </select>
+            </td>
+            <td><button type="button">Submit Ticket</button></td>
+        </tr>
+    </table>
     <table class="ticketModal" style="text-align:center;" width="100%">
 
         <tr class="ticket">
@@ -80,6 +106,11 @@
     </table>
 
     <div class="ticketPreviewWrapper">
+        <div>
+            <button id="createTicketButton" type="button">Create Ticket</button>
+        </div>
+
+
         <div class="ticketPreview">
             <table>
                 <tr>
@@ -110,6 +141,8 @@
                 </tr>
             </table>
         </div>
+
+
     </div>
 </div>
 

@@ -130,8 +130,33 @@ span.psw {
 
 /*Generic style for ticket tables*/
 .ticketModal {
+    display:none;
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    width: 75%;
+    position: fixed;
+    left: 50%;
+    margin-left: -37.5%;
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(255,255,255,255.4); /* Black w/ opacity */
 
+    border-collapse: collapse;
+    border-radius: 25px;
 
+    /*
+    display: none;
+    background-color: white;
+    border-collapse: collapse;
+    border-radius: 25px;
+    margin: 0 auto;
+    margin-top: 2%;
+    max-width: 40%;
+    overflow: hidden;
+    */
+}
+
+/*Generic style for ticket tables*/
+#createTicketModal {
     display:none;
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
@@ -190,7 +215,6 @@ td > div.severe{   background-color:red;
 
 }
 
-
 .active{
     background-color:green;
     border: 2px solid white;
@@ -200,6 +224,12 @@ td > div.severe{   background-color:red;
 
 .closeModalButton{
     background-color: #c1c4c9;
+    border: 1px solid black;
+    border-radius: 15px;
+}
+
+#createTicketButton{
+    background-color: white;
     border: 1px solid black;
     border-radius: 15px;
 }
