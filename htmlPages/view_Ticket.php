@@ -115,11 +115,11 @@
             <table>
                 <tr>
                     <td class="active">Active</td>
-                    <td>There is a tree that has fallen on the path</td>
-                    <td>
+                    <td class="previewDescription">There is a tree that has fallen on the path</td>
+                    <td style="text-align: right">
                         <div class="severe">SEVERE</div>
                     </td>
-                    <td>
+                    <td >
                         <button type="button" class="view">View</button>
                     </td>
                 </tr>
@@ -131,15 +131,16 @@
             <table>
                 <tr>
                     <td class="active">Active</td>
-                    <td>There is a pothole</td>
-                    <td>
+                    <td class="previewDescription">There is a pothole</td>
+                    <td style="text-align: right">
                         <div class="severe">SEVERE</div>
                     </td>
-                    <td>
+                    <td >
                         <button type="button" class="view">View</button>
                     </td>
                 </tr>
             </table>
+        </div>
         </div>
 
 

@@ -33,6 +33,7 @@ $(document).ready(function () {
     $(document).on('keydown',function(key){
         if(key.keyCode == 27){
             $('.ticketModal').hide();
+            $('#createTicketModal').hide();
         }
     });
 
