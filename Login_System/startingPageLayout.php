@@ -22,10 +22,10 @@
 
 <body>
 
-<?php include "navBar.html"; ?>
+<?php include "../Dashboard_Pages/navBar.html"; ?>
 <div class="contentBox">
 
-    <h1>Content here</h1>
+<h1>Content here</h1>
 
 </div>
 

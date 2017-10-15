@@ -1,3 +1,5 @@
+<?php include "../Dashboard_Pages/navBar.html"; ?>
+
 <!DOCTYPE html>
 
 <html>
@@ -115,7 +117,8 @@
 
 <body>
 
-<?php include "navBar.html"; ?>
+
+
 <div class="contentBox">
     <div class="leftSide">
         <h2>Quick Stats</h2>

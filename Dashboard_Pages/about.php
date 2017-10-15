@@ -11,7 +11,7 @@
 
 <script>
     function myFunction() {
-        window.location.href = "/GreenwayProject_AdminPortal/htmlPages/login.html"
+        window.location.href = "/Login_System/login.html"
     }
 </script>
 

@@ -22,7 +22,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     if($count == 1) {
        // session_register("myusername");
         $_SESSION['login_user'] = $myusername;
-        header("location: /GreenwayProject_AdminPortal/htmlPages/dashboard.php");
+        header("location: /GreenwayProject_AdminPortal/Dashboard_Pages/dashboard.php");
     }else {
         $error = "Your Login Name or Password is invalid";
     }

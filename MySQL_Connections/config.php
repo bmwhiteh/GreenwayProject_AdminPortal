@@ -1,5 +1,5 @@
 <?php
-$servername = "localhost";
+$servername = "23.97.29.252/";
 $username = "dbConnectionUser";
 $password = "dbConnectionPass";
 $db = "ipfw-capstone";
