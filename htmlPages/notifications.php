@@ -76,7 +76,7 @@
             display: none; /* Hidden by default */
             position: fixed; /* Stay in place */
             z-index: 1; /* Sit on top */
-            padding-top: 300px; /* Location of the box */
+            padding-top: 15%; /* Location of the box */
             left: 0;
             top: 0;
             width: 100%; /* Full width */
@@ -110,7 +110,9 @@
             cursor: pointer;
         }
     </style>
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 
 <body>
@@ -134,25 +136,42 @@
             <!-- Modal content -->
             <div class="modal-content">
                 <span class="close">&times;</span>
-                <h2>Send New Push Notification</h2>
-                <form action="/sendPushNotification.php">
-                    <label for="content">Message</label>
-                    <input type="text" id="content" name="content" placeholder="Message..">
+                <h4 class="modal-title">Send New Push Notification</h4>
+                <div class="modal-body">
+                <form action="/sendPushNotification.php" class="form-horizontal" role="form">
+                        <div class="form-group">
+                            <label  class="col-sm-2 control-label"
+                                    for="content">Message</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control"
+                                       id="content" placeholder="Message..."/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label"
+                                   for="dtSend" >Send Date</label>
+                            <div class="col-sm-10">
+                                <input type="date" class="form-control"
+                                       id="dtSend" name="dtSend"/>
+                            </div>
+                        </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label" for="strNotificationType">Type</label>
+                                <div class="col-sm-10">
+                                    <select class="form-control" id="strNotificationType" name="strNotificationType">
+                                        <option value="event">Local Event</option>
+                                        <option value="closure">Trail Closure</option>
+                                    </select>
+                                </div>
+                            </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="submit" class="btn btn-default">Submit</button>
+                        </div>
+                    </div>
 
-
-
-
-                    <label for="dtSend">Send Date</label>
-                    <input type="date" id="dtSend" name="dtSend">
-
-                    <label for="strNotificationType">Type</label>
-                    <select id="strNotificationType" name="strNotificationType">
-                        <option value="event">Local Event</option>
-                        <option value="closure">Trail Closure</option>
-                    </select>
-
-                    <input type="submit" value="Submit">
                 </form>
+                </div>
             </div>
 
         </div>
