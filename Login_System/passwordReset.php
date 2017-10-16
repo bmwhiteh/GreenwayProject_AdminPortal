@@ -16,7 +16,7 @@
     </div>
 
     <div class="password">
-        <form  action="/GreenwayProject_AdminPortal/htmlPages/login.html" method="get">
+        <form  action="/GreenwayProject_AdminPortal/Login_System/login.html" method="get">
             <!--The "username" field -->
             <label><b>New Password</b></label>
             <input type="text" placeholder="Enter Password" required>
