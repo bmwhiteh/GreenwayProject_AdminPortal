@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <style>
+
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #333;
+        }
+
+        li {
+            float: left;
+        }
+
+        li a, .dropbtn {
+            display: inline-block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        li a:hover, .dropdown:hover .dropbtn {
+            background-color: #111;
+        }
+        li.dropdown {
+            display: inline-block;
+        }
+        logo{
+            width: 80%;
+        }
+        .container {
+            margin: 20px 100px 0px 100px;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+        }
+
+        .dropdown-content a:hover {background-color: #77be74}
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+    </style>
+</head>
+<body>
+<div class="container">
+<div class="logo">
+    <img src="../images/ViridianBanner.png" width="100%" height="100px"/>
+</div>
+
+<div class="navigation">
+    <nav>
+        <ul>
+            <li><a href="../Dashboard_Pages/dashboard.php">Home</a></li>
+
+            <li class="dropdown">
+                <a href="#" class="dropbtn">Heat Map</a>
+                <div class="dropdown-content">
+                    <a href="../Data_Analytics/index.php?show=userActivities">User Activities</a>
+                    <a href="../Data_Analytics/index.php?show=ticketDensity">Ticket Density</a>
+                </div>
+            </li>
+
+            <li class="dropdown">
+                <a href="#" class="dropbtn">Analytics</a>
+                <div class="dropdown-content">
+                    <a href="../Data_Analytics/index.php?show=trackedActivities">Tracked Activities</a>
+                    <a href="../Data_Analytics/index.php?show=userInformation">User Information</a>
+                    <a href="../Data_Analytics/index.php?show=maintenanceTickets">Maintenance Tickets</a>
+                </div>
+            </li>
+
+            <li class="dropdown">
+                <a href="#" class="dropbtn">Tickets</a>
+                <div class="dropdown-content">
+                    <a href="../Ticket_System/ticketTable.php?tickets=open">Open Tickets</a>
+                    <a href="../Ticket_System/ticketTable.php?tickets=closed">Closed Tickets</a>
+                </div>
+            </li>
+
+            <li><a href="../Calendar/index.php">Calendar</a></li>
+
+
+            <li class="dropdown" style="float:right">
+                <a href="javascript:void(0)" class="dropbtn">Profile</a>
+                <div class="dropdown-content">
+                    <a href="../User_Accounts/index.php">Account Information</a>
+                    <a href="../Login_System/login.html">Log Out</a>
+                </div>
+            </li>
+            <li style="float:right"><a href="../Dashboard_Pages/about.php" style="float:right">About</a></li>
+
+        </ul>
+    </nav>
+</div>
+</div>
+</body>
+</html>
