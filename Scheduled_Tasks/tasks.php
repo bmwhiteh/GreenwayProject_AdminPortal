@@ -15,6 +15,7 @@
         <button id="showScheduledTasks">Scheduled</button>
         <button id="showCompletedTassks">Completed</button>
     </div>
+
     <div id="taskTableWrapper">
         <table id="completedTaskTable">
         <tr class="tableHeader" >

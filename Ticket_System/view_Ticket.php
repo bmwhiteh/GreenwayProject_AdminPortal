@@ -13,8 +13,6 @@
 <div class="contentBox">
 
 
-
-
     <table id="createTicketModal">
         <tr>
             <td><label>Description: </label></td>
