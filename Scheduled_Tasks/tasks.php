@@ -6,7 +6,7 @@
     <link rel="stylesheet" type="text/css" href="/GreenwayProject_AdminPortal/css/styles.css"/>
 </head>
 <body class="genericBody">
-<?php include "navBar.html"; ?>
+<?php include "../Dashboard_Pages/navBar.html"; ?>
 <div class="contentBox">
 
     <div class="tabs">
