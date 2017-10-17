@@ -5,9 +5,9 @@
 <html>
 <head>
     <title>Push Notifications</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/GreenwayProject_AdminPortal/Push_Notifications/customBootstrap/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="/GreenwayProject_AdminPortal/Push_Notifications/customBootstrap/js/bootstrap.min.js"></script>
     <style>
         body{
             width: 100%;
@@ -140,7 +140,7 @@
             <!-- Modal content -->
             <div class="modal-content">
                 <span class="close">&times;</span>
-                <h4 class="modal-title">Send New Push Notification</h4>
+                <h3 class="modal-title">Send New Push Notification</h3>
                 <div class="modal-body">
                 <form action="/sendPushNotification.php" class="form-horizontal" role="form">
                         <div class="form-group">
