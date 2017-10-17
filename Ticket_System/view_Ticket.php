@@ -8,7 +8,7 @@
     <script type="text/javascript" src="/GreenwayProject_AdminPortal/js/ticketView.js"></script>
 </head>
 <body class="genericBody">
-<?php include "navBar.html"; ?>
+<?php include "../Dashboard_Pages/navBar.html"; ?>
 
 <div class="contentBox">
 
