@@ -56,6 +56,7 @@
             height: 10%;
             margin-left:55%;
             margin-top:4%;
+            padding: 1px 5px;
         }
         table {
             border-collapse: collapse;
