@@ -56,7 +56,6 @@
         body {
             background-color: #1B371A ;
 
-            font-family: 'Open Sans', Arial, Helvetica, Sans-serif, Verdana, Tahoma;
         }
 
         ul { list-style-type: none; }
