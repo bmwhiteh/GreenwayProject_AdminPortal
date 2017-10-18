@@ -48,9 +48,8 @@
 ?>
 
 <?php include "../Dashboard_Pages/navBar.html"; ?>
-<h1 style="margin-bottom: 30px; margin-top:0px; color: white; vertical-aligh:middle; text-align: center;">User Profile</h1>
-
 <div class="contentBox">
+<h1 style="margin-bottom: 30px; margin-top:0px; color: white; vertical-aligh:middle; text-align: center;">User Profile</h1>
     <div id="wrapper">
         <div  id="usersInfo">
             <p>Name: John Dow</p>
