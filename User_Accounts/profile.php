@@ -27,6 +27,9 @@
             background-color:white;
             height:100%;
         }
+        #permission{
+            text-align:center;
+        }
         body {
             background-color: #1B371A ;
 

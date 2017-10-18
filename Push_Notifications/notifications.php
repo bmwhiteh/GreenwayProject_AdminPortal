@@ -242,7 +242,7 @@
                 <tr>
                     <td>10/05/2017</td>
                     <td>10</td>
-                    <td>Test push notification message Test push notification messageTest push notification messageTest push notification message</td>
+                    <td>Test push notification message</td>
                 </tr>
             </tbody>
         </table>
