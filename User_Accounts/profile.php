@@ -58,7 +58,7 @@
             <p>Name: John Dow</p>
             <p>Security Level: Ranger</p>
             <p>Email: johndoe@ranger.com</p>
-            <button type="button">Change Password</button><br>
+            <button type="button">Change Password</button><br><br>
             <button type="button">Request Permissions</button>
 
         </div>
