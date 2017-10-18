@@ -9,7 +9,7 @@
     </head>
 
     <body>
-    <div class="container">
+    <div class="banner">
         <div class="logo">
             <img src="../images/ViridianBanner.png" width="100%" height="150px"/>
         </div>
@@ -26,7 +26,7 @@
             <label><b>Confirm Password</b></label>
             <input type="password" placeholder="Re-enter Password" required>
             <br/><br/>
-            <button type="submit" onClick="myFunction() "><b>Reset Password</b></button>
+            <button id="loginButtons" type="submit" onClick="myFunction() "><b>Reset Password</b></button>
         </form>
     </div>
 
