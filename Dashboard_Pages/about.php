@@ -29,7 +29,7 @@
             background-color: #55ad52;
         }
 
-        .teamThree{
+        .teamOne{
             height: 30%;
             margin-top: 2%;
             background-color: #77be74;
@@ -57,8 +57,8 @@
             <h2><u>Team Two</u></h2>
             <p>Insert Info on Team Two here.</p>
         </div>
-        <div class="teamThree">
-            <h2><u>Team Three</u></h2>
+        <div class="teamOne">
+            <h2><u>Team One</u></h2>
             <p>Insert Info on Team Three here.</p>
         </div>
     </div>
