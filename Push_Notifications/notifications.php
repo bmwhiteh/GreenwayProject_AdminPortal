@@ -6,7 +6,7 @@
 <head>
     <title>Push Notifications</title>
     <link rel="stylesheet" href="/GreenwayProject_AdminPortal/Push_Notifications/customBootstrap/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="../js/jquery-3.2.1.min.js"></script>
     <script src="/GreenwayProject_AdminPortal/Push_Notifications/customBootstrap/js/bootstrap.min.js"></script>
     <style>
         body{
@@ -20,7 +20,7 @@
             margin: 0px 100px 50px 100px;
             display: -webkit-flex;
             display: flex;
-            height: 470px;
+
         }
         .sendNotification{
             display:flex;
@@ -58,25 +58,7 @@
             margin-top:4%;
             padding: 1px 5px;
         }
-        table {
-            border-collapse: collapse;
-            width: 100%;
-        }
 
-        td, th {
-            text-align: left;
-            padding: 8px;
-        }
-        tr:hover td{
-            background-color: #77be74;
-        }
-
-        tr:nth-child(even) {
-            background-color: #dddddd;
-        }
-        tr:nth-child(odd){
-            background-color: #aaaaaa;
-        }
         /* The Modal (background) */
         .modal {
             display: none; /* Hidden by default */
@@ -116,7 +98,13 @@
             cursor: pointer;
         }
     </style>
-
+    <script type="text/javascript" src="../Ticket_System/DataTables/datatables.js"></script>
+    <link rel="stylesheet" type="text/css" href="../Ticket_System/DataTables/datatables.css"/>
+    <script>
+        $(document).ready(function() {
+            $('table.display').DataTable();
+        } );
+    </script>
 </head>
 
 <body>
@@ -208,42 +196,55 @@
                 }
             }
         </script>
-        <table>
-            <tr>
-                <th>Date Sent</th>
-                <th>Number Sent</th>
-                <th>Alert Message</th>
-            </tr>
-            <tr>
-                <td>10/05/2017</td>
-                <td>10</td>
-                <td>Test push notification message</td>
-            </tr>
-            <tr>
-                <td>10/05/2017</td>
-                <td>10</td>
-                <td>Test push notification message</td>
-            </tr>
-            <tr>
-                <td>10/05/2017</td>
-                <td>10</td>
-                <td>Test push notification message</td>
-            </tr>
-            <tr>
-                <td>10/05/2017</td>
-                <td>10</td>
-                <td>Test push notification message</td>
-            </tr>
-            <tr>
-                <td>10/05/2017</td>
-                <td>10</td>
-                <td>Test push notification message</td>
-            </tr>
-            <tr>
-                <td>10/05/2017</td>
-                <td>10</td>
-                <td>Test push notification message Test push notification messageTest push notification messageTest push notification message</td>
-            </tr>
+
+
+        <table id="" class="display" cellspacing="0" width="80%"  style="margin-top: 20px;padding:5px;">
+            <thead style="background-color: #448b41">
+                <tr>
+                    <th>Date Sent</th>
+                    <th>Number Sent</th>
+                    <th>Alert Message</th>
+                </tr>
+            </thead>
+            <tfoot style="background-color: #448b41">
+                <tr>
+                    <th>Date Sent</th>
+                    <th>Number Sent</th>
+                    <th>Alert Message</th>
+                </tr>
+            </tfoot>
+            <tbody>
+                <tr>
+                    <td>10/05/2017</td>
+                    <td>10</td>
+                    <td>Test push notification message</td>
+                </tr>
+                <tr>
+                    <td>10/05/2017</td>
+                    <td>10</td>
+                    <td>Test push notification message</td>
+                </tr>
+                <tr>
+                    <td>10/05/2017</td>
+                    <td>10</td>
+                    <td>Test push notification message</td>
+                </tr>
+                <tr>
+                    <td>10/05/2017</td>
+                    <td>10</td>
+                    <td>Test push notification message</td>
+                </tr>
+                <tr>
+                    <td>10/05/2017</td>
+                    <td>10</td>
+                    <td>Test push notification message</td>
+                </tr>
+                <tr>
+                    <td>10/05/2017</td>
+                    <td>10</td>
+                    <td>Test push notification message Test push notification messageTest push notification messageTest push notification message</td>
+                </tr>
+            </tbody>
         </table>
     </div>
 
