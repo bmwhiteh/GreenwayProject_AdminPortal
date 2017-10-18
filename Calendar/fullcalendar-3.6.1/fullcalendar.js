@@ -16335,8 +16335,7 @@ rawInput can be any data type!
 
     });
 
-    ;;
-
+    ;
     fcViews.basic = {
         'class': BasicView
     };
@@ -16358,8 +16357,6 @@ rawInput can be any data type!
             fixedWeekCount: true
         }
     };
-    ;;
-
     var TimeGridFillRenderer = FillRenderer.extend({
 
 
@@ -16387,8 +16384,6 @@ rawInput can be any data type!
         }
 
     });
-
-    ;;
 
     /*
 Only handles foreground segs.
@@ -16774,8 +16769,6 @@ Does not own rendering. Use for low-level util methods by TimeGrid.
         return seg1.bottom > seg2.top && seg1.top < seg2.bottom;
     }
 
-    ;;
-
     var TimeGridHelperRenderer = HelperRenderer.extend({
 
 
@@ -16811,8 +16804,6 @@ Does not own rendering. Use for low-level util methods by TimeGrid.
         }
 
     });
-
-    ;;
 
     /* A component that renders one or more columns of vertical time slots
 ----------------------------------------------------------------------------------------------------------------------*/
@@ -17472,8 +17463,6 @@ Does not own rendering. Use for low-level util methods by TimeGrid.
 
     });
 
-    ;;
-
     /* An abstract class for all agenda-related views. Displays one more columns with time slots running vertically.
 ----------------------------------------------------------------------------------------------------------------------*/
 // Is a manager for the TimeGrid subcomponent and possibly the DayGrid subcomponent (if allDaySlot is on).
@@ -17917,8 +17906,6 @@ Does not own rendering. Use for low-level util methods by TimeGrid.
         return { allDay: allDay, timed: timed };
     }
 
-    ;;
-
     var AGENDA_ALL_DAY_EVENT_LIMIT = 5;
 
 // potential nice values for the slot-duration and interval-duration
@@ -17949,8 +17936,6 @@ Does not own rendering. Use for low-level util methods by TimeGrid.
         type: 'agenda',
         duration: { weeks: 1 }
     };
-    ;;
-
     /*
 Responsible for the scroller, and forwarding event-related actions into the "grid".
 */
@@ -18259,8 +18244,6 @@ Responsible for the scroller, and forwarding event-related actions into the "gri
 
     });
 
-    ;;
-
     fcViews.list = {
         'class': ListView,
         buttonTextKey: 'list', // what to lookup in locale files
@@ -18303,8 +18286,6 @@ Responsible for the scroller, and forwarding event-related actions into the "gri
             listDayAltFormat: 'dddd' // day-of-week is nice-to-have
         }
     };
-
-    ;;
 
     return FC; // export for Node/CommonJS
 });
