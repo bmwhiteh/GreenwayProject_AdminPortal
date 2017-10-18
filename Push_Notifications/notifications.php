@@ -20,6 +20,7 @@
             margin: 0px 100px 50px 100px;
             display: -webkit-flex;
             display: flex;
+            color:black;
 
         }
         .sendNotification{
