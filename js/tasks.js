@@ -1,3 +1,5 @@
+
+
 $(document).ready(function () {
     //show scheduled table on click
     $('#showScheduledTasks').click(function(){
@@ -6,9 +8,10 @@ $(document).ready(function () {
     });
 
     //show completed schedule on click
-    $('#showCompletedTassks').click(function(){
+    $('#showCompletedTasks').click(function(){
         console.log("h");
         $('#scheduledTaskTable').hide();
         $('#completedTaskTable').show();
     });
+
 });
