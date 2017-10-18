@@ -124,7 +124,7 @@ span.psw {
     background:0;
     width: 100%;
     overflow: hidden;
-    background-color: #1B371A !important;
+    background-color: #49631A !important;
 }
 
 .contentBox{
@@ -134,7 +134,10 @@ span.psw {
     display: flex;
 }
 
-
+.container{
+    background-color: rgba(211, 211, 211,0.8);
+    height: 143px;
+}
 
 /*Generic style for ticket tables*/
 .ticketModal {

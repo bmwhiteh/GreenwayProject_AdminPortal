@@ -11,7 +11,7 @@
     <body>
     <div class="container">
         <div class="logo">
-            <img src="../images/ViridianBanner.png" width="100%" height="100px"/>
+            <img src="../images/ViridianBanner.png" width="100%" height="150px"/>
         </div>
     </div>
 
