@@ -7,4 +7,7 @@
  */
 ?>
 
-<img src="../images/Temporary%20Picture.jpg" alt="temp_barchart" width="300px" height="300px">
+<figure>
+    <figcaption><h3>User Information</h3></figcaption>
+    <img src="../images/Temporary%20Picture.jpg" alt="temp_barchart" width="300px" height="300px">
+</figure>

@@ -175,6 +175,12 @@
             color: #FFF;
         }
 
+        figcaption {
+            margin:auto;
+            text-align: center;
+
+        }
+
     </style>
 </head>
 <body>
@@ -188,70 +194,76 @@
 
     <table style="margin:auto;">
         <tr style="vertical-align: top">
-            <td>
-                <h3>Choose a Heat Map</h3>
+            <?php if(($_GET["show"] == "userActivities")|| ($_GET["show"]=="ticketDensity")):?>
+                <td>
+                    <h3>Choose a Heat Map</h3>
 
-                <ul id="accordion1" class="accordion">
+                    <ul id="accordion1" class="accordion">
 
-                    <li class="menu_background">
-                        <div class="link">By User Activity</div>
-                        <ul class="submenu">
-                            <li><a href="#">By User Activity</a></li>
-                            <li><a href="#">By Ticket Density</a></li>
-                        </ul>
-                    </li>
-                    <li class="menu_background">
-                        <div class="link">By Ticket Density</div>
-                        <ul class="submenu">
-                            <li><a href="#">By User Activity</a></li>
-                            <li><a href="#"></a></li>
-                        </ul>
-                    </li>
+                        <li class="menu_background">
+                            <div class="link">Heat Map</div>
+                            <ul class="submenu" style="display:block">
+                                <li><a href="#">By User Activity</a></li>
+                                <li><a href="#">By Ticket Density</a></li>
+                            </ul>
 
-                </ul>
-            </td>
+                        </li>
+                    </ul>
+                </td>
 
-            <td style="width:100px; vertical-align: middle; text-align: center;">OR</td>
-
-            <td>
-                <h3>Choose an Analytic</h3>
-                <ul id="accordion2" class="accordion">
-
-                    <li class="menu_background">
-                        <div class="link">Tracked Activities</div>
-                        <ul class="submenu">
-                            <li><a href="#">By Activities</a></li>
-                            <li><a href="#">By Time of Day</a></li>
-                        </ul>
-                    </li>
-                    <li class="menu_background">
-                        <div class="link">User Information</div>
-                        <ul class="submenu">
-                            <li><a href="#">By Height</a></li>
-                            <li><a href="#">By Weight</a></li>
-                            <li><a href="#">By Gender</a></li>
-                            <li><a href="#">By Age</a></li>
-                            <li><a href="#">By Activities</a></li>
-                        </ul>
-                    </li>
-                    <li class="menu_background">
-                        <div class="link">Ticket Information</div>
-                        <ul class="submenu">
-                            <li><a href="#">By Ticket Type</a></li>
-                            <li><a href="#">By Ticket Status</a></li>
-                        </ul>
-                    </li>
-                </ul>
+            <?php else: ?>
 
 
 
-            </td>
+
+                <td>
+                    <h3>Choose an Analytic</h3>
+                    <ul id="accordion2" class="accordion">
+
+                        <li class="menu_background">
+                            <div class="link">Tracked Activities</div>
+                            <ul class="submenu"<?php if($_GET["show"]=="trackedActivities"):?>style="display:block;"<?php endif?>>
+                                <li><a href="#">By Activities</a></li>
+                                <li><a href="#">By Time of Day</a></li>
+                            </ul>
+                        </li>
+                        <li class="menu_background">
+                            <div class="link">User Information</div>
+                            <ul class="submenu" <?php if($_GET["show"]=="userInformation"):?>style="display:block;"<?php endif?>>
+                                <li><a href="#">By Height</a></li>
+                                <li><a href="#">By Weight</a></li>
+                                <li><a href="#">By Gender</a></li>
+                                <li><a href="#">By Age</a></li>
+                                <li><a href="#">By Activities</a></li>
+                            </ul>
+                        </li>
+                        <li class="menu_background">
+                            <div class="link"<?php if($_GET["show"]=="maintenanceTickets"):?>style="display:block;"<?php endif?>>Ticket Information</div>
+                            <ul class="submenu">
+                                <li><a href="#">By Ticket Type</a></li>
+                                <li><a href="#">By Ticket Status</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+
+
+
+                </td>
+            <?php endif?>
 
             <td style="width:100px;">
 
             </td>
             <td>
-                <?php include "Graphs/tracked_activities.php"; ?>
+
+
+                <?php if($_GET["show"] == "userActivities"): include "Heat_Maps/user_activities.php";
+                    elseif ($_GET["show"]=="ticketDensity"): include "Heat_Maps/ticket_density.php";
+                    elseif ($_GET["show"]=="userInformation"): include "Graphs/user_information.php";
+                    elseif ($_GET["show"]=="trackedActivities"): include "Graphs/tracked_activities.php";
+                    elseif ($_GET["show"]=="maintenanceTickets"): include "Graphs/maintenance_information.php";
+                    endif;
+                ?>
             </td>
         </tr>
 
