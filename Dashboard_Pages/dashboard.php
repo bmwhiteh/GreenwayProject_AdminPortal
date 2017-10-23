@@ -66,7 +66,8 @@
         <div class="bottomBox"> Number of Tickets closed in the last 7 days</div>
     </div>
     <div class="heatMap">
-        <img src="../images/Temporary Picture.jpg" width="100%" height="253px"/>
+        <iframe width="520" height="400" frameborder="0" style="border:0"
+                src="https://www.google.com/maps/embed/v1/view?zoom=10&center=41.0793,-85.1394&key=AIzaSyBDPrizY3A8DH-BaSuHsSLy6-WObmEvAd4" allowfullscreen></iframe>
     </div>
     <div class="twitter">
         <a class="twitter-timeline" data-width="400" data-height="400" href="https://twitter.com/FortWayneTrails">Tweets by @FortWayneTrails</a>
