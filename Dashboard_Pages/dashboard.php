@@ -22,7 +22,7 @@
             flex: 1;
             margin: 3% 1.5% 3% 3%
         }
-        .heatMap{
+        .map{
             -webkit-flex: 2;
             -ms-flex: 2;
             flex: 2;
@@ -65,12 +65,88 @@
         <div class="midBox"> Number of Open Tickets </div>
         <div class="bottomBox"> Number of Tickets closed in the last 7 days</div>
     </div>
-    <div class="heatMap">
-        <iframe width="520" height="400" frameborder="0" style="border:0"
-                src="https://www.google.com/maps/embed/v1/view?zoom=10&center=41.0793,-85.1394&key=AIzaSyBDPrizY3A8DH-BaSuHsSLy6-WObmEvAd4" allowfullscreen></iframe>
+    <div class="map" id="map">
+        <script>
+
+            // This example requires the Visualization library. Include the libraries=visualization
+            // parameter when you first load the API. For example:
+            // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=visualization">
+
+            var map, heatmap;
+
+            function initMap() {
+                map = new google.maps.Map(document.getElementById('map'), {
+                    zoom: 10,
+                    center: {lat: 41.1178412, lng: -85.1082758}
+                });
+
+                heatmap = new google.maps.visualization.HeatmapLayer({
+                    data: getPoints(),
+                    map: map
+                });
+            }
+            // Heatmap data: 500 Points
+            function getPoints() {
+                return [
+                    new google.maps.LatLng(41.1178412, -85.1082758),
+                    new google.maps.LatLng(41.1178412, -85.1082758),
+                    new google.maps.LatLng(41.1178412, -85.1082758),
+                    new google.maps.LatLng(41.1178412, -85.1082758),
+                    new google.maps.LatLng(41.1178412, -85.1082758),
+                    new google.maps.LatLng(41.1178412, -85.1082758),
+                    new google.maps.LatLng(41.1178412, -85.1082758),
+                    new google.maps.LatLng(41.1178412, -85.1082758),
+                    new google.maps.LatLng(41.1178412, -85.1082758),
+                    new google.maps.LatLng(41.1178412, -85.1082758),
+                    new google.maps.LatLng(41.1178412, -85.1082758),
+                    new google.maps.LatLng(41.1178412, -85.1082758),
+                    new google.maps.LatLng(41.1178412, -85.1082758),
+                    new google.maps.LatLng(41.1178412, -85.1082758),
+                    new google.maps.LatLng(41.1178412, -85.1082758),
+                    new google.maps.LatLng(41.1178412, -85.1082758),
+                    new google.maps.LatLng(41.1178412, -85.1082758),
+                    new google.maps.LatLng(41.1178412, -85.1082758),
+                    new google.maps.LatLng(41.1178412, -85.1082758),
+                    new google.maps.LatLng(41.1178412, -85.1082758),
+
+                    new google.maps.LatLng(41.1198612, -85.1042738),
+                    new google.maps.LatLng(41.1198612, -85.1042738),
+                    new google.maps.LatLng(41.1198612, -85.1042738),
+                    new google.maps.LatLng(41.1198612, -85.1042738),
+                    new google.maps.LatLng(41.1198612, -85.1042738),
+                    new google.maps.LatLng(41.1198612, -85.1042738),
+                    new google.maps.LatLng(41.1198612, -85.1042738),
+                    new google.maps.LatLng(41.1198612, -85.1042738),
+                    new google.maps.LatLng(41.1198612, -85.1042738),
+                    new google.maps.LatLng(41.1198612, -85.1042738),
+                    new google.maps.LatLng(41.1198612, -85.1042738),
+                    new google.maps.LatLng(41.1198612, -85.1042738),
+                    new google.maps.LatLng(41.1198612, -85.1042738),
+                    new google.maps.LatLng(41.1198612, -85.1042738),
+                    new google.maps.LatLng(41.1198612, -85.1042738),
+                    new google.maps.LatLng(41.1198612, -85.1042738),
+
+                    new google.maps.LatLng(41.1148612, -85.1042738),
+                    new google.maps.LatLng(41.1148612, -85.1042738),
+                    new google.maps.LatLng(41.1148612, -85.1042738),
+                    new google.maps.LatLng(41.1148612, -85.1042738),
+                    new google.maps.LatLng(41.1148612, -85.1042738),
+                    new google.maps.LatLng(41.1148612, -85.1042738),
+                    new google.maps.LatLng(41.1148612, -85.1042738),
+                    new google.maps.LatLng(41.1148612, -85.1042738),
+                    new google.maps.LatLng(41.1148612, -85.1042738),
+                    new google.maps.LatLng(41.1148612, -85.1042738),
+                    new google.maps.LatLng(41.1148612, -85.1042738)
+                ];
+            }
+        </script>
+        <script async defer
+                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDVZ9qSBrT-dnmrBaxkX2PzWbfmxv6xZgM&libraries=visualization&callback=initMap">
+        </script>
+         <!-- <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1VWuJk_bhXl0nF4ntCsIoyvBpDW0" width="520" height="385"></iframe> -->
     </div>
     <div class="twitter">
-        <a class="twitter-timeline" data-width="400" data-height="400" href="https://twitter.com/FortWayneTrails">Tweets by @FortWayneTrails</a>
+        <a class="twitter-timeline" data-width="400" data-height="385" href="https://twitter.com/FortWayneTrails">Tweets by @FortWayneTrails</a>
         <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
     </div>
 </div>
