@@ -1,19 +1,23 @@
+
 /*pushNotifications_ReceivedBy has foreign keys in Users and pushNotifications*/
 /*employees has foreign key in securityLevels*/
 /*maintenanceTickets has foreign key in Users*/
-DROP TABLE IF EXISTS Viridian_Admin_Portal.pushNotifications_ReceivedBy;
-DROP TABLE IF EXISTS Viridian_Admin_Portal.employees;
-DROP TABLE IF EXISTS Viridian_Admin_Portal.maintenanceTickets;
+DROP TABLE IF EXISTS Viridian_Capstone_Project.pushNotifications_ReceivedBy;
+DROP TABLE IF EXISTS Viridian_Capstone_Project.employees;
+DROP TABLE IF EXISTS Viridian_Capstone_Project.maintenanceTickets;
 
-DROP TABLE IF EXISTS Viridian_Admin_Portal.Users;
-DROP TABLE IF EXISTS Viridian_Admin_Portal.pushNotifications;
-DROP TABLE IF EXISTS Viridian_Admin_Portal.securityLevels;
+DROP TABLE IF EXISTS Viridian_Capstone_Project.Users;
+DROP TABLE IF EXISTS Viridian_Capstone_Project.pushNotifications;
+DROP TABLE IF EXISTS Viridian_Capstone_Project.securityLevels;
 
 
-DROP DATABASE IF EXISTS Viridian_Admin_Portal;
+DROP DATABASE IF EXISTS Viridian_Capstone_Project;
 
 /*Create the database for Viridian Admin Portal*/
-CREATE DATABASE IF NOT EXISTS Viridian_Admin_Portal;
+CREATE DATABASE IF NOT EXISTS Viridian_Capstone_Project;
+
+/*Tell MySQL to use Viridian_Capstone_Project*/
+USE Viridian_Capstone_Project;
 
 /*Create Users Table*/
 CREATE TABLE  IF NOT EXISTS Users (
@@ -62,6 +66,7 @@ CREATE TABLE  IF NOT EXISTS pushNotifications_ReceivedBy(
 /*Create security Level Table*/
 CREATE TABLE IF NOT EXISTS securityLevels(
 	intSecurityLevelId int(5) NOT NULL,
+	  strSecurityLevel varchar(10),
     strLevelDescription varchar(255),
     strSecurityTitle varchar(255),
     intEmployeeAssigned int(5),
@@ -105,3 +110,9 @@ CREATE TABLE IF NOT EXISTS maintenanceTickets (
 
 );
 
+CREATE TABLE IF NOT EXISTS tickettypes (
+  intTypeId int(11) NOT NULL,
+  strTicketType varchar(255) DEFAULT NULL,
+  strTicketDescription varchar(255) DEFAULT NULL,
+  PRIMARY KEY (intTypeId)
+);
