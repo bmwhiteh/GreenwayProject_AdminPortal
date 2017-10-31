@@ -1,0 +1,45 @@
+.genericBody{
+    background:0;
+    width: 100%;
+    overflow: hidden;
+    background-color: #003f6a !important;
+}
+
+.contentBox{
+    background-color: #8c8c8c;
+    margin: 0px 100px 50px 100px;
+    display: -webkit-flex;
+    display: flex;
+}
+
+.active{
+    background-color:green;
+    border: 2px solid white;
+    border-radius: 25px;
+
+}
+
+.topBox{
+    height: 30%;
+    background-color: #005066;
+}
+
+.midBox{
+    height: 30%;
+    margin-top: 5%;
+    background-color: #007393;
+}
+
+.bottomBox{
+    height: 30%;
+    margin-top: 5%;
+    background-color: #008cb3;
+}
+
+.dropdown-content a:hover {
+    background-color: #00c5d4;
+}
+
+ul {
+    background-color: #333;
+}
