@@ -3,60 +3,11 @@
 <html>
 <head>
     <title>Home</title>
-    <style>
-        body{
-            width: 100%;
-            overflow: hidden;
-            background-color: #1B371A ;
-        }
-
-        .contentBox{
-            background-color: #8c8c8c;
-            margin: 0px 100px 50px 100px;
-            display: -webkit-flex;
-            display: flex;
-        }
-        .leftSide{
-            -webkit-flex: 1;
-            -ms-flex: 1;
-            flex: 1;
-            margin: 3% 1.5% 3% 3%
-        }
-        .map{
-            -webkit-flex: 2;
-            -ms-flex: 2;
-            flex: 2;
-            margin: 3% 1.5% 3% 1.5%;
-        }
-
-        .twitter{
-            -webkit-flex: 1;
-            -ms-flex: 1;
-            flex: 1;
-            margin: 3% 3% 3% 1.5%
-        }
-        .topBox{
-            height: 30%;
-            background-color: #448b41;
-        }
-
-        .midBox{
-            height: 30%;
-            margin-top: 5%;
-            background-color: #55ad52;
-        }
-
-        .bottomBox{
-            height: 30%;
-            margin-top: 5%;
-            background-color: #77be74;
-        }
-
-    </style>
-
+    <link rel="stylesheet" type="text/css" href="/GreenwayProject_AdminPortal/css/styles.css"/>
+    <link rel="stylesheet" type="text/css" href="/GreenwayProject_AdminPortal/css/espresso.css"/>
 </head>
 
-<body>
+<body class="genericBody">
 
     <?php include "navBar.html"; ?>
 <div class="contentBox">
@@ -67,10 +18,6 @@
     </div>
     <div class="map" id="map">
         <script>
-
-            // This example requires the Visualization library. Include the libraries=visualization
-            // parameter when you first load the API. For example:
-            // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=visualization">
 
             var map, heatmap;
 
