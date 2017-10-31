@@ -1,8 +1,8 @@
 <?php
-$servername = "23.97.29.252/";
-$username = "dbConnectionUser";
-$password = "dbConnectionPass";
-$db = "ipfw-capstone";
+$servername = "localhost";
+$username = "whitbm06";
+$password = "";
+$db = "viridian_capstone_project";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $db);
