@@ -27,12 +27,14 @@
     height: 30%;
     margin-top: 5%;
     background-color: #55ad52;
+    text-align: center;
 }
 
 .bottomBox{
     height: 30%;
     margin-top: 5%;
     background-color: #77be74;
+    text-align: center;
 }
 
 .dropdown-content a:hover {

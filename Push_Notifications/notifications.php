@@ -29,18 +29,21 @@
         .topBox{
             height: 28%;
             background-color: #448b41;
+            text-align: center;
         }
 
         .midBox{
             height: 28%;
             margin-top: 5%;
             background-color: #55ad52;
+            text-align: center;
         }
 
         .bottomBox{
             height: 28%;
             margin-top: 5%;
             background-color: #77be74;
+            text-align: center;
         }
         .leftSide{
             width: 15%;
@@ -115,9 +118,19 @@
 <div class="contentBox">
     <div class="leftSide">
         <h2>Quick Stats</h2>
-        <div class="topBox"> Sent Today</div>
-        <div class="midBox"> Users Signed Up</div>
-        <div class="bottomBox">Total Sent</div>
+        <div class="topBox">
+            <h3>Sent Today</h3>
+            <?php include "numNotificationsSentToday.php"?></div>
+        
+        <div class="midBox">
+            <h3>Users Signed Up</h3>
+            <?php include "numUsersReceivingNotifications.php"?>
+        </div>
+        
+        <div class="bottomBox">
+            <h3>Total Sent</h3>
+            <?php include "numNotificationsSentTotal.php"?>
+        </div>
     </div>
     <div class="recentNotifications">
         <div class="sendNotification">

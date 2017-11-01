@@ -246,7 +246,7 @@ td.map{
     -webkit-flex: 1;
     -ms-flex: 1;
     flex: 1;
-    margin: 3% 1.5% 3% 3%
+    margin: 3% 1.5% 3% 3%;
 }
 .map{
     -webkit-flex: 2;

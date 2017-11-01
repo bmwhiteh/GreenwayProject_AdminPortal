@@ -3,8 +3,8 @@
 <html>
 <head>
     <title>Home</title>
-    <link rel="stylesheet" type="text/css" href="/GreenwayProject_AdminPortal/css/styles.css"/>
-    <link rel="stylesheet" type="text/css" href="/GreenwayProject_AdminPortal/css/viridian.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/styles.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/viridian.css"/>
 </head>
 
 <body class="genericBody">
@@ -13,8 +13,14 @@
 <div class="contentBox">
     <div class="leftSide">
         <div class="topBox"> Number of Current People on the Trail</div>
-        <div class="midBox"> Number of Open Tickets </div>
-        <div class="bottomBox"> Number of Tickets closed in the last 7 days</div>
+        
+        <div class="midBox"><h3>Open Tickets</h3>
+            <?php include "numOpenTickets.php"?>
+        </div>
+        
+        <div class="bottomBox"><h3>Closed Tickets</h3>
+            <?php include "numClosedTickets.php" ?>
+        </div>
     </div>
     <div class="map" id="map">
         <script>
