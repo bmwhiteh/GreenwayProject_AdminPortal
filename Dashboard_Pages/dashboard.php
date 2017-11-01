@@ -18,7 +18,7 @@
             <?php include "numOpenTickets.php"?>
         </div>
         
-        <div class="bottomBox"><h3>Closed Tickets</h3>
+        <div class="bottomBox"><h3>Tickets Closed This Week</h3>
             <?php include "numClosedTickets.php" ?>
         </div>
     </div>

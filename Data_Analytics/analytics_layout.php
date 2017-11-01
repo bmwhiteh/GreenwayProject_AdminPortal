@@ -187,7 +187,6 @@
 
 <?php include "../Dashboard_Pages/navBar.html"; ?>
 
-
 <div class="contentBox">
 
     <h1 style="margin-bottom: 30px; margin-top:0px; color: white;"><br/><br/>Data Analysis for Viridian</h1>

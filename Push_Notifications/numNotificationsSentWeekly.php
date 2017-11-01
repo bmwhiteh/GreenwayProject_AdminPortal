@@ -1,7 +1,7 @@
 <?php 
 include("../MySQL_Connections/config.php");
 
-$sql = "SELECT * from pushnotifications";
+$sql = "SELECT * from pushnotifications where datediff(`dtSentToUsers`, curDate()) >= -7";
 
 $result = $conn->query($sql) or die("Query fail");
     

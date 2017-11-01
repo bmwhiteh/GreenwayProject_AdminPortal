@@ -5,7 +5,7 @@
 <html>
 <head>
     <title>Push Notifications</title>
-    <link rel="stylesheet" href="./customBootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./customBootstrap/css/bootstrap.css">
     <script src="../js/jquery-3.2.1.min.js"></script>
     <script src="./customBootstrap/js/bootstrap.min.js"></script>
     <style>
@@ -128,8 +128,8 @@
         </div>
         
         <div class="bottomBox">
-            <h3>Total Sent</h3>
-            <?php include "numNotificationsSentTotal.php"?>
+            <h3>Sent This Week</h3>
+            <?php include "numNotificationsSentWeekly.php"?>
         </div>
     </div>
     <div class="recentNotifications">
