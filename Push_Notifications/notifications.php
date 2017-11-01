@@ -5,9 +5,9 @@
 <html>
 <head>
     <title>Push Notifications</title>
-    <link rel="stylesheet" href="/GreenwayProject_AdminPortal/Push_Notifications/customBootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./customBootstrap/css/bootstrap.min.css">
     <script src="../js/jquery-3.2.1.min.js"></script>
-    <script src="/GreenwayProject_AdminPortal/Push_Notifications/customBootstrap/js/bootstrap.min.js"></script>
+    <script src="./customBootstrap/js/bootstrap.min.js"></script>
     <style>
         body{
             width: 100%;
@@ -145,13 +145,13 @@
                 <span class="close">&times;</span>
                 <h3 class="modal-title">Send New Push Notification</h3>
                 <div class="modal-body">
-                <form action="/sendPushNotification.php" class="form-horizontal" role="form">
+                <form action="./sendPushNotification.php" method="get" class="form-horizontal" role="form">
                         <div class="form-group">
                             <label  class="col-sm-2 control-label"
                                     for="content">Message</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control"
-                                       id="content" placeholder="Message..."/>
+                                       id="content" name="message" placeholder="Message..."/>
                             </div>
                         </div>
                         <div class="form-group">
@@ -166,8 +166,8 @@
                                 <label class="col-sm-2 control-label" for="strNotificationType">Type</label>
                                 <div class="col-sm-10">
                                     <select class="form-control" id="strNotificationType" name="strNotificationType">
-                                        <option value="event">Local Event</option>
-                                        <option value="closure">Trail Closure</option>
+                                        <option value="local event">Local Event</option>
+                                        <option value="trail closure">Trail Closure</option>
                                     </select>
                                 </div>
                             </div>
@@ -228,36 +228,7 @@
                 </tr>
             </tfoot>
             <tbody>
-                <tr>
-                    <td>10/05/2017</td>
-                    <td>10</td>
-                    <td>Test push notification message</td>
-                </tr>
-                <tr>
-                    <td>10/05/2017</td>
-                    <td>10</td>
-                    <td>Test push notification message</td>
-                </tr>
-                <tr>
-                    <td>10/05/2017</td>
-                    <td>10</td>
-                    <td>Test push notification message</td>
-                </tr>
-                <tr>
-                    <td>10/05/2017</td>
-                    <td>10</td>
-                    <td>Test push notification message</td>
-                </tr>
-                <tr>
-                    <td>10/05/2017</td>
-                    <td>10</td>
-                    <td>Test push notification message</td>
-                </tr>
-                <tr>
-                    <td>10/05/2017</td>
-                    <td>10</td>
-                    <td>Test push notification message</td>
-                </tr>
+                <?php include "recentNotifications.php"?>
             </tbody>
         </table>
     </div>

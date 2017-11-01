@@ -1,7 +1,7 @@
 <?php 
 include("../MySQL_Connections/config.php");
 
-$sql = "SELECT * from maintenancetickets where `dtClosed` != '0000-00-00'";
+$sql = "SELECT * FROM `maintenancetickets` where datediff(`dtClosed`, curDate()) >= -7";
 
 $result = $conn->query($sql) or die("Query fail");
     
