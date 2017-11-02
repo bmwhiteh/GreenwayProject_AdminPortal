@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 
+
 <html>
 <head>
     <title>Home</title>
@@ -19,7 +20,7 @@
     </style>
     <script src="../js/jquery-3.2.1.min.js"></script>
 
-    <link rel="stylesheet" type="text/css" href="DataTables/datatables.css"/>
+   <link rel="stylesheet" type="text/css" href="DataTables/datatables.css"/>
 
     <script type="text/javascript" src="DataTables/datatables.js"></script>
     <script>
@@ -122,6 +123,8 @@
         </tr>
         </tbody>
     </table>
+    
+    <?php include "getTickets.php" ?>
         </div>
 </div>
 
