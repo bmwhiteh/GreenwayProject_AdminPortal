@@ -6,7 +6,8 @@
     <title>Security Questions</title>
 
     <!--Links the CSS stylesheet to the login.html page -->
-    <link rel="stylesheet" type="text/css" href="/GreenwayProject_AdminPortal/css/styles.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/styles.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/viridian.css"/>
 </head>
 
 <body>
@@ -17,13 +18,13 @@
 </div>
 
 <div class="security">
-    <form action="/GreenwayProject_AdminPortal/Login_System/passwordReset.php" method="get">
-        <label><b>Security Question 1</b></label>
-        <input type="text" placeholder="Enter Response" required>
+    <form action="./verifySecurityAnswers.php" method="post">
+        <label><b><?php include "populateSecurityQuestion1.php"?></b></label>
+        <input type="text" name="answer1" placeholder="Enter Response" required>
         <br/>
 
-        <label><b>Security Question 2</b></label>
-        <input type="text" placeholder="Enter Response" required>
+        <label><b><?php include "populateSecurityQuestion2.php"?></b></label>
+        <input type="text" name="answer2" placeholder="Enter Response" required>
         <br/>
 
         <!-- The "Submit" button -->
