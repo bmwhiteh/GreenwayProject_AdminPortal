@@ -98,7 +98,7 @@ CREATE TABLE IF NOT EXISTS maintenanceTickets (
     strTitle varchar(255),
     strType varchar(255),
     strDescription varchar(255),
-    dtSUbmitted date,
+    dtSubmitted date,
     dtClosed date,
     strImageFilePath varchar(255),
     bitUrgent bit,

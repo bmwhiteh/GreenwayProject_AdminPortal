@@ -124,7 +124,26 @@
         </tbody>
     </table>
     
-    <?php include "getTickets.php" ?>
+    
+    <table cellspacing="0" width="80%"  style="margin-top: 20px;padding:5px;">
+            <thead style="background-color: #448b41">
+                <tr>
+                    <th>Date Sent</th>
+                    <th>Number Sent</th>
+                    <th>Alert Message</th>
+                </tr>
+            </thead>
+            <tfoot style="background-color: #448b41">
+                <tr>
+                    <th>Date Sent</th>
+                    <th>Number Sent</th>
+                    <th>Alert Message</th>
+                </tr>
+            </tfoot>
+            <tbody>
+                 <?php include "getTickets.php" ?>
+            </tbody>
+
         </div>
 </div>
 

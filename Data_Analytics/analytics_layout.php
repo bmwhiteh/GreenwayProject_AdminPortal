@@ -193,7 +193,7 @@
 
     <table style="margin:auto;">
         <tr style="vertical-align: top">
-            <?php if(($_GET["show"] == "userActivities")|| ($_GET["show"]=="ticketDensity")):?>
+            <!---<?php if(($_GET["show"] == "userActivities")|| ($_GET["show"]=="ticketDensity")):?>
                 <td>
                     <h3>Choose a Heat Map</h3>
 
@@ -248,9 +248,9 @@
 
 
                 </td>
-            <?php endif?>
+            <?php endif?>--->
 
-            <td style="width:100px;">
+            <!---<td style="width:100px;">--->
 
             </td>
             <td>
