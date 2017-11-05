@@ -1,3 +1,4 @@
+
 <?php
     include("../MySQL_Connections/config.php");
     
@@ -6,7 +7,7 @@
     while($row = $result->fetch_array(MYSQLI_ASSOC)){
 ?>
         <tr>
-            <td><?php echo $row['dtSentToUsers']?></td>
+            <td><?php echo "a". $row['dtSentToUsers']?></td>
             <td><?php echo $row['intUsersSentTo']?></td>
             <td><?php echo $row['strJSONMessage']?></td>
         </tr>

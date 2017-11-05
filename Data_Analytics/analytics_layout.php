@@ -4,6 +4,8 @@
     <title>Data Analytics</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="./css/styles.css"/>
+    <link rel="stylesheet" type="text/css" href="./css/viridian.css"/>
     <script src="../js/jquery-3.2.1.min.js"></script>
     <script>
         $(Accordian_Style);
@@ -187,86 +189,20 @@
 
 <?php include "../Dashboard_Pages/navBar.html"; ?>
 
-<div class="contentBox">
+<div class="contentBox" style="height:500px;">
 
     <h1 style="margin-bottom: 30px; margin-top:0px; color: white;"><br/><br/>Data Analysis for Viridian</h1>
 
-    <table style="margin:auto;">
-        <tr style="vertical-align: top">
-            <!---<?php if(($_GET["show"] == "userActivities")|| ($_GET["show"]=="ticketDensity")):?>
-                <td>
-                    <h3>Choose a Heat Map</h3>
-
-                    <ul id="accordion1" class="accordion">
-
-                        <li class="menu_background">
-                            <div class="link">Heat Map</div>
-                            <ul class="submenu" style="display:block">
-                                <li><a href="#">By User Activity</a></li>
-                                <li><a href="#">By Ticket Density</a></li>
-                            </ul>
-
-                        </li>
-                    </ul>
-                </td>
-
-            <?php else: ?>
 
 
+        <?php if($_GET["show"] == "userActivities"): include "Heat_Maps/user_activities.php";
+            elseif ($_GET["show"]=="ticketDensity"): include "Heat_Maps/ticket_density.php";
+            elseif ($_GET["show"]=="userInformation"): include "Graphs/user_information.php";
+            elseif ($_GET["show"]=="trackedActivities"): include "Graphs/tracked_activities.php";
+            elseif ($_GET["show"]=="maintenanceTickets"): include "Graphs/maintenance_information.php";
+            endif;
+        ?>
 
-
-                <td>
-                    <h3>Choose an Analytic</h3>
-                    <ul id="accordion2" class="accordion">
-
-                        <li class="menu_background">
-                            <div class="link">Tracked Activities</div>
-                            <ul class="submenu"<?php if($_GET["show"]=="trackedActivities"):?>style="display:block;"<?php endif?>>
-                                <li><a href="#">By Activities</a></li>
-                                <li><a href="#">By Time of Day</a></li>
-                            </ul>
-                        </li>
-                        <li class="menu_background">
-                            <div class="link">User Information</div>
-                            <ul class="submenu" <?php if($_GET["show"]=="userInformation"):?>style="display:block;"<?php endif?>>
-                                <li><a href="#">By Height</a></li>
-                                <li><a href="#">By Weight</a></li>
-                                <li><a href="#">By Gender</a></li>
-                                <li><a href="#">By Age</a></li>
-                                <li><a href="#">By Activities</a></li>
-                            </ul>
-                        </li>
-                        <li class="menu_background">
-                            <div class="link"<?php if($_GET["show"]=="maintenanceTickets"):?>style="display:block;"<?php endif?>>Ticket Information</div>
-                            <ul class="submenu">
-                                <li><a href="#">By Ticket Type</a></li>
-                                <li><a href="#">By Ticket Status</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-
-
-
-                </td>
-            <?php endif?>--->
-
-            <!---<td style="width:100px;">--->
-
-            </td>
-            <td>
-
-
-                <?php if($_GET["show"] == "userActivities"): include "Heat_Maps/user_activities.php";
-                    elseif ($_GET["show"]=="ticketDensity"): include "Heat_Maps/ticket_density.php";
-                    elseif ($_GET["show"]=="userInformation"): include "Graphs/user_information.php";
-                    elseif ($_GET["show"]=="trackedActivities"): include "Graphs/tracked_activities.php";
-                    elseif ($_GET["show"]=="maintenanceTickets"): include "Graphs/maintenance_information.php";
-                    endif;
-                ?>
-            </td>
-        </tr>
-
-    </table>
 </div>
 
 </body>
