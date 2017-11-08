@@ -51,13 +51,30 @@
 ?>
 
 <?php include "../Dashboard_Pages/navBar.html"; ?>
+
+<?php
+    include("../MySQL_Connections/config.php");
+    
+    $sql = "SELECT * FROM employees WHERE intEmployeeId = '0'";
+    $result = $conn->query($sql) or die("Query fail");
+    while($row = $result->fetch_array(MYSQLI_ASSOC)){
+?>
+ 
+
 <div class="contentBox">
 <h1 style="margin-bottom: 30px; margin-top:0px; color: white; vertical-aligh:middle; text-align: center;">User Profile</h1>
     <div id="wrapper">
         <div  id="usersInfo">
-            <p>Name: John Dow</p>
-            <p>Security Level: Ranger</p>
-            <p>Email: johndoe@ranger.com</p>
+            <p>Name: <?php echo $row['strFirstName'] . " " . $row['strLastName']?></p>
+            <p>Security Level: 
+                    <?php 
+                        $level = $row['intSecurityLevel'];
+                        $sql = "SELECT strSecurityTitle FROM securitylevels WHERE intSecurityLevelId = $level";
+                        $result = $conn->query($sql) or die("Query fail");
+                        $findSecurity = $result->fetch_array(MYSQLI_ASSOC);
+                        $SecurityTitle = $findSecurity['strSecurityTitle'];
+                        echo $SecurityTitle;?></p>
+            <p>Email: <?php echo $row['strEmailAddress']?></p>
             <button type="button">Change Password</button><br><br>
             <button type="button">Request Permissions</button>
 
@@ -71,6 +88,10 @@
         </div>
     </div>
 </div>
+      
+<?php
+    }
+?>
 
 </body>
 </html>
