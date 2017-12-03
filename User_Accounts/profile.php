@@ -55,7 +55,8 @@
 <?php
     include("../MySQL_Connections/config.php");
     
-    $sql = "SELECT * FROM employees WHERE intEmployeeId = '0'";
+    
+    $sql = "SELECT * FROM employees WHERE strUsername = '". $_COOKIE["user"] ."'";
     $result = $conn->query($sql) or die("Query fail");
     while($row = $result->fetch_array(MYSQLI_ASSOC)){
 ?>
@@ -80,7 +81,7 @@
 
         </div>
         <div  id="permission">
-            <p>Permissions:</p>
+            <p><u>Permissions</u></p>
             <p>Create New Tickets?: Yes</p>
             <p>Close Tickets?: Yes</p>
             <p>Manage Users?: No</p>
