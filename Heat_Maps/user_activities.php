@@ -10,7 +10,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>User Activities Heat Map/title>
+        <title>User Activities Heat Map</title>
     <link rel="stylesheet" type="text/css" href="/css/styles.css"/>
     <link rel="stylesheet" type="text/css" href="/css/viridian.css"/>
     <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
