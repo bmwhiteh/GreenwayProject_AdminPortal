@@ -1,116 +1,116 @@
 function getTicketList(){
-    	
-    	//initialize the data variable
-		var dataTicket = {
-			"action": "ticket_list"
-		};
-		
-		var ticketIdList = [];
-		var ticketTypeList = [];
-		var dtSubmittedList =[];
-		
-		
-		//serialize the data as a JSON pack and include the other parameters of the form
-		dataTicket = $(this).serialize() + "&" + $.param(dataTicket);
-		
-		
-		
-		
-		//perform the ajax action to go run the php with the sql query in it
-		$.ajax({
-			type: "POST",
-			//input data type is a json message
-			dataType: "json",
-			url: "./Maintenance_JS/get_graph_data.php", //Relative or absolute path to filterUserActivity.php file
-			data: dataTicket,
-			//if the ajax successfully returns, this is what should be displayed and be what needs to change for your points
-			success: function(data) {
-	            //console.log(data);
-	            //get the JSON
-				var ticketsArray = JSON.parse(data["json"]);
-			    //console.log(ticketsArray);
 	
-				//locate all results of the ticket type
-				for(var i = 0; i < ticketsArray.length; i++){
+	//initialize the data variable
+	var dataTicket = {
+		"action": "ticket_list"
+	};
 
-					var ticketSlice = ticketsArray[i]["ticketType"];
-					var ticket = ticketSlice.split(",");
-				
-					var id  = parseFloat(ticket[0]);
-					var type = ticket[1];
-					var date = ticket[2];
-					
-					
-					//console.log("month:"+dtMonth + " open:"+countOpen + " close:"+countClosed);
-					//place the count of each month in the bucket corresponding to the month
-					
-					
-					ticketIdList[i] = id;
-					ticketTypeList[i] = type;
-					dtSubmittedList[i] = date;
-					
-				}	
-				//console.log(ticketIdList);
-				//console.log(ticketTypeList);
-				//console.log(dtSubmittedList);
+	var ticketIdList = [];
+	var ticketTypeList = [];
+	var dtSubmittedList =[];
 
-				
-				// ADDING ITEMS TO START AND END OF LIST
-				var list = document.getElementById('employeeTicketList');                
-				
-				for (var z=0; z<ticketIdList.length; z++){
-					
-					
-					// ADD NEW ITEM TO END OF LIST
-					var newRowItem = document.createElement('tr');  
-					
-					//Create the ticket id cell
-					var newCellTicketId = document.createElement('td');
-					var newLinkTicketId = document.createElement('a');
-					newLinkTicketId.setAttribute('href', "https://virdian-admin-portal-whitbm06.c9users.io/Ticket_System/ticketInfo.php?ticketid="+ticketIdList[z])
-					var newTextTicketId = document.createTextNode('View Ticket '+ticketIdList[z]);
-					newLinkTicketId.appendChild(newTextTicketId);
-					newCellTicketId.appendChild(newLinkTicketId);
 
-					
-					//Create the ticket type cell
-					var newCellTicketType = document.createElement('td');
-					var newTextTicketType = document.createTextNode(ticketTypeList[z]);
-					newCellTicketType.appendChild(newTextTicketType);
-					
-					//create the ticket submitted date cell
-					var newCellTicketDate = document.createElement('td');
-					var newTextTicketDate = document.createTextNode(dtSubmittedList[z]);
-					newCellTicketDate.appendChild(newTextTicketDate);
-					
-					            // Create text node
-					newRowItem.appendChild(newCellTicketId);
-					newRowItem.appendChild(newCellTicketType);
-					newRowItem.appendChild(newCellTicketDate);
-					
-					list.appendChild(newRowItem);
-					
-				}	
-					
+	//serialize the data as a JSON pack and include the other parameters of the form
+	dataTicket = $(this).serialize() + "&" + $.param(dataTicket);
 
-				//console.log(list);
 
-				
-	
-	
+	$.ajax({
+		type: "POST",
+		//input data type is a json message
+		dataType: "json",
+		url: "./Maintenance_JS/get_graph_data.php", //Relative or absolute path to filterUserActivity.php file
+		data: dataTicket,
+		//if the ajax successfully returns, this is what should be displayed and be what needs to change for your points
+		success: function(data) {
 			
-                
+			//get the JSON
+			var ticketsArray = JSON.parse(data["json"]);
+			
+			//Loop through each result from the json
+			for(var i = 0; i < ticketsArray.length; i++){
 
+				var ticketSlice = ticketsArray[i]["ticketType"];
+				var ticket = ticketSlice.split(",");
+			
+				// get the results for the id, type, and date associated with each ticket
+				var id  = parseFloat(ticket[0]);
+				var type = ticket[1];
+				var date = ticket[2];
+				
+				//Store the Ticket Id, Type, and Submit Date in Arrays
+				ticketIdList[i] = id;
+				ticketTypeList[i] = type;
+				dtSubmittedList[i] = date;
+				
+			}	
+			
+			
+			//Get the Element Id for the tbody that will contain the list
+			var list = document.getElementById('employeeTicketList');                
+			
+			//for each ticket, create a table row
+			for (var z=0; z<ticketIdList.length; z++){
+				
+				
+				//Create a new table row
+				var newRowItem = document.createElement('tr');  
+				
+				//Create a new table cell
+				var newCellTicketId = document.createElement('td');
+				
+				//Create a new link element
+				var newLinkTicketId = document.createElement('a');
+				
+				//Set the link element to the view ticket page of the ticket system
+				newLinkTicketId.setAttribute('href', "https://virdian-admin-portal-whitbm06.c9users.io/Ticket_System/ticketInfo.php?ticketid="+ticketIdList[z])
+				
+				//Create a new text Node to hold the ticket id
+				var newTextTicketId = document.createTextNode('View Ticket '+ticketIdList[z]);
+				
+				//Append children so <td><a>Ticket ID</a></td>
+				newLinkTicketId.appendChild(newTextTicketId);
+				newCellTicketId.appendChild(newLinkTicketId);
 
 				
-			}
-			,
-			error: function(XMLHttpRequest, textStatus, errorThrown) { 
-				alert("Error: " + errorThrown); 
-			}  
-		}); 
-    	
-    	
-       
-    }
+				//Create a new table cell
+				var newCellTicketType = document.createElement('td');
+				
+				//Create a new text Node to hold the ticket type
+				var newTextTicketType = document.createTextNode(ticketTypeList[z]);
+				
+				//Append so <td>Ticket Type</td>
+				newCellTicketType.appendChild(newTextTicketType);
+				
+				//Create a new table cell
+				var newCellTicketDate = document.createElement('td');
+				
+				//Create a new text Node to hold the ticket date
+				var newTextTicketDate = document.createTextNode(dtSubmittedList[z]);
+				
+				//Append so <td>Ticket Date</td>
+				newCellTicketDate.appendChild(newTextTicketDate);
+				
+				//Append <tr><td><a>Ticket ID</a></td><td>Ticket Type</td><td>Ticket Date</td></tr>
+				newRowItem.appendChild(newCellTicketId);
+				newRowItem.appendChild(newCellTicketType);
+				newRowItem.appendChild(newCellTicketDate);
+				
+				//Append to the body of the table to create a new row
+				list.appendChild(newRowItem);
+				
+			}	
+			
+			
+		}
+		,
+		error: function(XMLHttpRequest, textStatus, errorThrown) { 
+			alert("Error: " + errorThrown); 
+		} 
+
+		
+	}); 
+	
+	
+   
+}
     

@@ -9,42 +9,27 @@
 	<link rel="icon" type="image/png" href="assets/img/favicon.ico">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-    <!---<link rel="stylesheet" type="text/css" href="./css/styles.css"/>
-    <link rel="stylesheet" type="text/css" href="./css/viridian.css"/>--->
     <script src="../js/jquery-3.2.1.min.js"></script>
-    
-	<!--  Charts Plugin -->
-	<script src="assets/js/chartist.min.js"></script>
+    <script src="assets/js/chartist.min.js"></script><!--  Charts Plugin -->
+	<script src="assets/js/light-bootstrap-dashboard.js?v=1.4.0"></script> <!--Light Bootstrap JS-->
 
-    <!--  Notifications Plugin    
-    <script src="assets/js/bootstrap-notify.js"></script>
--->
-    <!--  Google Maps Plugin    
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
--->
-    <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
-	<script src="assets/js/light-bootstrap-dashboard.js?v=1.4.0"></script>
-
-	
+	<!-- Chart JS Implementation Files -->
     <script src="../Data_Analytics/UsingD3/node_modules/chart.js/dist/Chart.js"></script>
     <script src="./Maintenance_JS/getPieChart.js"></script> 
 	<script src="./Maintenance_JS/getLineGraph.js"></script> 
     <script src="./Maintenance_JS/getBarChart.js"></script> 
-    
     <script src="./Maintenance_JS/getTicketList.js"></script>
 
-	<script type="text/javascript">
-    	function getTheGraphs(){
-
-        	getPieChart();
-        	getTicketTypes();
-        	
-
-            getBarChart();
-           getTicketList();
-
-    	};
-	</script>
+    <script type="text/javascript">
+        function getTheGraphs(){
+        
+            getPieChart(); //Pie Chart of Ticket Type Distribution
+            getTicketTypes(); //Line Graphs of Ticket Counts per Ticket Type
+            getBarChart(); //Bar Chart Showing Open vs. Closed Tickets per Month
+            getTicketList(); //List Open Tickets that are Assigned to Current Employee
+        
+        };
+    </script>
     
     
     <!-- Bootstrap core CSS     -->
@@ -56,15 +41,12 @@
     <!--  Light Bootstrap Table core CSS    -->
     <link href="assets/css/light-bootstrap-dashboard.css?v=1.4.0" rel="stylesheet"/>
 
-
-    <!--  CSS for Demo Purpose, don't include it in your project    
-    <link href="assets/css/demo.css" rel="stylesheet" /> -->
-
-
     <!--     Fonts and icons     -->
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
     <link href="assets/css/pe-icon-7-stroke.css" rel="stylesheet" />
+    
+    
     <style>
         .contentBox{
             background-color: #8c8c8c;
@@ -79,144 +61,182 @@
             background-color: #1B371A ;
 
         }
-    
-        
-        
-        
-
-        
-
     </style>
 </head>
+
+<!--Load the Graphs as the page Loads-->
 <body onLoad="getTheGraphs();">
-<?php include "../Dashboard_Pages/navBar.html"; ?>
-
-
-
-<div class="contentBox" style="height:100%">
-
-<?php date_default_timezone_set('EST');?>
-
-<div class="wrapper">
+    <?php require_once("../Login_System/verifyAuth.php"); ?>
+    <!--Include the Navigation Bar-->
+    <?php include "../Dashboard_Pages/navBar.html"; ?>
     
-
-    <div class="main-panel">
+    
+    
+    <div class="contentBox" style="height:100%">
+    
+        <!--Set the Time zone to EST for the time calculations-->
+        <?php date_default_timezone_set('EST');?>
         
-
-            <div class="container-fluid" style="background-color:grey; padding: 20px;">
-                <div class="row">
-                    <div class="col-md-6">
-                        <!---This is the Pie Chart--->
-                        <div class="card">
-
-                            <div class="header">
-                                <h4 class="title">Ticket Distribution</h4>
-                                <p class="category">All Existing Tickets by Ticket Type</p>
-                            </div>
-                            <div class="content" style="height: 100%">
-                                <!---<div id="chartPreferences" class="ct-chart ct-perfect-fourth" ></div>--->
-                                <canvas id="myPieChart"></canvas>
-                                <div class="footer">
-                                    <!---<div class="legend" >
-                                        <div id="PieChartLabels"></div>
-                                        This populates using the labels from the javascript
-                                    </div>--->
-                                    <hr>
-                                    <!---Needs to be the last time this data was pulled--->
-                                    <div class="stats">
-                                        <i class="fa fa-clock-o"></i> Updated: <?php echo date("F j, Y, g:i a");?>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <!---Side By Side Bar Chart--->
-                        <div class="card ">
-                            <div class="header">
-                                <h4 class="title">Open vs. Closed Tickets</h4>
-                                <p class="category">Monthly Distribution</p>
-                            </div>
-                            <div class="content">
-                               <canvas id="myBarChart"></canvas>
-                                 <div class="footer">
-                                    <hr>
-                                    <div class="stats">
-                                        <i class="fa fa-history"></i> Updated: <?php echo date("F j, Y, g:i a");?>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+        <div class="wrapper">
+            
+        
+            <div class="main-panel">
+                
+        
+                <div class="container-fluid" style="background-color:grey; padding: 20px;">
                     
+                    <!--First Row of Graphs-->
+                    <div class="row">
+                        
+                        <!--Each Graph is embedded in a "Card" (col-md-6 is the size of the card)-->
+                        <div class="col-md-6">
+                            
+                            <div class="card">
+                                
+                                <div class="header">
+                                    <h4 class="title">Ticket Distribution</h4>
+                                    <p class="category">All Existing Tickets by Ticket Type</p>
+                                </div>
+                                
+                                <div class="content" style="height: 100%">
+                                    
+                                    <!--Canvas Element holds the Pie Chart-->
+                                    <canvas id="myPieChart"></canvas>
+                                    
+                                    <!--The graphs are updated on page load so this will change to current time of page load-->
+                                    <div class="footer">
+                                        <hr>
+                                        <div class="stats">
+                                            <i class="fa fa-clock-o"></i> Updated: <?php echo date("F j, Y, g:i a");?>
+                                        </div>
+                                    </div>
+                                    
+                                    
+                                </div>
+                                
+                                
+                            </div>
+                            
+                            
+                        </div>
+                        
+                        <!--This is a Bar Graph comparing Open to Closed Tickets-->
+                        <div class="col-md-6">
+                            
+                            <div class="card ">
+                                
+                                <div class="header">
+                                    <h4 class="title">Open vs. Closed Tickets</h4>
+                                    <p class="category">Monthly Distribution</p>
+                                </div>
+                                
+                                <div class="content">
+                                   
+                                    <!--Canvas element contains the Bar Chart-->
+                                    <canvas id="myBarChart"></canvas>
+                                    <div class="footer">
+                                        <hr>
+                                        <div class="stats">
+                                            <i class="fa fa-history"></i> Updated: <?php echo date("F j, Y, g:i a");?>
+                                        </div>
+                                    </div>
+                                    
+                                    
+                                </div>
+                                
+                                
+                            </div>
+
+
+                        </div>
+                        
+
+                    </div>
+    
+    
+                    <!--Second Row, Third total Chart-->        
+                    <div class="row">
+                        
+                        <div class="col-md-8">
+                            
+                            <div class="card">
+                                
+                                <div class="header">
+                                    <h4 class="title">Ticket Types By Month</h4>
+                                    <p class="category">Tickets submitted for each category per month</p>
+                                </div>
+                                
+                                <div class="content">
+                                     
+									<!--Canvas contains a Multi-Line Graph showing Ticket Type Counts-->
+									<canvas id="myLineGraph"></canvas>
+									<div class="footer">
+										<hr>
+										<div class="stats">
+											<i class="fa fa-history"></i> Updated: <?php echo date("F j, Y, g:i a");?>
+										</div>
+									</div>
+                                    
+                                    
+                                </div>
+
+
+                            </div>
+
+
+                        </div>
+                        
+                        <!--Fourth Card is a list of Open Tickets assigned to the Employee-->
+                        <div class="col-md-4">
+                            
+                            <div class="card ">
+                                
+                                <div class="header">
+                                    <h4 class="title">My Assigned Tickets</h4>
+                                    <p class="category">From Ticket System</p>
+                                </div>
+                                
+                                <div class="content">
+                                    <div class="table-full-width">
+                                        
+                                        <!--Javascript adds rows of content to this table-->
+                                        <table class="table">
+                                            <tbody id="employeeTicketList"></tbody>
+                                        </table>
+                                        
+                                        
+                                    </div>
+    
+                                    <div class="footer">
+                                        <hr>
+                                        <div class="stats">
+                                            <i class="fa fa-history"></i> Updated: <?php echo date("F j, Y, g:i a");?>
+                                        </div>
+                                    </div>
+                                    
+                                    
+                                </div>
+                                
+                                
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+
+
                 </div>
 
 
-
-                <div class="row">
-                    <div class="col-md-8">
-                        
-                        <!---This is the Stacked Line Graph--->
-                        <div class="card">
-                            <div class="header">
-                                <h4 class="title">Ticket Types By Month</h4>
-                                <p class="category">Tickets submitted for each category per month</p>
-                            </div>
-                            <div class="content">
-                                 <canvas id="myLineGraph"></canvas>
-                                 <div class="footer">
-                                   <div id="showMessage"></div>
-                                    <hr>
-                                    <div class="stats">
-                                        <i class="fa fa-history"></i> Updated: <?php echo date("F j, Y, g:i a");?>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-
-                    <div class="col-md-4">
-                        
-                        <!---Task List--->
-                        <div class="card ">
-                            <div class="header">
-                                <h4 class="title">My Assigned Tickets</h4>
-                                <p class="category">From Ticket System</p>
-                            </div>
-                            <div class="content">
-                                <div class="table-full-width">
-                                    <table class="table">
-                                        <tbody id="employeeTicketList">
-                                            
-                                        </tbody>
-                                    </table>
-                                </div>
-
-                                <div class="footer">
-                                    <hr>
-                                    <div class="stats">
-                                        <i class="fa fa-history"></i> Updated: <?php echo date("F j, Y, g:i a");?>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+			</div>
 
 
+		</div>
 
+            
     </div>
-</div>
-
-
-
-    
-
-
-    
-</div>
 
 </body>
 
