@@ -11,6 +11,7 @@
 </head>
 
 <body>
+    <!--includes Viridian Banner --> 
 <div class="banner">
     <div class="logo">
         <img src="../images/ViridianBanner.png" width="100%" height="150px"/>
@@ -18,6 +19,7 @@
 </div>
 
 <div class="security">
+    <!-- executes verifySecurityAnswers.php upon submission -->
     <form action="./verifySecurityAnswers.php" method="post">
         <label><b><?php include "populateSecurityQuestion1.php"?></b></label>
         <input type="text" name="answer1" placeholder="Enter Response" required>

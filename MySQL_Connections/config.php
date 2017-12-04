@@ -1,7 +1,7 @@
 <?php
 $servername = "localhost";
 $username = "whitbm06";
-$password = "";
+$password = "WebDev2017";
 $db = "viridian_capstone_project";
 
 // Create connection
@@ -11,5 +11,6 @@ $conn = new mysqli($servername, $username, $password, $db);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
+
 //echo "Connected successfully";
 ?>

@@ -3,7 +3,7 @@
 
 <head>
     <!--The title of the login page -->
-    <title>About</title>
+    <title>About Viridian</title>
 
     <!--Links the CSS stylesheet to the login.html page -->
     <link rel="stylesheet" type="text/css" href="/GreenwayProject_AdminPortal/css/styles.css"/>
@@ -16,12 +16,14 @@
 </script>
 
 <body>
+    <!--includes the Viridian Banner -->
 <div class="banner">
     <div class="logo">
         <img src="../images/ViridianBanner.png" width="100%" height="150px"/>
     </div>
 </div>
 
+<!-- includes information about the project -->
 <div class="about">
     <h2>Welcome!</h2>
     <h3>We bet you're wondering what this page is...</h3>
@@ -42,6 +44,7 @@
         <b>Viridian</b>.  <b>Viridian</b> is a fitness and activity tracker specific to the River Greenway
         trail system. And the best part?  &nbsp <i><b><u> It's completely free!</u></b></i> </p>
 
+    <!--returns to the login page upon clicking the button -->
     <button id="loginButtons" type="returnToLogin" onClick="myFunction() "><b>Return to Login</b></button>
 </div>
 

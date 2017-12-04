@@ -116,3 +116,11 @@ CREATE TABLE IF NOT EXISTS tickettypes (
   strTicketDescription varchar(255) DEFAULT NULL,
   PRIMARY KEY (intTypeId)
 );
+
+CREATE TABLE IF NOT EXISTS TicketNotes(
+    noteId int,
+    intTicketId int ,
+    comment varchar(256),
+    PRIMARY KEY(noteId),
+    FOREIGN KEY (intTicketId) REFERENCES maintenancetickets(intTicketId)
+);
