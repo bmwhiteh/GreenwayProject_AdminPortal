@@ -35,10 +35,10 @@
     <!-- Bootstrap core CSS     -->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
 
-    <!-- Animation library for notifications   -->
+    <!-- Animation library for notifications  --> 
     <link href="assets/css/animate.min.css" rel="stylesheet"/>
 
-    <!--  Light Bootstrap Table core CSS    -->
+    <!--  Light Bootstrap Table core CSS   --> 
     <link href="assets/css/light-bootstrap-dashboard.css?v=1.4.0" rel="stylesheet"/>
 
     <!--     Fonts and icons     -->
@@ -68,11 +68,11 @@
 <body onLoad="getTheGraphs();">
     <?php require_once("../Login_System/verifyAuth.php"); ?>
     <!--Include the Navigation Bar-->
-    <?php include "../Dashboard_Pages/navBar.html"; ?>
+    <?php include "../Dashboard_Pages/navBar.php"; ?>
     
     
     
-    <div class="contentBox" style="height:100%">
+    <div class="contentBox">
     
         <!--Set the Time zone to EST for the time calculations-->
         <?php date_default_timezone_set('EST');?>
@@ -83,13 +83,13 @@
             <div class="main-panel">
                 
         
-                <div class="container-fluid" style="background-color:grey; padding: 20px;">
+                <div class="container-fluid" style="background-color:grey; padding: 20px; ">
                     
                     <!--First Row of Graphs-->
                     <div class="row">
                         
                         <!--Each Graph is embedded in a "Card" (col-md-6 is the size of the card)-->
-                        <div class="col-md-6">
+                        <div class="col-md-5">
                             
                             <div class="card">
                                 
@@ -157,7 +157,7 @@
                     <!--Second Row, Third total Chart-->        
                     <div class="row">
                         
-                        <div class="col-md-8">
+                        <div class="col-md-7">
                             
                             <div class="card">
                                 
@@ -187,7 +187,7 @@
                         </div>
                         
                         <!--Fourth Card is a list of Open Tickets assigned to the Employee-->
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             
                             <div class="card ">
                                 

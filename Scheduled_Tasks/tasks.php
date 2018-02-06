@@ -5,125 +5,72 @@
     <title>Tasks</title>
     <style>
         body{
-            width: 100%;
             background-color: #1B371A ;
         }
 
         .contentBox{
             background-color: #8c8c8c;
             margin: 0px 100px 50px 100px;
+            padding: 50px;
         }
 
     </style>
-    <script src="../js/jquery-3.2.1.min.js"></script>
 
-    <link rel="stylesheet" type="text/css" href="../Ticket_System/DataTables/datatables.css"/>
-    <script type="text/javascript" src="../../GreenwayProject_AdminPortal/js/tasks.js"></script>
-
-    <script type="text/javascript" src="../Ticket_System/DataTables/datatables.js"></script>
-
-    <script>
-        $(document).ready(function() {
-            $('table.display').DataTable();
-        } );
-    </script>
+    
 </head>
 <body>
-<?php include "../Dashboard_Pages/navBar.html"; ?>
-<div class="contentBox">
+<?php include "../Dashboard_Pages/navBar.php"; ?>
 
-    <div class="tabs">
-        <button id="showScheduledTasks">Scheduled</button>
-        <button id="showCompletedTasks">Completed</button>
+<div class="contentBox" >
+    <div style="border:2px solid grey; background-color:white; border-radius: 10px ; padding:10px; vertical-align:top;">
+        <table style="text-align:right;margin:auto; ">
+            <tr style="font-size: 26px;">
+                <th style="padding:10px;">Action</th>
+                <th>Last Completed</th>
+            </tr>
+            <tr>
+                <td style="padding:10px;">Account Created: </td>
+            </tr>
+            <tr>
+                <td style="padding:10px;">Account Login: </td>
+            </tr>
+            <tr>
+                <td style="padding:10px;">Walking Activity Tracked: </td>
+            </tr>
+            <tr>
+                <td style="padding:10px;">Biking Activity Tracked: </td>
+            </tr>
+            <tr>
+                <td style="padding:10px;">Running Activity Tracked: </td>
+            </tr>
+        
+            <tr>
+                <td style="padding:10px;">Ticket Type 1 Submitted: </td>
+            </tr>
+             <tr>
+                <td style="padding:10px;">Ticket Type 2 Submitted: </td>
+            </tr>
+             <tr>
+                <td style="padding:10px;">Ticket Type 3 Submitted: </td>
+            </tr>
+             <tr>
+                <td style="padding:10px;">Ticket Type 4 Submitted: </td>
+            </tr>
+             <tr>
+                <td style="padding:10px;">Ticket Type 5 Submitted: </td>
+            </tr>
+             <tr>
+                <td style="padding:10px;">Ticket Type 6 Submitted: </td>
+            </tr>
+             <tr>
+                <td style="padding:10px;">Ticket Type 7 Submitted: </td>
+            </tr>
+             <tr>
+                <td style="padding:10px;">Ticket Type 8 Submitted: </td>
+            </tr>
+        </table>
     </div>
-
-        <div id="completedTaskTable" style="width:80%;margin:auto;">
-            <table id="" class="display" cellspacing="0" width="80%"  style="margin-top: 20px;padding:5px;">
-                <thead style="background-color: #448b41">
-                    <tr>
-                        <th>User</th>
-                        <th>Task</th>
-                        <th>Date</th>
-                    </tr>
-                </thead>
-                <tfoot style="background-color: #448b41">
-                    <tr>
-                        <th>User</th>
-                        <th>Task</th>
-                        <th>Date</th>
-                    </tr>
-                </tfoot>
-                <tbody>
-                    <tr>
-                        <td>Admin</td>
-                        <td>Completed ticket</td>
-                        <td>Date</td>
-                    </tr>
-                    <tr>
-                        <td>User</td>
-                        <td>Submitted ticket</td>
-                        <td>Date</td>
-                    </tr>
-                    <tr>
-                        <td>User</td>
-                        <td>Submitted ticket</td>
-                        <td>Date</td>
-                    </tr>
-                    <tr>
-                        <td>User</td>
-                        <td>Submitted ticket</td>
-                        <td>Date</td>
-                    </tr>
-                    <tr>
-                        <td>User</td>
-                        <td>Submitted ticket</td>
-                        <td>Date</td>
-                    </tr>
-                </tbody>
-
-            </table>
-        </div>
-
-        <div id="scheduledTaskTable" style="width:80%;margin:auto;">
-            <table id="" class="display" cellspacing="0" width="80%"  style="margin-top: 20px;padding:5px;">
-                <thead style="background-color: #448b41">
-                    <tr>
-                        <th>User</th>
-                        <th>Task</th>
-                        <th>Date</th>
-                    </tr>
-                </thead>
-
-
-                <tfoot style="background-color: #448b41">
-                    <tr>
-                        <th>User</th>
-                        <th>Task</th>
-                        <th>Date</th>
-                    </tr>
-                </tfoot>
-
-                <tbody>
-                    <tr>
-                        <td>Auto</td>
-                        <td>Generate weekly report</td>
-                        <td>15 Oct 2017 00:00</td>
-                    </tr>
-                    <tr>
-                        <td>Auto</td>
-                        <td>Generate monthly report</td>
-                        <td>31 Oct 2017 00:00</td>
-                    </tr>
-                    <tr>
-                        <td>Auto</td>
-                        <td>Generate quarterly report</td>
-                        <td>31 Dec 2017 00:00</td>
-                    </tr>
-                </tbody>
-
-            </table>
-        </div>
-    </div>
+      
 </div>
 
 </body>

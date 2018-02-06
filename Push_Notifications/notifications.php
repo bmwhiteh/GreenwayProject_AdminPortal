@@ -1,4 +1,4 @@
-<?php include "../Dashboard_Pages/navBar.html"; ?>
+<?php include "../Dashboard_Pages/navBar.php"; ?>
 
 <!DOCTYPE html>
 
@@ -11,7 +11,7 @@
     <style>
         body{
             width: 100%;
-            overflow: hidden;
+            
             background-color: #1B371A ;
         }
 
@@ -27,20 +27,20 @@
             display:flex;
         }
         .topBox{
-            height: 28%;
+            height: 22%;
             background-color: #448b41;
             text-align: center;
         }
 
         .midBox{
-            height: 28%;
+            height: 22%;
             margin-top: 5%;
             background-color: #55ad52;
             text-align: center;
         }
 
         .bottomBox{
-            height: 28%;
+            height: 22%;
             margin-top: 5%;
             background-color: #77be74;
             text-align: center;
@@ -102,11 +102,13 @@
             cursor: pointer;
         }
     </style>
-    <script type="text/javascript" src="../Ticket_System/DataTables/datatables.js"></script>
-    <link rel="stylesheet" type="text/css" href="../Ticket_System/DataTables/datatables.css"/>
+    <script type="text/javascript" src="../Push_Notifications/DataTables/datatables.js"></script>
+    <link rel="stylesheet" type="text/css" href="../Push_Notifications/DataTables/datatables.css"/>
     <script>
         $(document).ready(function() {
-            $('table.display').DataTable();
+            $('table.display').DataTable({
+                "order": [[ 0, "desc" ]]
+            });
         } );
     </script>
 </head>
@@ -120,16 +122,17 @@
         <h2>Quick Stats</h2>
         <div class="topBox">
             <h3>Sent Today</h3>
-            <?php include "numNotificationsSentToday.php"?></div>
+            <h1><?php include "numNotificationsSentToday.php"?></h1>
+        </div>
         
         <div class="midBox">
             <h3>Users Signed Up</h3>
-            <?php include "numUsersReceivingNotifications.php"?>
+            <h1><?php include "numUsersReceivingNotifications.php"?></h1>
         </div>
         
         <div class="bottomBox">
             <h3>Sent This Week</h3>
-            <?php include "numNotificationsSentWeekly.php"?>
+            <h1><?php include "numNotificationsSentWeekly.php"?></h1>
         </div>
     </div>
     <div class="recentNotifications">
@@ -212,9 +215,10 @@
         </script>
 
 
-        <table id="" class="display" cellspacing="0" width="80%"  style="margin-top: 20px;padding:5px;">
+        <table id="" class="display" cellspacing="0" width="80%" style="margin-top: 20px; padding:5px;">
             <thead style="background-color: #448b41">
                 <tr>
+                    <th>Alert Id</th>
                     <th>Date Sent</th>
                     <th>Number Sent</th>
                     <th>Alert Message</th>
@@ -222,6 +226,7 @@
             </thead>
             <tfoot style="background-color: #448b41">
                 <tr>
+                    <th>Alert Id</th>
                     <th>Date Sent</th>
                     <th>Number Sent</th>
                     <th>Alert Message</th>

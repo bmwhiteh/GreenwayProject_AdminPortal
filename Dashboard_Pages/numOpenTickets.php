@@ -1,7 +1,7 @@
 <?php 
 include("../MySQL_Connections/config.php");
 
-$sql = "SELECT * FROM `maintenancetickets` WHERE `dtClosed` = '0000-00-00'";
+$sql = "SELECT * FROM `maintenancetickets` WHERE `dtClosed` is null";
 
 $result = $conn->query($sql) or die("Query fail");
     

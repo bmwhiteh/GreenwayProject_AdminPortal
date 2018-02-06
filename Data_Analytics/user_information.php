@@ -110,7 +110,7 @@
 </head>
 <body onLoad="getTheGraphs();">
 <?php require_once("../Login_System/verifyAuth.php"); ?>
-<?php include "../Dashboard_Pages/navBar.html"; ?>
+<?php include "../Dashboard_Pages/navBar.php"; ?>
     
 <div class="contentBox" style="height:100%">
 

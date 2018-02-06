@@ -40,7 +40,7 @@
 
 
 <body style="background-color: #1B371A;">
-    <?php include "../Dashboard_Pages/navBar.html"; ?>
+    <?php include "../Dashboard_Pages/navBar.php"; ?>
 
     <div class="contentBox">
         <div id='calendar'></div>

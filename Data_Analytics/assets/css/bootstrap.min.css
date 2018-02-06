@@ -11,7 +11,7 @@ html {
     -ms-text-size-adjust: 100%
 }
 body {
-    margin: 0
+    /*margin: 0*/
 }
 article,
 aside,
@@ -1064,11 +1064,11 @@ th {
 .glyphicon-menu-up:before {
     content: "\e260"
 }
-* {
+/** {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box
-}
+}*/
 :after,
 :before {
     -webkit-box-sizing: border-box;
@@ -1579,6 +1579,7 @@ pre code {
     max-height: 340px;
     overflow-y: scroll
 }
+/*
 .container {
     padding-right: 15px;
     padding-left: 15px;
@@ -1599,7 +1600,7 @@ pre code {
     .container {
         width: 1170px
     }
-}
+}*/
 .container-fluid {
     padding-right: 15px;
     padding-left: 15px;

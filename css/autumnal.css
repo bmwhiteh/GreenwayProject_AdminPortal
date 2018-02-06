@@ -20,20 +20,23 @@
 }
 
 .topBox{
-    height: 30%;
+    height: 29%;
     background-color: #895929;
+    text-align: center;
 }
 
 .midBox{
-    height: 30%;
+    height: 29%;
     margin-top: 5%;
     background-color: #ad7133;
+    text-align: center;
 }
 
 .bottomBox{
-    height: 30%;
+    height: 29%;
     margin-top: 5%;
     background-color: #ca8c4e;
+    text-align: center;
 }
 
 

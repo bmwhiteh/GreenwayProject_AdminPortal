@@ -46,7 +46,7 @@
 
 <body>
 
-<?php include "../Dashboard_Pages/navBar.html"; ?>
+<?php include "../Dashboard_Pages/navBar.php"; ?>
 <div class="contentBox">
     <div class="teamBoxes">
         <div class="viridianTeam">

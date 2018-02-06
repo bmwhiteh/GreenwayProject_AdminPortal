@@ -20,20 +20,23 @@
 }
 
 .topBox{
-    height: 30%;
+    height: 29%;
     background-color: #005066;
+    text-align: center;
 }
 
 .midBox{
-    height: 30%;
+    height: 29%;
     margin-top: 5%;
     background-color: #007393;
+    text-align: center;
 }
 
 .bottomBox{
-    height: 30%;
+    height: 29%;
     margin-top: 5%;
     background-color: #008cb3;
+    text-align: center;
 }
 
 .dropdown-content a:hover {

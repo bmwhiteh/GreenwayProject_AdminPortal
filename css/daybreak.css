@@ -21,20 +21,23 @@
 }
 
 .topBox{
-    height: 30%;
+    height: 29%;
     background-color: #d43727;
+    text-align: center;
 }
 
 .midBox{
-    height: 30%;
+    height: 29%;
     margin-top: 5%;
     background-color: #ca4d27;
+    text-align: center;
 }
 
 .bottomBox{
-    height: 30%;
+    height: 29%;
     margin-top: 5%;
     background-color: #e19226;
+    text-align: center;
 }
 
 ul {

@@ -93,7 +93,7 @@ CREATE TABLE IF NOT EXISTS employees (
 
 
 /*Create Tickets Table*/
-CREATE TABLE IF NOT EXISTS maintenanceTickets (
+CREATE TABLE IF NOT EXISTS maintenancetickets (
 	intTicketId int NOT NULL,
     strTitle varchar(255),
     strType varchar(255),

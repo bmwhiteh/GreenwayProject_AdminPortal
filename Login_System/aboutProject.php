@@ -6,12 +6,12 @@
     <title>About Viridian</title>
 
     <!--Links the CSS stylesheet to the login.html page -->
-    <link rel="stylesheet" type="text/css" href="/GreenwayProject_AdminPortal/css/styles.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/styles.css"/>
 </head>
 
 <script>
     function myFunction() {
-        window.location.href = "/GreenwayProject_AdminPortal/Login_System/login.html"
+        window.location.href = "../Login_System/login.php"
     }
 </script>
 
@@ -19,30 +19,38 @@
     <!--includes the Viridian Banner -->
 <div class="banner">
     <div class="logo">
-        <img src="../images/ViridianBanner.png" width="100%" height="150px"/>
+        <img src="../images/ViridianBanner2.png" width="100%" height="150px"/>
     </div>
 </div>
 
 <!-- includes information about the project -->
 <div class="about">
-    <h2>Welcome!</h2>
-    <h3>We bet you're wondering what this page is...</h3>
-    <p>This is the Viridian Admin Portal for the City of Fort Wayne.
-        This project is a three year senior capstone project at IPFW,
-        with each team expanding upon the previous team's successes.
-        Currently, we are in Year Three of the Project.  This website was created as
-        a way to display information to the city about the River Greenway.
-        It provides information on what sections of the trail are most used, as
-        well as what types of activities people are using the trails for.  It also
-        has an advanced ticket tracking system that allows the City of Fort Wayne to
-        organize and complete maintenance tasks along the trail system in a quick
-        and timely fashion.
+    <h2>Welcome to the Viridian Admin Portal!</h2>
+    <h3>What is Viridian?</h3>
+    <p>This project was developed over the course of three years by students 
+    in the Computer Science Department at Indiana University-Purdue University, 
+    Fort Wayne (IPFW) as part of their Senior Capstone course. Viridian is a
+    Mobile App and Admin Portal project sponsored by the City of Fort Wayne.
+    The goal of Viridian is to provide an easy-to-use application that allows 
+    monitoring of trail system usage in the River Greenway Trail System. This
+    monitoring system allows the City to promote sections of the trails that
+    are less commonly used and make improvements to trails based on the data 
+    collected.  
     </p>
-    <h3>Cool! How can I participate?</h3>
-    <p>Unfortunately, this website can only be accessed by the City of Fort Wayne.
-        However, if you would like to support our project, download the associated app,
-        <b>Viridian</b>.  <b>Viridian</b> is a fitness and activity tracker specific to the River Greenway
-        trail system. And the best part?  &nbsp <i><b><u> It's completely free!</u></b></i> </p>
+    <h3>How can I participate?</h3>
+    <p>Viridian is used by two types of users:  <ul><li>General Public - 
+    The Viridian mobile application is used by the general public. This app is
+    accessible via both iOS and Android devices. It is a completely free fitness
+    and activity tracker with maps specific to the River Greenway Trail System. 
+    Users can track fitness activities, such as walking, running, or biking.
+    Users can submit maintenance requests via the app to alert the City of trail
+    issues. Earning achievements unlocks special surprises! Download Viridian 
+    from your phone or tablet via the App Store.</li>
+     <br><li>City of Fort Wayne Representatives - The Viridian Admin Portal is
+     used by City officials to view usage analytics on the River Greenway Trail
+     System. It is also equipped with an advanced ticket management system that 
+     allows the City of Fort Wayne to organize and complete maintenance tasks 
+     along the trail system in a quick and timely fashion. </li></ul></p>
 
     <!--returns to the login page upon clicking the button -->
     <button id="loginButtons" type="returnToLogin" onClick="myFunction() "><b>Return to Login</b></button>

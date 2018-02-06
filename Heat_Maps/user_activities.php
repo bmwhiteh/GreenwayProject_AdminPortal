@@ -70,7 +70,7 @@
             function initMap(gpsList) {
                 var map, heatmap;
                 map = new google.maps.Map(document.getElementById('map'), {
-                    zoom: 10,
+                    zoom: 15,
                     center: {lat: 41.1178412, lng: -85.1082758}
                 });
 
@@ -88,7 +88,7 @@
     <body class="genericBody">
     <!-- includes the authentication that a user is logged in and the navBar -->
     <?php require_once("../Login_System/verifyAuth.php"); ?>
-    <?php include "../Dashboard_Pages/navBar.html"; ?>
+    <?php include "../Dashboard_Pages/navBar.php"; ?>
         <div class="contentBox" style="height:500px;">
             <div class="title" style="width:20%; margin-left:2%;">
                 <h3 style="margin-left:12%;">User Activities Heat Map</h3>

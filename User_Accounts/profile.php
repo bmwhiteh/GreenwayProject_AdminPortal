@@ -49,7 +49,7 @@
 
 		<!--Include User Verification & Navigation Bar-->
 		<?php require_once("../Login_System/verifyAuth.php"); ?>
-		<?php include "../Dashboard_Pages/navBar.html"; ?>
+		<?php include "../Dashboard_Pages/navBar.php"; ?>
 
 
 		<!--Grab User information from the database-->
