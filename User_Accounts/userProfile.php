@@ -155,24 +155,38 @@ function closeChangeSecurityQuestions() {
 function validate(){
     var oldPassword = $("#oldPassword").val();
     
-    var password1 = $("#password1").val();
-    var password2 = $("#password2").val();
-    if(password1 == password2) {
-        var regex = new RegExp("^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).{6,12}");
-        var result = regex.test(password2);
-        if(result){
-         
-         return true;
-        }else{
-            $("#invalid").text("Passwords must be 6-12 characters in length and contain an uppercase letter, a lowercase letter, and a number!");
-            return false;
+    $.ajax({
+      url: './verifyCorrectPassword.php',
+      type: 'post',
+      data: {'mypassword': oldPassword},
+      success: function(data, status) {
+        if(data == "ok") {
+            var password1 = $("#password1").val();
+            var password2 = $("#password2").val();
+        if(password1 == password2) {
+            var regex = new RegExp("^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).{6,12}");
+            var result = regex.test(password2);
+            if(result){
+             return true;
+            }else{
+                $("#invalid").text("Passwords must be 6-12 characters in length and contain an uppercase letter, a lowercase letter, and a number!");
+                return false;
+            }
+        }
+        else {
+             $("#invalid").text("Passwords Do Not Match!");  
+             return false;
         }
     }
-    else {
-         $("#invalid").text("Passwords Do Not Match!");  
-         return false;
-    }
-}
+      },
+      error: function(xhr, desc, err) {
+        $("#invalid").text("Password is incorrect!");
+            return false;
+      }
+    }); // end ajax call
+    
+    
+}  
 </script>
 
 </head>
