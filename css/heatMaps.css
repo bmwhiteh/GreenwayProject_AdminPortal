@@ -1,0 +1,53 @@
+@font-face {
+font-family: 'Odin Bold';
+font-style: normal;
+font-weight: normal;
+src: local('Odin Bold'), url('../fonts/Odin-Rounded---Bold.woff') format('woff');
+}
+
+.contentBox{
+    height:500px;
+}
+
+.title{
+    width:20%; 
+    margin-left:2%;
+}
+
+.filterForm{
+    width: 100%;
+}
+
+#mapHeader{
+    margin-left:12%;
+    padding-top: 10px;
+    font-variant: small-caps;
+    font-family: "Odin Bold";
+}
+
+#map.map{
+    background-color:rgba(51,51,51,.3);
+    -webkit-flex: 2;
+    -ms-flex: 2;
+    flex: 2;
+    margin: 3% 1.5% 3% 1.5%;
+    height:85%;
+}
+
+#filter{
+    color: black;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    font-family: "Bookman Old Style";
+}
+
+#startTime, #endTime{
+    width: 60%;
+}
+
+label{
+    font-family: "Bookman Old Style";
+}

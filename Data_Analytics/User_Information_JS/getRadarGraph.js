@@ -50,21 +50,36 @@ function getRadarGraph(){
 
 				
 				
-
-
+				var name = "colorArray=";
+		          var colors = "";
+		          var decodedCookie = decodeURIComponent(document.cookie);
+		          var ca = decodedCookie.split(';');
+		          for(var i = 0; i <ca.length; i++) {
+		              var c = ca[i];
+		              while (c.charAt(0) == ' ') {
+		                  c = c.substring(1);
+		              }
+		              if (c.indexOf(name) == 0) {
+		                  colors =  c.substring(name.length, c.length);
+		              }
+		          }
+		          var colorArray = colors.split(",");
+			
+			
+			
 
 				var radar_dataPreferences = {
 					labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
 					datasets: [{
 	    					label: "Female Users",
-	    					backgroundColor: "rgba(64, 186, 64, 1)" ,
-							borderColor: "rgba(64, 186, 64, 1)",
+	    					backgroundColor: colorArray[0] ,
+							borderColor: colorArray[0],
 	    					data: usersFemale
 						},
 						{
 							label: "Male Users",
-							backgroundColor: "rgba(24, 69, 24, 1)" ,
-							borderColor: "rgba(24, 69, 24, 1)",
+							backgroundColor: colorArray[1] ,
+							borderColor: colorArray[1],
 							data: usersMale
 						}
 	    				]

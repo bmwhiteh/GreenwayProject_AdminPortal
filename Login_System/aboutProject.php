@@ -6,7 +6,8 @@
     <title>About Viridian</title>
 
     <!--Links the CSS stylesheet to the login.html page -->
-    <link rel="stylesheet" type="text/css" href="../css/styles.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/loginSystem.css"/>
+    <link rel="shortcut icon" href="../Dashboard_Pages/favicon.ico" type="image/x-icon">
 </head>
 
 <script>
@@ -19,7 +20,7 @@
     <!--includes the Viridian Banner -->
 <div class="banner">
     <div class="logo">
-        <img src="../images/ViridianBanner2.png" width="100%" height="150px"/>
+        <img src="../images/ViridianBanner.png" width="100%" height="150px"/>
     </div>
 </div>
 

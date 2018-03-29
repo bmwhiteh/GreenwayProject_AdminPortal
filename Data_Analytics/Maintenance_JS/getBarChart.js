@@ -43,6 +43,21 @@ function getBarChart(){
 				closedTicketsPerMonth[dtMonth-1] = countClosed;
 			}
 			
+			var name = "colorArray=";
+          var colors = "";
+          var decodedCookie = decodeURIComponent(document.cookie);
+          var ca = decodedCookie.split(';');
+          for(var i = 0; i <ca.length; i++) {
+              var c = ca[i];
+              while (c.charAt(0) == ' ') {
+                  c = c.substring(1);
+              }
+              if (c.indexOf(name) == 0) {
+                  colors =  c.substring(name.length, c.length);
+              }
+          }
+          var colorArray = colors.split(",");
+			
 			
 			//set the properties for the Bars 
 			var dataPreferences = {
@@ -50,12 +65,12 @@ function getBarChart(){
 				datasets: [
 					{
 						label: "Open Tickets",
-						backgroundColor: "rgba(49, 142, 49, 1)",
+						backgroundColor: colorArray[0],
 						data: openTicketsPerMonth
 					},
 					{
 						label: "Closed Tickets",
-						backgroundColor: "rgba(29, 83, 29, 1)",
+						backgroundColor: colorArray[1],
 						data: closedTicketsPerMonth
 					}
 				]

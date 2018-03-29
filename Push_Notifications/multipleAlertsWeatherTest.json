@@ -1,0 +1,241 @@
+
+{
+  "response": {
+  "version":"0.1",
+  "termsofService":"http://www.wunderground.com/weather/api/d/terms.html",
+  "features": {
+  "alerts": 1
+  }
+	}
+		,"query_zone": "077",
+	"alerts": [
+		{
+		"type": "FLO",
+		"description": "Flood Warning",
+		"date": "7:29 am EST on February 22, 2018",
+		"date_epoch": "1519302540",
+		"expires": "3:28 PM EST on February 22, 2018",
+		"expires_epoch": "1519331312",
+		"tz_short":"EST",
+		"tz_long":"America/New_York",
+		"message": "\u000AThe Flood Warning continues for\u000A the Ohio River at Cincinnati\u000A* until further notice.\u000A* At 7 am the stage was 54.3 feet.\u000A* Flood stage is 52 feet.\u000A* Minor flooding is occurring and minor flooding is forecast.\u000A* The river will rise to near 55.6 feet by after midnight tonight.The \u000A river will then begin falling, but remain above flood stage for the \u000A next 5 days.\u000A* At stages near 55.5 feet, flooding affects much of northern Kentucky, \u000A southwest Ohio and southeast Indiana, including backwater flooding \u000A along creeks emptying into the Ohio River. Low-lying roads near the \u000A river flood, with much of Anderson township near the river affected. \u000A Flooding occurs along sections of Route 52 in Hamilton and Clermont \u000A counties. Low-lying roads in Bromley and Ludlow also flood, as well \u000A as stretches of Route 8 in Kentucky, and old State Route 56 near \u000A Aurora, Indiana.\u000A \u000A\u000A\u000ALat...Lon 3890 8418 3885 8429 3903 8449 3903 8494\u000A 3916 8490 3914 8437 \u000A\u000A\u000A\u000A\u000A",
+		"phenomena": "FL",
+		"significance": "W",
+		"ZONES": [
+		{
+		"state":"IN",
+		"ZONE":"074"
+		}
+		,
+		{
+		"state":"IN",
+		"ZONE":"075"
+		}
+		,
+		{
+		"state":"KY",
+		"ZONE":"091"
+		}
+		,
+		{
+		"state":"KY",
+		"ZONE":"093"
+		}
+		,
+		{
+		"state":"KY",
+		"ZONE":"092"
+		}
+		,
+		{
+		"state":"OH",
+		"ZONE":"078"
+		}
+		,
+		{
+		"state":"OH",
+		"ZONE":"077"
+		}
+		],
+		"StormBased": {
+		}
+		}
+		,
+		{
+		"type": "WAT",
+		"description": "Areal Flood Watch",
+		"date": "10:44 am EST on February 22, 2018",
+		"date_epoch": "1519314240",
+		"expires": "10:00 AM EST on February 25, 2018",
+		"expires_epoch": "1519570800",
+		"tz_short":"EST",
+		"tz_long":"America/New_York",
+		"message": "\u000A...Flood Watch remains in effect through Sunday morning...\u000A\u000AThe Flood Watch continues for\u000A\u000A* portions of southeast Indiana, Kentucky, and Ohio, including \u000A the following areas, in southeast Indiana, Dearborn, Franklin \u000A in, Ohio, Ripley, and Switzerland. In Kentucky, Boone, \u000A Bracken, Campbell, Carroll, Gallatin, Grant, Kenton, Lewis, \u000A Mason, Owen, Pendleton, and Robertson. In Ohio, Adams, Brown, \u000A Butler, Clermont, Clinton, Fairfield, Fayette OH, Hamilton, \u000A Highland, Hocking, Pickaway, Pike, Ross, Scioto, and Warren. \u000A\u000A* Through Sunday morning\u000A\u000A* precipitation this morning has already resulted in 1 to 3 inches\u000A of rain across the area. Additional rounds of rain will move\u000A across the region tonight through Sunday morning. Total rainfall\u000A amounts through Sunday morning are expected to be in the 3 to 5\u000A inch range.\u000A \u000A\u000A* Excessive rainfall will cause local rivers, creeks, and \u000A streams to rise. Those near streams and rivers should be \u000A especially cautious as streams and rivers can rise quickly. \u000A\u000APrecautionary/preparedness actions...\u000A\u000APeople in the watch area, especially those living in areas prone\u000Ato flooding, should be prepared to take action should flooding\u000Adevelop. Monitor the latest forecasts and be alert for possible\u000Aflood warnings.\u000A\u000A\u000A\u000A\u000A\u000A",
+		"phenomena": "FA",
+		"significance": "A",
+		"ZONES": [
+		{
+		"state":"IN",
+		"ZONE":"066"
+		}
+		,
+		{
+		"state":"IN",
+		"ZONE":"073"
+		}
+		,
+		{
+		"state":"IN",
+		"ZONE":"074"
+		}
+		,
+		{
+		"state":"IN",
+		"ZONE":"075"
+		}
+		,
+		{
+		"state":"IN",
+		"ZONE":"080"
+		}
+		,
+		{
+		"state":"KY",
+		"ZONE":"089"
+		}
+		,
+		{
+		"state":"KY",
+		"ZONE":"090"
+		}
+		,
+		{
+		"state":"KY",
+		"ZONE":"091"
+		}
+		,
+		{
+		"state":"KY",
+		"ZONE":"092"
+		}
+		,
+		{
+		"state":"KY",
+		"ZONE":"093"
+		}
+		,
+		{
+		"state":"KY",
+		"ZONE":"094"
+		}
+		,
+		{
+		"state":"KY",
+		"ZONE":"095"
+		}
+		,
+		{
+		"state":"KY",
+		"ZONE":"096"
+		}
+		,
+		{
+		"state":"KY",
+		"ZONE":"097"
+		}
+		,
+		{
+		"state":"KY",
+		"ZONE":"098"
+		}
+		,
+		{
+		"state":"KY",
+		"ZONE":"099"
+		}
+		,
+		{
+		"state":"KY",
+		"ZONE":"100"
+		}
+		,
+		{
+		"state":"OH",
+		"ZONE":"063"
+		}
+		,
+		{
+		"state":"OH",
+		"ZONE":"064"
+		}
+		,
+		{
+		"state":"OH",
+		"ZONE":"065"
+		}
+		,
+		{
+		"state":"OH",
+		"ZONE":"070"
+		}
+		,
+		{
+		"state":"OH",
+		"ZONE":"071"
+		}
+		,
+		{
+		"state":"OH",
+		"ZONE":"072"
+		}
+		,
+		{
+		"state":"OH",
+		"ZONE":"073"
+		}
+		,
+		{
+		"state":"OH",
+		"ZONE":"074"
+		}
+		,
+		{
+		"state":"OH",
+		"ZONE":"077"
+		}
+		,
+		{
+		"state":"OH",
+		"ZONE":"078"
+		}
+		,
+		{
+		"state":"OH",
+		"ZONE":"079"
+		}
+		,
+		{
+		"state":"OH",
+		"ZONE":"080"
+		}
+		,
+		{
+		"state":"OH",
+		"ZONE":"081"
+		}
+		,
+		{
+		"state":"OH",
+		"ZONE":"082"
+		}
+		,
+		{
+		"state":"OH",
+		"ZONE":"088"
+		}
+		],
+		"StormBased": {
+		}
+		}
+	]
+}

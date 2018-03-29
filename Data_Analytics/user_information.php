@@ -5,12 +5,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
-   
+       <link rel="stylesheet" type="text/css" href="/Data_Analytics/data_analytics.css"/>
+
 	<link rel="icon" type="image/png" href="assets/img/favicon.ico">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
     <!---<link rel="stylesheet" type="text/css" href="./css/styles.css"/>
     <link rel="stylesheet" type="text/css" href="./css/viridian.css"/>--->
+    <link rel="shortcut icon" href="../Dashboard_Pages/favicon.ico" type="image/x-icon">
     <script src="../js/jquery-3.2.1.min.js"></script>
     
 	<!--  Charts Plugin -->
@@ -69,32 +71,7 @@
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
     <link href="assets/css/pe-icon-7-stroke.css" rel="stylesheet" />
     <style>
-        .contentBox{
-            background-color: #8c8c8c;
-            margin: 0px 100px 50px 100px;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            -webkit-box-sizing: border-box;
-            -moz-box-sizing: border-box;
-            box-sizing: border-box;
-        }
-
-        body {
-            background-color: #1B371A ;
-
-        }
-
-        ul { list-style-type: none; }
-
-        a {
-            color: #b63b4d;
-            text-decoration: none;
-        }
-
-       
+        
 
 
         .tile {
@@ -108,7 +85,7 @@
 
     </style>
 </head>
-<body onLoad="getTheGraphs();">
+<body onLoad="getTheGraphs();" class="genericBody">
 <?php require_once("../Login_System/verifyAuth.php"); ?>
 <?php include "../Dashboard_Pages/navBar.php"; ?>
     
@@ -116,8 +93,7 @@
 
 <?php date_default_timezone_set('EST');?>
 
-<div class="wrapper">
-    
+
 
     <div class="main-panel">
         
@@ -228,7 +204,7 @@
 
 
 
-    </div>
+    
 </div>
 
 

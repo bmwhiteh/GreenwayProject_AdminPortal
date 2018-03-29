@@ -6,8 +6,8 @@
     <title>Security Questions</title>
 
     <!--Links the CSS stylesheet to the login.html page -->
-    <link rel="stylesheet" type="text/css" href="../css/styles.css"/>
-    <link rel="stylesheet" type="text/css" href="../css/viridian.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/loginSystem.css"/>
+    <link rel="shortcut icon" href="../Dashboard_Pages/favicon.ico" type="image/x-icon">
 </head>
 
 <body>
@@ -71,7 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $error = "Your answers are incorrect";
                 }
             }else{
-                $error = "Your account has been locked.  Please contact Andrea or Bailey to unlock.";
+                $error = "Your account has been locked.  Please contact an administrator to unlock.";
             }
         
     }
@@ -80,7 +80,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <!--includes Viridian Banner --> 
 <div class="banner">
     <div class="logo">
-        <img src="../images/ViridianBanner2.png" width="100%" height="150px"/>
+        <img src="../images/ViridianBanner.png" width="100%" height="150px"/>
     </div>
 </div>
 

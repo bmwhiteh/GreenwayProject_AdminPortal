@@ -5,90 +5,58 @@
 <html>
 <head>
     <title>Manage Users</title>
-    <link rel="stylesheet" type="text/css" href="/css/viridian.css"/>
-    <link rel="stylesheet" type="text/css" href="/css/styles.css"/>
+    <link rel="stylesheet" type="text/css" href=<?php echo $_COOKIE['colorCssLink']; ?>>
+    <link rel="stylesheet" type="text/css" href="/css/managementPages.css"/>
     
     <link rel="stylesheet" href="../Push_Notifications/customBootstrap/css/bootstrap.css">
     <script src="../js/jquery-3.2.1.min.js"></script>
-    <script src="./customBootstrap/js/bootstrap.min.js"></script>
-    <style>
-       
-         .employeeHeader{
-            display:flex;
-        }
-        
-        /*button{*/
-        /*    margin-left:502px;*/
-        /*    margin-top:4%;*/
-        /*    padding: 1px 5px;*/
-        /*}*/
-        
-        /* The Modal (background) */
-        #addUserForm{
-            display: block;
-            margin-top: 0em;
-            background-color: white;
-            margin-left:0%;
-            margin-right:0%;
-        }
-        .modal {
-            display: none; /* Hidden by default */
-            position: fixed; /* Stay in place */
-            z-index: 1; /* Sit on top */
-            padding-top: 15%; /* Location of the box */
-            left: 0;
-            top: 0;
-            width: 100%; /* Full width */
-            height: 100%; /* Full height */
-            overflow: auto; /* Enable scroll if needed */
-            background-color: rgb(0,0,0); /* Fallback color */
-            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-        }
-
-        /* Modal Content */
-        .modal-content {
-            background-color: #fefefe;
-            margin: auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 50%;
-        }
-
-        /* The Close Button */
-        .close {
-            color: #aaaaaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
-
-        .close:hover,
-        .close:focus {
-            color: #000;
-            text-decoration: none;
-            cursor: pointer;
-        }
-        
-    </style>
+    <script src="../Push_Notifications/customBootstrap/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../Push_Notifications/DataTables/datatables.js"></script>
-    <link rel="stylesheet" type="text/css" href="../Push_Notifications/DataTables/datatables.css"/>
+    <link rel="stylesheet" type="text/css" href="../Push_Notifications/DataTables/datatables.css">
     <script>
         $(document).ready(function() {
             $('table.display').DataTable({
             });
-        } );
+            
+            $("#listOfUsers").change(function() {
+                var id = $(this).find(":selected").val();
+                $.ajax({
+                    url: '../Management/getEmployeeToEdit.php',
+                    type:'post',
+                    dataType: "json",
+                    data:{id:id},
+                    cache: false,
+                    success: function(employeeData) {
+                    if(employeeData) {
+                        $("#employeeDataToEdit").show();
+                        $("#firstName").val(employeeData.strFirstName);
+                        $("#lastName").val(employeeData.strLastName);
+                        $("#email").val(employeeData.strEmailAddress);
+                        $("#intSecurityLevel").val(employeeData.intSecurityLevel);
+                    } else {
+                        console.log("In ajax else");
+                    }
+                    },
+                    error: function(xhr){
+                            console.log('Request Status: ' + xhr.status + ' Status Text: ' + xhr.statusText + ' ' + xhr.responseText);
+                        }
+                });
+                })
+});
     </script>
 </head>
 
 <body class="genericBody">
 
 <div class="contentBox">
+    
     <div class="employeeTables">
         <div class="currentEmployees">
             <div class="employeeHeader">
-                <h2>Manage Employees</h2>
-                <button id="myBtn" type="button" style="width:20%; float:right;">Add Employee</button>
+                <h2>Manage Users</h2>
+              <!--  <button id="myBtn" type="button" style="width:20%; float:right;">Add Employee</button>
                 <button id="editBtn" type="button" style="width:20%; float:right;">Edit Employee</button>
+                <button id="deleteBtn" type="button" style="width:20%; float:right;">Delete Employee</button>-->
             </div>
             
     <div>
@@ -100,7 +68,7 @@
                 <span class="close">&times;</span>
                 <h3 class="modal-title">Add New Employee</h3>
                 <div class="modal-body">
-                <form action="./addNewUser.php" method="get" id="addUserForm" class="form-horizontal" role="form">
+                <form action="./addNewEmployee.php" method="get" id="addUserForm" class="form-horizontal" role="form">
                         <div class="form-group">
                             <label  class="col-sm-2 control-label"
                                     for="content">First Name</label>
@@ -158,10 +126,10 @@
                 <span class="close">&times;</span>
                 <h3 class="modal-title">Edit Employee</h3>
                 <div class="modal-body">
-                <form action="./addNewUser.php" method="get" id="addUserForm" class="form-horizontal" role="form">
+                <form action="./editEmployee.php" method="post" id="addUserForm" class="form-horizontal" role="form">
                         <div class="form-group">
                             <label  class="col-sm-2 control-label"
-                                        for="content">Select User to Edit</label>
+                                        for="content">Select Employee to Edit</label>
                             <div class="col-sm-10">
                                 <select class="form-control" id="listOfUsers" name="listOfUsers">
                                     <?php 
@@ -174,7 +142,7 @@
                             </div>
                         </div>
                         
-                        <div class="employeeDataToEdit" style="display: none;">
+                        <div class="employeeDataToEdit">
                                     <div class="form-group">
                                 <label  class="col-sm-2 control-label"
                                         for="content">First Name</label>
@@ -223,6 +191,64 @@
 
         </div>
     </div>
+    
+    <div>
+        
+              <!-- The Delete Modal -->
+        <div id="deleteModal" class="modal">
+
+            <!-- Delete Modal content -->
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h3 class="modal-title">Delete Employee</h3>
+                <div class="modal-body">
+                <form action="./deleteEmployee.php" method="post" id="addUserForm" class="form-horizontal" role="form">
+                        <div class="form-group">
+                            <label  class="col-sm-2 control-label"
+                                        for="content">Select Employee to Delete</label>
+                            <div class="col-sm-10">
+                                <select class="form-control" id="listOfUsers" name="listOfUsers">
+                                    <?php 
+                                        $sql = "SELECT * FROM `employees`";
+                                        $result = $conn->query($sql) or die("Query fail");
+                                        while($row = $result->fetch_array(MYSQLI_ASSOC)) { ?>
+                                            <option value="<?php echo $row['intEmployeeId']?>"><?php echo $row['strUsername']?></option>
+                                    <?php }?>
+                                </select>
+                            </div>
+                            <label  class="col-sm-2 control-label"
+                                        for="content">Confirm Deletion</label>
+                            <div class="col-sm-10">
+                                    <input type="checkbox" id="confirm" name="confirm" onClick="enableSubmit(this)"/> 
+                            
+                            <script>$('#confirm').on('click', function(e){
+    var sbmt = document.getElementById("deleteBtn2");
+    var boxChecked = document.getElementById("confirm").checked;
+    if (boxChecked == true)
+    {
+        sbmt.disabled = false;
+    }
+    else
+    {
+        sbmt.disabled = true;
+    }
+});
+</script>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" id="deleteBtn2" class="btn btn-default" disabled>Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
         <script>
             // Get the modal
             var modal = document.getElementById('myModal');
@@ -249,56 +275,78 @@
                     modal.style.display = "none";
                 }
             }
-           /* 
+           
             // Get the modal
-            var modal = document.getElementById('editModal');
+            var editModal = document.getElementById('editModal');
 
             // Get the button that opens the modal
-            var btn = document.getElementById("editBtn");
+            var editBtn = document.getElementById("editBtn");
 
             // Get the <span> element that closes the modal
-            var span = document.getElementsByClassName("close")[1];
+            var editSpan = document.getElementsByClassName("close")[1];
 
             // When the user clicks the button, open the modal
-            btn.onclick = function() {
-                modal.style.display = "block";
+            editBtn.onclick = function() {
+                editModal.style.display = "block";
             }
 
             // When the user clicks on <span> (x), close the modal
-            span.onclick = function() {
-                modal.style.display = "none";
+            editSpan.onclick = function() {
+                editModal.style.display = "none";
             }
 
             // When the user clicks anywhere outside of the modal, close it
             window.onclick = function(event) {
-                if (event.target == modal) {
-                    modal.style.display = "none";
+                if (event.target == editModal) {
+                    editModal.style.display = "none";
                 }
-            }*/
+            }
+            
+            // Get the modal
+            var deleteModal = document.getElementById('deleteModal');
+
+            // Get the button that opens the modal
+            var deleteBtn = document.getElementById("deleteBtn");
+
+            // Get the <span> element that closes the modal
+            var deleteSpan = document.getElementsByClassName("close")[2];
+
+            // When the user clicks the button, open the modal
+            deleteBtn.onclick = function() {
+                deleteModal.style.display = "block";
+            }
+
+            // When the user clicks on <span> (x), close the modal
+            deleteSpan.onclick = function() {
+                deleteModal.style.display = "none";
+            }
+
+            // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function(event) {
+                if (event.target == deleteModal) {
+                    deleteModal.style.display = "none";
+                }
+            }
         </script>
-            <table id="" class="display" cellspacing="0" style="margin-top: 20px; padding:5px; margin-left:5%; ">
-                <thead style="background-color: #448b41">
+            <table class="display" cellspacing="0">
+                <thead class="header">
                     <tr>
                         <th>Id</th>
                         <th>Username</th>
                         <th>First Name</th>
                         <th>Last Name</th>
                         <th>Email Address</th>
-                        <th>Security Level</th>
-                        <th>Lock/Unlock User</th>
-                        <th>Deactivate User</th>
+                        <th>Send Pictures</th>
                     </tr>
                 </thead>
-                <tfoot style="background-color: #448b41">
+                <tfoot class="footer">
                     <tr>
                         <th>Id</th>
                         <th>Username</th>
                         <th>First Name</th>
                         <th>Last Name</th>
                         <th>Email Address</th>
-                        <th>Security Level</th>
-                        <th>Lock/Unlock User</th>
-                        <th>Deactivate User</th>
+                        <th>Send Pictures</th>
                     </tr>
                 </tfoot>
                 <tbody>
@@ -306,36 +354,7 @@
                 </tbody>
             </table>
         </div>
-        <div class='inactiveEmployees'>
-            <h2>Inactive Employees</h2>
-            <table id="" class="display" cellspacing="0" style="margin-top: 20px; padding:5px; margin-left:5%; width:80%;">
-                <thead style="background-color: #448b41">
-                    <tr>
-                        <th>Id</th>
-                        <th>Username</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Email Address</th>
-                        <th>Security Level</th>
-                        <th>Reactivate User</th>
-                    </tr>
-                </thead>
-                <tfoot style="background-color: #448b41">
-                    <tr>
-                        <th>Id</th>
-                        <th>Username</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Email Address</th>
-                        <th>Security Level</th>
-                        <th>Reactivate User</th>
-                    </tr>
-                </tfoot>
-                <tbody>
-                    <?php include "./getInactiveUsers.php"?>
-                </tbody>
-            </table>
-        </div>
+        
     </div>
 </div>
 

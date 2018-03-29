@@ -1,0 +1,10 @@
+@font-face {
+font-family: 'Odin Bold';
+font-style: normal;
+font-weight: normal;
+src: local('Odin Bold'), url('../fonts/Odin-Rounded---Bold.woff') format('woff');
+}
+
+body {
+            font-variant: small-caps;
+font-family: "Odin Bold";}

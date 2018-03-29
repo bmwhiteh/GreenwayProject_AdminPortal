@@ -1281,7 +1281,7 @@ CREATE TABLE IF NOT EXISTS `securitylevels` (
   `strSecurityTitle` varchar(255) DEFAULT NULL,
   `intEmployeeAssigned` int(5) DEFAULT NULL,
   `bitManageTickets` tinyint(1) NOT NULL,
-  `bitManageUsers` tinyint(1) DEFAULT NULL,
+  `bitmanageEmployees` tinyint(1) DEFAULT NULL,
   `bitSendNotifications` tinyint(1) DEFAULT NULL,
   `strSecurityLevel` text NOT NULL,
   PRIMARY KEY (`intSecurityLevelId`)
@@ -1291,7 +1291,7 @@ CREATE TABLE IF NOT EXISTS `securitylevels` (
 -- Dumping data for table `securitylevels`
 --
 
-INSERT INTO `securitylevels` (`intSecurityLevelId`, `strLevelDescription`, `strSecurityTitle`, `intEmployeeAssigned`, `bitManageTickets`, `bitManageUsers`, `bitSendNotifications`, `strSecurityLevel`) VALUES
+INSERT INTO `securitylevels` (`intSecurityLevelId`, `strLevelDescription`, `strSecurityTitle`, `intEmployeeAssigned`, `bitManageTickets`, `bitmanageEmployees`, `bitSendNotifications`, `strSecurityLevel`) VALUES
 (1, 'Ability to add/remove portal users, edit customization, create/view/assign/edit all tickets', 'Administrator', NULL, 1, 1, 1, 'Level 1'),
 (2, 'Create/view/assign/edit all tickets, allow pictures sent by users, view region graphics', 'Manager', NULL, 1, 0, 1, 'Level 2'),
 (3, 'Create/view/edit all tickets', 'Ranger', NULL, 1, 0, 0, 'Level 3');

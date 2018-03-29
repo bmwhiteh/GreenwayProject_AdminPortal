@@ -3,7 +3,7 @@
 <html>
 <head>
     <title>Home</title>
-    <!-- <link rel="stylesheet" type="text/css" href="/css/viridian.css"/> -->
+        <link rel="stylesheet" type="text/css" href=<?php echo $_COOKIE['colorCssLink']; ?>>
         <link rel="stylesheet" type="text/css" href="/css/styles.css"/>
         
         <script src="https://code.jquery.com/jquery-1.11.0.min.js" /></script>
@@ -12,14 +12,14 @@
 
 </head>
 
-<body class="genericBody" onload="changeCSS();">
-<?php include "../Dashboard_Pages/navBarColorTest.html"; ?>
+<body class="genericBody">
+<?php include "../Dashboard_Pages/navBarColorTest.php"; ?>
 <div class="contentBox">
 
 <h2>Content Here</h2>
 <br/><br/>
-<form method="get" action="../Color_Switch/updateColorScheme.php">
-<select>
+<form method="get" action="../Color_Switch/getColor.php">
+<select id="color" name="color"> 
   <option value="Viridian">Viridian</option>
   <option value="Atlantean">Atlantean</option>
   <option value="Carmine">Carmine</option>
@@ -27,7 +27,7 @@
   <option value="Sapphire">Sapphire</option>
   <option value="Sangria">Sangria</option>
 </select>
-<button type="button">Save Color Change!</button>
+<button type="submit">Save Color Change!</button>
 </form>
   
 

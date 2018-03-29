@@ -46,6 +46,20 @@ function getBarGraph(){
 		console.log(counts);
 		console.log(labels);
 		
+				var name = "colorArray=";
+          var colors = "";
+          var decodedCookie = decodeURIComponent(document.cookie);
+          var ca = decodedCookie.split(';');
+          for(var i = 0; i <ca.length; i++) {
+              var c = ca[i];
+              while (c.charAt(0) == ' ') {
+                  c = c.substring(1);
+              }
+              if (c.indexOf(name) == 0) {
+                  colors =  c.substring(name.length, c.length);
+              }
+          }
+          var colorArray = colors.split(",");
 		
 		
 		var bar_dataPreferences = {
@@ -53,7 +67,7 @@ function getBarGraph(){
     		datasets: [
 	        {
 	        	label: "Users per Zip Code",
-	        	backgroundColor: "rgba(49, 142, 49, 1)",
+	        	backgroundColor:colorArray[0],
 	        	data: counts
 	        }],
 	        xAxisID: "# of Users",

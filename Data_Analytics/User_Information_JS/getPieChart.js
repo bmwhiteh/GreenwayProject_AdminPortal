@@ -57,6 +57,22 @@ function getPieChart(){
 
 			}
 
+			var name = "colorArray=";
+          var colors = "";
+          var decodedCookie = decodeURIComponent(document.cookie);
+          var ca = decodedCookie.split(';');
+          for(var i = 0; i <ca.length; i++) {
+              var c = ca[i];
+              while (c.charAt(0) == ' ') {
+                  c = c.substring(1);
+              }
+              if (c.indexOf(name) == 0) {
+                  colors =  c.substring(name.length, c.length);
+              }
+          }
+          var colorArray = colors.split(",");
+			
+			
 
 
 			var dataPreferences = {
@@ -64,28 +80,8 @@ function getPieChart(){
 				datasets: [{
 				label: 'Ticket Distribution', 
 				data: piePercentageList,
-				backgroundColor: [
-				'rgba(64, 186, 64, 1)',
-				'rgba(59, 171, 59, 1)',
-				'rgba(54, 156, 54, 1)',
-				'rgba(49, 142, 49, 1)',
-				'rgba(44, 127, 44, 1)',
-				'rgba(39, 113, 39, 1)',
-				'rgba(34, 98,  34, 1)',
-				'rgba(29, 83, 29, 1)',
-				'rgba(24, 69, 24, 1)'
-				],
-				borderColor: [
-				'rgba(232, 232, 232, 1)',
-				'rgba(232, 232, 232, 1)',
-				'rgba(232, 232, 232, 1)',
-				'rgba(232, 232, 232, 1)',
-				'rgba(232, 232, 232, 1)',
-				'rgba(232, 232, 232, 1)',
-				'rgba(232, 232, 232, 1)',
-				'rgba(232, 232, 232, 1)',
-				'rgba(232, 232, 232, 1)',
-				],
+				backgroundColor: colorArray,
+				borderColor: colorArray,
 				borderWidth: 1
 				}]
 			};

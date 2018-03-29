@@ -11,8 +11,9 @@
 <html>
     <head>
         <title>User Activities Heat Map</title>
-    <link rel="stylesheet" type="text/css" href="/css/styles.css"/>
-    <link rel="stylesheet" type="text/css" href="/css/viridian.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/heatMaps.css"/>
+    <link rel="stylesheet" type="text/css" href=<?php echo $_COOKIE['colorCssLink']; ?>>
+    <link rel="shortcut icon" href="../Dashboard_Pages/favicon.ico" type="image/x-icon">
     <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
         <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDVZ9qSBrT-dnmrBaxkX2PzWbfmxv6xZgM&v=3&sensor=true&libraries=visualization"></script>
         <script type="text/javascript">
@@ -70,7 +71,7 @@
             function initMap(gpsList) {
                 var map, heatmap;
                 map = new google.maps.Map(document.getElementById('map'), {
-                    zoom: 15,
+                    zoom: 10,
                     center: {lat: 41.1178412, lng: -85.1082758}
                 });
 
@@ -89,24 +90,24 @@
     <!-- includes the authentication that a user is logged in and the navBar -->
     <?php require_once("../Login_System/verifyAuth.php"); ?>
     <?php include "../Dashboard_Pages/navBar.php"; ?>
-        <div class="contentBox" style="height:500px;">
-            <div class="title" style="width:20%; margin-left:2%;">
-                <h3 style="margin-left:12%;">User Activities Heat Map</h3>
+        <div class="contentBox">
+            <div class="title">
+                <h3 id="mapHeader">User Activities Heat Map</h3>
                 <!---This is the form that will allow them to filter the Heat Map--->
                 <form action="user_activities.php" class="js-ajax-php-json" method="post" accept-charset="utf-8">
-                    <label for="startDate">Start Date : </label><input id="startDate" name="startDate" type="date"/>
+                    <label for="startDate">Start Date:</label><input id="startDate" name="startDate" type="date"/>
                         <br><br>
                         <label for="startTime">Start Time:</label><input id="startTime" name="startTime" type="time"/>
                         <br><br>
-                        <label for="endDate">End Date :  </label><input id="endDate" name="endDate" type="date"/>
+                        <label for="endDate">End Date:  </label><input id="endDate" name="endDate" type="date"/>
                         <br><br>
                         <label for="endTime">End Time:</label><input id="endTime" name="endTime" type="time"/>
-                        <button id="button" type="submit" method="post"><b>Load Filtered Heatmap</b></button>
+                        <button id="filter" type="submit" method="post"><b>Load Filtered Heatmap</b></button>
                 </form>
                 
             </div>
         
-            <div class="map" id="map" style="height:85%;">
+            <div class="map" id="map">
                 <!-- includes an initial blank google map --> 
                 <script>
                 var map;

@@ -3,42 +3,49 @@
 <html>
 <head>
     <title>Home</title>
-    <link rel="stylesheet" type="text/css" href="/css/styles.css"/>
-    <link rel="stylesheet" type="text/css" href="/css/viridian.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/dashboardPages.css"/>
+    <link rel="shortcut icon" href="../Dashboard_Pages/favicon.ico" type="image/x-icon">
+
 </head>
 
 <?php require_once("../Login_System/verifyAuth.php"); ?>
 <body class="genericBody">
 
 <?php include "navBar.php"; ?>
+
 <div class="contentBox">
     
-    <div class="leftSide" style="width: 10%;">
+    <div class="leftSide">
         <div class="topBox"><h3>Number of People on the Trail</h3>
-        <span style="font-size: 28px; font-weight:bold; vertical-align:top;">0</span>
-        <!-- <img src="../images/currentUserTest.png" height="35%" style="margin-left: 5%;  border: 2px solid black; vertical-align:text-top;"></img> -->
+            <h1><?php include "numCurrentUsers.php"?></h1>
+            <div class="absolute">
+                <img src="../images/currentUserTest.png" class="quickStats"></img>
+            </div>
         </div>
         
-        <div class="midBox"><h3>Open Tickets</h3>
-            <h1 style="-webkit-margin-after: 0;"><?php include "numOpenTickets.php"?></h1>
-           <!-- <img src="../images/openTicketTest.png" height="65%" style="margin-left:55%;"></img> -->
+        <div class="midBox"><h3>Open Maintenance Tickets</h3>
+            <h1><?php include "numOpenTickets.php"?></h1>
+            <div class="absolute">
+                <img src="../images/openTicketTest.png" class="quickStats"></img>
+            </div>
         </div>
         
         <div class="bottomBox"><h3>Tickets Closed This Week</h3>
-            <h1 style="-webkit-margin-after: 0;"><?php include "numClosedTickets.php" ?></h1>
-           <!--  <img src="../images/closedTicketTest.png" height="65%" style="margin-left:55%;"></img> -->
+            <h1><?php include "numClosedTickets.php" ?></h1>
+            <div class="absolute">
+                <img src="../images/closedTicketTest.png" class="quickStats"></img>
+            </div>
         </div>
     </div>
     
-    <div class="map" id="map" style="background-color:rgba(51,51,51,.3); margin-right: 2%; width: 45%;">
+    <div class="map" id="map">
         <div class="mapContentTop">
             <div class="mapTitle">
-                <b><text id="mapTitle" style="font-size:1.17em; margin-left:2%;">Usage Heat Map</text></b>
-                <input type="button" id="mapButton" value="Display Open Tickets" onClick="initTicketMarkerMap();" 
-                style="float:right; margin-top:5px; margin-right:2%;"></input>
+                <b><text id="mapTitle">Usage Heat Map</text></b>
+                <input type="button" id="mapButton" value="Display Open Tickets" onClick="initTicketMarkerMap();"></input>
             </div>
         </div>
-        <div class="mapContentBottom" style="height:350px; width:480px; margin:2% 2% 2% 2%;">
+        <div class="mapContentBottom">
             <div class="mapView" id="mapView">
                 <script>
                     var map, heatmap;
@@ -100,7 +107,7 @@
                             icon:'../images/markerLogo.png',
                             animation: google.maps.Animation.DROP,
                             title: 'Click marker to display Ticket ID #<?php echo $row['intTicketId']?>',
-                            url: "https://virdian-admin-portal-whitbm06.c9users.io/Ticket_System_v2/ticket_info_single.php?ticketid=" + <?php echo $row['intTicketId']?> 
+                            url: "https://virdian-admin-portal-whitbm06.c9users.io/Ticket_System_v2/ticket_table_header.php?ticketid=" + <?php echo $row['intTicketId']?> 
                         });
                         
                         google.maps.event.addListener(marker, 'click', function() {
@@ -117,7 +124,7 @@
             </div>
         </div>
     </div>
-    <div class="twitter" style="width:25%;">
+    <div class="twitter">
         <a class="twitter-timeline" data-width="400" data-height="385" href="https://twitter.com/FortWayneTrails">Tweets by @FortWayneTrails</a>
         <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
     </div>

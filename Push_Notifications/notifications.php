@@ -6,102 +6,10 @@
 <head>
     <title>Push Notifications</title>
     <link rel="stylesheet" href="./customBootstrap/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/css/pushNotifications.css"/>
+    
     <script src="../js/jquery-3.2.1.min.js"></script>
     <script src="./customBootstrap/js/bootstrap.min.js"></script>
-    <style>
-        body{
-            width: 100%;
-            
-            background-color: #1B371A ;
-        }
-
-        .contentBox{
-            background-color: #8c8c8c;
-            margin: 0px 100px 50px 100px;
-            display: -webkit-flex;
-            display: flex;
-            color:black;
-
-        }
-        .sendNotification{
-            display:flex;
-        }
-        .topBox{
-            height: 22%;
-            background-color: #448b41;
-            text-align: center;
-        }
-
-        .midBox{
-            height: 22%;
-            margin-top: 5%;
-            background-color: #55ad52;
-            text-align: center;
-        }
-
-        .bottomBox{
-            height: 22%;
-            margin-top: 5%;
-            background-color: #77be74;
-            text-align: center;
-        }
-        .leftSide{
-            width: 15%;
-            margin: 1% 1.5% 3% 3%;
-            display:block;
-        }
-        .recentNotifications{
-            -webkit-flex: 2;
-            -ms-flex: 2;
-            flex: 2;
-            margin: 1% 1.5% 3% 1.5%;
-        }
-        button{
-            height: 10%;
-            margin-left:55%;
-            margin-top:4%;
-            padding: 1px 5px;
-        }
-
-        /* The Modal (background) */
-        .modal {
-            display: none; /* Hidden by default */
-            position: fixed; /* Stay in place */
-            z-index: 1; /* Sit on top */
-            padding-top: 15%; /* Location of the box */
-            left: 0;
-            top: 0;
-            width: 100%; /* Full width */
-            height: 100%; /* Full height */
-            overflow: auto; /* Enable scroll if needed */
-            background-color: rgb(0,0,0); /* Fallback color */
-            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-        }
-
-        /* Modal Content */
-        .modal-content {
-            background-color: #fefefe;
-            margin: auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 50%;
-        }
-
-        /* The Close Button */
-        .close {
-            color: #aaaaaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
-
-        .close:hover,
-        .close:focus {
-            color: #000;
-            text-decoration: none;
-            cursor: pointer;
-        }
-    </style>
     <script type="text/javascript" src="../Push_Notifications/DataTables/datatables.js"></script>
     <link rel="stylesheet" type="text/css" href="../Push_Notifications/DataTables/datatables.css"/>
     <script>
@@ -113,26 +21,33 @@
     </script>
 </head>
 
-<body>
-
-
-
+<body class="genericBody">
+    
 <div class="contentBox">
     <div class="leftSide">
-        <h2>Quick Stats</h2>
+        <!--<h2>Quick Stats</h2>-->
         <div class="topBox">
-            <h3>Sent Today</h3>
-            <h1><?php include "numNotificationsSentToday.php"?></h1>
+            <h3># of Weather Alerts This Week</h3>
+            <h1><?php include "numWeatherAlertsSentWeekly.php"?></h1>
+            <div class="absolute">
+                <img src="../images/weatherAlerts3.png" style="margin-right:30%;"></img>
+            </div>
         </div>
         
         <div class="midBox">
-            <h3>Users Signed Up</h3>
-            <h1><?php include "numUsersReceivingNotifications.php"?></h1>
+            <h3># of Alerts Scheduled This Week</h3>
+            <h1><?php include "numScheduledAlertsSentWeekly.php"?></h1>
+            <div class="absolute">
+                <img src="../images/overtime.png" style="margin-right:30%;"></img>
+            </div>
         </div>
         
         <div class="bottomBox">
-            <h3>Sent This Week</h3>
-            <h1><?php include "numNotificationsSentWeekly.php"?></h1>
+            <h3># of Users Receiving Alerts</h3>
+            <h1><?php include "numUsersReceivingNotifications.php"?></h1>
+            <div class="absolute">
+                <img src="../images/alert.png" style="margin-right:30%;"></img>
+            </div>
         </div>
     </div>
     <div class="recentNotifications">
@@ -148,7 +63,7 @@
                 <span class="close">&times;</span>
                 <h3 class="modal-title">Send New Push Notification</h3>
                 <div class="modal-body">
-                <form action="./sendPushNotification.php" method="get" class="form-horizontal" role="form">
+                <form action="./schedulePushNotification.php" method="post" id="addUserForm" class="form-horizontal" role="form">
                         <div class="form-group">
                             <label  class="col-sm-2 control-label"
                                     for="content">Message</label>
@@ -165,12 +80,21 @@
                                        id="dtSend" name="dtSend"/>
                             </div>
                         </div>
+                        
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label"
+                                   for="dtSend" >Send Time</label>
+                            <div class="col-sm-10">
+                                <input type="time" class="form-control"
+                                       id="timeSend" name="timeSend"/>
+                            </div>
+                        </div>
                             <div class="form-group">
                                 <label class="col-sm-2 control-label" for="strNotificationType">Type</label>
                                 <div class="col-sm-10">
                                     <select class="form-control" id="strNotificationType" name="strNotificationType">
-                                        <option value="local event">Local Event</option>
-                                        <option value="trail closure">Trail Closure</option>
+                                        <option value="Local Event">Local Event</option>
+                                        <option value="Trail Closure">Trail Closure</option>
                                     </select>
                                 </div>
                             </div>
@@ -215,20 +139,20 @@
         </script>
 
 
-        <table id="" class="display" cellspacing="0" width="80%" style="margin-top: 20px; padding:5px;">
-            <thead style="background-color: #448b41">
+        <table id="notifications" class="display" cellspacing="0">
+            <thead id="header">
                 <tr>
                     <th>Alert Id</th>
                     <th>Date Sent</th>
-                    <th>Number Sent</th>
+                    <th>Alert Type</th>
                     <th>Alert Message</th>
                 </tr>
             </thead>
-            <tfoot style="background-color: #448b41">
+            <tfoot id="footer">
                 <tr>
                     <th>Alert Id</th>
                     <th>Date Sent</th>
-                    <th>Number Sent</th>
+                    <th>Alert Type</th>
                     <th>Alert Message</th>
                 </tr>
             </tfoot>

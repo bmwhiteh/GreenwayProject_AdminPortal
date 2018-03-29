@@ -2,251 +2,358 @@
 <html>
 <head>
     <title>Ticket Info</title>
-    <style>
-        .contentBox{
-            background-color: #8c8c8c;
-            margin: 0px 100px 50px 100px;
-            padding:10px;
-        }
+    <script src="../js/jquery-3.2.1.min.js"></script>
+      <link rel="stylesheet" type="text/css" href=<?php echo $_COOKIE['colorCssLink']; ?>>
 
-        h1 {
-            color: #000;
-            font-size: 24px;
-            font-weight: 400;
-            text-align: center;
-            margin-top: 20px;
-        }
+      <!---Ticket System CSS--->
+      <link rel="stylesheet" href="../Ticket_System_v2/ticket_system.css">
+      
+      <!---Bootrap for the Modals--->
+      <link rel="stylesheet" href="./bootstrap.css">
+      <script src="../Push_Notifications/customBootstrap/js/bootstrap.min.js"></script>
+      
+      <!---Javascript file to use Google Maps API--->
+      <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDVZ9qSBrT-dnmrBaxkX2PzWbfmxv6xZgM&v=3&sensor=true&libraries=visualization"></script>
+      
+      
+      <!---Javascript to open & Close Modals, and populate the Google Maps with the Markers--->
+            <script src=/Ticket_System_v2/functions.js></script>
+        <style>
+            .txtLoading {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background: url('/Ticket_System_v2/Iconography/loadingGIF.gif') 50% 50% no-repeat rgb(249,249,249);
+    opacity: .8;
+}
 
-        .contentTable {
-            border: 1px solid black;
-            border-radius:20px;
-            background-color:white;
-            margin:auto;
-            text-align: left;
-            font-size: 20px;
-            padding: 10px;
-        }
-
-        td, th {            vertical-align: top;
-        }
-        body {
-            background-color: #1B371A ;
-
-        }
-        input{
-            width:30%;
-        }
-
-    </style>
+        </style>
     
 </head>
 
 <body>
+<?php 
+    /*
+    *   Author: Bailey Whitehill
+    *   Description: This will provide all of the ticket information in a popup rather than 
+                    requiring the user to navigate to a different screen
+    *
+    */
 
-<?php include "../Dashboard_Pages/navBar.php"; ?>
-
-<div class="contentBox">
-    <h1 style="margin-top:0px; color: white; vertical-aligh:middle; text-align: center;">Ticket Id #: <?php echo $_GET['ticketid']?></h1>
-    
-    
-    <?php 
         include("../MySQL_Connections/config.php");
-        
-          $id = $_GET['ticketid'];
-        //try to query ticketId from open tickets
-        $sql = "SELECT * FROM `maintenancetickets` WHERE `intTicketId` = ".$_GET['ticketid'];
-        $result = $conn->query($sql) or die("open ticket fail");
-        
-        $row = $result->fetch_array(MYSQLI_ASSOC);
-        
-         $sqlNotes = "SELECT *\n"
-                . "from ticketnotes\n"
-                . "left join employees on employees.intEmployeeId = ticketnotes.intEmployeeId\n"
-                . "WHERE `intTicketId` = '".$id."' \n"
-                . "ORDER BY `noteId` desc";
-                
-        $resultNotes = $conn->query($sqlNotes) or die("Notes Query Failed"); 
-        
-        if($row['dtClosed']==''){
-            $status = "open";
-        }else{
-            $status = "closed";
-        }
-    
-        if($_GET['page'] == 'table'){
-            $url = "ticket_table_table.php?tickets=".$status;
-            
-        }else if ($_GET['page'] == 'list'){
-            $url = "ticket_table_list.php?tickets=".$status;
-        } else{
-            $url = "ticket_table_cards.php?tickets=".$status;
-        }
-        
-    ?>
-    <h3  style="margin-bottom: 30px; vertical-align:middle; text-align: center; margin:auto;"><a href="<?php echo $url; ?>" style="text-decoration:none;color:green;">Return to View</a></h3>
-        <table class="contentTable">
-            <tr>
-                <th>Title:</th>
-                <td style="max-width:200px;"><?php echo $row['strTitle'] ?></td>
-                <td style="width:20px;">&nbsp;</td>
-                <th>Submitted By: </th>
-                <td><?php
-                $sql = "SELECT `strFirstName`, `strLastName` FROM users WHERE intUserId =".$row['intUserId'];
-                $tempConn = $conn->query($sql) or die($sql."\nQuery fail".$_GET['ticketid']);
-                $temp = $tempConn->fetch_array(MYSQLI_ASSOC);
-                echo $temp['strFirstName']." ".$temp['strLastName']
-                ?></td>
-            </tr>
-            <tr>
-                <th>Ticket Type: </th>
-                <td><?php echo $row['intTypeId'] ?></td>
-                <td style="width:20px;">&nbsp;</td>
-                <th>Date Submitted: </th>
-                <td><?php echo $row['dtSubmitted'] ?></td>
-            </tr>
-    
-            <tr>
-                <th>Description: </th>
-                <td><?php echo $row['strDescription'] ?></td>
-                <td style="width:20px;">&nbsp;</td>
-                <th>Assigned Employee: </th>
-                <td><?php 
-                $sql = "SELECT `strFirstName`, `strLastName` FROM employees WHERE intEmployeeId =".$row['intEmployeeAssigned'];
-                $tempConn = $conn->query($sql) or die($sql."\nQuery fail".$_GET['ticketid']);
-                $temp = $tempConn->fetch_array(MYSQLI_ASSOC);
-                echo $temp['strFirstName']." ".$temp['strLastName'] ?></td>
-            </tr>
-            <tr>
-                <td colspan="2">&nbsp;</td>
-                <td style="width:20px;">&nbsp;</td>
-                <th>Urgent: </th>
-                <td><?php
-                if($temp['bitUrgent'] == 0){
-                    echo "No";
-                }
-                else{
-                    echo "Yes";
-                }
-                ?></td>
-            </tr>
-            <tr>
-                <th colspan="2">Image:</th>
-                <td style="width:20px;">&nbsp;</td>
-                <th colspan="2">Location: </th>
-                
-            </tr>
-            <tr>
-                <td colspan="2" style="width:47%;min-height:800px;text-align:center;"><?php if($row['strImageFilePath'] != ''){ ?><img src="<?php echo $row['strImageFilePath'];?>" style="max-width:100%;margin:auto;" alt="Ticket Image Not Found"><?php }else{ ?>No Image to Display<?php } ?></td>
-                <td style="width:6%;">&nbsp;</td>
-                <td id="map" colspan="2" style="width:47%;">
-                    <script>
-                        var map;
-        
-                        function getMarkerMap(){
-                            var map = new google.maps.Map(document.getElementById('map'), {
-                            zoom: 10,
-                            center: {lat: 41.1178412, lng: -85.1082758}
-                        });
+         
 
+    $id = $_GET['ticketid'];
+    
+    //Find all the ticket info given the ticketid
+    $sqlGetTicket = "SELECT * FROM `maintenancetickets` LEFT JOIN `tickettypes` ON tickettypes.intTypeid = maintenancetickets.inttypeid WHERE `intTicketId` = '".$id."'";
+    $resultGetTicket = $conn->query($sqlGetTicket);
+    $row = $resultGetTicket->fetch_array(MYSQLI_ASSOC);
+    
+    //Find all of the ticket notes given the ticketid
+    $sqlNotes = "SELECT *\n"
+            . "from ticketnotes\n"
+            . "left join employees on employees.intEmployeeId = ticketnotes.intEmployeeId\n"
+            . "WHERE `intTicketId` = '".$id."' \n"
+            . "ORDER BY `noteId` desc";
+    $resultNotes = $conn->query($sqlNotes) or die("Notes Query Failed"); 
+    
+    //Get the name of the user that submitted it
+    $sqlUser = "SELECT `strFirstName`, `strLastName` FROM users WHERE intUserId =".$row['intUserId'];
+    $resultUser = $conn->query($sqlUser) or die($sqlUser."\nQuery fail".$id);
+    $User = $resultUser->fetch_array(MYSQLI_ASSOC);
+    
+    //Get the name of the employee assigned to the ticket
+    $EmployeeName = "Not Assigned";
+    if($row['intEmployeeAssigned']!=''){
+        $sqlEmployeeName = "SELECT `strFirstName`, `strLastName` FROM employees WHERE intEmployeeId =".$row['intEmployeeAssigned'];
+        $resultEmployeeName = $conn->query($sqlEmployeeName);
+        $EmployeeNameResult = $resultEmployeeName->fetch_array(MYSQLI_ASSOC);
+        $EmployeeName = $EmployeeNameResult['strFirstName'] . " " . $EmployeeNameResult[strLastName];
+    }
+    
+    //get the security level of the current user to determine if they can delete ticket notes
+    $sqlSecurityLevel = "SELECT intSecurityLevel\n"
+            . "from employees\n"
+            . "WHERE `strUsername` = '".$_COOKIE['user']."' \n"
+            . "LIMIT 1";
+            
+    $resultSecurityLevel = $conn->query($sqlSecurityLevel) or die("Find Security Level Query Failed"); 
+                
+    	$ticket = $row['intTicketId'];
+
+                                            
+    if($row['dtClosed'] == ''){ 
+		$submit = "0px"; 
+		$closed = '';	
+		$reopen_close = '<a href="action_close_ticket.php?ticketid='.$ticket.'" class="btn-close-reopen"  style="padding:10px;">CLOSE</a>';
+	
+		//'<button class="btn-close-reopen" type="button" name="myTicketButton" id="myTicketButton" onClick="closeTicket('.$row['intTicketId'].');">CLOSE</button>';
+
+	}else{ 
+	    $submit =  "20px";
+		$closed = $row['dtClosed'];
+
+	
+	    $reopen_close = '<a href="action_reopen_ticket.php?ticketid='.$ticket.'" class="btn-close-reopen">REOPEN</a>';
+
+
+	}
+	
+	
+	if($row['bitUrgent']=='1'){
+	    $switch = '0';
+	    $words = "NON-";
+	}else{
+	    $switch = '1';
+	    $words = "";
+	}
+	$urgentBtn = '<a href="action_set_urgent.php?ticketid='.$ticket.'&urgent='.$switch.'" class="btn-close-reopen" style="padding:10px; background-color:red; border-color:red;">CHANGE TO '.$words.'URGENT</a>';
+
+?>
+
+    <!-- Modal content -->
+    <div class="modal-content">
+        
+        
+        <span id="closeTicket" class="close" onClick="closeTicket();">&times;</span>
+        
+        
+        <h1 class="modal-title" style="margin-top:0px; vertical-aligh:middle; text-align: center;" id="MapTicketId">Ticket Id #: <?php echo $id?></h1>
+        
+            
+        <div class="modal-body">
+        
+       
+            <table style=" text-align:left; " >
+                
+                <tbody>
+                <!--Ticket Title & Submitted By-->
+                <tr>
+                    <th style="width:15%">Title:</th>
+                    <td style="width:15%">
+                        <?php echo $row['strTitle']; ?>
+                    </td>
+                    <td style="width:10%;">&nbsp;</td>
+                    <th style="width:15%">Submitted By: </th>
+                    <td style="width:15%">
+                        <?php echo $User['strFirstName']." ".$User['strLastName']; ?>
+                    </td>
+                </tr>
+                
+                <!--Ticket Type and Date Submitted-->
+                <tr>
+                    <th>Ticket Type: </th>
+                    <td>
+                        <?php echo $row['intTypeId'] . " - " . $row['strTicketType'] ?>
+                    </td>
+                    <td style="width:20px;">&nbsp;</td>
+                    <th>Date Submitted: </th>
+                    <td>
+                        <?php echo $row['dtSubmitted'] ?>
+                    </td>
+                </tr>
+        
+        
+                <!--Description and Assigned Employee-->
+                <tr>
+                    <th>Description: </th>
+                    <td>
+                        <?php echo $row['strDescription'] ?>
+                    </td>
+                    <td style="width:20px;">&nbsp;</td>
+                    <th>Assigned Employee: </th>
+                    <td>
+                        <?php echo $EmployeeName ?>
+                    </td>
+                </tr>
+                
+                <!--Urgent Flag-->
+                <tr>
+                    <td colspan="2">&nbsp;</td>
+                    <td style="width:20px;">&nbsp;</td>
+                    <th>Urgent: </th>
+                    <td>
                         <?php
-                            include("../MySQL_Connections/config.php");
-                    
-                            $sql = "SELECT `intTicketId`,`gpsLat`,`gpsLong` FROM `maintenancetickets`WHERE `intTicketId` = ".$_GET['ticketid'];
-                            $result = $conn->query($sql) or die("Query fail");
+                            if($row['bitUrgent'] == 0){
+                                echo "No";
+                            }
+                            else{
+                                echo "Yes";
+                            }
                         ?>
+                    </td>
+                </tr>
                 
-                        var marker = new google.maps.Marker({
-                            position: new google.maps.LatLng(<?php echo $row['gpsLat']?>, <?php echo $row['gpsLong']?>),
-                            map: map,
-                            icon: '../images/markerLogo.png',
-                            animation: google.maps.Animation.DROP,
-                            title: 'Ticket ID #<?php echo $row['intTicketId']?>',
-                            url: "https://virdian-admin-portal-whitbm06.c9users.io/Ticket_System_v2/ticket_info_single.php?ticketid=" + <?php echo $row['intTicketId']?>
-                        });
+                <!--Image and Map Headers-->
+                <tr>
+                    <th colspan="2">Image:</th>
+                    <td style="width:20px;">&nbsp;</td>
+                    <th colspan="2">Location: </th>
+                    
+                </tr>
+                
+                <!--Image and Map-->
+                <tr>
+                    <td colspan="2" style="text-align:center;width:70%;margin-left:15%;">
+                            <?php 
+                            $filename = "Images_ticketSize/".$row['strImageFilePath'];
+                            if(!file_exists($filename)){
+                                $filename = "Images_ticketSize/no-image-available.png";
+                            }
+                        ?>
+                            <img src="<?php echo $filename;?>" style="margin:auto;width:80%;" alt="Ticket Image Not Found">
+                    </td>
+                    <td style="width:30px;">&nbsp;</td>
+                    
+                    <td id="map" colspan="2" style="width:30%;">
                         
-                        google.maps.event.addListener(marker, 'click', function() {
-                            window.location.href = this.url;
-                        });
-        }
-    </script><script async defer
-                        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDVZ9qSBrT-dnmrBaxkX2PzWbfmxv6xZgM&libraries=visualization&callback=getMarkerMap">
-                    </script>
-                </td>
-            </tr>
-            <tr>
-                <td>&nbsp;</td>
-                <td >
-                     <span style="border:2px solid red; background-color:red; font-weight:bold;padding:5px;">
-                             <?php if(($_GET['tickets'] == "open")|| $row['dtClosed'] ==''){?>
-                                    <a href="action_close_ticket.php?ticketid=<?php echo $_GET['ticketid']?>" style="text-decoration:none; color:white; font-weight:bold;">CLOSE</a>
-                            <?php }else{?>
-                                <a href="action_reopen_ticket.php?ticketid=<?php echo $_GET['ticketid']?>" style="text-decoration:none; color:white; font-weight:bold;">REOPEN</a>
-                            <?php }?>
-                        </span>
-                </td>
-                <td colspan="3">&nbsp;</td>
-               
-            </tr>
-            
-            <tr>
-                <td colspan="5" height="100px;">&nbsp;</td>
-            </tr>
-            <tr>
-                <td colspan="5">
-                    <h2>Ticket Notes</h2>
-                    <table>
-                        <tr>
-                            <th>Date</th>
-                            <th>Employee</th>
-                            <th colspan="3" ><span style="margin-left: 10px;">Comment</span></th>
+                        <!--
+                            In order to not get annoying "unexpected ?" messages in javascript, set an input 
+                            field to the database value you need in the script and then call document.getElementById()
+                        -->
+                        <input type="hidden" id="gpsLat" value="<?php echo $gpsLat; ?>"/>
+                        <input type="hidden" id="gpsLong" value="<?php echo $gpsLong; ?>"/>
+                        <input type="hidden" id="MapTicketId" value="<?php echo $MapTicketId; ?>"/>
+                        
+                        <!---This is needed to properly load the Google Map, but we don't know what it is--->
+                        <script async defer
+                            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDVZ9qSBrT-dnmrBaxkX2PzWbfmxv6xZgM&libraries=visualization&callback=getMarkerMap">
+                        </script>
+                        
+                    </td>
+                    
+                </tr>
+                
+                <!---Allow the User to Close or Reopen a Closed Ticket--->
+                <tr>
+                    <td colspan="2" style="padding:15px;">
+                        <div style="display:inline-block;">
+                        <ul>
+                            <li>
+                                <?php echo $reopen_close;?>
+                            </li>
+                            <li>&nbsp;</li>
+                            <li><?php echo $urgentBtn;?></li>
+                        </ul>
+                        
+                        
+                        </div>
+                        
+                    </td>
+                    <td colspan="3">&nbsp;</td>
+                   
+                </tr>
+                
+                <tr>
+                    <td colspan="5" height="100px;">&nbsp;</td>
+                </tr>
+                
+                <!---Ticket Notes--->
+                <tr>
+                    <td colspan="5">
+                        <h2>Ticket Notes</h2>
+                        
+                        <table>
                             
-                        </tr>
-                        <tr>
-                            <form method="post" action="action_add_note.php">
-                                    <input type="hidden" name="intTicketId" value="<?php echo $id?>">
-                                    <input type="hidden" name="strEmployeeUsername" value="<?php echo $_COOKIE['user']?>">
-                                    <input type="hidden" name="date" value="<?php echo date("Y-m-d")?>">
-
-                                    <td><?php echo date("Y-m-d") ?></td>
-                                    <td><?php echo $_COOKIE['user'];?></td>
-                                    <td colspan="3"><span style="margin-left: 10px;"><textarea name="comment" cols="100" rows="2" style="overflow:hidden;" required></textarea>
-                                    <button type="submit" name="addNote" style="width:80px; height:30px; vertical-align:top;">Add Note</button></span></td>
-                                </form>
-                        </tr>
-                        <?php    while($notes = $resultNotes->fetch_array(MYSQLI_ASSOC)){ ?>
+                            <!--Table Headers-->
                             <tr>
-                                <td><?php echo $notes['dateAdded']?></td>
-                                <td><?php echo $notes['strUsername']?></td>
-                                <td colspan="2" ><?php echo $notes['comment']?></td>
-                                <td>
-                                    <?php 
-                                         $sqlSecurityLevel = "SELECT intSecurityLevel\n"
-                                                . "from employees\n"
-                                                . "WHERE `strUsername` = '".$_COOKIE['user']."' \n"
-                                                . "LIMIT 1";
-                                                
-                                        $resultSecurityLevel = $conn->query($sqlSecurityLevel) or die("Find Security Level Query Failed"); 
-                                        
-                                        while($currentUserSecurity = $resultSecurityLevel->fetch_array(MYSQLI_ASSOC)){
-
-                                        if (
-                                            ($notes['strUsername'] == $_COOKIE['user'])
-                                            || ($currentUserSecurity['intSecurityLevel'] == '1' || $currentUserSecurity['intSecurityLevel'] == '2')
-                                        ) {?>
-                                            <a href="action_delete_note.php?noteId=<?php echo $notes['noteId']?>&ticketid=<?php echo $_GET['ticketid']?>">Remove</a>
-                                        <?php }}?>
-                                     </td>
+                                <th>Date</th>
+                                <th>Employee</th>
+                                <th colspan="3" ><span style="margin-left: 10px;">Comment</span></th>
+                                
                             </tr>
-                        <?php } ?>
-                    </table>
-                </td>
-            </tr>
-        </table>
+                            
+                            <!--All Employees can Add New Notes-->
+                            <tr>
+                                <form method="post" action="action_add_note.php">
+                                
+                                    <input type="hidden" id="intTicketId" name="intTicketId" value="<?php echo $id?>">
+                                    <input type="hidden" id="strEmployeeUsername" name="strEmployeeUsername" value="<?php echo $_COOKIE['user']?>">
+                                    <input type="hidden" id="date" name="date" value="<?php echo date("Y-m-d")?>">
+                                    
+                                    <!---Today's Date--->
+                                    <td>
+                                        <?php echo date("Y-m-d") ?>
+                                    </td>
+                                    
+                                    <!---Current User--->
+                                    <td>
+                                        <?php echo $_COOKIE['user'];?>
+                                    </td>
+                                    
+                                    <!---Comment Box--->
+                                    <td colspan="3">
+                                        
+                                        <span style="margin-left: 10px;">
+                                            
+                                            <textarea name="comment" style="width:80%;" rows="2" style="overflow:hidden;" id="strComment" required></textarea>
+                                        
+                                            <button type="button" name="addNote" style="width:80px; height:30px; vertical-align:top;" onClick="AddNotesTicket(<?php echo $id;?>);">Add Note</button>
+                                       
+                                        </span>
+                                        
+                                    </td>
+                                
+                                </form>
+                            
+                            </tr>
+                            
+                            <!--Display Previously Added Notes-->
+                            <?php       
+                                while($notes = $resultNotes->fetch_array(MYSQLI_ASSOC)){ ?>
+                                
+                                    <tr>
+                                        
+                                        <!---Date it was added--->
+                                        <td>
+                                            <?php echo $notes['dateAdded']?>
+                                        </td>
+                                        
+                                        <!---Employee who created it--->
+                                        <td>
+                                            <?php if ($notes['intEmployeeId'] == ''){ echo 'Deleted User.';} else {echo $notes['strUsername'];}?>
+                                        </td>
+                                        
+                                        <!---Comment--->
+                                        <td colspan="2" ><?php echo $notes['comment']?></td>
+                                        
+                                        <!--If the employee has a security level of 1 or 2, they can delete notes-->
+                                        <td>
+                                            <?php 
+                                                while($currentUserSecurity = $resultSecurityLevel->fetch_array(MYSQLI_ASSOC)){
+        
+                                                    if (($notes['strUsername'] == $_COOKIE['user']) || ($currentUserSecurity['intSecurityLevel'] == '1' || $currentUserSecurity['intSecurityLevel'] == '2')) {
+                                            ?>
+                                                        <a href="action_delete_note.php?noteId=<?php echo $notes['noteId']?>&ticketid=<?php echo $id?>">Remove</a>
+                                            <?php 
+                                                    }
+                                                }
+                                            ?>
+                                            
+                                        </td>
+                                    </tr>
+                            <?php
+                                } 
+                            ?>
+                        </table>
+                        
+                    </td>
+                    
+                </tr>
+                </tbody>
+            </table>
+    
+        </div>
     
     </div>
-    
-    
-    </div>
+
+
+        
+       
     
 </body>
 </html>

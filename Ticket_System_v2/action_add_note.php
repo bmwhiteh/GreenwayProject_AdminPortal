@@ -1,36 +1,38 @@
 <?php
-            include("../MySQL_Connections/config.php");
+    /*
+    *   author: Bailey Whitehill
+    *   description: backend database connection to add notes to the database for a ticket. 
+    *               Notes can be used to update the status of a ticket so other rangers
+    *               can see that a ticket is in progress, or other updates that make occur
+    *               between ticket creation and ticket closing.
+    */
 
-    //echo "Comment".$_POST['comment'];
-    /*echo $_POST["intTicketId"];
-    echo $_POST["strEmployeeUsername"];
-    echo $_POST["date"];*/
-                       
-    $sql = "SELECT intEmployeeId FROM `employees` WHERE `strUsername` = '".$_POST["strEmployeeUsername"]."'";
     
-        $result = $conn->query($sql) or die("find employee id fail");
-   
+    //this is the database connection
+    include("../MySQL_Connections/config.php");
+
+    //Find the Employee Id to record on the ticket. the Username name is stored in a cookie on the previous page
+    $sql = "SELECT intEmployeeId FROM `employees` WHERE `strUsername` = '".$_GET["employee"]."'";
+    $result = $conn->query($sql) or die("find employee id fail");
     $row = $result->fetch_array(MYSQLI_ASSOC);
-   
     $employeeId = $row['intEmployeeId'];
     
-    $ticket = $_POST["intTicketId"];
-   
+    //Ticket Id will link the note to the ticket
+    $ticket = $_GET["ticketid"];
     $ticket = mysqli_real_escape_string($conn, $ticket);
     
-    $addDate = $_POST["date"];
+    //date properly orders the ticket notes on a ticket
+    $addDate = $_GET["date"];
     $addDate = mysqli_real_escape_string($conn, $addDate);
     
-    $fullComment = $_POST["comment"];
+    //this is the note that will go on the ticket
+    $fullComment = $_GET["comment"];
     $fullComment = mysqli_real_escape_string($conn, $fullComment);
 
+    //insert note into the database
     $sqlAddNote = "INSERT INTO ticketnotes (intTicketId, intEmployeeId, dateAdded, comment) 
     VALUES('$ticket','$employeeId','$addDate', '$fullComment')";
-    
-    echo "Query: " . $sqlAddNote . "\n";
-   
     $resultAddNote = $conn->query($sqlAddNote) or die("Add note fail. $sqlAddNote");
-   
-    echo "Result:" . $resultAddNote;
-    header("location: ticket_info_single.php?ticketid=".$_POST['intTicketId']."");
+
+    
 ?>

@@ -4,7 +4,7 @@
 <head>
     <title>Home</title>
     <link rel="stylesheet" type="text/css" href="/css/styles.css"/>
-    <link rel="stylesheet" type="text/css" href="/css/viridian.css"/>
+    <link rel="stylesheet" type="text/css" href=<?php echo $_COOKIE['colorCssLink']; ?>>>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 body {

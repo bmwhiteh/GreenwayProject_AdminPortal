@@ -1,12 +1,12 @@
 function changeCSS() {
     // oldlink = document.getElementsByTagName("link").item(0);
 
-    var newlink = document.createElement("link");
+ /*   var newlink = document.createElement("link");
     newlink.setAttribute("rel", "stylesheet");
-    newlink.setAttribute("type", "text/css");
+    newlink.setAttribute("type", "text/css");*/
     
     //initialize the data variable, you can use this to select specific name in your sql statement
-	var data = {
+   var data = {
 		"action": "getSpecificCSSColor"
 	};
 	
@@ -18,12 +18,12 @@ function changeCSS() {
       datatype: 'text',
       data: data,
       success: function(data) {
-          var link = data;
-        newlink.setAttribute("href", link);
+          //var link = data;
+        //newlink.setAttribute("href", link);
       }
     });
 
-    document.getElementsByTagName("head").item(0).appendChild(newLink);
+   // document.getElementsByTagName("head").item(0).appendChild(newlink);
 }
 
 function changeBanner(){

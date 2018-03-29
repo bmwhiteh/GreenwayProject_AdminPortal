@@ -319,7 +319,7 @@ input:focus {
     margin: 10px 10px;
     color: #FFFFFF;
     line-height: 20px;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    /*font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;*/
 }
 
 .sidebar .logo .simple-text {
@@ -418,7 +418,7 @@ input:focus {
     margin: 10px 10px;
     color: #FFFFFF;
     line-height: 20px;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    /*font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;*/
 }
 
 .sidebar .logo .simple-text {
@@ -1337,7 +1337,7 @@ fieldset[disabled] .btn-neutral.active {
 
 .checkbox label::before,
 .checkbox label::after {
-    font-family: 'FontAwesome';
+    /*font-family: 'FontAwesome';*/
     content: "\f096";
     display: inline-block;
     position: absolute;
@@ -1370,7 +1370,7 @@ fieldset[disabled] .btn-neutral.active {
 }
 
 .checkbox input[type="checkbox"]:checked + label::after {
-    font-family: 'FontAwesome';
+    /*font-family: 'FontAwesome';*/
     content: "\f046";
 }
 
@@ -1453,7 +1453,7 @@ fieldset[disabled] .btn-neutral.active {
 
 .radio label::before,
 .radio label::after {
-    font-family: 'FontAwesome';
+    /*font-family: 'FontAwesome';*/
     content: "\f10c";
     font-size: 20px;
     height: 20px;

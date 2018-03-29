@@ -4,6 +4,7 @@
 		<title>Calendar V2</title>
 		<link rel="stylesheet" href="bootstrap-calendar-master/components/bootstrap3/css/bootstrap.min.css">
 		<link rel="stylesheet" href="bootstrap-calendar-master/css/calendar.css">
+		<link rel="shortcut icon" href="../Dashboard_Pages/favicon.ico" type="image/x-icon">
 		  <style>
             .contentBox{
                 background-color: #8c8c8c;

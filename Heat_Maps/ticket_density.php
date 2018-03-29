@@ -2,8 +2,9 @@
 <html>
     <head>
         <title>Ticket Density Heat Map</title>
-    <link rel="stylesheet" type="text/css" href="/css/styles.css"/>
-    <link rel="stylesheet" type="text/css" href="/css/viridian.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/heatMaps.css"/>
+    <link rel="stylesheet" type="text/css" href=<?php echo $_COOKIE['colorCssLink']; ?>>
+    <link rel="shortcut icon" href="../Dashboard_Pages/favicon.ico" type="image/x-icon">
     <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
         <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDVZ9qSBrT-dnmrBaxkX2PzWbfmxv6xZgM&v=3&sensor=true&libraries=visualization"></script>
         <script type="text/javascript">
@@ -83,24 +84,26 @@
     <!-- includes the authentication that a user is logged in and the navBar -->
     <?php require_once("../Login_System/verifyAuth.php"); ?>
     <?php include "../Dashboard_Pages/navBar.php"; ?>
-        <div class="contentBox" style="height:500px;">
-            <div class="title" style="width:20%; margin-left:2%;">
-                <h3 style="margin-left:12%;">Ticket Density Heat Map</h3>
-                <!---This is the form that will allow them to filter the Heat Map--->
-                <form action="ticket_density.php" class="js-ajax-php-json" method="post" accept-charset="utf-8">
-                    <label for="startDate">Start Date : </label><input id="startDate" name="startDate" type="date"/>
-                        <br><br>
-                        <label for="startTime">Start Time:</label><input id="startTime" name="startTime" type="time"/>
-                        <br><br>
-                        <label for="endDate">End Date :  </label><input id="endDate" name="endDate" type="date"/>
-                        <br><br>
-                        <label for="endTime">End Time:</label><input id="endTime" name="endTime" type="time"/>
-                        <button id="button" type="submit" method="post"><b>Load Filtered Heatmap</b></button>
-                </form>
+        <div class="contentBox">
+            <div class="title">
+                <h3 id="mapHeader">Ticket Density Heat Map</h3>
+                <div class="filterForm">
+                    <!---This is the form that will allow them to filter the Heat Map--->
+                    <form action="ticket_density.php" class="js-ajax-php-json" method="post" accept-charset="utf-8">
+                        <label for="startDate">Start Date:</label><input id="startDate" name="startDate" type="date"/>
+                            <br><br>
+                            <label for="startTime">Start Time:</label><input id="startTime" name="startTime" type="time"/>
+                            <br><br>
+                            <label for="endDate">End Date:    </label><input id="endDate" name="endDate" type="date"/>
+                            <br><br>
+                            <label for="endTime">End Time: </label><input id="endTime" name="endTime" type="time"/>
+                            <button id="filter" type="submit" method="post"><b>Load Filtered Heatmap</b></button>
+                    </form>
+                </div>
                 
             </div>
         
-            <div class="map" id="map" style="height:85%;">
+            <div class="map" id="map">
                 <!--Displays an initial blank google map -->
                 <script>
                 var map;

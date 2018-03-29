@@ -6,7 +6,8 @@
         <title>Account Setup</title>
 
 <!-- links to css -->
-        <link rel="stylesheet" type="text/css" href="../css/styles.css"/>
+        <link rel="stylesheet" type="text/css" href="../css/loginSystem.css"/>
+        <link rel="shortcut icon" href="../Dashboard_Pages/favicon.ico" type="image/x-icon">
     </head>
 
     <body>
@@ -40,10 +41,10 @@
                                 ];
                                 
                             $hashedPassword = password_hash($newPassword, PASSWORD_BCRYPT, $options);
-                            $id1 = $_POST['securityQuestion1'];
-                            $answer1 = $_POST['answer1'];
-                            $id2 = $_POST['securityQuestion2'];
-                            $answer2 = $_POST['answer2'];
+                            $id1 = mysqli_real_escape_string($conn, $_POST['securityQuestion1']);
+                            $answer1 = mysqli_real_escape_string($conn, $_POST['answer1']);
+                            $id2 = mysqli_real_escape_string($conn, $_POST['securityQuestion2']);
+                            $answer2 = mysqli_real_escape_string($conn, $_POST['answer2']);
         
                             //sql to update users password
                             $sql = "UPDATE `employees` SET `strEncryptedPassword`= 
@@ -75,7 +76,7 @@
     <!-- includes Viridian Banner -->
     <div class="banner">
         <div class="logo">
-            <img src="../images/ViridianBanner2.png" width="100%" height="150px"/>
+            <img src="../images/ViridianBanner.png" width="100%" height="150px"/>
         </div>
     </div>
 
@@ -122,7 +123,7 @@
              </select>
              <input type="text" name ="answer2" placeholder="Enter Answer"  autocomplete="off" required>
             <!-- The button to reset password --> 
-            <button id="loginButtons" type="submit" onClick="myFunction() "><b>Reset Password</b></button>
+            <button id="loginButtons" type="submit"><b>Setup Account</b></button>
             <?php
                 echo $error;
             ?>

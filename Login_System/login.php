@@ -6,7 +6,8 @@
     <title>Viridian Admin Portal</title>
 
     <!--Links the CSS stylesheet to the login.html page -->
-    <link rel="stylesheet" type="text/css" href="../css/styles.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/loginSystem.css"/>
+    <link rel="shortcut icon" href="../Dashboard_Pages/favicon.ico" type="image/x-icon">
 </head>
 
 <body>
@@ -62,6 +63,19 @@ include("../MySQL_Connections/config.php");
                     //sets cookie
                     setcookie("user", $myusername, time() + (86400 * 30), "/"); // 86400 = 1 day
                     setcookie("encryptedPassword" , $encryptedPassword,  time() + (86400 * 30), "/");
+                    
+                    $sql = "SELECT `colorCssLink`, `bannerCssLink`, `colorArray` FROM `colorSchemes` WHERE `active` = '1'";
+                    $result = $conn->query($sql) or die("Query fail");
+                        
+                    $row = $result->fetch_array(MYSQLI_ASSOC);
+                    $cssLink = $row['colorCssLink'];
+                    $bannerLink = $row['bannerCssLink'];
+                    $colorArray = $row['colorArray'];
+
+                    setcookie("colorCssLink", $cssLink, time() + (86400 * 30), "/"); // 86400 = 1 day
+                    setcookie("bannerLink", $bannerLink, time() + (86400 *30), "/"); // 86400 = 1 day
+                    setcookie("colorArray", $colorArray, time() + (86400 *30), "/"); // 86400 = 1 day
+                    
                     //redirects to dashboard
                     header("location: ../Dashboard_Pages/dashboard.php");
                 }else{
@@ -89,7 +103,7 @@ include("../MySQL_Connections/config.php");
                 $error = "Your Username or Password is invalid";
             }
         }else{
-            $error = "Your account has been locked.  Please contact Andrea or Bailey to unlock.";
+            $error = "Your account has been locked.  Please contact an administrator to unlock.";
         }
 
  }
@@ -98,7 +112,7 @@ include("../MySQL_Connections/config.php");
 <!-- includes the Viridian Banner -->
 <div class="banner">
     <div class="logo">
-        <img src="../images/ViridianBanner2.png" width="100%" height="150px"/>
+        <img src="../images/ViridianBanner.png" width="100%" height="150px"/>
     </div>
 </div>
 
@@ -116,7 +130,7 @@ include("../MySQL_Connections/config.php");
 
         <!--The "password" field -->
         <label><b>Password</b></label>
-        <input type="password" placeholder="Enter Password" name="psw" style="backgound-color:gray"  autocomplete="off" required>
+        <input type="password" placeholder="Enter Password" name="psw" style="backgound-color:gray"  maxlength="12" autocomplete="off" required>
         <br/><br/>
 
         <!-- The "Submit" button -->

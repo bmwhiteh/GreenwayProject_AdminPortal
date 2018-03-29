@@ -3,121 +3,10 @@
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="../Dashboard_Pages/nav.css">
+    <link rel="stylesheet" type="text/css" href="../css/userProfilePages.css">
      <script src="../js/jquery-3.2.1.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-body {
-    transition: background-color .5s;
-}
-
-.sidenav {
-    height: 100%;
-    width: 0;
-    position: fixed;
-    z-index: 2;
-    top: 0;
-    right: 0;
-    background-color: #111;
-    overflow-x: hidden;
-    transition: 0.5s;
-    padding-top: 60px;
-}
-
-.sidenav a {
-    padding: 8px 8px 8px 32px;
-    text-decoration: none;
-    font-size: 25px;
-    color: #818181;
-    display: block;
-    transition: 0.3s;
-}
-
-.sidenav a:hover {
-    color: #f1f1f1;
-}
-
-.sidenav .closebtn {
-    position: absolute;
-    top: 0;
-    right: 25px;
-    font-size: 36px;
-    margin-left: 50px;
-}
-
-#profileInfo {
-    -webkit-margin-before: 0em;
-    -webkit-margin-after: 0em;
-}
-
-#profileHeader{
-    -webkit-margin-before: 0em;
-    -webkit-margin-after: .40em;
-    margin-left:23%;
-}
-
-#changePasswordInfo{
-	-webkit-margin-before: 0em;
-    -webkit-margin-after: .75em;
-    margin-left:10%;
-}
-
-#changePasswordHeader{
-    -webkit-margin-before: 0em;
-    -webkit-margin-after: .75em;
-    margin-left:10%;
-}
-
-.passwordChange{
-	display: inline-block;
-    background-color: #111111;
-    margin-left: 20%;
-    margin-right: 20%;
-}
-
-.securityQuestionChange{
-	display: inline-block;
-    background-color: #111111;
-    margin-left: 10%;
-    margin-right: 10%;
-}
-.passwordLabel{
-	color: #818181;
-}
-
-#changePasswordButton {
-    background-color: #8C8C8C;
-    color: #333333;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-}
-
-#button {
-    background-color: #8C8C8C;
-    color: #333333;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    cursor: pointer;
-    width: 80%;
-    margin-left:10%;
-}
-#securityQuestion1, #securityQuestion2{
-    width: 100%;
-}
-#main {
-    transition: margin-left .5s;
-    padding: 16px;
-}
-
-@media screen and (max-height: 450px) {
-  .sidenav {padding-top: 15px;}
-  .sidenav a {font-size: 18px;}
-}
-</style>
-    <script>
+<script>
 function openNav() {
     document.getElementById("mySidenav").style.width = "20%";
     document.getElementById("contentBox").style.marginLeft = "250px";
@@ -152,41 +41,47 @@ function closeChangeSecurityQuestions() {
     document.body.style.backgroundColor = "white";
 }
 
-function validate(){
-    var oldPassword = $("#oldPassword").val();
-    
-    $.ajax({
-      url: './verifyCorrectPassword.php',
-      type: 'post',
-      data: {'mypassword': oldPassword},
-      success: function(data, status) {
-        if(data == "ok") {
-            var password1 = $("#password1").val();
-            var password2 = $("#password2").val();
+$(document).ready(function(){
+    console.log("Break?");
+    $("#changePasswordButton").click(function(){
+        var password1 = $("#password1").val().trim();
+        var password2 = $("#password2").val().trim();
         if(password1 == password2) {
-            var regex = new RegExp("^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).{6,12}");
-            var result = regex.test(password2);
-            if(result){
-             return true;
-            }else{
-                $("#invalid").text("Passwords must be 6-12 characters in length and contain an uppercase letter, a lowercase letter, and a number!");
-                return false;
-            }
+                var oldPassword = $("#oldPassword").val().trim();
+                var newPassword = password1;
+                if( oldPassword != "" ){
+                     $.ajax({
+                        url:'../User_Accounts/verifyCorrectPassword.php',
+                        type:'post',
+                        data:{password:oldPassword, newPassword:newPassword},
+                        success:function(response){
+                            console.log(response);
+                            var msg = "";
+                                    if(response== 0){
+                                        msg="The password is invalid!";
+                                    }
+                                    
+                                    if(response == 2){
+                                        msg = "Passwords must be 6-12 characters in length and contain an uppercase letter, a lowercase letter, and a number!";
+                                    }
+                                    
+                                    if(response == 1){
+                                        msg = "Password has been changed!";
+                                    }
+                    
+                            $("#invalid").html(msg);
+                        }
+                    });
+                }
+                return true;
         }
         else {
              $("#invalid").text("Passwords Do Not Match!");  
              return false;
         }
-    }
-      },
-      error: function(xhr, desc, err) {
-        $("#invalid").text("Password is incorrect!");
-            return false;
-      }
-    }); // end ajax call
-    
-    
-}  
+        
+    });
+});
 </script>
 
 </head>
@@ -199,10 +94,10 @@ function validate(){
 		$result = $conn->query($sql) or die("Query fail");
 		$row = $result->fetch_array(MYSQLI_ASSOC);
 	?>
-		
+	
 <div id="mySidenav" class="sidenav">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-            <img src="../images/profileImage2.png" height="25%" style="margin-left:20%;"></img>
+            <img id="profileImage" src="../images/profileImage2.png"></img>
             <a><h5 id="profileHeader">User Profile</h5></a>
             <a><h6 id="profileInfo">Name: <?php echo $row['strFirstName'] . " " . $row['strLastName']?></h6></a>
             <a><h6 id="profileInfo">Security Level: 
@@ -225,9 +120,9 @@ function validate(){
 			   }
 			   
 			   if($findSecurity['bitManageUsers']==1){
-			       $manageUsers = "Yes";
+			       $manageEmployees = "Yes";
 			   }else{
-			       $manageUsers = "No";
+			       $manageEmployees = "No";
 			   }
 			   
 			   if($findSecurity['bitSendNotifications']==1){
@@ -238,7 +133,7 @@ function validate(){
 			?>
 			<a><h5 id="profileHeader">Permissions</h5></a>
 			<a><h6 id="profileInfo">Manage Tickets?: <?php echo $manageTickets;?></h6></a>
-			<a><h6 id="profileInfo">Manage Users?: <?php echo $manageUsers;?></h6></a>
+			<a><h6 id="profileInfo">Manage Users?: <?php echo $manageEmployees;?></h6></a>
 			<a><h6 id="profileInfo">Send Notifications?: <?php echo $sendNotifications?></h6></a>
 			<button id="button" type="button" onClick="openChangePassword() "><b>Reset Password</b></button>
 			<button id="button" type="button" onClick="openChangeSecurityQuestions() "><b>Change Security Questions</b></button>
@@ -248,10 +143,10 @@ function validate(){
 
 <div id="mySidenav2" class="sidenav">
             <a href="javascript:void(0)" class="closebtn" onclick="closeChangePassword()">&times;</a>
-            <img src="../images/profileImage2.png" height="25%" style="margin-left:20%;"></img>
+            <img id="profileImage" src="../images/profileImage2.png"></img>
             <a><h5 id="changePasswordHeader">Change Password</h5></a>
             
-            <form class="passwordChange" method="post" action="../User_Accounts/changePassword.php" onSubmit="return validate()">
+            <form class="passwordChange" method="post">
             
             <!--The "Old Password" field -->
             <label class="passwordLabel"><b>Old Password</b></label>
@@ -269,9 +164,9 @@ function validate(){
             <input type="password" id="password2" name ="confirmNewPassword" placeholder="Re-enter Password" maxlength="12" autocomplete="off" required>
             <br/>
             
-            <div id="invalid" style="color: white"></div>
+            <div id="errorMessages"><span id = "invalid"></span></div>
             <!-- The button to reset password --> 
-            <button id="changePasswordButton" type="submit"><b>Reset Password</b></button>
+            <button id="changePasswordButton" name="changePasswordButton" type="button"><b>Reset Password</b></button>
             <?php
                 echo $error;
             ?>
@@ -280,7 +175,7 @@ function validate(){
 
 <div id="mySidenav3" class="sidenav">
             <a href="javascript:void(0)" class="closebtn" onclick="closeChangeSecurityQuestions()">&times;</a>
-            <img src="../images/profileImage2.png" height="25%" style="margin-left:25%;"></img>
+            <img id="profileImage" src="../images/profileImage2.png"></img>
             <a><h5 id="changePasswordHeader">Change Security Questions</h5></a>
             
             <form class="securityQuestionChange" method="post" action="../User_Accounts/changeSecurityQuestions.php">
@@ -297,7 +192,7 @@ function validate(){
                 }
                 ?>
             </select>
-            <input type="text" name ="answer1" placeholder="Enter Answer"  autocomplete="off" required>
+            <input type="text" id="answer1" name ="answer1" placeholder="Enter Answer"  autocomplete="off" required>
             <br/>
             
             <!--The "Security Question 2" field -->
@@ -313,11 +208,11 @@ function validate(){
                 }
                 ?>
             </select>
-            <input type="text" name ="answer2" placeholder="Enter Password"  autocomplete="off" required>
+            <input type="text" id="answer2" name ="answer2" placeholder="Enter Password"  autocomplete="off" required>
             <br/>
             
             <!-- The button to reset password --> 
-            <button id="changePasswordButton" type="submit"><b>Change Security Questions</b></button>
+            <button id="changeSecurityQuestionsButton" type="submit"><b>Change Security Questions</b></button>
             <?php
                 echo $error;
             ?>

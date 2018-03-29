@@ -1,8 +1,8 @@
 .genericBody{
     background:0;
     width: 100%;
-    overflow: hidden;
     background-color: #0D0036 !important;
+    overflow-x: hidden;
 }
 
 .contentBox{
@@ -10,19 +10,32 @@
     margin: 0px 100px 50px 100px;
     display: -webkit-flex;
     display: flex;
+    width:85vw;
+    
 }
 
 .active{
     background-color:green;
     border: 2px solid white;
     border-radius: 25px;
-
 }
 
+.maptest{
+    height:100%;
+}
+
+.mapView{
+    height:100%;
+}
 .topBox{
     height: 29%;
     background-color: #163550;
     text-align: center;
+    font-size: 1.2vw;
+    box-shadow: 5px 5px #717171;
+    position:relative;
+    font-variant: small-caps;
+    font-family: "Odin Bold";
 }
 
 .midBox{
@@ -30,6 +43,11 @@
     margin-top: 5%;
     background-color: #1b4264;
     text-align: center;
+    font-size: 1.2vw;
+    box-shadow: 5px 5px #717171;
+    position:relative;
+    font-variant: small-caps;
+    font-family: "Odin Bold";
 }
 
 .bottomBox{
@@ -37,8 +55,46 @@
     margin-top: 5%;
     background-color: #204d74;
     text-align: center;
+    font-size: 1.2vw;
+    box-shadow: 5px 5px #717171;
+    position:relative;
+    font-variant: small-caps;
+    font-family: "Odin Bold";
 }
 
+.dropdown-content a:hover {
+    background-color: #77be74;
+}
+
+/*
 ul {
     background-color: #333;
+}
+*/
+.color1{
+    background-color: #75BBB8;
+}
+.color2{
+    background-color: #107A76;
+}
+.color3{
+    background-color: #443020;
+}
+.color4{
+    background-color: #C8681B;
+}
+.color5{
+    background-color: #432021;
+}
+.color6{
+    background-color: #3DB737;
+}
+.color7{
+    background-color: #FD9EA1;
+}
+.color8{
+    background-color: #C61A1F;
+}
+.color9{
+    background-color: #FFCA9F;
 }

@@ -62,7 +62,7 @@ function getTicketList(){
 				var newLinkTicketId = document.createElement('a');
 				
 				//Set the link element to the view ticket page of the ticket system
-				newLinkTicketId.setAttribute('href', "https://virdian-admin-portal-whitbm06.c9users.io/Ticket_System/ticketInfo.php?ticketid="+ticketIdList[z])
+				newLinkTicketId.setAttribute('href', "https://virdian-admin-portal-whitbm06.c9users.io/Ticket_System_v2/ticket_table_header.php?ticketid="+ticketIdList[z])
 				
 				//Create a new text Node to hold the ticket id
 				var newTextTicketId = document.createTextNode('View Ticket '+ticketIdList[z]);

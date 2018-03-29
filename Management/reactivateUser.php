@@ -7,5 +7,5 @@ $sql = "UPDATE `employees` SET `accountLocked`= '0',`loginAttempts`= '0',
 WHERE `strUsername`= '$username'";
 
 $result = $conn->query($sql) or die("Query fail");
-header("location: ./manageUsers.php");
+header("location: ./manageEmployees.php");
 ?>

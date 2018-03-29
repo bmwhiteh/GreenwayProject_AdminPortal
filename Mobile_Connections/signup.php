@@ -1,4 +1,3 @@
-<!--- This is where the jsons will be sent--->
 <?php
     include("../MySQL_Connections/config.php");
    
@@ -24,104 +23,195 @@
     }
     
     //get the json data
-    /*$data = file_get_contents("php://input");
+    $data = file_get_contents("php://input");
     
     $sql = "INSERT INTO `databaseTests` (`dataSent`)
                 VALUES ( '".$data."' );";
                 
-      $result = $conn->query($sql) or die("Query fail");  
+    $result = $conn->query($sql) or die("Query fail");  
     
-    echo $data. "\n";*/
-    
-    
-    $data = '
-       {
-       "firstName":"Connor",
-       "lastName":"Julian",
-       "emailAddress":"julicm01@students.ipfw.edu",
-       "userPassword":"Sheamitch1",
-       "userPasswordConfirm":"Sheamitch1",
-       "userBirthdate":"1968-01-01",
-       "userHeightFeet":"",
-       "userWeight":""
-           
-       }
-        ';
 
-
+    
+    
+   
+    /*
+    $data = '{
+            "firstName":"Connor",
+            "lastName":"Test",
+            "emailAddress":"connor@gmail.com",
+            "userPassword":"Connor",
+            "userBirthdate":"1965-01-01",
+            "userHeight":"6 Feet 4 Inches",
+            "userWeight":"111 lbs",
+            "userGender":"Male",
+            "userLat":"41.104271598696336",
+            "userLng":"-85.05888901298296"
+        
+    }'; */
     
     if(isset($data)){
                 
 
         //JSON must be decoded using PHP function
         $dataArray = json_decode($data);
-        $strFirstName = $dataArray->firstName;
-        $strLastName = $dataArray->lastName;
+        $strFirstName = mysqli_real_escape_string($conn, $dataArray->firstName);
+        $strLastName = mysqli_real_escape_string($conn, $dataArray->lastName);
         $strUsername = substr($strFirstName,0,1) . $strLastName;
+       if(isset($dataArray->currentTime)){
+            $phoneDateTime = $dataArray->currentTime; //example: 2018-02-19T18:13:19.952Z
+            $dateStart= new DateTime($phoneDateTime); 
+            $dateStart->setTimeZone(new DateTimeZone('UTC'));
+            $dtStartDate  =$dateStart->format('Y-m-d');
         
-        $strEmailAddress = $dataArray->emailAddress;
-        $strUserPassword = $dataArray->userPassword;
-        $strUserConfirmPassword = $dataArray->userPasswordConfirm;
-        
-        
-        //sets values of newPassword and confirmNewPassword from user input   
-        $newPassword = mysqli_real_escape_string($conn, $strUserPassword);
-        $confirmNewPassword = mysqli_real_escape_string($conn, $strUserConfirmPassword );
-        
-        //regex to force passwords to have an uppercase letter,a lowercase letter, and a number
-        //regex also forces password to be 6-12 characters long
-        $regex = "^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).{6,12}^";
-        if (preg_match($regex, $newPassword)) {
-            
-            //checks if values match
-            if($newPassword == $confirmNewPassword){
-                
-                $options = [
-                    'salt' => mcrypt_create_iv(22, MCRYPT_DEV_URANDOM),
-                ];
-                    
-                $hashedPassword = password_hash($newPassword, PASSWORD_BCRYPT, $options);
-
-                
-            }else{
-                //displays error message and redirects to passwordReset page
-                echo "Your passwords do not match!";
-               
-            }
-        } else {
-            // If preg_match() returns false, then the regex does not
-            // match the string
-            echo "Passwords must be 6-12 characters in length and 
-            contain an uppercase letter, a lowercase letter, and a number.";
+        }else{
+            $dateStart = new DateTime('now'); 
+            $dateStart->setTimeZone(new DateTimeZone('UTC'));
+            $dtStartDate =$dateStart->format('Y-m-d');
         }
+        $strEmailAddress = mysqli_real_escape_string($conn, $dataArray->emailAddress);
         
-        //birthdate sent as 
-        $dtBirthDate = $dataArray->userBirthdate;
-        
-        
-        //may need to convert or calculate these
-        $intHeight = $dataArray->userHeight;
-        $intWeight = $dataArray->userWeight;
-        
-        
-        
-        
-        
-        $strGender = "F";           //$strGender = $dataArray->userGender;
-        $strLat = "1.9285435";      //$strLat = $dataArray->userLat;
-        $strLong = "180.02342";     //$strLong = $dataArray->userLng;
-    
+        $sqlCheckEmailAddress = "SELECT intUserId FROM `users` WHERE `strEmailAddress` = '$strEmailAddress'";
+        $resultCheckEmailAddress  = $conn->query($sqlCheckEmailAddress );
 
-        if(isset($hashedPassword)){
-            /*$sql = "INSERT INTO `users` (`strFirstName`, `strLastName`, `strEmailAddress`, `strEncryptedPassword`, `dtBirthdate`, `intHeight`, `intWeight`, `strGender`, `strLat`, `strLong`)
-                    VALUES ( '".$strFirstName."' , '".$strLastName."', '".$strEmailAddress."', '".$hashedPassword."' , '".$dtBirthDate."', '".$intHeight."', '".$intWeight."', '".$strGender."', '".$strLat."', '".$strLong."');";
+        if ($resultCheckEmailAddress->num_rows > 0) {
+                echo -2; //user already exists
+                
+        } else {
             
+        
+            $strUserPassword = mysqli_real_escape_string($conn, $dataArray->userPassword);
+            $bitReceiveNotifications = $dataArray->bitNotifications;
+            $bitSendPictures = 1;
+            $bitActive = 0;
+            $strGender = mysqli_real_escape_string($conn, $dataArray->userGender);
+        
+        
+            $options = [    'salt' => mcrypt_create_iv(22, MCRYPT_DEV_URANDOM),     ];
+            $hashedPassword = password_hash($strUserPassword, PASSWORD_BCRYPT, $options);
+    
             
+            //birthdate sent as 
+            $dtBirthDate = mysqli_real_escape_string($conn, $dataArray->userBirthdate);
+            $intAge =  date("Y-m-d") - $dtBirthDate;
             
-            $result = $conn->query($sql) or die("Query fail");  */
-            echo hello;
+            //Height
+            $strHeight = mysqli_real_escape_string($conn, $dataArray->userHeight); //comes in as "5 feet 11 inches"
+            $strHeightArray = explode(" ",$strHeight);
+            $intFeet = $strHeightArray[0];
+            $intInches = $strHeightArray[2];
+            $intHeight =  ($intFeet * 12) + $intInches;
             
-            //what needs to be sent back
+            //Weight
+            $strWeight = mysqli_real_escape_string($conn, $dataArray->userWeight); //comes in as 111lbs
+            $strWeightArray = explode(" ",$strWeight);
+            $intWeight = $strWeightArray[0];
+
+            //$strLat = "38.58157";    
+            $strLat = $dataArray->userLat;
+            //$strLong = "-121.4944";     
+            $strLong = $dataArray->userLng;
+    
+            
+            $intZipCode = 0;
+            // google map geocode api url
+            $url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=$strLat,$strLong&key=AIzaSyBDPrizY3A8DH-BaSuHsSLy6-WObmEvAd4";
+          
+            // get the json response
+            $resp_json = file_get_contents($url);
+            
+            // decode the json
+            $resp = json_decode($resp_json, true);
+     
+            // response status will be 'OK', if able to geocode given address 
+            if($resp['status']=='OK'){
+                    $arrayLength = count($resp['results'][0]['address_components']);
+                    $regex = "^\d{5}^";
+                    for($i = 0; $i < $arrayLength; $i++){
+                        $tempZip = $resp['results'][0]['address_components'][$i]['long_name'];
+                        if (preg_match($regex, $tempZip)) {
+                            $intZipCode = $tempZip;
+                        }
+                       // echo "iteration $i Zip Code: $intZipCode";
+                    }
+                     //echo $intZipCode;
+            }
+                    
+       
+            if(isset($strUserPassword)){
+    
+    
+                if(isset($hashedPassword)){
+    
+                    $sqlAddUser = "INSERT INTO `users` (
+                            `strFirstName`, 
+                            `strLastName`, 
+                            `strUsername`, 
+                            `strEmailAddress`,
+                            `strEncryptedPassword`,
+                            `dtBirthdate`,
+                            `intHeight`, 
+                            `intWeight`,
+                            `strGender`,
+                            `strLat`,
+                            `strLong`,
+                            `dtStartDate`,
+                            `intAge`, 
+                            `bitSendPictures`,
+                            `bitReceiveNotifications`,
+                            `intZipCode`,
+                            `active`
+                        )
+                        VALUES ( 
+                            '".$strFirstName."' ,
+                            '".$strLastName."',
+                            '".$strUsername."',
+                            '".$strEmailAddress."',
+                            '".$hashedPassword."' ,
+                            '".$dtBirthDate."',
+                            '".$intHeight."', 
+                            '".$intWeight."', 
+                            '".$strGender."', 
+                            '".$strLat."', 
+                            '".$strLong."', 
+                            '".$dtStartDate."',
+                            '".$intAge."',
+                            '".$bitSendPictures."',
+                            '".$bitReceiveNotifications."',
+                            '".$intZipCode."',
+                            '".$bitActive."'
+                        )";
+                        
+                        
+                    $resultAddUser = $conn->query($sqlAddUser);
+    
+    
+                    $passwordResult = "Password: " . $newPassword . " Encrypted Password: " . $hashedPassword;
+                    
+                    date_default_timezone_set('UTC');
+                    $date = date('m/d/Y h:i:s a', time());
+                    $sql = "UPDATE `tasks` SET `lastCompleted`= '$date' WHERE `taskId` = '1'";
+                    $result = $conn->query($sql);
+        
+    
+                }
+    
+    
+                //get the just created id
+                $sqlGetResponse = "SELECT * FROM `users` ORDER BY intUserId desc LIMIT 0, 1 ";            
+                $resultGetResponse = $conn->query($sqlGetResponse);
+    
+    
+                if ($resultGetResponse->num_rows > 0) {
+                    // output data of each row
+                    while($row = $resultGetResponse->fetch_assoc()) {
+                        echo $row["intUserId"];
+                    }
+                    
+                } else {
+                    echo -1;//"Could Not Create Account.";
+                }
+            }  
+           
         }
     }
 ?>

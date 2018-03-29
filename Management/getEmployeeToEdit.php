@@ -1,17 +1,16 @@
 <?php
 include("../MySQL_Connections/config.php");
-if($_REQUEST['intEmployeeId']) {
-
+if($_SERVER["REQUEST_METHOD"] == "POST") {
 $sql = "SELECT strFirstName, strLastName, strEmailAddress, intSecurityLevel
-FROM employee WHERE intEmployeeId='".$_REQUEST['intEmployeeId']."'";
+FROM employees WHERE intEmployeeId='".$_POST['id']."'";
 
-$resultset = mysqli_query($conn, $sql) or die("database error:". mysqli_error($conn));
+$resultset = $conn->query($sql) or die("Query fail");
 $data = array();
-while( $rows = mysqli_fetch_assoc($resultset) ) {
+while( $rows = $resultset ->fetch_array(MYSQLI_ASSOC)) {
 $data = $rows;
 }
 echo json_encode($data);
-} else {
+}else {
 echo 0;
 }
 ?>

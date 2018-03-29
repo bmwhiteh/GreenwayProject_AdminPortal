@@ -1,3 +1,5 @@
+<?php 
+
 include("../MySQL_Connections/config.php");
     if($_SERVER["REQUEST_METHOD"] == "GET") {
         
@@ -17,3 +19,5 @@ include("../MySQL_Connections/config.php");
     $result = $conn->query($sql) or die("Query fail");  
     header("location: /Push_Notifications/notifications.php");
     }
+
+?>

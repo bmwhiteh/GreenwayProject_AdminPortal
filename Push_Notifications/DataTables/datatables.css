@@ -73,7 +73,7 @@ table.dataTable tbody tr {
   background-color: #ffffff;
 }
 table.dataTable tbody tr.selected {
-  background-color: #77be74;
+  background-color: #dddddd;
 }
 table.dataTable tbody th,
 table.dataTable tbody td {
@@ -100,16 +100,16 @@ table.dataTable.cell-border tbody tr:first-child td {
   border-top: none;
 }
 table.dataTable.stripe tbody tr.odd, table.dataTable.display tbody tr.odd {
-  background-color: #77be74;
+  background-color: #dddddd;
 }
 table.dataTable.stripe tbody tr.odd.selected, table.dataTable.display tbody tr.odd.selected {
-  background-color: #77be74;
+  background-color: #dddddd;
 }
 table.dataTable.hover tbody tr:hover, table.dataTable.display tbody tr:hover {
-  background-color: #77be74;
+  background-color: #dddddd;
 }
 table.dataTable.hover tbody tr:hover.selected, table.dataTable.display tbody tr:hover.selected {
-  background-color: #77be74;
+  background-color: #dddddd;
 }
 table.dataTable.order-column tbody tr > .sorting_1,
 table.dataTable.order-column tbody tr > .sorting_2,
@@ -126,22 +126,22 @@ table.dataTable.display tbody tr.selected > .sorting_3 {
   background-color: #acbad5;
 }
 table.dataTable.display tbody tr.odd > .sorting_1, table.dataTable.order-column.stripe tbody tr.odd > .sorting_1 {
-  background-color: #55ad52;
+  background-color: #dddddd;
 }
 table.dataTable.display tbody tr.odd > .sorting_2, table.dataTable.order-column.stripe tbody tr.odd > .sorting_2 {
   background-color: #f3f3f3;
 }
 table.dataTable.display tbody tr.odd > .sorting_3, table.dataTable.order-column.stripe tbody tr.odd > .sorting_3 {
-  background-color: #55ad52;
+  background-color: #dddddd;
 }
 table.dataTable.display tbody tr.odd.selected > .sorting_1, table.dataTable.order-column.stripe tbody tr.odd.selected > .sorting_1 {
-  background-color: #55ad52;
+  background-color: #dddddd;
 }
 table.dataTable.display tbody tr.odd.selected > .sorting_2, table.dataTable.order-column.stripe tbody tr.odd.selected > .sorting_2 {
-  background-color: #55ad52;
+  background-color: #dddddd;
 }
 table.dataTable.display tbody tr.odd.selected > .sorting_3, table.dataTable.order-column.stripe tbody tr.odd.selected > .sorting_3 {
-  background-color: #55ad52;
+  background-color: #dddddd;
 }
 table.dataTable.display tbody tr.even > .sorting_1, table.dataTable.order-column.stripe tbody tr.even > .sorting_1 {
   background-color: #fafafa;
@@ -1013,12 +1013,12 @@ div.dtr-modal div.dtr-modal-background {
 
 table.dataTable tbody > tr.selected,
 table.dataTable tbody > tr > .selected {
-  background-color: #B0BED9;
+  background-color: #dddddd;
 }
 table.dataTable.stripe tbody > tr.odd.selected,
 table.dataTable.stripe tbody > tr.odd > .selected, table.dataTable.display tbody > tr.odd.selected,
 table.dataTable.display tbody > tr.odd > .selected {
-  background-color: #55ad52;
+  background-color: #dddddd;
 }
 table.dataTable.hover tbody > tr.selected:hover,
 table.dataTable.hover tbody > tr > .selected:hover, table.dataTable.display tbody > tr.selected:hover,
@@ -1035,13 +1035,13 @@ table.dataTable.display tbody > tr > .selected {
   background-color: #acbad5;
 }
 table.dataTable.display tbody > tr.odd.selected > .sorting_1, table.dataTable.order-column.stripe tbody > tr.odd.selected > .sorting_1 {
-  background-color: #55ad52;
+  background-color: #dddddd;
 }
 table.dataTable.display tbody > tr.odd.selected > .sorting_2, table.dataTable.order-column.stripe tbody > tr.odd.selected > .sorting_2 {
-  background-color: #55ad52;
+  background-color: #dddddd;
 }
 table.dataTable.display tbody > tr.odd.selected > .sorting_3, table.dataTable.order-column.stripe tbody > tr.odd.selected > .sorting_3 {
-  background-color: #55ad52;
+  background-color: #dddddd;
 }
 table.dataTable.display tbody > tr.even.selected > .sorting_1, table.dataTable.order-column.stripe tbody > tr.even.selected > .sorting_1 {
   background-color: #acbad5;
@@ -1053,7 +1053,7 @@ table.dataTable.display tbody > tr.even.selected > .sorting_3, table.dataTable.o
   background-color: #afbdd8;
 }
 table.dataTable.display tbody > tr.odd > .selected, table.dataTable.order-column.stripe tbody > tr.odd > .selected {
-  background-color: #55ad52;
+  background-color: #dddddd;
 }
 table.dataTable.display tbody > tr.even > .selected, table.dataTable.order-column.stripe tbody > tr.even > .selected {
   background-color: #acbad5;
@@ -1101,7 +1101,7 @@ table.dataTable tr.selected th.select-checkbox:after {
   margin-top: -11px;
   margin-left: -4px;
   text-align: center;
-  text-shadow: 1px 1px #B0BED9, -1px -1px #B0BED9, 1px -1px #B0BED9, -1px 1px #B0BED9;
+  text-shadow: 1px 1px #dddddd, -1px -1px #dddddd, 1px -1px #dddddd, -1px 1px #dddddd;
 }
 
 div.dataTables_wrapper span.select-info,
