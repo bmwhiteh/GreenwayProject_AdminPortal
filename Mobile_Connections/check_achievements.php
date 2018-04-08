@@ -48,9 +48,9 @@
         //JSON must be decoded using PHP function
         $dataArray = json_decode($data);
        
-        if (isset($dataArray->intUserId)){
+        if (isset($dataArray->userId)){
             
-            $intUserId = $dataArray->intUserId;
+            $intUserId = $dataArray->userId;
             $intUserId = mysqli_real_escape_string($conn, $intUserId);
             
             $sql = "SELECT intEarnedId FROM medalsEarned WHERE intUserId = '$intUserId' && intMedalId = '1'";

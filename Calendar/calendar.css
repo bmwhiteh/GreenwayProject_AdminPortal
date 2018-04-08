@@ -1,0 +1,44 @@
+@font-face {
+font-family: 'Odin Bold';
+font-style: normal;
+font-weight: normal;
+src: local('Odin Bold'), url('../fonts/Odin-Rounded---Bold.woff') format('woff');
+}
+
+body {
+            font-variant: small-caps;
+font-family: "Odin Bold";}
+* {
+            margin: 0;
+            padding: 0;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+        
+       
+        .theBox{
+            background-color: #8c8c8c;
+            margin: 0px 100px 50px 100px;
+            
+            
+        }
+.calendarOptions ul {
+    display:block;
+    float:none;
+    font-size: 18px;
+    
+}
+.calendarOptions li {
+    text-align:left;
+    
+}
+
+.calendarBox {
+    
+    background-color: #8c8c8c;
+    margin: 0px 100px 50px 100px;
+    display: block;
+}
+
+.subTypes{}

@@ -25,23 +25,23 @@
     //get the json data
     $data = file_get_contents("php://input");
     
-    $sql = "INSERT INTO `databaseTests` (`dataSent`)
+   /* $sql = "INSERT INTO `databaseTests` (`dataSent`)
                 VALUES ( '".$data."' );";
                 
       $result = $conn->query($sql) or die("Query fail");  
-    
+    */
    // echo $data. "\n";
     
-    
-    /*$data = '
+     /*
+    $data = '
        {
-       "emailAddress":"email@email.com",
-       "userPassword":"password"
+       "emailAddress":"Test7@gmail.com",
+       "userPassword":"1234567!"
       
        }
         ';
-        */
-    
+   
+    */
     
     
     if(isset($data)){
@@ -83,12 +83,25 @@
                 
                     $match = password_verify($strPassword, $encryptedPassword);
                 
+                    
+                
                     //the passwords match if $match is true
                     if($match){
                         $sqlResetAttempts = "UPDATE `users` SET `accountLocked` = '0' WHERE `strEmailAddress` = '".$strEmailAddress."'";
                         //executes query
                         $resultResetAttempts = $conn->query($sqlResetAttempts) or die("Query fail");
                         //echo "User Login Successful";
+                        
+                        $userAvatarFilePath = $row['userAvatarFilePath'];
+                        //$imgAvatar = file_get_contents("'.".$userAvatarFilePath."'");
+                        //$userAvatar = base64_encode($imgAvatar); 
+                        
+                        $imgbinary = fread(fopen("..".$userAvatarFilePath, "r"), filesize("..".$userAvatarFilePath));
+                        $userAvatar =  'data:image/png;base64,' . base64_encode($imgbinary);
+ 
+                        
+                        
+                        
                         $myObj = (object)array(); // object(stdClass)
                         $myObj->userId = $row['intUserId'];
                         $myObj->firstName = $row['strFirstName'];
@@ -103,10 +116,18 @@
                         $myObj->userHeight = $heightFt . " Feet " . $heightInches . " Inches";
                         $myObj->userWeight = $row['intWeight'] . " Lbs";
                         $myObj->userGender = $row['strGender'];
+                        //$myObj->userAvatar = $userAvatar;
+                        //echo $userAvatar;
                         
                         $myJSON = json_encode($myObj);
                         
-                        echo $myJSON;
+                        //echo $myJSON;
+                        
+                        $myJSONwithAvatar = substr($myJSON,0,strlen($myJSON)-1) . ',"userAvatar":"'. $userAvatar.'"}';
+                        
+                        echo $myJSONwithAvatar ;
+                        
+
                     }else{
                         //echo "Passwords do not Match.";
                         

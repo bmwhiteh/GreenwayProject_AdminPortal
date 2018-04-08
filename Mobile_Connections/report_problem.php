@@ -118,7 +118,7 @@
                 if ($imageBase64 === false) {
                     throw new \Exception('base64_decode failed');
                 } else{
-                    echo -2;//echo "image was successfully decoded.\n\n";
+                    //echo -2;//echo "image was successfully decoded.\n\n";
                 }
             
                 //get the next ticket id from the table to use to save the image

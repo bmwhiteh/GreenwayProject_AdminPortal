@@ -22,25 +22,25 @@
         
         exit(0);
     }
-    
+     
     //get the json data
     $data = file_get_contents("php://input");
     
-    $sql = "INSERT INTO `databaseTests` (`dataSent`)
+    /*$sql = "INSERT INTO `databaseTests` (`dataSent`)
                 VALUES ( '".$data."' );";
                 
     $result = $conn->query($sql) or die("Query fail");  
     
-    echo $data. "\n";
-    
-     /*$data = '
+    echo $data. "\n";*/
+    /* 
+    $data = '
        {
        "currentTime":1520965497444,
        "feedback":"Test Again With Time"
       
        }
         ';
-        */
+    */   
 
 
     //JSON must be decoded using PHP function

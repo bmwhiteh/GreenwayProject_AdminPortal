@@ -53,7 +53,19 @@
     <div class="recentNotifications">
         <div class="sendNotification">
         <h2>Recent Notifications Sent</h2>
-        <button id="myBtn" type="button" >Send New Notification</button>
+        <?php 
+            $user = $_COOKIE['user'];
+            $sql = "SELECT intSecurityLevel FROM `employees` WHERE strUsername = '$user'";
+            $result = $conn->query($sql) or die("Could not find security level");
+            
+            if ($result->num_rows>0){
+                $row = $result->fetch_array(MYSQLI_ASSOC);
+                if($row['intSecurityLevel'] != '3'){
+                    echo '<button id="cancelBtn" type="button" >Cancel Notification</button>';
+                    echo '<button id="myBtn" type="button" >Send New Notification</button>';
+                }
+            }
+        ?>
         </div>
         <!-- The Modal -->
         <div id="myModal" class="modal">
@@ -109,6 +121,64 @@
             </div>
 
         </div>
+        
+        <!-- The Modal -->
+        <div id="cancelModal" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h3 class="modal-title">Cancel Push Notification</h3>
+                <div class="modal-body">
+                                <form action="./deletePushNotification.php" method="post" id="addUserForm" class="form-horizontal" role="form">
+                        <div class="form-group">
+                            <label  class="col-sm-2 control-label"
+                                        for="content">Select Notification to Delete</label>
+                            <div class="col-sm-10">
+                                <select class="form-control" id="listOfNotifications" name="listOfNotifications">
+                                    <?php 
+                                        $today = new DateTime('now'); 
+                                        $today->setTimeZone(new DateTimeZone('America/Indiana/Indianapolis'));
+                                        $date =$today->format('Y-m-d');
+                                        $time = $today->format('H:i:s');
+                                        $sql = "SELECT * FROM `pushnotifications` WHERE `dtSentToUsers` >= '$date' && `time` > '$time' && `strNotificationType`  != 'Severe Weather'";
+                                        $result = $conn->query($sql) or die("Query fail");
+                                        while($row = $result->fetch_array(MYSQLI_ASSOC)) { ?>
+                                            <option value="<?php echo $row['intNotificationId']?>">Notification Id: <?php echo $row['intNotificationId']?></option>
+                                    <?php }?>
+                                </select>
+                            </div>
+                            <label  class="col-sm-2 control-label"
+                                        for="content">Confirm Deletion</label>
+                            <div class="col-sm-10">
+                                    <input type="checkbox" id="confirm" name="confirm" onClick="enableSubmit(this)"/> 
+                            
+                            <script>$('#confirm').on('click', function(e){
+    var sbmt = document.getElementById("deleteBtn2");
+    var boxChecked = document.getElementById("confirm").checked;
+    if (boxChecked == true)
+    {
+        sbmt.disabled = false;
+    }
+    else
+    {
+        sbmt.disabled = true;
+    }
+});
+</script>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" id="deleteBtn2" class="btn btn-default" disabled>Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
 
         <script>
             // Get the modal
@@ -134,6 +204,32 @@
             window.onclick = function(event) {
                 if (event.target == modal) {
                     modal.style.display = "none";
+                }
+            }
+            
+            // Get the modal
+            var modal2 = document.getElementById('cancelModal');
+
+            // Get the button that opens the modal
+            var btn2 = document.getElementById("cancelBtn");
+
+            // Get the <span> element that closes the modal
+            var span2 = document.getElementsByClassName("close")[0];
+
+            // When the user clicks the button, open the modal
+            btn2.onclick = function() {
+                modal2.style.display = "block";
+            }
+
+            // When the user clicks on <span> (x), close the modal
+            span2.onclick = function() {
+                modal2.style.display = "none";
+            }
+
+            // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function(event) {
+                if (event.target == modal2) {
+                    modal2.style.display = "none";
                 }
             }
         </script>

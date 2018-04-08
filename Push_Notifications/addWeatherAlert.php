@@ -21,8 +21,8 @@ $result = $conn->query($sql) or die("Update fail");
     
 // this insert query defines the table, and columns you want to update
 $query = <<<SQL
-INSERT INTO `pushnotifications`(`intNotificationId`, `strNotificationType`, `strNotificationContent`, `dtSentToUsers`, `dtReceivedFromAPI`, `strDateTime` ,`intSevereWeatherAlertsSent`, `strJSONMessage`)
-VALUES (?,?,?,?,?,?,?,?)
+INSERT INTO `pushnotifications`(`intNotificationId`, `oneSignalId`, `strNotificationType`, `strNotificationContent`, `dtSentToUsers`, `dtReceivedFromAPI`, `strDateTime` ,`intSevereWeatherAlertsSent`, `strJSONMessage`)
+VALUES (?,?,?,?,?,?,?,?,?)
 SQL;
 
 $stmt = $mysqli->prepare($query);
@@ -37,23 +37,24 @@ foreach ($data['alerts'] as $key => $value) {
     $result = $conn->query($sql) or die("Query fail");
     $row = $result->fetch_array(MYSQLI_ASSOC);
     $count =  $result->num_rows;
-    
-    $response =sendMessage($value['message']);
-        $return["allresponses"] = $response;
-
-$test = json_decode($return["allresponses"], true);
-echo "Recipients: " . $test['recipients'] . PHP_EOL;
-$usersReceivingNotifications = $test['recipients'] . PHP_EOL;
 
     if($count == 0){
+        $response =sendMessage($value['message']);
+        $return["allresponses"] = $response;
+        
+        $test = json_decode($return["allresponses"], true);
+        echo "Recipients: " . $test['recipients'] . PHP_EOL;
+        $usersReceivingNotifications = $test['recipients'] . PHP_EOL;
+        $oneSignalId = $test['id'] . PHP_EOL;
         $stmt->bind_param(
             // the types of the data we are about to insert: s = string, i = int
-            'isssssis', 
+            'issssssis', 
             $a = '',
-            $b = 'Severe Weather',
+            $b = $oneSignalId,
+            $c = 'Severe Weather',
             $value['description'],
-            $c = date("y-m-d"),
             $d = date("y-m-d"),
+            $e = date("y-m-d"),
             $value['date'],
             $usersReceivingNotifications,
             $value['message']

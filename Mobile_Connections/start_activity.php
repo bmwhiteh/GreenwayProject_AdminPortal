@@ -70,19 +70,23 @@
             $sqlAddNewActivity = "INSERT INTO `userActivities`(`intUserId`, `startDate`, `startTime`) VALUES ('".$intUserId."','".$startDate."','".$startTime."')";
             $resultAddNewActivity = $conn->query($sqlAddNewActivity);
 
+            if($resultAddNewActivity == TRUE){
 
-            //get the just created id
-            $sqlGetResponse = "SELECT intActivityId FROM `userActivities` ORDER BY intActivityId desc LIMIT 0, 1 ";            
-            $resultGetResponse = $conn->query($sqlGetResponse);
-
-             if ($resultGetResponse->num_rows > 0) {
-                // output data of each row
-                while($row = $resultGetResponse->fetch_assoc()) {
-                    $newActivityId = $row["intActivityId"];
-                    //echo $row["intActivityId"];
+                //get the just created id
+                $sqlGetResponse = "SELECT intActivityId FROM `userActivities` ORDER BY intActivityId desc LIMIT 0, 1 ";            
+                $resultGetResponse = $conn->query($sqlGetResponse);
+    
+                 if ($resultGetResponse->num_rows > 0) {
+                    // output data of each row
+                    while($row = $resultGetResponse->fetch_assoc()) {
+                        $newActivityId = $row["intActivityId"];
+                        //echo $row["intActivityId"];
+                    }
+                } else {
+                    //echo -1;
                 }
-            } else {
-                //echo -1;
+            }else{
+                echo -6; //Activity was not created
             }
           
             if(isset($newActivityId)){

@@ -298,7 +298,7 @@
             <div class="typesList">
                 <ul>
                     <?php while($type = $resultTicketTypes->fetch_array(MYSQLI_ASSOC)){?>
-                    <li onClick="ShowType('<?php echo $type['strTicketType'];?>');">
+                    <li onClick="ShowType('<?php echo $type['strTicketType'];?>');" >
                         <?php   if($type['strTicketType']=='High Water')            {$TicketColor = 'color1';}
                                 elseif($type['strTicketType']=='Pothole')           {$TicketColor = 'color2';}
                                 elseif($type['strTicketType']=='Tree/Branch')       {$TicketColor = 'color3';}
@@ -308,7 +308,7 @@
                                 elseif($type['strTicketType']=='Vandalism')         {$TicketColor =  'color7';}
                                 elseif($type['strTicketType']=='Suspicious Persons'){$TicketColor =  'color8';}
                                 elseif($type['strTicketType']=='Other')             {$TicketColor =  'color9';}
-                            echo "<span class='".$TicketColor."' style='padding: 5px;color:white;border:2px solid black;'>".$type['strTicketType']."</span>";?>
+                            echo "<span class='".$TicketColor."' style='padding: 5px;'>".$type['strTicketType']."</span>";?>
                     </li>
                     <?php } ?>
                 </ul>

@@ -17,16 +17,6 @@
     /*$test = json_decode($return["allresponses"], true);
     echo "Recipients: " . $test['recipients'] . PHP_EOL;
     $usersReceivingNotifications = $test['recipients'] . PHP_EOL;*/
-
-    $sql = "INSERT INTO `pushnotifications` (`intNotificationId`, `strNotificationType`, `strNotificationContent`, `dtSentToUsers`, `dtReceivedFromAPI`, `time`, `intSevereWeatherAlertsSent`, `strJSONMessage`)
-    VALUES ( '' , '".$type."', ' '  , '".$date."' , NULL, '".$time."' , '0', '".$message."');";
-    $result = $conn->query($sql) or die("Query fail 2");  
-    
-    //date_default_timezone_set('America/Indiana/Indianapolis');
-   $taskDate = date('Y-m-d h:i:s a');
-    
-    $sql = "UPDATE `tasks` SET `lastCompleted`= '$taskDate' WHERE `taskId`= '12'";
-    $result = $conn->query($sql) or die("Update fail");
     
     function sendMessage($message, $sendDate, $sendTime, $type){
     date_default_timezone_set('America/Indiana/Indianapolis');
@@ -70,13 +60,22 @@ print($fields);
     return $response;
 }
 
-    sendMessage($message, $date, $time, $type);
- /*   $response = sendMessage($message, $date, $time);
-$return["allresponses"] = $response;
-$return = json_encode( $return);
-print("\n\nJSON received:\n");
-print($return);
-print("\n");*/
+ //   sendMessage($message, $date, $time, $type);
+   $response = sendMessage($message, $date, $time);
+    $return["allresponses"] = $response;
+
+$test = json_decode($return["allresponses"], true);
+$oneSignalId = $test['id'] . PHP_EOL;
+
+$sql = "INSERT INTO `pushnotifications` (`intNotificationId`, `oneSignalId`, `strNotificationType`, `strNotificationContent`, `dtSentToUsers`, `dtReceivedFromAPI`, `time`, `intSevereWeatherAlertsSent`, `strJSONMessage`)
+    VALUES ( '' , '".$oneSignalId."', '".$type."', ' '  , '".$date."' , NULL, '".$time."' , '0', '".$message."');";
+    $result = $conn->query($sql) or die("Query fail 2");  
+    
+    //date_default_timezone_set('America/Indiana/Indianapolis');
+   $taskDate = date('Y-m-d h:i:s a');
+    
+    $sql = "UPDATE `tasks` SET `lastCompleted`= '$taskDate' WHERE `taskId`= '12'";
+    $result = $conn->query($sql) or die("Update fail");
     header("location: /Push_Notifications/notifications.php");
     }
 ?>

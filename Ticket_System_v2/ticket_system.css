@@ -229,3 +229,16 @@ font-family: "Odin Bold";}
         background-color:red;
         color:white;
     }
+    
+
+.typesList ul li span {
+    color:white;
+    cursor: pointer;
+    border:2px solid black;
+}   
+.typesList ul li span:hover {
+    background-color:#F8F8F8;
+    border:2px solid charcoal;
+    color:#36454F;
+    cursor: pointer;
+}

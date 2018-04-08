@@ -2,8 +2,8 @@
     include("../MySQL_Connections/config.php");
     
     if($_SERVER["REQUEST_METHOD"] == "POST") {
-        
-    $feedback = mysqli_real_escape_string($conn, $_POST['feedback']);
+    $feedback = $_POST['feedback'];
+    $feedback = mysqli_real_escape_string($conn, $feedback);
     $errorLocation = $_POST['errorLocation'];
     $date = date("Y/m/d");
     $resolved = 0;
