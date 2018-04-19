@@ -73,7 +73,7 @@
             if($resultAddNewActivity == TRUE){
 
                 //get the just created id
-                $sqlGetResponse = "SELECT intActivityId FROM `userActivities` ORDER BY intActivityId desc LIMIT 0, 1 ";            
+                $sqlGetResponse = "SELECT intActivityId FROM `userActivities` WHERE intUserId = '$intUserId' AND startDate = '$startDate' AND startTime = '$startTime'";            
                 $resultGetResponse = $conn->query($sqlGetResponse);
     
                  if ($resultGetResponse->num_rows > 0) {

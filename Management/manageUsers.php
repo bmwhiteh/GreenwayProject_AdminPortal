@@ -329,7 +329,7 @@
             }
         </script>
             <table class="display" cellspacing="0">
-                <thead class="header">
+                <thead class="tableHeader">
                     <tr>
                         <th>Id</th>
                         <th>Username</th>
@@ -339,7 +339,7 @@
                         <th>Send Pictures</th>
                     </tr>
                 </thead>
-                <tfoot class="footer">
+                <tfoot class="tableFooter">
                     <tr>
                         <th>Id</th>
                         <th>Username</th>

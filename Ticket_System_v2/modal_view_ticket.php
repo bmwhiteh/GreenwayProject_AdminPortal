@@ -17,9 +17,7 @@
     $row = $resultGetTicket->fetch_array(MYSQLI_ASSOC);
     
     
-    $gpsLat = $row['gpsLat'];
-    $gpsLong = $row['gpsLong'];
-    
+
     //Find all of the ticket notes given the ticketid
     $sqlNotes = "SELECT *\n"
             . "from ticketnotes\n"
@@ -83,7 +81,7 @@
 ?>
 
     <!-- Modal content -->
-    <div class="modal-content">
+    <div id="myTicketView" class="modal-content">
         
         
         <span id="closeTicket" class="close" onClick="closeTicket();">&times;</span>
@@ -167,29 +165,19 @@
                 <tr>
                     <td colspan="2" style="text-align:center;width:70%;margin-left:15%;">
                             <?php 
-                            $filename = "Images_ticketSize/".$row['strImageFilePath'];
+                            $filename = "../Ticket_System_v2/Images_ticketSize/".$row['strImageFilePath'];
                             if(!file_exists($filename)){
-                                $filename = "Images_ticketSize/no-image-available.png";
+                                $filename = "/Ticket_System_v2/Images_ticketSize/no-image-available.png";
                             }
                         ?>
-                            <img src="<?php echo $filename;?>" style="margin:auto;width:80%;" alt="Ticket Image Not Found">
+                            <img src="<?php echo $filename;?>" style="margin:auto;width:80%;" alt="Ticket Image NOT Found">
                     </td>
                     <td style="width:30px;">&nbsp;</td>
                     
-                    <td id="map" colspan="2" style="width:30%;">
+                    <td colspan="2" style="width:30%;">
                         
-                        <!--
-                            In order to not get annoying "unexpected ?" messages in javascript, set an input 
-                            field to the database value you need in the script and then call document.getElementById()
-                        -->
-                        <input type="hidden" id="gpsLat" value="<?php echo $gpsLat; ?>"/>
-                        <input type="hidden" id="gpsLong" value="<?php echo $gpsLong; ?>"/>
-                        <input type="hidden" id="MapTicketId" value="0"/>
-                        
-                        <!---This is needed to properly load the Google Map, but we don't know what it is--->
-                        <script async defer
-                            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDVZ9qSBrT-dnmrBaxkX2PzWbfmxv6xZgM&libraries=visualization&callback=getMarkerMap">
-                        </script>
+                        <div id="mapBucket" style="width: 500px; height: 400px;"></div>
+
                         
                     </td>
                     

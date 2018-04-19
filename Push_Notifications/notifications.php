@@ -30,7 +30,7 @@
             <h3># of Weather Alerts This Week</h3>
             <h1><?php include "numWeatherAlertsSentWeekly.php"?></h1>
             <div class="absolute">
-                <img src="../images/weatherAlerts3.png" style="margin-right:30%;"></img>
+                <img src=<?php echo $_COOKIE['severeWeatherIcon']; ?> style="margin-right:30%;"></img>
             </div>
         </div>
         
@@ -38,7 +38,7 @@
             <h3># of Alerts Scheduled This Week</h3>
             <h1><?php include "numScheduledAlertsSentWeekly.php"?></h1>
             <div class="absolute">
-                <img src="../images/overtime.png" style="margin-right:30%;"></img>
+                <img src=<?php echo $_COOKIE['calendarIcon']; ?> style="margin-right:30%;"></img>
             </div>
         </div>
         
@@ -46,7 +46,7 @@
             <h3># of Users Receiving Alerts</h3>
             <h1><?php include "numUsersReceivingNotifications.php"?></h1>
             <div class="absolute">
-                <img src="../images/alert.png" style="margin-right:30%;"></img>
+                <img src=<?php echo $_COOKIE['alertsIcon']; ?> style="margin-right:30%;"></img>
             </div>
         </div>
     </div>
@@ -214,7 +214,7 @@
             var btn2 = document.getElementById("cancelBtn");
 
             // Get the <span> element that closes the modal
-            var span2 = document.getElementsByClassName("close")[0];
+            var span2 = document.getElementsByClassName("close")[1];
 
             // When the user clicks the button, open the modal
             btn2.onclick = function() {
@@ -236,7 +236,7 @@
 
 
         <table id="notifications" class="display" cellspacing="0">
-            <thead id="header">
+            <thead class="tableHeader">
                 <tr>
                     <th>Alert Id</th>
                     <th>Date Sent</th>
@@ -244,7 +244,7 @@
                     <th>Alert Message</th>
                 </tr>
             </thead>
-            <tfoot id="footer">
+            <tfoot class="tableFooter">
                 <tr>
                     <th>Alert Id</th>
                     <th>Date Sent</th>

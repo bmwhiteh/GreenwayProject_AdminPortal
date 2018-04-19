@@ -1,0 +1,43 @@
+
+.genericBody{
+    background:0;
+    width: 100%;
+    overflow: hidden;
+    background-color: #bd2327 !important;
+}
+
+.contentBox{
+    background-color: #8c8c8c;
+    margin: 0px 100px 50px 100px;
+    display: -webkit-flex;
+    display: flex;
+}
+
+.active{
+    background-color:green;
+    border: 2px solid white;
+    border-radius: 25px;
+
+}
+
+.topBox{
+    height: 30%;
+    background-color: #d43727;
+}
+
+.midBox{
+    height: 30%;
+    margin-top: 5%;
+    background-color: #ca4d27;
+}
+
+.bottomBox{
+    height: 30%;
+    margin-top: 5%;
+    background-color: #e19226;
+}
+
+ul {
+    background-color: #333;
+}
+

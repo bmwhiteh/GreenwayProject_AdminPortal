@@ -34,18 +34,24 @@ function closeChangeColor() {
 
 <div id="colorNav" class="sidenav">
             <a href="javascript:void(0)" class="closebtn" onclick="closeChangeColor()">&times;</a>
-            <img id="profileImage" src="../images/profileImage2.png"></img>
+            <img id="profileImage" src=<?php echo $_COOKIE['profileImage']; ?>></img>
             <a><h5 id="changeColorHeader">Change Color Scheme</h5></a>
             <a><h6 id="profileInfo">Your current color scheme is: <?php echo $row['name']?> </h6></a>
             <form class="colorChange" method="post" action="../Color_Switch/getColor.php">
             
             <select id="color" name="color"> 
-              <option value="Viridian">Viridian</option>
               <option value="Atlantean">Atlantean</option>
+              <option value="Autumnal">Autumnal</option>
               <option value="Carmine">Carmine</option>
               <option value="Daybreak">Daybreak</option>
-              <option value="Sapphire">Sapphire</option>
+              <option value="Espresso">Espresso</option>
+              <option value="Gunmetal">Gunmetal</option>
+              <option value="High Roller">High Roller</option>
+              <option value="Lemon Drop">Lemon Drop</option>
+              <option value="Sakura">Sakura</option>
               <option value="Sangria">Sangria</option>
+              <option value="Sapphire">Sapphire</option>
+              <option value="Viridian">Viridian</option>
             </select>
             
             <!-- The button to reset Color --> 

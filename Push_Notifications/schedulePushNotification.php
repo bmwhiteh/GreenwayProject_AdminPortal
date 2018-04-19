@@ -61,7 +61,7 @@ print($fields);
 }
 
  //   sendMessage($message, $date, $time, $type);
-   $response = sendMessage($message, $date, $time);
+   $response = sendMessage($message, $date, $time, $type);
     $return["allresponses"] = $response;
 
 $test = json_decode($return["allresponses"], true);

@@ -40,5 +40,146 @@ font-family: "Odin Bold";}
     margin: 0px 100px 50px 100px;
     display: block;
 }
+ /* The Modal (background) */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index:20; /* Sit on top */
+            padding-top: 2%; /* Location of the box */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            /*height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+        
+        .modal-body{
+            width:100%;
+        }
 
-.subTypes{}
+        /* Modal Content */
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 70%;
+        }
+
+        /* The Close Button */
+        .close {
+            color: #aaaaaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .locationMap{
+             width:100%; 
+             height:100%; 
+             overflow:visible; 
+             position:relative;
+             float:right;
+        }
+        
+        
+        /* The container */
+/* The container */
+.container-calendar {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    height:20px;
+    width:20px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide the browser's default radio button */
+.container-calendar input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* Create a custom radio button */
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+    /*for circles: border-radius: 50%;*/
+}
+
+/* On mouse-over, add a grey background color */
+.container-calendar:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+
+/* When the radio button is checked, add a blue background */
+.container-calendar input:checked ~ .checkmark {
+    border: 5px solid black;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.container-calendar input:checked ~ .checkmark:after {
+    display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.container-calendar .checkmark:after {
+ 	/* for inner circle/square: top: 9px;
+	left: 9px;
+	width: 8px;
+	height: 8px;
+	for circles: border-radius: 50%;*/
+	background: black;
+}
+
+.my_event_form{
+    display:block;
+    width:100%;
+    margin:auto;
+    font-size:20px;
+    text-align:center;
+}
+
+.my_event_form table{
+    margin:auto;
+}
+.my_event_form table td{
+    margin:auto;
+    padding:15px;
+}
+
+.my_event_form textarea{
+    width:80%;
+    height:200px;
+}
+
+.pick_a_color table{
+    margin:auto;
+}
+

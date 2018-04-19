@@ -24,25 +24,12 @@
     
     //get the json data
     $data = file_get_contents("php://input");
-    
-   /* $sql = "INSERT INTO `databaseTests` (`dataSent`)
-                VALUES ( '".$data."' );";
-                
-      $result = $conn->query($sql) or die("Query fail");  
-    */
-   // echo $data. "\n";
-    
-     /*
-    $data = '
-       {
-       "emailAddress":"Test7@gmail.com",
-       "userPassword":"1234567!"
+
       
-       }
-        ';
-   
-    */
     
+    
+    //    $data = '{"emailAddress":"Timmy@gmail.com"}';
+
     
     if(isset($data)){
                 
@@ -50,7 +37,7 @@
         //JSON must be decoded using PHP function
         $dataArray = json_decode($data);
        
-        if (isset($dataArray->emailAddress) && isset($dataArray->userPassword)){
+        if (isset($dataArray->emailAddress)&& isset($dataArray->userPassword) && $dataArray->emailAddress != "" && $dataArray->userPassword != ""){
             
             $strEmailAddress = $dataArray->emailAddress;
             $strPassword = $dataArray->userPassword;
@@ -60,7 +47,7 @@
             
             $sql = "SELECT * FROM users WHERE strEmailAddress = '$strEmailAddress'";
             //executes query
-            $result = $conn->query($sql) or die("Query fail");
+            $result = $conn->query($sql);
                 
             //if a record was found, the email address is valid
             if($result->num_rows > 0){
@@ -83,57 +70,46 @@
                 
                     $match = password_verify($strPassword, $encryptedPassword);
                 
-                    
-                
                     //the passwords match if $match is true
                     if($match){
+                        //Reset the Attempts to 0
                         $sqlResetAttempts = "UPDATE `users` SET `accountLocked` = '0' WHERE `strEmailAddress` = '".$strEmailAddress."'";
-                        //executes query
                         $resultResetAttempts = $conn->query($sqlResetAttempts) or die("Query fail");
-                        //echo "User Login Successful";
                         
+                        
+                        //Get the User Avatar
                         $userAvatarFilePath = $row['userAvatarFilePath'];
-                        //$imgAvatar = file_get_contents("'.".$userAvatarFilePath."'");
-                        //$userAvatar = base64_encode($imgAvatar); 
-                        
                         $imgbinary = fread(fopen("..".$userAvatarFilePath, "r"), filesize("..".$userAvatarFilePath));
                         $userAvatar =  'data:image/png;base64,' . base64_encode($imgbinary);
  
+                        //Calculate the Height
+                        $heightTotalInches = $row['intHeight'];
+                        $heightFt =  (int) ($heightTotalInches / 12);
+                        $heightInches = $heightTotalInches - ($heightFt * 12);
                         
                         
-                        
+                        //Set the JSON fields
                         $myObj = (object)array(); // object(stdClass)
                         $myObj->userId = $row['intUserId'];
                         $myObj->firstName = $row['strFirstName'];
                         $myObj->lastName = $row['strLastName'];
                         $myObj->emailAddress = $row['strEmailAddress'];
                         $myObj->userBirthday = $row['dtBirthdate'];
-                        
-                        $heightTotalInches = $row['intHeight'];
-                        $heightFt =  (int) ($heightTotalInches / 12);
-                        $heightInches = $heightTotalInches - ($heightFt * 12);
-                        
                         $myObj->userHeight = $heightFt . " Feet " . $heightInches . " Inches";
                         $myObj->userWeight = $row['intWeight'] . " Lbs";
                         $myObj->userGender = $row['strGender'];
-                        //$myObj->userAvatar = $userAvatar;
-                        //echo $userAvatar;
-                        
+                         
                         $myJSON = json_encode($myObj);
                         
-                        //echo $myJSON;
-                        
+                        //json_encode doesn't play nice with the base64 encoding
                         $myJSONwithAvatar = substr($myJSON,0,strlen($myJSON)-1) . ',"userAvatar":"'. $userAvatar.'"}';
                         
-                        echo $myJSONwithAvatar ;
+                        echo $myJSONwithAvatar; //Send the JSON back to the app
                         
 
                     }else{
-                        //echo "Passwords do not Match.";
-                        
                         //increment the number of attempts the user has tried to guess their password
                         $sqlAddAttempts = "UPDATE `users` SET `accountLocked` = '".($accountLocked + 1)."' WHERE `strEmailAddress` = '".$strEmailAddress."'";
-                        //executes query
                         $resultAddAttempts = $conn->query($sqlAddAttempts) or die("Query fail");
             
                         echo (5-($accountLocked + 1)); //"Attempts Left: "

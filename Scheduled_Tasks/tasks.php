@@ -35,14 +35,14 @@
             
         <div>
             <table class="display" cellspacing="0">
-                <thead class="header">
+                <thead class="tableHeader">
                     <tr>
                         <th>Task Id</th>
                         <th>Task</th>
                         <th>Last Completed</th>
                     </tr>
                 </thead>
-                <tfoot class="footer">
+                <tfoot class="tableFooter">
                     <tr>
                         <th>Task Id</th>
                         <th>Task</th>

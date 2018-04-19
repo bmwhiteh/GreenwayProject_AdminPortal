@@ -29,7 +29,7 @@
       <script src="../Push_Notifications/customBootstrap/js/bootstrap.min.js"></script>
       
       <!---Javascript file to use Google Maps API--->
-      <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDVZ9qSBrT-dnmrBaxkX2PzWbfmxv6xZgM&v=3&sensor=true&libraries=visualization"></script>
+      <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDVZ9qSBrT-dnmrBaxkX2PzWbfmxv6xZgM&v=3&libraries=visualization"></script>
       
       
       <!---Javascript to open & Close Modals, and populate the Google Maps with the Markers--->

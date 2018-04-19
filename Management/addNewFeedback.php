@@ -5,7 +5,7 @@
     $feedback = $_POST['feedback'];
     $feedback = mysqli_real_escape_string($conn, $feedback);
     $errorLocation = $_POST['errorLocation'];
-    $date = date("Y/m/d");
+    $date = date("Y/m/d H:i:s");
     $resolved = 0;
      
     $sql = "INSERT INTO `feedback`(`strFeedback`,

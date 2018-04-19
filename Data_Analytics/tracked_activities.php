@@ -9,8 +9,8 @@
 	<link rel="icon" type="image/png" href="assets/img/favicon.ico">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-    <!---<link rel="stylesheet" type="text/css" href="./css/styles.css"/>
-    <link rel="stylesheet" type="text/css" href="./css/viridian.css"/>--->
+    <!---<link rel="stylesheet" type="text/css" href="./css/styles.css"/>--->
+    <link rel="stylesheet" type="text/css" href="./css/viridian.css"/>
     <link rel="stylesheet" type="text/css" href="/Data_Analytics/data_analytics.css"/>
     <link rel="shortcut icon" href="../Dashboard_Pages/favicon.ico" type="image/x-icon">
     <script src="../js/jquery-3.2.1.min.js"></script>
@@ -52,7 +52,7 @@
 	</script>
     
     
-    <!-- Bootstrap core CSS -->    
+    <!-- Bootstrap core CSS     -->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
 
     <!-- Animation library for notifications   -->
@@ -76,9 +76,7 @@
 
         ul { list-style-type: none; }
 
-        a {
-            color: #b63b4d;
-            text-decoration: none;
+        a {            text-decoration: none;
         }
 
        

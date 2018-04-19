@@ -19,21 +19,21 @@
         <div class="topBox"><h3>Number of People on the Trail</h3>
             <h1><?php include "numCurrentUsers.php"?></h1>
             <div class="absolute">
-                <img src="../images/currentUserTest.png" class="quickStats"></img>
+                <img src=<?php echo $_COOKIE['userIcon']; ?> class="quickStats"></img>
             </div>
         </div>
         
         <div class="midBox"><h3>Open Maintenance Tickets</h3>
             <h1><?php include "numOpenTickets.php"?></h1>
             <div class="absolute">
-                <img src="../images/openTicketTest.png" class="quickStats"></img>
+                <img src=<?php echo $_COOKIE['openTicketsIcon']; ?> class="quickStats"></img>
             </div>
         </div>
         
         <div class="bottomBox"><h3>Tickets Closed This Week</h3>
             <h1><?php include "numClosedTickets.php" ?></h1>
             <div class="absolute">
-                <img src="../images/closedTicketTest.png" class="quickStats"></img>
+                <img src=<?php echo $_COOKIE['closedTicketsIcon']; ?> class="quickStats"></img>
             </div>
         </div>
     </div>

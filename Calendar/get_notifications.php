@@ -5,10 +5,40 @@
     $startDate = $_POST["start"];
     //$startDate = '2018-01-01';
 
+    $data = file_get_contents("php://input");
+
+    
+
+    //break the string into "n#=false" bits
+    $dataArray = explode("&",$data);
+    
+    //get just the true/false of each checkbox
+    $myObj = array();
+    for ($i = 0; $i<count($dataArray); $i++){
+        $temp = explode("=",$dataArray[$i]);
+        $myObj[$i] = $temp[1];
+    }
+
+    //now we add to the query string the tickets to avoid (false)
+    $includedNotifications = "";
+    for ($i = 0; $i<count($myObj)-2; $i++){
+        if ($myObj[$i] == 'false'){
+            if($i == 0){
+                $id = 'Local Event';
+            }elseif ($i == 1){
+                $id = 'Trail Closure';
+            }elseif ($i == 2){
+                $id = 'Severe Weather';
+            }
+        $includedNotifications = $includedNotifications. " AND strNotificationType != '$id'";
+        }
+    }
+
+
     $sqlNotifications = "SELECT intNotificationId, dtSentToUsers, time\n"
     . "FROM `pushnotifications`\n"
     . "where dtSentToUsers > '$startDate'"
-    . "";
+    . $includedNotifications;
 
     $resultNotifications = $conn->query($sqlNotifications) or die("Query fail");
     

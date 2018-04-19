@@ -47,23 +47,23 @@
         $intUserId = $dataArray->userId;
         
         if(isset($intUserId) and $intUserId > 0){
-            $sqlWalking = "SELECT sum(milesTotalDistance) as totalDistance_Walking, sum(milesTotalDistance)/sum(timeTotalDuration) as avgSpeed_Walking,\n"
+            $sqlWalking = "SELECT sum(milesTotalDistance) as totalDistance_Walking, 3600 * SUM( milesTotalDistance ) / ( SUM( TIME_TO_SEC( timeTotalDuration ) ) ) as avgSpeed_Walking,\n"
                 . "sum(calTotalCalories) as totalCalories_Walking\n"
-                . "FROM userActivities\n"
-                . "WHERE intUserId = '$intUserId' and intActivityType = '1'";
-                
-            $sqlRunning = "SELECT sum(milesTotalDistance) as totalDistance_Running, sum(milesTotalDistance)/sum(timeTotalDuration) as avgSpeed_Running,\n"
-                . "sum(calTotalCalories) as totalCalories_Running\n"
                 . "FROM userActivities\n"
                 . "WHERE intUserId = '$intUserId' and intActivityType = '2'";
                 
-            $sqlBiking = "SELECT sum(milesTotalDistance) as totalDistance_Biking, sum(milesTotalDistance)/sum(timeTotalDuration) as avgSpeed_Biking,\n"
+            $sqlRunning = "SELECT sum(milesTotalDistance) as totalDistance_Running, 3600 * SUM( milesTotalDistance ) / ( SUM( TIME_TO_SEC( timeTotalDuration ) ) )  as avgSpeed_Running,\n"
+                . "sum(calTotalCalories) as totalCalories_Running\n"
+                . "FROM userActivities\n"
+                . "WHERE intUserId = '$intUserId' and intActivityType = '1'";
+                
+            $sqlBiking = "SELECT sum(milesTotalDistance) as totalDistance_Biking, 3600 * SUM( milesTotalDistance ) / ( SUM( TIME_TO_SEC( timeTotalDuration ) ) )  as avgSpeed_Biking,\n"
                 . "sum(calTotalCalories) as totalCalories_Biking\n"
                 . "FROM userActivities\n"
                 . "WHERE intUserId = '$intUserId' and intActivityType = '3'";
                 
-            $sqlOverall = "SELECT avg(milesTotalDistance) as totalDistance_Overall, sum(milesTotalDistance)/sum(timeTotalDuration) as avgSpeed_Overall,\n"
-                . "avg(calTotalCalories) as totalCalories_Overall\n"
+            $sqlOverall = "SELECT avg(milesTotalDistance) as totalDistance_Overall, 3600 * SUM( milesTotalDistance ) / ( SUM( TIME_TO_SEC( timeTotalDuration ) ) )  as avgSpeed_Overall,\n"
+                . "sum(calTotalCalories) as totalCalories_Overall\n"
                 . "FROM userActivities\n"
                 . "WHERE intUserId = '$intUserId'";
                 

@@ -66,10 +66,6 @@ src: local('Odin Bold'), url('../fonts/Odin-Rounded---Bold.woff') format('woff')
     font-family: "Bookman Old Style";
 }
 
-.header, .footer{
-    background-color: #448b41;
-}
-
 .employeeTables{
     width:85%;
     -webkit-flex: 1;

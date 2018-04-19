@@ -161,7 +161,7 @@ h1 .subtitle {
 }
  
  .text-color3, .text-color3:hover{
-    color: #144114 !important;
+    color:  #3BAB3B !important;
 }
  
  .text-color4, .text-color4:hover{
@@ -200,14 +200,8 @@ body {
     background: rgba(203, 203, 210, 0.15);
 }
 
-a {
-    color: #1DC7EA;
-}
 
-a:hover, a:focus {
-    color: #42d0ed;
-    text-decoration: none;
-}
+
 
 a:focus, a:active,
 button::-moz-focus-inner,
@@ -356,6 +350,7 @@ input:focus {
 .sidebar .nav .open > a,
 .sidebar .nav li.dropdown .dropdown-menu li:hover > a,
 .sidebar .nav li:hover > a {
+    
     background-color: rgba(255, 255, 255, 0.13);
     opacity: 1;
 }

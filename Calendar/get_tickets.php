@@ -4,12 +4,36 @@
 
     $startDate = $_POST["start"];
 
+    $data = file_get_contents("php://input");
+
+    
+
+    //break the string into "t#=false" bits
+    $dataArray = explode("&",$data);
+    
+    //get just the true/false of each checkbox
+    $myObj = array();
+    for ($i = 0; $i<count($dataArray); $i++){
+        $temp = explode("=",$dataArray[$i]);
+        $myObj[$i] = $temp[1];
+    }
+    
+    //now we add to the query string the tickets to avoid (false)
+    $includedTickets = "";
+    for ($i = 0; $i<count($myObj)-2; $i++){
+        if ($myObj[$i] == 'false'){
+            $id = $i + 1;
+        $includedTickets = $includedTickets. " AND intTypeId != '$id'";
+        }
+    }
+
+
     $sqlTickets = "SELECT intTicketId, dtEstFinish\n"
     . "FROM `maintenancetickets`\n"
     . "where dtEstFinish > '".$startDate."' and dtClosed IS NULL\n"
-    . "";
+    . $includedTickets;
 
-    $resultTickets = $conn->query($sqlTickets) or die("Query fail");
+    $resultTickets = $conn->query($sqlTickets) or die($sqlTickets);
 
 
 

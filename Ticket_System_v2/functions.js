@@ -6,29 +6,33 @@
       }
       
       ///Open the View Ticket Modal
-      function openTicket(ticket,gpsLat, gpsLong){
-        console.log("attempt to open");
+      function openTicket(ticket, gpsLat, gpsLong){
+        //console.log("attempt to open");
         var ticketid = ticket;
         var gpsLat = gpsLat;
         var gpsLong = gpsLong;
         var getTicket = document.getElementById('myTicket');
-        
+                    $(".txtLoading").fadeOut("slow");
+
         /* 
         *  In order to get the proper ticket information to load into the ticket modal, 
         *  we pass the ticket id into the modal view page (using .load) where the database is queried 
         *  with that ticket id and then the div "myTicket" on this screen is populated 
         *  with the results of the modal_view_ticket.php file contents
         */
-        $(getTicket).load('modal_view_ticket.php',{'ticketid':ticketid, 'gpsLat':gpsLat, 'gpsLong':gpsLong},function(responseTxt, statusTxt, xhr){
+        $(getTicket).load('/Ticket_System_v2/modal_view_ticket.php',{'ticketid':ticketid},function(responseTxt, statusTxt, xhr){
         
           if(statusTxt == "success")
             document.getElementById('myTicket').style.display="block";
-            console.log("success");
+            getMapForTicket(ticketid,gpsLat,gpsLong);
+            //console.log("success");
           if(statusTxt == "error")
             alert("Error: " + xhr.status + ": " + xhr.statusText);
             
         });
         
+        
+
         
       };
       
@@ -124,7 +128,6 @@
       
       //This initializes the map for the 'Add Ticket' Map
       function initialize() {
-        
         //Initialize the center of the map to IPFW's campus & zoomed in to view the road map layout
         var mapOptions = {
           center: new google.maps.LatLng(41.115618, -85.111250),
@@ -152,9 +155,6 @@
           document.getElementById("gpsLat").value = this.getPosition().lat();
           document.getElementById("gpsLong").value = this.getPosition().lng();
         });
-      
-      }
-      
       //Resize the map to fit in its box
       $('#myModal').on('shown.bs.modal', function() {
         
@@ -168,64 +168,56 @@
       
         
       });
+      }
+      
+      
       
     
       
-      /*
-        This is the Ticket Map initialization
-      */
-      function getMarkerMap(){
-        
-          
-      var map;
-      
-      //set the latitude variable
-      var gpsLat = document.getElementById("gpsLat").value;
-      if(gpsLat == ""){
-        gpsLat= 41.115618;
-      }else{
-        gpsLat = parseFloat(gpsLat);
-      }
-      
-      //set the longitude variable
-      var gpsLong = document.getElementById("gpsLong").value;
-      if(gpsLong == ""){
-        gpsLong= -85.111250;
-      }else{
-        gpsLong = parseFloat(gpsLong);
-      }
-      
-      //set the ticketid variable
-      var ticketid = document.getElementById("MapTicketId").value;
-      if(ticketid == ""){
-        ticketid= "";
-      }else{
-        ticketid = parseFloat(ticketid);
-      }
-      
-      console.log(ticketid);
-        //Initialize the Map
-        var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 15,
-          center: {lat: gpsLat, lng: gpsLong}
-        });
-      
-      
-        //add the marker and display the map
+      //This initializes the map for the 'Add Ticket' Map
+      function getMapForTicket(id,gpsLat,gpsLong) {
+        //Initialize the center of the map to IPFW's campus & zoomed in to view the road map layout
+        //console.log("ticket: "+id+" lat: "+gpsLat+" lng:"+gpsLong);
+        var gpsLat = gpsLat;
+        var gpsLong = gpsLong;
+        var ticketid = id;
+        var mapOptions = {
+          center: new google.maps.LatLng(gpsLat, gpsLong),
+          zoom: 12,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        //Initialize the map to loading to its div element with the map options from above
+        var map_view = new google.maps.Map(document.getElementById("mapBucket"), mapOptions);
+
+        //Initialize the map marker
         var marker = new google.maps.Marker({
-          position: new google.maps.LatLng( gpsLat, gpsLong),
-          map: map,
+          position: new google.maps.LatLng(gpsLat, gpsLong),
           icon: '../images/markerLogo.png',
           animation: google.maps.Animation.DROP,
-          title: "Ticket #"+ticketid
-          });
-      
-      
-        google.maps.event.addListener(marker, 'click', function() {
-         window.location.href = this.url;
+          title: "Ticket "+ticketid,
+          map: map_view
         });
-        
+        /*
+        //Set the Map with it's Viridian Marker
+        marker.setMap(map_view);
+      */
+      //Resize the map to fit in its box
+            $('#myTicketView').on('shown.bs.modal', function() {
+              //console.log("end");
+      
+              //Get the center of the map before resizing it
+              var currentCenter = map_view.getCenter(); 
+              
+              google.maps.event.trigger(map_view, "resize");
+               
+              // Re-set previous center
+              map_view.setCenter(currentCenter);
+              //console.log("Here!");
+              
+            });
       }
+      
+      
       
       function FilterResults(page){
   
@@ -236,7 +228,7 @@
           
           var cookie_expire = new Date();
           cookie_expire.setDate(today.getDate()+1);
-          console.log(page);
+          //console.log(page);
           
           document.cookie = "page_number = "+ page+"; expires "+cookie_expire+"; path=/"; // 86400 = 1 day
 

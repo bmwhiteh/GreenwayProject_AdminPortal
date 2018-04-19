@@ -26,20 +26,13 @@
     $data = file_get_contents("php://input");
     
     $sql = "INSERT INTO `databaseTests` (`dataSent`)
-                VALUES ( '".$data."' );";
+                VALUES ( 'Check Achievements ".$data."' );";
                 
       $result = $conn->query($sql) or die("Query fail");  
     
    // echo $data. "\n";
-    
-    
-  /*  $data = '
-       {
-       "intUserId":"1160"
-       }
-        ';
         
-    */
+    //$data = '{"userId":"1215"}';
     
     
     if(isset($data)){
@@ -54,6 +47,7 @@
             $intUserId = mysqli_real_escape_string($conn, $intUserId);
             
             $sql = "SELECT intEarnedId FROM medalsEarned WHERE intUserId = '$intUserId' && intMedalId = '1'";
+            
             //executes query
             $result = $conn->query($sql) or die("Query fail");
             $startingStrongEarned =  $result->num_rows;

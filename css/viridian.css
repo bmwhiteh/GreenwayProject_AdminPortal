@@ -66,35 +66,12 @@
     background-color: #77be74;
 }
 
+.tableHeader, .tableFooter{
+    background-color: #448b41;
+}
+
 /*
 ul {
     background-color: #333;
 }
 */
-.color1{
-    background-color: #75BBB8;
-}
-.color2{
-    background-color: #107A76;
-}
-.color3{
-    background-color: #443020;
-}
-.color4{
-    background-color: #C8681B;
-}
-.color5{
-    background-color: #432021;
-}
-.color6{
-    background-color: #3DB737;
-}
-.color7{
-    background-color: #FD9EA1;
-}
-.color8{
-    background-color: #C61A1F;
-}
-.color9{
-    background-color: #FFCA9F;
-}

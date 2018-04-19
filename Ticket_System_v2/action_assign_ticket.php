@@ -95,5 +95,5 @@
         
     }
     
-    //header("location: ticket_assignments.php");
+    header("location: ticket_assignments.php");
 ?>

@@ -80,17 +80,20 @@
         }
         */
         
-        if (isset($intUserId)){
-                //it's an ongoing activity, just track location
-                $sqlStoreLocation = "INSERT INTO `locationData` (`intActivityId`, `activityDate`, `time`, `gpsLat`, `gpsLong`)
-                        VALUES ( '".$intActivityId."','".$startDate."','".$startTime."','".$gpsLat."','".$gpsLong."' )";
-                $resultStoreLocation = $conn->query($sqlStoreLocation);
-                   // echo 1;//successful location track
-            }else{
-                
-               // echo -2; //"User Id not set";
-                
-            }
+        if (isset($intActivityId) && $intActivityId != "" ){
+            //it's an ongoing activity, just track location
+            $sqlStoreLocation = "INSERT INTO `locationData` (`intActivityId`, `activityDate`, `time`, `gpsLat`, `gpsLong`)
+                    VALUES ( '".$intActivityId."','".$startDate."','".$startTime."','".$gpsLat."','".$gpsLong."' )";
+            $resultStoreLocation = $conn->query($sqlStoreLocation);
+               // echo 1;//successful location track
+        }else{
+            //it's an ongoing activity, just track location
+            $sqlStoreLocation = "INSERT INTO `ErrorReporting` (`strErrorActivity`, `occurenceLocation`)
+                    VALUES ( '$data', 'LINE 92: track_activity.php' )";
+            $resultStoreLocation = $conn->query($sqlStoreLocation);
+           // echo -2; //"User Id not set";
+            
+        }
 
      }
     

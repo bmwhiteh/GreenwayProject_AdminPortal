@@ -35,7 +35,7 @@ if(isset($status)){
 		$startingLimit = $offset;
 	}
     
-	$sql = "SELECT strTicketType, intTicketId, strDescription, dtSubmitted, dtClosed, strTitle, strImageFilePath, bitUrgent\n"
+	$sql = "SELECT strTicketType, intTicketId, strDescription, dtSubmitted, dtClosed, strTitle, strImageFilePath, bitUrgent, gpsLat, gpsLong\n"
 	. "from maintenancetickets\n"
 	. "left join tickettypes on tickettypes.intTypeId = maintenancetickets.intTypeId\n"
 	. $status. " LIMIT $startingLimit, $no_of_records_per_page";       
@@ -101,7 +101,8 @@ while($row = $result->fetch_array(MYSQLI_ASSOC)){
 
 <div class="card-action">
 	<!---View Button--->
-	<button class="btn-view-ticket" type="button" name="myTicketButton" id="myTicketButton" onClick="openTicket(<?php echo $row['intTicketId'];?>);">VIEW</button>
+	<button class="btn-view-ticket" type="button" name="myTicketButton" id="myTicketButton" 
+	onClick="openTicket(<?php echo $row['intTicketId'].",".$row['gpsLat'].",".$row['gpsLong'];?>);">VIEW</button>
 		
 <?php echo $reopen_close;//if($row['dtClosed'] ==''){?>
 

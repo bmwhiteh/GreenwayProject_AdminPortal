@@ -103,7 +103,7 @@
             
         <div>
             <table class="display" cellspacing="0">
-                <thead class="header">
+                <thead class="tableHeader">
                     <tr>
                         <th>Id</th>
                         <th>Date Received</th>
@@ -112,7 +112,7 @@
                         <th>Mark Resolved</th>
                     </tr>
                 </thead>
-                <tfoot class="footer">
+                <tfoot class="tableFooter">
                     <tr>
                         <th>Id</th>
                         <th>Date Received</th>
@@ -131,7 +131,7 @@
             </div>
             
              <table class="display" cellspacing="0">
-                <thead class="header">
+                <thead class="tableHeader">
                     <tr>
                         <th>Id</th>
                         <th>Date Received</th>
@@ -140,7 +140,7 @@
                         <th>Mark Unresolved</th>
                     </tr>
                 </thead>
-                <tfoot class="footer">
+                <tfoot class="tableFooter">
                     <tr>
                         <th>Id</th>
                         <th>Date Received</th>

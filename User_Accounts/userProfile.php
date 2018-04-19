@@ -97,7 +97,7 @@ $(document).ready(function(){
 	
 <div id="mySidenav" class="sidenav">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-            <img id="profileImage" src="../images/profileImage2.png"></img>
+            <img id="profileImage" src=<?php echo $_COOKIE['profileImage']; ?>></img>
             <a><h5 id="profileHeader">User Profile</h5></a>
             <a><h6 id="profileInfo">Name: <?php echo $row['strFirstName'] . " " . $row['strLastName']?></h6></a>
             <a><h6 id="profileInfo">Security Level: 
@@ -143,7 +143,7 @@ $(document).ready(function(){
 
 <div id="mySidenav2" class="sidenav">
             <a href="javascript:void(0)" class="closebtn" onclick="closeChangePassword()">&times;</a>
-            <img id="profileImage" src="../images/profileImage2.png"></img>
+            <img id="profileImage" src=<?php echo $_COOKIE['profileImage']; ?>></img>
             <a><h5 id="changePasswordHeader">Change Password</h5></a>
             
             <form class="passwordChange" method="post">
@@ -175,7 +175,7 @@ $(document).ready(function(){
 
 <div id="mySidenav3" class="sidenav">
             <a href="javascript:void(0)" class="closebtn" onclick="closeChangeSecurityQuestions()">&times;</a>
-            <img id="profileImage" src="../images/profileImage2.png"></img>
+            <img id="profileImage" src=<?php echo $_COOKIE['profileImage']; ?>></img>
             <a><h5 id="changePasswordHeader">Change Security Questions</h5></a>
             
             <form class="securityQuestionChange" method="post" action="../User_Accounts/changeSecurityQuestions.php">
