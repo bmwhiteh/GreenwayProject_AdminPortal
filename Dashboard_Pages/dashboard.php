@@ -107,7 +107,7 @@
                             icon:'../images/markerLogo.png',
                             animation: google.maps.Animation.DROP,
                             title: 'Click marker to display Ticket ID #<?php echo $row['intTicketId']?>',
-                            url: "https://virdian-admin-portal-whitbm06.c9users.io/Ticket_System_v2/ticket_table_header.php?ticketid=" + <?php echo $row['intTicketId']?> 
+                            url: "../Ticket_System_v2/ticket_table_header.php?ticketid=" + <?php echo $row['intTicketId']?> 
                         });
                         
                         google.maps.event.addListener(marker, 'click', function() {

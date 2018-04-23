@@ -1,7 +1,7 @@
 .genericBody{
     background:0;
     width: 100%;
-    background-color: #fde968 !important;
+    background-color: #FFDF59 !important;
     overflow-x: hidden;
 }
 
@@ -69,8 +69,37 @@
 .tableHeader, .tableFooter{
     background-color: #FFFBB6;
 }
+.ticketLayout {
+    background-color: #fafad2;
+}
 
+.ticketView {
+    background-color: #fffbb6;
+    border:2px solid #fffbb6; 
+    padding:5px;
+    color:black; 
+    font-weight:bold;
 
+}
+
+.ticketClose{
+        background-color: #fdee87;
+        border:2px solid #fdee87;
+        padding:5px;
+        color:black;
+        font-weight:bold;
+
+}
+ .txtLoading {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background: url('/Ticket_System_v2/Iconography/loadingGIF_highRoller.gif') 50% 50% no-repeat rgb(249,249,249);
+    opacity: .8;
+}
 /*
 ul {
     background-color: #333;

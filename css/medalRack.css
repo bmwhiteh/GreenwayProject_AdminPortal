@@ -1,3 +1,10 @@
+@font-face {
+font-family: 'Odin Bold';
+font-style: normal;
+font-weight: normal;
+src: local('Odin Bold'), url('../fonts/Odin-Rounded---Bold.woff') format('woff');
+}
+
 .square {
     float:left;
     position: relative;
@@ -159,4 +166,6 @@ p{
 #box{
     width:100%;
     height: 10%;
+    font-variant: small-caps;
+    font-family: "Odin Bold"
 }

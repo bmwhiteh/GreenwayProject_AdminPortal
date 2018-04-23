@@ -17,7 +17,11 @@
 <!-- 1st row verticaly centered text in the square columns -->
 <div class="contentBox">
     <div id="box">
-        <h2>Medal Rack</h2>
+        <div style="padding-top:1%;">
+        <img src="../images/medal.png" style="width:3%; height: 3%;"/>
+        <h1 style="display: inline;">MEDAL RACK</h1>
+        <img src="../images/medal.png" style="width:3%; height: 3%;"/>
+       </div>
     <div class="square">
     <div class="content">
         <div class="table">

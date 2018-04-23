@@ -92,11 +92,11 @@
                     <form action="ticket_density.php" class="js-ajax-php-json" method="post" accept-charset="utf-8">
                         <label for="startDate">Start Date:</label><input id="startDate" name="startDate" type="date"/>
                             <br><br>
-                            <label for="startTime">Start Time:</label><input id="startTime" name="startTime" type="time"/>
+                            <label for="startTime">Start Time:</label><input id="startTime" name="startTime" type="time" value="00:00:00"/>
                             <br><br>
                             <label for="endDate">End Date:    </label><input id="endDate" name="endDate" type="date"/>
                             <br><br>
-                            <label for="endTime">End Time: </label><input id="endTime" name="endTime" type="time"/>
+                            <label for="endTime">End Time: </label><input id="endTime" name="endTime" type="time" value="00:00:00"/>
                             <button id="filter" type="submit" method="post"><b>Load Filtered Heatmap</b></button>
                     </form>
                 </div>

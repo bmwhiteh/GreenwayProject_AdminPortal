@@ -7,7 +7,6 @@
       
       ///Open the View Ticket Modal
       function openTicket(ticket, gpsLat, gpsLong){
-        //console.log("attempt to open");
         var ticketid = ticket;
         var gpsLat = gpsLat;
         var gpsLong = gpsLong;
@@ -25,6 +24,7 @@
           if(statusTxt == "success")
             document.getElementById('myTicket').style.display="block";
             getMapForTicket(ticketid,gpsLat,gpsLong);
+
             //console.log("success");
           if(statusTxt == "error")
             alert("Error: " + xhr.status + ": " + xhr.statusText);
@@ -113,15 +113,24 @@
       
       
       // When the user clicks on the (x), close the ticket modal
-      function closeTicket() {
-        document.getElementById('myTicket').style.display = "none";
+      function closeTicket(id) {
+        document.getElementById(id).style.display = "none";
+
+
       }
       
       // When the user clicks anywhere outside of the modal, close it
       window.onclick = function(event) {
         
         if (event.target ==   document.getElementById('myTicket')) {
+          
           document.getElementById('myTicket').style.display = "none";
+        }else if (event.target ==   document.getElementById('myModal')) {
+          document.getElementById('myModal').style.display = "none";
+
+        }else if (event.target ==   document.getElementById('myNotificationView')) {
+          document.getElementById('myNotificationView').style.display = "none";
+
         }
       
       }
@@ -176,11 +185,15 @@
       
       //This initializes the map for the 'Add Ticket' Map
       function getMapForTicket(id,gpsLat,gpsLong) {
+
+        
         //Initialize the center of the map to IPFW's campus & zoomed in to view the road map layout
         //console.log("ticket: "+id+" lat: "+gpsLat+" lng:"+gpsLong);
         var gpsLat = gpsLat;
         var gpsLong = gpsLong;
         var ticketid = id;
+                            console.log("ticket "+ticketid+","+ gpsLat+","+ gpsLong);
+
         var mapOptions = {
           center: new google.maps.LatLng(gpsLat, gpsLong),
           zoom: 12,
@@ -197,10 +210,7 @@
           title: "Ticket "+ticketid,
           map: map_view
         });
-        /*
-        //Set the Map with it's Viridian Marker
-        marker.setMap(map_view);
-      */
+        
       //Resize the map to fit in its box
             $('#myTicketView').on('shown.bs.modal', function() {
               //console.log("end");
@@ -215,16 +225,29 @@
               //console.log("Here!");
               
             });
+            
       }
       
       
       
-      function FilterResults(page){
+      function FilterResults(page, assigned){
   
          var status = document.getElementById("statOpenClosed").value;
           var tableView = document.getElementById("tableView").checked;
           var ticketView = "cards";
           var today = new Date();
+          var assignedEmployee = assigned;
+
+          var userOnly = document.getElementById("ShowUserTickets").checked;
+          if(userOnly == true){
+            assignedEmployee = assigned;
+
+          }else{
+            assignedEmployee = 'all';
+
+          }
+          
+          
           
           var cookie_expire = new Date();
           cookie_expire.setDate(today.getDate()+1);
@@ -239,13 +262,17 @@
             ticketView = "table";
             document.cookie = "page_view = "+ ticketView+"; expires "+cookie_expire+"; path=/"; // 86400 = 1 day
 
-            document.getElementById("viewTable").style = 'background-color:green; border: 2px solid white;border-radius: 5px;vertical-align:middle; width:30px; height:30px;padding:5px;';
+            document.getElementById("viewTable").style = 'border: 2px solid white;border-radius: 5px;vertical-align:middle; width:30px; height:30px;padding:5px;';
             document.getElementById("viewCards").style = 'background-color:white; border: none;border-radius: 0px;vertical-align:middle; width:30px; height:30px;padding:5px;';
+            document.getElementById("viewTable").className= "ticketLayout";
+
 
           }else{
             document.cookie = "page_view = "+ ticketView+"; expires "+cookie_expire+"; path=/"; // 86400 = 1 day
 
-              document.getElementById("viewCards").style = 'background-color:green; border: 2px solid white;border-radius: 5px;vertical-align:middle; width:30px; height:30px;padding:5px;';
+              document.getElementById("viewCards").style = 'border: 2px solid white;border-radius: 5px;vertical-align:middle; width:30px; height:30px;padding:5px;';
+              document.getElementById("viewCards").className= "ticketLayout";
+
               document.getElementById("viewTable").style = 'background-color:white; border: none;border-radius: 0px;vertical-align:middle; width:30px; height:30px;padding:5px';
               
           }
@@ -282,10 +309,10 @@
           
         if (window.XMLHttpRequest) {
             // code for IE7+, Firefox, Chrome, Opera, Safari
-            xmlhttp = new XMLHttpRequest();
+           var xmlhttp = new XMLHttpRequest();
         } else {
             // code for IE6, IE5
-            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+          var  xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
         }
         
         xmlhttp.onreadystatechange = function() {
@@ -303,7 +330,7 @@
 
         }
 
-        xmlhttp.open("GET","get_ticket_"+page_view+".php?status="+ticket_status+"&pageno="+page+"&view="+page_view,true);
+        xmlhttp.open("GET","get_ticket_"+page_view+".php?status="+ticket_status+"&pageno="+page+"&view="+page_view+"&assigned="+assignedEmployee,true);
                     $(".txtLoading").fadeOut("slow");
 
         xmlhttp.send();
@@ -381,3 +408,36 @@
         console.log("In hide");
 
     }
+    
+    function ReassignTicket(id){
+        var new_employee = document.getElementById("assignedEmployee").value;
+        var tickets = [id];
+        var params = "assign="+tickets+"&assignedEmployee="+new_employee;
+
+        if (window.XMLHttpRequest) {
+            // code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp = new XMLHttpRequest();
+        } else {
+            // code for IE6, IE5
+          xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+
+        xmlhttp.onreadystatechange = function() {
+
+            if (this.readyState == 4 && this.status == 200) {
+                $("txtLoading").fadeOut("slow");
+            }else if (this.readyState == 4 && this.status != 200) {
+               alert("Did not work");
+            }
+            $("txtLoading").fadeOut("slow");
+        }
+        
+        xmlhttp.open("POST","action_assign_ticket.php",true);
+        xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+                    $(".txtLoading").fadeOut("slow");
+
+        xmlhttp.send(params);
+        
+    }
+    

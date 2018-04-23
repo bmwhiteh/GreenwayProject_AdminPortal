@@ -28,7 +28,7 @@
     }
 
 
-    $sqlTickets = "SELECT intTicketId, dtEstFinish\n"
+    $sqlTickets = "SELECT intTicketId, dtEstFinish, gpsLat, gpsLong \n"
     . "FROM `maintenancetickets`\n"
     . "where dtEstFinish > '".$startDate."' and dtClosed IS NULL\n"
     . $includedTickets;

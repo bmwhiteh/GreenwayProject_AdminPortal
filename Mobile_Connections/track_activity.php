@@ -52,21 +52,13 @@
         $intActivityId = $dataArray->activityId;
         $gpsLat = $dataArray->lat;
         $gpsLong = $dataArray->lng;
-        if(isset($dataArray->currentTime)){
-            $phoneDateTime = $dataArray->currentTime; //example: 2018-02-19T18:13:19.952Z
-            $dateStart = new DateTime($phoneDateTime); 
-            $dateStart->setTimeZone(new DateTimeZone('UTC'));
-            $startDate =$dateStart->format('Y-m-d');
-            $startTime =$dateStart->format('H:i:s');    
         
-        }else{
             
             $dateStart = new DateTime('now'); 
             $dateStart->setTimeZone(new DateTimeZone('UTC'));
             $startDate =$dateStart->format('Y-m-d');
             $startTime =$dateStart->format('H:i:s');    
-           
-        }
+         
         
 /*        $sql = "SELECT * FROM `userActivities` WHERE `intActivityId` = '$intActivityId'";
         $result = $conn->query($sql) or die("Query fail");

@@ -17,12 +17,13 @@ font-family: "Odin Bold";}
         }
         
        
-        .theBox{
-            background-color: #8c8c8c;
-            margin: 0px 100px 50px 100px;
+         .theBox{
             
+            display: block !important;
+            clear:both;
             
         }
+        
 .calendarOptions ul {
     display:block;
     float:none;
@@ -51,13 +52,12 @@ font-family: "Odin Bold";}
             width: 100%; /* Full width */
             /*height: 100%; /* Full height */
             overflow: auto; /* Enable scroll if needed */
-            background-color: rgb(0,0,0); /* Fallback color */
-            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
         }
         
         .modal-body{
             width:100%;
         }
+        
 
         /* Modal Content */
         .modal-content {
@@ -183,3 +183,7 @@ font-family: "Odin Bold";}
     margin:auto;
 }
 
+.mapBucket{
+    width:300px;
+    height:300px;
+}

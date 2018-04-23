@@ -54,9 +54,11 @@
         <div class="currentEmployees">
             <div class="employeeHeader">
                 <h2>Manage Employees</h2>
-                <button class="button" id="addBtn" type="button">Add Employee</button>
-                <button class="button" id="editBtn" type="button">Edit Employee</button>
-                <button class="button" id="deleteBtn" type="button">Delete Employee</button>
+                <div class="employeeButtons">
+                    <button class="button" id="addBtn" type="button">Add Employee</button>
+                    <button class="button" id="editBtn" type="button">Edit Employee</button>
+                    <button class="button" id="deleteBtn" type="button">Delete Employee</button>
+                </div>
             </div>
             
     <div>

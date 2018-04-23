@@ -26,8 +26,7 @@ font-family: "Odin Bold";}
             width: 100%; /* Full width */
             /*height: 100%; /* Full height */
             overflow: auto; /* Enable scroll if needed */
-            background-color: rgb(0,0,0); /* Fallback color */
-            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+            vertical-align:top;
         }
         
         .modal-body{
@@ -41,6 +40,10 @@ font-family: "Odin Bold";}
             padding: 20px;
             border: 1px solid #888;
             width: 70%;
+        }
+        
+        .modal-content td {
+            vertical-align:top;
         }
 
         /* The Close Button */
@@ -67,11 +70,12 @@ font-family: "Odin Bold";}
         
        
         .theBox{
-            background-color: #8c8c8c;
-            margin: 0px 100px 50px 100px;
             
+            display: block !important;
+            clear:both;
             
         }
+        
         
         .card-1 {
             border:2px solid grey; background-color:white; border-radius: 10px; width:20%; padding:10px;display:inline-block; margin:20px 15px 20px 30px; vertical-align:top; text-align:center;
@@ -79,25 +83,44 @@ font-family: "Odin Bold";}
         
         .card-number {
             font-size:20px;
+            margin-bottom:5px;
         }
         
         .card-type{
-            font-size:16px; color:black; margin:0px 0px 20px 10px;
+            font-size:16px; 
+            color:black; 
+            margin:0px 0px 20px 10px;
+            padding:5px; 
+            font-size:16px;
         }
         
-        .card-title{font-size:14px;text-overflow: ellipsis;text-align:center; font-weight:bold;}
+        .card-title{font-size:16px;text-overflow: ellipsis;text-align:center; font-weight:bold;}
         
         .card-desc{font-size:14px;text-align:center;text-overflow: ellipsis;height:50px;}
         
-        .card-image{max-height:300px; margin:0px 0px 0px 10px;}
+        .card-image{
+            max-height:300px; 
+            margin:0px 0px 0px 10px;
+            width:70%;
+            margin-left:15%;
+        }
+        
+        .card-image img {
+            margin:auto;
+            width:100%;
+            height:100%;
+        }
         
         .card-date{font-size:14px;text-align:center; }
-        
+        .card-date-closed{
+            font-size:14px;
+            text-align:center;
+            margin:0px 0px 20px 0px;
+            
+        }
         .card-action{display:inline-block; margin:0px 0px 20px 0px;}
         
-        .btn-view-ticket{border:2px solid green; background-color:green;padding:5px;color:white; font-weight:bold;}
         
-        .btn-close-reopen{border:2px solid #194400; background-color:#194400;padding:5px;color:white; font-weight:bold; }
      
      
      /* Popup container - can be anything you want */
@@ -109,6 +132,11 @@ font-family: "Odin Bold";}
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    
+}
+
+.popup img {
+    width:40px;vertical-align:middle;
 }
 
 /* The actual popup */
@@ -125,6 +153,8 @@ font-family: "Odin Bold";}
     bottom: 125%;
     left: 50%;
     margin-left: -80px;
+    max-width:100%;
+    margin:auto;
 }
 
 /* Popup arrow */
@@ -242,3 +272,210 @@ font-family: "Odin Bold";}
     color:#36454F;
     cursor: pointer;
 }
+
+.mapBucket{
+    width:300px;
+    height:300px;
+}
+
+.txtLoading {
+                position: fixed;
+                left: 0px;
+                top: 0px;
+                width: 100%;
+                height: 100%;
+                z-index: 9999;
+                background: url('/Ticket_System_v2/Iconography/loadingGIF.gif') 50% 50% no-repeat rgb(249,249,249);
+                opacity: .8;
+            }
+            /* Customize the label (the container) */
+            .container-chkbox {
+              /*display: block;*/
+              position: relative;
+              padding-left: 35px;
+              margin-bottom: 12px;
+              cursor: pointer;
+              font-size: 22px;
+              -webkit-user-select: none;
+              -moz-user-select: none;
+              -ms-user-select: none;
+              user-select: none;
+            }
+            
+            
+            
+            /* Hide the browser's default checkbox */
+            .container-chkbox input {
+              position: absolute;
+              opacity: 0;
+              cursor: pointer;
+            }
+            /* Create a custom checkbox */
+            .checkmark1 {
+              position: absolute;
+              top: 0;
+              left: 0;
+              height: 35px;
+              width: 35px;
+              background-color: #eee;
+            }
+            
+            /* Create a custom checkbox */
+            .checkmark2 {
+              position: absolute;
+              top: 0;
+              left: 0;
+              height: 35px;
+              width: 35px;
+              background-color: #eee;
+            }
+            
+            /* Create a custom checkbox */
+            .checkmark3 {
+              position: absolute;
+              top: 0;
+              left: 0;
+              height: 35px;
+              width: 35px;
+              background-color: #eee;
+            }
+            
+            
+            /* When the checkbox is checked, add a blue background */
+            .container-chkbox input:checked ~ .checkmark1 {
+              background-color: #194400;
+            }
+            
+            .container-chkbox input:checked ~ .checkmark2 {
+              background-color: #37721b;
+            }
+            
+            .container-chkbox input:checked ~ .checkmark3 {
+              background-color: red;
+            }
+            
+            /* Create the checkmark/indicator (hidden when not checked) */
+            .checkmark1:after, .checkmark2:after, .checkmark3:after {
+              content: "";
+              position: absolute;
+              display: none;
+            }
+            
+            /* Show the checkmark when checked */
+            .container-chkbox input:checked ~ .checkmark1:after , .container-chkbox input:checked ~ .checkmark2:after  , .container-chkbox input:checked ~ .checkmark3:after{
+              display: block;
+            }
+            
+            /* Style the checkmark/indicator */
+            .container-chkbox .checkmark1:after,.container-chkbox .checkmark2:after,.container-chkbox .checkmark3:after {
+              left: 9px;
+              top: 5px;
+              width: 12px;
+              height: 20px;
+              border: solid white;
+              border-width: 0 6px 6px 0;
+              -webkit-transform: rotate(45deg);
+              -ms-transform: rotate(45deg);
+              transform: rotate(45deg);
+            }
+            
+            
+            
+            .typesList{
+                margin-left:50px;
+                text-align:center;
+            }
+            .typesList li{
+                padding: 10px;
+                text-align:center;
+            }
+            
+            .pagination {
+                background-color:#333;
+            }
+            
+            .tableTicket table{
+                vertical-align:top; 
+                text-align:center;
+                border-collapse:collapse;
+                margin-top:30px;
+                margin-left:auto;
+                width:90%;
+            }
+            
+            .tableTicket thead th{
+                padding:20px; 
+
+            }
+            
+            .tableTicket tbody{
+                background-color: white;
+            }
+            
+            .cardsList {
+                
+                margin-left:auto;
+                width:100%;
+            }
+            
+            .firstCell {
+                width:20px;
+            }
+            
+            .secondCell {
+                padding:20px;
+            }
+            
+            .lastCell {
+                text-align:center;
+            }
+            
+            .greyBorder {
+                border:2px solid grey;
+            }
+            
+            .ticketCells {
+                text-align:left;
+                padding:20px;
+            }
+            .ticketCellInfo{
+                font-size:14px;
+                text-overflow: ellipsis;
+                text-align:center;
+            }
+            .ticketCellTitle{
+                font-size:14px;text-overflow: ellipsis;text-align:center;
+            }
+            .ticketCellType{
+                font-size: 16px; 
+                color:black; 
+                margin:0px 0px 20px 10px;
+            }
+            .ticketButtons {
+                display:inline-block;
+            }
+            
+            .unassignedList {
+                margin-left: 100px;
+                margin-right:100px
+            }
+            
+            .unassignedType {
+                font-size:22px;
+                margin-left: 10px; 
+                margin-top:0px;
+                text-align:left;
+            }
+            
+            .unassignedSpace {
+                padding:10px; 
+                overflow:visisble
+            }
+            
+            .unassignedBtns {
+                float:right;
+            }
+            
+            .unassignedBtns label {
+                font-size: 20px;
+            }

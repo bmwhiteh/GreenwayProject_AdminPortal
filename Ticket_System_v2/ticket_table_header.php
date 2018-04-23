@@ -34,19 +34,7 @@
       
       <!---Javascript to open & Close Modals, and populate the Google Maps with the Markers--->
             <script src=/Ticket_System_v2/functions.js></script>
-        <style>
-            .txtLoading {
-    position: fixed;
-    left: 0px;
-    top: 0px;
-    width: 100%;
-    height: 100%;
-    z-index: 9999;
-    background: url('/Ticket_System_v2/Iconography/loadingGIF.gif') 50% 50% no-repeat rgb(249,249,249);
-    opacity: .8;
-}
-
-        </style>
+      
     </head>
     <?php
         if (isset($_COOKIE['page_number'])) {
@@ -74,21 +62,28 @@
 
         }
         
+        
+        
         if(isset($_POST['ticketid'])){$id = $_POST['ticketid'];}elseif (isset($_GET['ticketid'])){$id = $_GET['ticketid'];}
     ?>
-    <body class="genericBody" onLoad="FilterResults(<?php echo $pageno?>);<?php if(isset($id)){echo "openTicket($id,0,0)";}?>">
+    <body class="genericBody" onLoad="FilterResults(<?php echo $pageno?>, 'all');<?php if(isset($id)){echo "openTicket($id,0,0)";}?>">
             <div id="txtLoading" class="txtLoading"></div>
 
-     <div class="theBox" >
+     <div class="contentBox" >
+        
+        <div class="theBox">
 
-        <br/>
-     <div style="border:2px solid grey; background-color:white; border-radius: 10px; width:40%; padding:10px; margin:auto; vertical-align:top; text-align:center;">
+     <div style="border:2px solid grey; background-color:white; border-radius: 10px; width:40%; padding:10px; margin:auto; vertical-align:top; text-align:center;display:block;  clear: both;">
         <div style="font-size:20px;font-weight:bold; text-decoration:underline;margin-bottom:5px;">Ticket Options</div>
 
           <div style="text-align:center; width:100%">
-             <form name="setViewPreferences" style="display:inline-block;background-color:#FFF;" onChange="FilterResults(<?php echo $pageno;?>);">
+             <form name="setViewPreferences" style="display:inline-block;background-color:#FFF;" onChange="FilterResults(<?php echo $pageno;?>,'all');">
                <table>
                  <tr>
+                    <td>
+                        <input type="checkbox" name="ShowUserTickets"  id="ShowUserTickets" onClick="FilterResults(<?php echo $pageno .",'".$_COOKIE['user'];?>');" >
+                        My Tickets Only
+                    </td>
                    <td style="width:30%">
                       Ticket Status: <br/>
                             
@@ -125,7 +120,7 @@
         
       
       
-      </div>
+     </div>
     
       
     
@@ -138,7 +133,7 @@
 
       <div id="TicketTable"></div>
 
-
+</div>
       
       </div>
      

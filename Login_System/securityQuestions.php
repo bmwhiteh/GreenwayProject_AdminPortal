@@ -35,8 +35,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
             $lockedCount =  $result->num_rows;
             if($lockedCount == 0){
+                
+                $securityAnswersSql = "SELECT * from employees where strUsername = '$username'";
+                $securityAnswersResult = $conn->query($securityAnswersSql) or die("Query fail");
+                $answers = $securityAnswersResult->fetch_array(MYSQLI_ASSOC);
+                $hashedAnswer1 = $answers['securityQuestion1Answer'];
+                $hashedAnswer2 = $answers['securityQuestion2Answer'];
+                $match1 = password_verify($answer1, $hashedAnswer1);
+                $match2 = password_verify($answer2, $hashedAnswer2);
+                if($match1 == 1 && $match2 == 1){
                 //sql to verify security answers from user input
-                $sql = "SELECT * FROM `employees` WHERE `strUsername` = '$username' && `securityQuestion1Answer`= '$answer1' && `securityQuestion2Answer` = '$answer2'";
+                $sql = "SELECT * FROM `employees` WHERE `strUsername` = '$username' && `securityQuestion1Answer`= '$hashedAnswer1' && `securityQuestion2Answer` = '$hashedAnswer2'";
                 //sql execution
                 $result = $conn->query($sql) or die("Query fail");
                 
@@ -44,6 +53,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $active = $row['active'];
             
                 $count =  $result->num_rows;
+                }else{
+                    $count = 0;
+                }
                 if($count == 1) { //security questions are correct
                     $sql = "UPDATE `employees` SET `securityQuestionAttempts` = '0' WHERE `strUsername` = '$username'";
                     //sql execution

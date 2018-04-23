@@ -48,19 +48,12 @@
             $intActivityType = 1; 
         }
 
-       if(isset($dataArray->currentTime)){
-            $phoneDateTime = $dataArray->currentTime; //example: 2018-02-19T18:13:19.952Z
-            $dateEnd = new DateTime($phoneDateTime); 
-            $dateEnd->setTimeZone(new DateTimeZone('UTC'));
-            $endDate =$dateEnd->format('Y-m-d');
-            $endTime =$dateEnd->format('H:i:s');    
-        
-        }else{
+       
             $dateStart = new DateTime('now'); 
             $dateStart->setTimeZone(new DateTimeZone('UTC'));
             $endDate =$dateStart->format('Y-m-d');
             $endTime =$dateStart->format('H:i:s');   
-        }
+        
         
         if(isset($dataArray->totalDuration)){
             $timeTotalDuration = mysqli_real_escape_string($conn, $dataArray->totalDuration);

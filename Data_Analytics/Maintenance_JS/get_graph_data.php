@@ -14,7 +14,7 @@
 			//Distribution of Tickets (Pie Chart)
 			$sql = "SELECT COUNT( intTicketId )  AS countTicketType, strTicketType\n"
 			. "FROM maintenancetickets\n"
-			. "LEFT JOIN tickettypes ON tickettypes.intTypeId =maintenancetickets.intTypeId\n"
+			. "LEFT JOIN tickettypes ON tickettypes.intTypeId =maintenancetickets.intTypeId WHERE strTicketType IS NOT NULL\n"
 			. "GROUP BY maintenancetickets.intTypeId\n"
 			. " LIMIT 0, 30 ";
 

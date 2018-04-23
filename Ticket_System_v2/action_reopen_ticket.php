@@ -24,7 +24,7 @@
     */
     
     //Get the Employee id
-    $sql = "SELECT intEmployeeId FROM `employees` WHERE `strUsername` = '".$_POST["strEmployeeUsername"]."'";
+    $sql = "SELECT intEmployeeId FROM `employees` WHERE `strUsername` = '".$_COOKIE["user"]."'";
     $result = $conn->query($sql) or die("find employee id fail");
     $row = $result->fetch_array(MYSQLI_ASSOC);
     $employeeId = $row['intEmployeeId'];

@@ -17,7 +17,7 @@
             <td>
                 <form method="post" action="./grantPicturePermission.php">
                     <input type="hidden" name="id" value="<?php echo htmlspecialchars($row['intUserId']); ?>"/>
-                    <input type="submit" value="Grant">
+                    <input type="submit" class="grantRemove" value="Grant">
                 </form>
             </td>
         </tr>
@@ -32,7 +32,7 @@
             <td><?php echo $row['strEmailAddress']?></td>
             <td><form method="post" action="./removePicturePermission.php">
                     <input type="hidden" name="id" value="<?php echo htmlspecialchars($row['intUserId']); ?>"/>
-                    <input type="submit" value="Remove">
+                    <input type="submit" class="grantRemove" value="Remove">
                 </form>
             </td>
         </tr>

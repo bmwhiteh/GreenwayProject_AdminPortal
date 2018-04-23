@@ -2,7 +2,15 @@
     Author: Bailey Whitehill
     Description: This code is the "Add Ticket" popup window. Submitting this runs action_add_ticket.php
 -->
+<?php
 
+        include("../MySQL_Connections/config.php");
+         
+
+    //Find all the ticket info given the ticketid
+    $sqlGetTicketTypes = "SELECT * FROM `tickettypes`";
+    $resultTicketTypes = $conn->query($sqlGetTicketTypes);
+?>
 <!-- Modal Window -->
 <div id="myModal" class="modal" style="display:none;">
 
@@ -10,7 +18,7 @@
     <div class="modal-content">
         
         <!-- Close Button that closes the Modal (Clicking outside popup also closes window)-->
-        <span id="closeModal" class="close">&times;</span>
+        <span id="closeModal" class="close" onClick="closeTicket('myModal');">&times;</span>
         
         <!-- Popup Header -->
         <h3 class="modal-title" style="text-decoration:underline;">Add New Maintenance Ticket</h3>
@@ -18,7 +26,7 @@
         
         <div class="modal-body">
             
-            <form action="./action_add_ticket.php" method="post" class="form-horizontal" role="form"  enctype="multipart/form-data">
+            <form action="../Ticket_System_v2/action_add_ticket.php" method="post" class="form-horizontal" role="form"  enctype="multipart/form-data">
                 
                 <!--Use a default user id for all employee-created tickets and add a note with the name of the author-->
                 <input type="hidden" name="intUserId" value="999">
@@ -124,21 +132,6 @@
 <!--Javascript to handle the modal display & image size -->
 <script>
 
-    // Get the modal
-    var modal = document.getElementById('myModal');
-
-    // When the user clicks on <span> (x), close the modal
-    document.getElementById("closeModal").onclick = function() {
-        modal.style.display = "none";
-    }
-
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-        
-    }
     
     //check the image size to make sure it's not larger than the allowed size
     function checkImageSize(){
