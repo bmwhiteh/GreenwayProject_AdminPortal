@@ -17,8 +17,6 @@
         $answer2 = $_POST['answer2'];
         $hashedanswer2 = password_hash($answer2, PASSWORD_BCRYPT, $options);
         
-        $sql = "UPDATE `employees` SET `securityQuestion1`= '$id1',`securityQuestion1Answer`= '$answer1',
-        `securityQuestion2`= '$id2', `securityQuestion2Answer`= '$answer2' WHERE `strUsername` = '$username'";
         $sql = "UPDATE `employees` SET `securityQuestion1`= '$id1',`securityQuestion1Answer`= '$hashedanswer1',
         `securityQuestion2`= '$id2', `securityQuestion2Answer`= '$hashedanswer2' WHERE `strUsername` = '$username'";
         //sql execution
