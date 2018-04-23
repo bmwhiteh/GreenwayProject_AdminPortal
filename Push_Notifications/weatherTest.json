@@ -12,9 +12,9 @@
 		{
 		"type": "SPE",
 		"description": "Special Statement",
-		"date": "6:38 PM EST on April 3, 2018",
+		"date": "3:00 PM EST on April 22, 2018",
 		"date_epoch": "1517105160",
-		"expires": "4:00 AM EST on March 4, 2018",
+		"expires": "4:00 PM EST on April 22, 2018",
 		"expires_epoch": "1517130000",
 		"tz_short":"EST",
 		"tz_long":"America/New_York",

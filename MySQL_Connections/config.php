@@ -1,8 +1,8 @@
 <?php
 $servername = "localhost";
-$username = "whitbm06";
-$password = "WebDev2017";
-$db = "viridian_capstone_project";
+$username = "supadmin";
+$password = "C@p\$tone#";
+$db = "viridian_admin_portal";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $db);
