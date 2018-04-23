@@ -29,8 +29,10 @@
     <div class="employeeTables">
         <div class="currentEmployees">
             <div class="employeeHeader">
-                <h2>Unresolved App Issues</h2>
-                <button class="button" id="addBtn" type="button">Add Feedback</button>
+                <h2>Unresolved Issues</h2>
+                <div class="employeeButtons">
+                    <button class="button" id="addBtn" type="button">Add Feedback</button>
+                </div>
             </div>
             
     <div>
@@ -127,7 +129,7 @@
             </table>
             
             <div class="employeeHeader">
-                <h2>Resolved App Issues</h2>
+                <h2>Resolved Issues</h2>
             </div>
             
              <table class="display" cellspacing="0">

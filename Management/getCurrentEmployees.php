@@ -22,7 +22,7 @@
             <td>
                 <form method="get" action="./lockEmployee.php">
                     <input type="hidden" name="username" value="<?php echo htmlspecialchars($row['strUsername']); ?>"/>
-                    <input type="submit" value="Lock">
+                    <input type="submit" class="lockUnlock" value="Lock">
                 </form>
             </td>
         </tr>
@@ -38,7 +38,7 @@
             <td><?php echo $findSecurity['strSecurityTitle']?></td>
             <td><form method="get" action="./unlockEmployee.php">
                     <input type="hidden" name="username" value="<?php echo htmlspecialchars($row['strUsername']); ?>"/>
-                    <input type="submit" value="Unlock">
+                    <input type="submit" class="lockUnlock" value="Unlock">
                 </form>
             </td>
         </tr>

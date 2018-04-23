@@ -47,21 +47,13 @@
         $dataArray = json_decode($data);
         $intUserId = $dataArray->userId;
         $intActivityId = $dataArray->activityId;
-        if(isset($dataArray->currentTime)){
-            $phoneDateTime = $dataArray->currentTime; //example: 2018-02-19T18:13:19.952Z
-            $dateStart = new DateTime($phoneDateTime); 
-            $dateStart->setTimeZone(new DateTimeZone('UTC'));
-            $startDate =$dateStart->format('Y-m-d');
-            $startTime =$dateStart->format('H:i:s');    
         
-        }else{
             
             $dateStart = new DateTime('now'); 
             $dateStart->setTimeZone(new DateTimeZone('UTC'));
             $startDate =$dateStart->format('Y-m-d');
             $startTime =$dateStart->format('H:i:s');    
-           
-        }
+       
         
         if((($intActivityId == NULL)||($intActivityId == ''))&&isset($intUserId)){
             //it's a new activity

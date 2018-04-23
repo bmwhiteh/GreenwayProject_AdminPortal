@@ -14,22 +14,22 @@
 ?>
 
         <input type="hidden" name="typeSelected" value="<?php echo $typeSelected;?>">
-        <dl style="margin-left: 100px;margin-right:100px">
+        <dl class="unassignedList">
             <!--Get the tickets for this ticket type-->
                             <ul>
-                                <li style="font-size:22px;margin-left: 10px; margin-top:0px;text-align:left;"><?php echo $typeSelected;?></li>
-                               <li style=" padding:10px; overflow:visisble">&nbsp;</li>
-                               <li style=" padding:10px;overflow:visible">&nbsp;</li>
+                                <li class="unassignedType"><?php echo $typeSelected;?></li>
+                               <li class="unassignedSpace">&nbsp;</li>
+                               <li class="unassignedSpace">&nbsp;</li>
                                
-                               <li style="float:right;">
+                               <li class="unassignedBtns">
                                      
-                                    <label style="font-size: 20px;">
+                                    <label>
                                         Assign
                                     </label>
-                                    <label  style="font-size: 20px;">
+                                    <label>
                                         Notify
                                     </label>
-                                    <label  style="font-size: 20px;">
+                                    <label>
                                         Urgent
                                     </label>
                                </li>
@@ -47,25 +47,11 @@
                            <ul>
                                <li style="text-indent: 25px; padding:10px;"> Ticket #<?php echo $ticket['intTicketId']?></li>
                                <li style=" padding:10px; overflow:visisble"><p><?php echo $ticket['strTitle']?></p></li>
-                               <!------><li style=" padding:10px;overflow:visible"><p><?php echo $ticket['strDescription']?></p></li>
-                               <!--<li style="float:right;padding:5px;">
-                                   <span style="border:2px solid purple; background-color:purple; font-weight:bold;padding:5px; vertical-align:middle;">
-            	                        <button class="btn-view-ticket" style="background-color:purple;border:2px solid purple;" type="button" name="myTicketButton" id="myTicketButton" onClick="openTicket(<?php echo $row['intTicketId'];?>);">DETAILS</button>
-                                    </span>  
-                               </li>
-                               <li style="float:right;padding:5px;">
-                                   <span style="border:2px solid orange; background-color:orange; font-weight:bold;padding:5px; vertical-align:middle;">
-            	                        <button class="btn-view-ticket" style="background-color:orange;border:2px solid orange;" type="button" name="myTicketButton" id="myTicketButton" onClick="openTicket(<?php echo $row['intTicketId'];?>);">IMAGE</button>
-                                    </span>  
-                               </li>
-                               <li style="float:right;padding:5px;">
-                                   <span style="border:2px solid blue; background-color:blue; font-weight:bold;padding:5px; vertical-align:middle;">
-            	                        <button class="btn-view-ticket" style="border:2px solid blue; background-color:blue;" type="button" name="myTicketButton" id="myTicketButton" onClick="openTicket(<?php echo $row['intTicketId'];?>);">MAP</button>
-                                    </span>  
-                               </li>-->
+                               <li style=" padding:10px;overflow:visible"><p><?php echo $ticket['strDescription']?></p></li>
+                               
                                <li style="float:right;padding:15px;">
-                                   <span style="border:2px solid green; background-color:green; font-weight:bold;padding:5px; vertical-align:middle;">
-            	                        <button class="btn-view-ticket" type="button" name="myTicketButton" id="myTicketButton<?php echo $ticket['intTicketId'];?>" onClick="openTicket(<?php echo $ticket['intTicketId'] .','.$ticket['gpsLat'].','.$ticket['gpsLong'];?>);">VIEW</button>
+                                   <span style="font-weight:bold;padding:5px; vertical-align:middle;">
+            	                        <button class="ticketView" type="button" name="myTicketButton" id="myTicketButton<?php echo $ticket['intTicketId'];?>" onClick="openTicket(<?php echo $ticket['intTicketId'] .','.$ticket['gpsLat'].','.$ticket['gpsLong'];?>);">VIEW</button>
                                     </span>  
                                     <label class="container-chkbox" style="margin-left:10px;">
                                       <input type="checkbox" name="assign[]" value="<?php echo $ticket['intTicketId']?>">

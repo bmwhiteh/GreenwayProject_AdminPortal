@@ -26,20 +26,20 @@ body{
             font-family: "Bookman Old Style";
         }
         .topBox{
-            height: 11%;
+            height: 19vh;
             text-align: center;
             position:relative;
         }
 
         .midBox{
-            height: 11%;
+            height: 19vh;
             margin-top: 5%;
             text-align: center;
             position:relative;
         }
 
         .bottomBox{
-            height: 11%;
+            height: 19vh;
             margin-top: 5%;
             text-align: center;
             position:relative;
@@ -146,6 +146,7 @@ body{
             font-size: 1vw;
         }
 
-        img{
-            height: 50%;
+        .quickStats{
+             height:85%;
+             margin-right:25%;
         }

@@ -67,7 +67,7 @@ function getTicketList(){
 					//Create the ticket id cell
 					var newCellTicketId = document.createElement('td');
 					var newLinkTicketId = document.createElement('a');
-					newLinkTicketId.setAttribute('href', "https://virdian-admin-portal-whitbm06.c9users.io/Ticket_System/ticketInfo.php?ticketid="+ticketIdList[z])
+					newLinkTicketId.setAttribute('href', "../Ticket_System/ticketInfo.php?ticketid="+ticketIdList[z])
 					var newTextTicketId = document.createTextNode('View Ticket '+ticketIdList[z]);
 					newLinkTicketId.appendChild(newTextTicketId);
 					newCellTicketId.appendChild(newLinkTicketId);

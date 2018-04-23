@@ -1184,8 +1184,8 @@ button.close {
 }
 .modal {
   display: none;
-  overflow: absolute;
-  position: a;
+  overflow: visible;
+  position: absolute;
   top: 0;
   right: 0;
   bottom: 0;

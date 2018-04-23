@@ -10,9 +10,14 @@ $no_of_records_per_page = 20;
 $pageno = $_COOKIE['page_number'];
 $offset = ($pageno-1) * $no_of_records_per_page;
 
-$status = 'where dtClosed IS NULL';
-if ($_COOKIE['ticket_status'] == "closed"){$status = 'where dtClosed IS NOT NULL';}
-else if ($_COOKIE['ticket_status'] == "all"){$status = '';}
+if ($_COOKIE['ticket_status'] == "closed"){
+	$status = 'where dtClosed IS NOT NULL';
+}
+else if ($_COOKIE['ticket_status'] == "all"){
+	$status = '';
+}else{
+	$status = 'where dtClosed IS NULL';
+}
 
 if(isset($status)){
 
@@ -34,30 +39,80 @@ if(isset($status)){
 	}else{
 		$startingLimit = $offset;
 	}
-    
+	$assigned = $_GET['assigned'];
+	if($assigned != 'all'){
+		
+		 $sqlRangers = "SELECT intEmployeeId\n"
+                        . "from employees\n"
+                        . "where strUserName = '$assigned'\n";
+        $resultRangers = $conn->query($sqlRangers) or die("Query Rangers fail");
+    	$employee = $resultRangers->fetch_array(MYSQLI_ASSOC);
+		$assignedEmployee = "AND intEmployeeAssigned = '".$employee["intEmployeeId"]."'";
+		$startingLimit = 0;
+		$pageno = 1;
+		setcookie("page_number", $pageno, time() + (86400 * 30), "/"); // 86400 = 1 day
+
+	}else{
+		$assignedEmployee = '';
+	}
+    $stop = $no_of_records_per_page+$startingLimit;
 	$sql = "SELECT strTicketType, intTicketId, strDescription, dtSubmitted, dtClosed, strTitle, strImageFilePath, bitUrgent, gpsLat, gpsLong\n"
 	. "from maintenancetickets\n"
 	. "left join tickettypes on tickettypes.intTypeId = maintenancetickets.intTypeId\n"
-	. $status. " LIMIT $startingLimit, $no_of_records_per_page";       
+	. $status. " ".$assignedEmployee." LIMIT $startingLimit, $stop";       
 	$result = $conn->query($sql) or die($sql);
-
 }
 
+$colorArray = explode(",",$_COOKIE['colorArray']);
 
 
+echo "<div class='cardsList'>";
 
 while($row = $result->fetch_array(MYSQLI_ASSOC)){ 
-	if($row['strTicketType']=='Litter'){$TicketColor = '#432021';}
-	elseif($row['strTicketType']=='Overgrown Brush'){$TicketColor = '#3DB737';}
-	elseif($row['strTicketType']=='High Water'){$TicketColor = '#75BBB8';}
-	elseif($row['strTicketType']=='Vandalism'){$TicketColor = '#FD9EA1';}
-	elseif($row['strTicketType']=='Suspicious Persons'){$TicketColor =  '#C61A1F';}
+	
+	if(isset($colorArray)) {
+		switch($row['strTicketType']){
+		case 'High Water':
+			$TicketColor = $colorArray[0];
+			break;
+		case 'Pothole':
+			$TicketColor = $colorArray[1];
+			break;
+		case 'Tree/Branch':
+			$TicketColor = $colorArray[2];
+			break;
+		case 'Trash Full':
+			$TicketColor = $colorArray[3];
+			break;
+		case 'Litter':
+			$TicketColor = $colorArray[4];
+			break;
+		case 'Overgrown Brush':
+			$TicketColor = $colorArray[5];
+			break;
+		case 'Vandalism':
+			$TicketColor = $colorArray[6];
+			break;
+		case 'Suspicious Persons':
+			$TicketColor = $colorArray[7];
+			break;
+		case 'Other':
+			$TicketColor = $colorArray[8];
+			break;
+		default:
+			break;
+		}
+	}
+	
+	
+	
+	
 	$ticketid =$row['intTicketId'];
 	
 	if($row['dtClosed'] == ''){ 
 		$submit = "0px"; 
 		$closed = '';	
-		$reopen_close = '<a href="action_close_ticket.php?ticketid='.$ticketid.'" class="btn-close-reopen">CLOSE</a>';
+		$reopen_close = '<a href="action_close_ticket.php?ticketid='.$ticketid.'" class="ticketClose">CLOSE</a>';
 	
 		//'<button class="btn-close-reopen" type="button" name="myTicketButton" id="myTicketButton" onClick="closeTicket('.$row['intTicketId'].');">CLOSE</button>';
 
@@ -66,7 +121,7 @@ while($row = $result->fetch_array(MYSQLI_ASSOC)){
 		$closed = $row['dtClosed'];
 
 	
-	$reopen_close = '<a href="action_reopen_ticket.php?ticketid='.$ticketid.'" class="btn-close-reopen">REOPEN</a>';
+	$reopen_close = '<a href="action_reopen_ticket.php?ticketid='.$ticketid.'" class="ticketClose">REOPEN</a>';
 
 	//'<button class="btn-close-reopen" type="button" name="myTicketButton" id="myTicketButton" onClick="ReopenTicket('.$row['intTicketId'].');">REOPEN</button>';
 
@@ -82,37 +137,29 @@ while($row = $result->fetch_array(MYSQLI_ASSOC)){
 	<div class="card-number">
 		Ticket #<?php echo $row['intTicketId']?>
 	</div>
-	<div class="card-type" ><span class="<?php echo $TicketColor?>;"><?php echo $row['strTicketType']?></span></div>
+	<div class="card-type" ><span style="background-color:<?php echo $TicketColor?>;"><?php echo $row['strTicketType']?></span></div>
 	<div class="card-title"><?php echo $row['strTitle']?></div>
 	<div class="card-desc"><?php echo $row['strDescription']?></div>
-	<div class="card-image" style="width:70%;margin-left:15%;">
+	<div class="card-image">
 		  <?php 
 	        $filename = "Images_cardSize/".$row['strImageFilePath'];
 	        if(!file_exists($filename) || $row['strImageFilePath'] == ''){
 	            $filename = "Images_cardSize/no-image-available.png";
 	        }
 	    ?>
-	        <img src="<?php echo $filename;?>" style="margin:auto;width:100%;height:100%;" alt="Ticket Image Not Found" >       
+	        <img src="<?php echo $filename;?>" alt="Ticket Image Not Found" >       
 	</div>
 	<div  class="card-date" style="margin:0px 0px <?php echo $submit ?> 0px;">Submitted: <?php echo $row['dtSubmitted']?></div>
-	<div class="card-date" style="margin:0px 0px 20px 0px">
+	<div class="card-date-closed">
 		Closed: <?php echo $closed?>
 	</div>
 
 <div class="card-action">
 	<!---View Button--->
-	<button class="btn-view-ticket" type="button" name="myTicketButton" id="myTicketButton" 
+	<button class="ticketView" type="button" name="myTicketButton" id="myTicketButton" 
 	onClick="openTicket(<?php echo $row['intTicketId'].",".$row['gpsLat'].",".$row['gpsLong'];?>);">VIEW</button>
 		
-<?php echo $reopen_close;//if($row['dtClosed'] ==''){?>
-
-	<!---Reopen Button
-	<button class="btn-close-reopen" type="button" name="myTicketButton" id="myTicketButton" onClick="closeTicket(<?php echo $row['intTicketId'];?>);">CLOSE</button>
---->
-<?php //}else{?>
-	<!--Close
-	<button class="btn-close-reopen" type="button" name="myTicketButton" id="myTicketButton" onClick="ReopenTicket(<?php echo $row['intTicketId'];?>);">REOPEN</button>
---><?php //}?> 
+<?php echo $reopen_close;?>
 
 
 </div>
@@ -120,8 +167,7 @@ while($row = $result->fetch_array(MYSQLI_ASSOC)){
 </div>
 <?php ;} ?>
 
-
-
+</div>
 
 
 
@@ -136,7 +182,7 @@ while($row = $result->fetch_array(MYSQLI_ASSOC)){
 
 <br style="clear:both;"/>
 
-<ul class="pagination" style="background-color:#333;">
+<ul class="pagination">
     
     
     <?php

@@ -10,10 +10,16 @@ $pageno = $_COOKIE['page_number'];
 
 $no_of_records_per_page = 20;
 
-$status = 'where dtClosed IS NULL';
-if ($_GET['status'] == "closed"){$status = 'where dtClosed IS NOT NULL';}
-else if ($_GET['status'] == "all"){$status = '';}
+$ticket_status = $_COOKIE['ticket_status'];
 
+if ($_COOKIE['ticket_status'] == "closed"){
+	$status = 'where dtClosed IS NOT NULL';
+}
+else if ($_COOKIE['ticket_status'] == "all"){
+	$status = '';
+}else{
+	$status = 'where dtClosed IS NULL';
+}
 if(isset($status)){
 
     $sqlCount = "SELECT count(intTicketId) as numTickets\n"
@@ -45,11 +51,12 @@ if(isset($status)){
 
 
 ?>
-
-        <table id="ticketTable" style=" background-color:white; padding:20px; margin:auto; vertical-align:top; text-align:center;border-collapse:collapse;">
-            <tr>
-                <th style="width:20px;"></th>
-                <th style=" padding:20px;" onclick="sortTable(0);">
+        <div class="tableTicket">
+        <table>
+            <thead class="tableHeader">
+            <tr >
+                <th class="firstCell"></th>
+                <th lass="secondCell" onclick="sortTable(0);">
                      Ticket Id 
                 </th>
                 <th onclick="sortTable(1);">
@@ -61,15 +68,50 @@ if(isset($status)){
                 <th onclick="sortTable(3)">
                     Status 
                 </th>
-                <th style="text-align:center;" onclick="sortTable(4)">Actions</th>
+                <th class="lastCell" onclick="sortTable(4)">Actions</th>
                 <!--<th onclick="sortTable(5)">Assigned To</th>-->
             </tr>
-            <?php    while($row = $result->fetch_array(MYSQLI_ASSOC)){ 
-                    if($row['strTicketType']=='Litter'){$TicketColor = '#432021';}
-                    elseif($row['strTicketType']=='Overgrown Brush'){$TicketColor = '#3DB737';}
-                    elseif($row['strTicketType']=='High Water'){$TicketColor = '#75BBB8';}
-                    elseif($row['strTicketType']=='Vandalism'){$TicketColor = '#FD9EA1';}
-                    elseif($row['strTicketType']=='Suspicious Persons'){$TicketColor =  '#C61A1F';}
+            </thead>
+            <tbody>
+            <?php    
+            
+                $colorArray = explode(",",$_COOKIE['colorArray']);
+
+            
+            while($row = $result->fetch_array(MYSQLI_ASSOC)){ 
+                    if(isset($colorArray)) {
+                		switch($row['strTicketType']){
+                		case 'High Water':
+                			$TicketColor = $colorArray[0];
+                			break;
+                		case 'Pothole':
+                			$TicketColor = $colorArray[1];
+                			break;
+                		case 'Tree/Branch':
+                			$TicketColor = $colorArray[2];
+                			break;
+                		case 'Trash Full':
+                			$TicketColor = $colorArray[3];
+                			break;
+                		case 'Litter':
+                			$TicketColor = $colorArray[4];
+                			break;
+                		case 'Overgrown Brush':
+                			$TicketColor = $colorArray[5];
+                			break;
+                		case 'Vandalism':
+                			$TicketColor = $colorArray[6];
+                			break;
+                		case 'Suspicious Persons':
+                			$TicketColor = $colorArray[7];
+                			break;
+                		case 'Other':
+                			$TicketColor = $colorArray[8];
+                			break;
+                		default:
+                			break;
+                		}
+                	}
                     $sqlRangers = "SELECT strFirstName, strLastName, intEmployeeId\n"
                         . "from employees\n"
                         . "where intSecurityLevel = '3'\n";
@@ -79,7 +121,7 @@ if(isset($status)){
     	if($row['dtClosed'] == ''){ 
 		$submit = "0px"; 
 		$closed = '';	
-		$reopen_close = '<a href="action_close_ticket.php?ticketid='.$ticketid.'" class="btn-close-reopen">CLOSE</a>';
+		$reopen_close = '<a href="action_close_ticket.php?ticketid='.$ticketid.'" class="ticketClose">CLOSE</a>';
 	
 		//'<button class="btn-close-reopen" type="button" name="myTicketButton" id="myTicketButton" onClick="closeTicket('.$row['intTicketId'].');">CLOSE</button>';
 
@@ -88,7 +130,7 @@ if(isset($status)){
 		$closed = $row['dtClosed'];
 
 	
-	$reopen_close = '<a href="action_reopen_ticket.php?ticketid='.$ticketid.'" class="btn-close-reopen">REOPEN</a>';
+	$reopen_close = '<a href="action_reopen_ticket.php?ticketid='.$ticketid.'" class="ticketClose">REOPEN</a>';
 
 	//'<button class="btn-close-reopen" type="button" name="myTicketButton" id="myTicketButton" onClick="ReopenTicket('.$row['intTicketId'].');">REOPEN</button>';
 
@@ -96,7 +138,7 @@ if(isset($status)){
             ?>
             <!-- -->
     
-            <tr style="border:2px solid grey;">
+            <tr class="greyBorder">
                 <td class="image-table">
                     <?php if($row['bitUrgent'] == '1'){?>
                 		<div class="circle-box"><div class="circle">!</div></div>
@@ -109,74 +151,41 @@ if(isset($status)){
                         ?>
 
                      <span class="popup" >
-                       <img src="<?php echo $filename;?>" style="width:40px;vertical-align:middle;"  onClick="ShowImagePopup(<?php echo $row['intTicketId'];?>);"  class="hoverImage">
+                       <img src="<?php echo $filename;?>"  onClick="ShowImagePopup(<?php echo $row['intTicketId'];?>);"  class="hoverImage" alt="No Image Available">
 
-                        <span class="popuptext" id="ticketPopup_<?php echo $row['intTicketId'];?>"><img src="<?php echo $filename;?>" style="max-width:100%;margin:auto;" alt="Ticket Image Not Found"></span>
+                        <span class="popuptext" id="ticketPopup_<?php echo $row['intTicketId'];?>"><img src="<?php echo $filename;?>" alt="Ticket Image Not Found"></span>
                     </span>
                     
                 </td>
-                <td  style=" text-align:left;padding:20px;">
+                <td class="ticketCells">
                     Ticket  #<?php echo $row['intTicketId']?>
                 </td>
-                <td style=" text-align:left;padding:20px;">
-                    <span style="font-size:16px; color:black; margin:0px 0px 20px 10px;background-color:<?php echo $TicketColor?>;"><?php echo $row['strTicketType']?></span>
+                <td class="ticketCells">
+                    <span class="ticketCellType" style="background-color:<?php echo $TicketColor?>;"><?php echo $row['strTicketType']?></span>
     
                 </td>
-                <td style=" text-align:left;padding:20px;">
-                    <span style="font-size:14px;text-overflow: ellipsis;text-align:center; font-weight:bold;"><?php echo $row['strTitle']?></span>
+                <td class="ticketCells">
+                    <span class="ticketCellTitle"><strong><?php echo $row['strTitle']?></strong></span>
     
                 </td>
-                <td style=" text-align:left;padding:20px;">
-                    <span style="font-size:14px;text-overflow: ellipsis;text-align:center;">Submitted: <?php echo $row['dtSubmitted']?></span><br/>
-                    <span style="font-size:14px;text-overflow: ellipsis;text-align:center;">Closed: <?php echo $row['dtClosed']?></span>
+                <td class="ticketCells">
+                    <span class="ticketCellInfo">Submitted: <?php echo $row['dtSubmitted']?></span><br/>
+                    <span class="ticketCellInfo">Closed: <?php echo $row['dtClosed']?></span>
 
                 </td>
-                <td style=" text-align:right;padding:20px;">
-                    <div style="display:inline-block;">
-                        <button class="btn-view-ticket" type="button" name="myTicketButton" id="myTicketButton" onClick="openTicket(<?php echo $row['intTicketId'] . ','.$row['gpsLat'].','.$row['gpsLat'];?>);">VIEW</button>
+                <td class="ticketCells">
+                    <div class="ticketButtons">
+                        <button class="ticketView" type="button" name="myTicketButton" id="myTicketButton" onClick="openTicket(<?php echo $row['intTicketId'] . ','.$row['gpsLat'].','.$row['gpsLong'];?>);">VIEW</button>
                         
                        <?php echo $reopen_close;?>
 
                     </div>
                 </td>
-                <!---
-                <td>
-                    
-                    
-                    <form method="get" action="action_assign_ticket.php">
-                        <input type="hidden" name="intTicketId" value="<?php /* echo $row['intTicketId']?>">
-                        <input type="hidden" name="currentPage" value="<?php echo $_SERVER['REQUEST_URI']?>">
-                        <select name="assignedEmployee" onChange="this.form.submit();">
-                            <?php /*
-                                if($row[intEmployeeAssigned]== NULL){
-                            ?>
-                                <option value="%">Choose Employee</option>
-                            <?php/*
-                                }else{
-                            ?>
-                                <option value="<?php echo $row['intEmployeeAssigned']?>">
-                                    <?php echo "".$row['strFirstName']." ".$row['strLastName']?>
-                                </option>
-                            <?php/*
-                                }
-                                
-                                while($ranger = $resultRangers->fetch_array(MYSQLI_ASSOC)){ */
-                            ?>   
-                               
-                                <option value="<?php //echo $ranger['intEmployeeId']?>">
-                                    <?php // echo "".$ranger['strFirstName']." ".$ranger['strLastName']?>
-                                </option>
-                            <?php
-                               // }
-                            ?>
-                        </select>
-                    </form>
-                    
-                   
-                </td>--->
+                
             </tr><?php } ?>
+            </tbody>
         </table>
-        
+        </div>
      <br/>
 
 
@@ -202,7 +211,7 @@ if(isset($status)){
 </div>
 <br style="clear:both;"/>
 
-<ul class="pagination"  style="background-color:#333;">
+<ul class="pagination">
 
      <?php
     $pageno = $_COOKIE['page_number'];

@@ -1,5 +1,6 @@
 <?php
     include("../MySQL_Connections/config.php");
+    include("../Emails/sendEmployeeLogin.php");
     
     if($_SERVER["REQUEST_METHOD"] == "GET") {
         
@@ -45,17 +46,10 @@
     $sql = "UPDATE `tasks` SET `lastCompleted`= '$date' WHERE `taskId`= '2'";
     $result = $conn->query($sql) or die("Update fail");
     
-    echo "Username: ". $username . "Password: " . $randomPassword;
-    $to      = $email;
-    $subject = 'Your account has been created!';
-    $message = 'Welcome to the Viridian Admin Portal!
-                Your username is: '.$username.'
-                Your temporary password is: '.$randomPassword;
-    $headers = 'From: andreamoorman26@gmail.com' . "\r\n";
+    //echo "Username: ". $username . "Password: " . $randomPassword;
+    sendLogin($email, $firstName, $username, $randomPassword);
 
-mail($to, $subject, $message, $headers);
-
-   // header("location: /Management/manageEmployees.php");
+    header("location: /Management/manageEmployees.php");
     }
 ?>
    

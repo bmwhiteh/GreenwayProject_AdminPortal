@@ -28,6 +28,7 @@
       <!---Javascript file to use Google Maps API--->
       <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDVZ9qSBrT-dnmrBaxkX2PzWbfmxv6xZgM&v=3&libraries=visualization"></script>
       
+      
         <script src='../Ticket_System_v2/functions.js'></script>
                 <script src='../Calendar/calendar_functions.js'></script>
 
@@ -69,9 +70,13 @@
                 n2 : document.getElementById("n2").checked,
                 n3 : document.getElementById("n3").checked
               }
+              
+              var filter_events = {
+                e1 : document.getElementById("e1").checked
+              }
               curSource[0] = { url: './get_tickets.php', type: 'POST', data: filter_tickets, error: function(){alert('There was an error while getting the events.');}};
               curSource[1] = { url: './get_notifications.php', type: 'POST', data: filter_notifications, error: function(){alert('There was an error while getting the events.');}};
-            
+              curSource[2] = { url: './get_events.php', type: 'POST',  data: filter_events, error: function(){alert('There was an error while getting the events.');}};
             
             
             
@@ -94,7 +99,8 @@
                     
                     curSource[0],
                     curSource[1],
-                    
+                    curSource[2],
+
                     ], 
                     eventClick: function(calEvent, jsEvent, view) {
         
@@ -102,9 +108,11 @@
                       if ((title).includes("Ticket")){
                         
                         openTicket(calEvent.id,calEvent.gpsLat, calEvent.gpsLong);
-                        
+
                       } else if((title).includes("Notification")){
                         ModalNotification(calEvent.id);
+                      } else if((title).includes("Event")){
+                        ModalEvent(calEvent.id);
                       } else{
 
                       alert('Event: ' + calEvent.title);
@@ -142,8 +150,9 @@
                       n3 : document.getElementById("n3").checked
                     }
                     //my events
-                    var e1 = '&e1='+$('#e1').is(':checked');
-                    
+                    var statuses_events = {
+                      e1 : document.getElementById("e1").checked,
+                    }
                     //staff events
                     var s1 = '&s1='+$('#s1').is(':checked');
                   
@@ -151,19 +160,26 @@
                     //get current status of our filters into newSource
                     newSource[0] = { url: './get_tickets.php', type: 'POST', data: statuses_tickets, error: function(){alert('There was an error while getting the events.');}};
                     newSource[1] = { url: './get_notifications.php', type: 'POST', data: statuses_notifications, error: function(){alert('There was an error while getting the events.');}};
-           
+                    newSource[2] = { url: './get_events.php', type: 'POST',  data: statuses_events, error: function(){alert('There was an error while getting the events.');}};
+                    
                     //remove the old eventSources (all the previous checks/notchecks)
                     $(calendarDiv).fullCalendar('removeEventSource', curSource[0]);
                     $(calendarDiv).fullCalendar('removeEventSource', curSource[1]);
+                    $(calendarDiv).fullCalendar('removeEventSource', curSource[2]);
+
                     $(calendarDiv).fullCalendar('refetchEvents');
             
                     //attach the new eventSources (replace the checkboxes & refetch the evets)
                     $(calendarDiv).fullCalendar('addEventSource', newSource[0]);
                     $(calendarDiv).fullCalendar('addEventSource', newSource[1]);
+                    $(calendarDiv).fullCalendar('addEventSource', newSource[2]);
+
                     $(calendarDiv).fullCalendar('refetchEvents');
             
                     curSource[0] = newSource[0];
                     curSource[1] = newSource[1];
+                    curSource[2] = newSource[2];
+
                 });
                
             });
@@ -215,8 +231,10 @@
     
 
 
-    <div class="theBox" >
-                  <div id="txtLoading" class="txtLoading"></div>
+    <div class="contentBox" >
+                <div class="theBox">
+     
+                  <div id="txtLoading" class="txtLoading" style="display:none;"></div>
 
          <!---View Ticket Modal Window--->
     <div id="myTicket" class="modal" style="display:none;">I'm Here</div>
@@ -225,7 +243,7 @@
       <div style="border:2px solid grey; background-color:white; border-radius: 10px; margin:0% 5% 0% 5%; vertical-align:top; text-align:center;padding-bottom:1%;padding-top:2%;">
         <div style="font-size:24px;font-weight:bold; text-decoration:underline;margin-bottom:5px;">Calendar Options</div>
             <form method="post" name="ShowEvents">
-                <ul style="margin-left:10%;width:100%;font-size:14px;">
+                <ul style="margin-left:5%;width:85vm;font-size:14px;">
                   <li>
                     <fieldset>
                     
@@ -254,35 +272,18 @@
                     <fieldset>
                   <legend>Select Optional</legend>
 
-                  <label for="includeRangers"> <input type="checkbox" name="includeRangers" id="includeRangers">Staff Events</label><br/>
+                  <!---<label for="includeRangers"> <input type="checkbox" name="includeRangers" id="includeRangers">Staff Events</label><br/>--->
                                        
-                    <label for="includePersonal"><input type="checkbox" name="includePersonal" id="includePersonal"> My Events</label>
+                    <label for="includePersonal"><input type="checkbox" name="includePersonal" id="e1" checked="checked"> My Events</label>
                     
                 </fieldset>
                   </li>
                   <li class="prettyButtons">
-                    <table>
-                      <tr>
-                        <td>
-                                              <button type="button" name="addEvent" onClick="AddTicketModal();">Add Maintenance Ticket</button>
-
-                        </td>
-                        <td>
-                                              <button type="button" name="addEvent" onClick="AddNotificationModal();">Add Push Notification</button><br/>
-
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                                              <button type="button" name="addEvent" onClick="AddStaffModal();">Add Staff Event</button>
-
-                        </td>
-                        <td>
+                    <button type="button" name="addEvent" onClick="AddTicketModal();">Add Maintenance Ticket</button>
+                    <br/>
                     <button type="button" name="addEvent" onClick="AddEventModal();">Add My Event</button>
-
-                        </td>
-                      </tr>
-                    </table>
+                    <!---<button type="button" name="addEvent" onClick="AddNotificationModal();">Add Push Notification</button><br/>
+                          <button type="button" name="addEvent" onClick="AddStaffModal();">Add Staff Event</button>--->
 
                   </li>
                 </ul>
@@ -298,7 +299,7 @@
       </div>
     </div>
    
-    
+    </div>
 </body>
 
 

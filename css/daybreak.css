@@ -69,7 +69,36 @@
 .tableHeader, .tableFooter{
     background-color: #d43727;
 }
+.ticketLayout {
+    background-color: #e19226;
+}
 
+.ticketView {
+    background-color: #ca4d27;
+    border:2px solid #ca4d27; 
+    padding:5px;color:white; 
+    font-weight:bold;
+
+}
+
+.ticketClose{
+        background-color: #d43727;
+        border:2px solid #d43727;
+        padding:5px;
+        color:white;
+        font-weight:bold;
+
+}
+ .txtLoading {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background: url('/Ticket_System_v2/Iconography/loadingGIF_daybreak.gif') 50% 50% no-repeat rgb(249,249,249);
+    opacity: .8;
+}
 /*
 ul {
     background-color: #333;

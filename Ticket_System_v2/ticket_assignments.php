@@ -25,117 +25,7 @@
       <!---Javascript to open & Close Modals, and populate the Google Maps with the Markers--->
             <script src=/Ticket_System_v2/functions.js></script>
         <style>
-            .txtLoading {
-                position: fixed;
-                left: 0px;
-                top: 0px;
-                width: 100%;
-                height: 100%;
-                z-index: 9999;
-                background: url('/Ticket_System_v2/Iconography/loadingGIF.gif') 50% 50% no-repeat rgb(249,249,249);
-                opacity: .8;
-            }
-            /* Customize the label (the container) */
-            .container-chkbox {
-              /*display: block;*/
-              position: relative;
-              padding-left: 35px;
-              margin-bottom: 12px;
-              cursor: pointer;
-              font-size: 22px;
-              -webkit-user-select: none;
-              -moz-user-select: none;
-              -ms-user-select: none;
-              user-select: none;
-            }
             
-            
-            
-            /* Hide the browser's default checkbox */
-            .container-chkbox input {
-              position: absolute;
-              opacity: 0;
-              cursor: pointer;
-            }
-            /* Create a custom checkbox */
-            .checkmark1 {
-              position: absolute;
-              top: 0;
-              left: 0;
-              height: 35px;
-              width: 35px;
-              background-color: #eee;
-            }
-            
-            /* Create a custom checkbox */
-            .checkmark2 {
-              position: absolute;
-              top: 0;
-              left: 0;
-              height: 35px;
-              width: 35px;
-              background-color: #eee;
-            }
-            
-            /* Create a custom checkbox */
-            .checkmark3 {
-              position: absolute;
-              top: 0;
-              left: 0;
-              height: 35px;
-              width: 35px;
-              background-color: #eee;
-            }
-            
-            
-            /* When the checkbox is checked, add a blue background */
-            .container-chkbox input:checked ~ .checkmark1 {
-              background-color: #194400;
-            }
-            
-            .container-chkbox input:checked ~ .checkmark2 {
-              background-color: #37721b;
-            }
-            
-            .container-chkbox input:checked ~ .checkmark3 {
-              background-color: red;
-            }
-            
-            /* Create the checkmark/indicator (hidden when not checked) */
-            .checkmark1:after, .checkmark2:after, .checkmark3:after {
-              content: "";
-              position: absolute;
-              display: none;
-            }
-            
-            /* Show the checkmark when checked */
-            .container-chkbox input:checked ~ .checkmark1:after , .container-chkbox input:checked ~ .checkmark2:after  , .container-chkbox input:checked ~ .checkmark3:after{
-              display: block;
-            }
-            
-            /* Style the checkmark/indicator */
-            .container-chkbox .checkmark1:after,.container-chkbox .checkmark2:after,.container-chkbox .checkmark3:after {
-              left: 9px;
-              top: 5px;
-              width: 12px;
-              height: 20px;
-              border: solid white;
-              border-width: 0 6px 6px 0;
-              -webkit-transform: rotate(45deg);
-              -ms-transform: rotate(45deg);
-              transform: rotate(45deg);
-            }
-            
-            
-            
-            .typesList{
-                margin-left:50px;
-                text-align:center;
-            }
-            .typesList li{
-                padding: 10px;
-                text-align:center;
-            }
         </style>
 
     <script>
@@ -203,7 +93,7 @@
 
             <div id="txtLoading" class="txtLoading"></div>
 
-<div class="theBox" style="padding:10px;">
+<div class="contentBox">
             <!---<div id="txtLoading" class="txtLoading"></div>--->
  <!---View Ticket Modal Window--->
       <div id="myTicket" class="modal" style="display:none;"></div>
@@ -226,8 +116,7 @@
 
     
     $sqlRangers = "SELECT strFirstName, strLastName, intEmployeeId\n"
-                        . "from employees\n"
-                        . "where intSecurityLevel = '3'\n";
+                        . "from employees\n";
                         
                     $resultRangers = $conn->query($sqlRangers) or die("Query Rangers fail");
                     
@@ -242,9 +131,8 @@
                 
 ?>
 
-     <div style="border:2px solid grey; background-color:white; border-radius: 10px; width:80%;  margin:auto; vertical-align:top; text-align:center;">
+     <div style="border:2px solid grey; background-color:white; border-radius: 10px; width:80%; margin:auto; vertical-align:top; text-align:center;display:block;">
 
-    <div style=" margin-top:20px; margin-bottom:20px;">
     <form method="post" action="action_assign_ticket.php">
         <div>
             <div style="margin:auto; font-size: 22px;">
@@ -299,16 +187,43 @@
                 <ul>
                     <?php while($type = $resultTicketTypes->fetch_array(MYSQLI_ASSOC)){?>
                     <li onClick="ShowType('<?php echo $type['strTicketType'];?>');" >
-                        <?php   if($type['strTicketType']=='High Water')            {$TicketColor = 'color1';}
-                                elseif($type['strTicketType']=='Pothole')           {$TicketColor = 'color2';}
-                                elseif($type['strTicketType']=='Tree/Branch')       {$TicketColor = 'color3';}
-                                elseif($type['strTicketType']=='Trash Full')        {$TicketColor = 'color4';}
-                                elseif($type['strTicketType']=='Litter')            {$TicketColor =  'color5';}
-                                elseif($type['strTicketType']=='Overgrown Brush')   {$TicketColor =  'color6';}
-                                elseif($type['strTicketType']=='Vandalism')         {$TicketColor =  'color7';}
-                                elseif($type['strTicketType']=='Suspicious Persons'){$TicketColor =  'color8';}
-                                elseif($type['strTicketType']=='Other')             {$TicketColor =  'color9';}
-                            echo "<span class='".$TicketColor."' style='padding: 5px;'>".$type['strTicketType']."</span>";?>
+                        <?php  
+                                        $colorArray = explode(",",$_COOKIE['colorArray']);
+
+                        if(isset($colorArray)) {
+                		switch($type['strTicketType']){
+                		case 'High Water':
+                			$TicketColor = $colorArray[0];
+                			break;
+                		case 'Pothole':
+                			$TicketColor = $colorArray[1];
+                			break;
+                		case 'Tree/Branch':
+                			$TicketColor = $colorArray[2];
+                			break;
+                		case 'Trash Full':
+                			$TicketColor = $colorArray[3];
+                			break;
+                		case 'Litter':
+                			$TicketColor = $colorArray[4];
+                			break;
+                		case 'Overgrown Brush':
+                			$TicketColor = $colorArray[5];
+                			break;
+                		case 'Vandalism':
+                			$TicketColor = $colorArray[6];
+                			break;
+                		case 'Suspicious Persons':
+                			$TicketColor = $colorArray[7];
+                			break;
+                		case 'Other':
+                			$TicketColor = $colorArray[8];
+                			break;
+                		default:
+                			break;
+                		}
+                	}
+                            echo "<span style='padding: 5px;background-color:".$TicketColor."'>".$type['strTicketType']."</span>";?>
                     </li>
                     <?php } ?>
                 </ul>
@@ -334,7 +249,6 @@
                     
                     
                     
-        </div>
 </form>
 </div>
 

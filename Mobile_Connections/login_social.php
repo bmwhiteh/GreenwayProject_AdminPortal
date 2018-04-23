@@ -137,7 +137,7 @@
                 $myObj->firstName = $row['strFirstName'];
                 $myObj->lastName = $row['strLastName'];
                 $myObj->emailAddress = $row['strEmailAddress'];
-                $myObj->userBirthday = $row['dtBirthdate'];
+                $myObj->userBirthdate = $row['dtBirthdate'];
                 $myObj->userHeight = $heightFt . " Feet " . $heightInches . " Inches";
                 $myObj->userWeight = $row['intWeight'] . " Lbs";
                 $myObj->userGender = $row['strGender'];

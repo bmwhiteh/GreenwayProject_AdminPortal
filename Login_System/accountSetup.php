@@ -43,15 +43,17 @@
                             $hashedPassword = password_hash($newPassword, PASSWORD_BCRYPT, $options);
                             $id1 = mysqli_real_escape_string($conn, $_POST['securityQuestion1']);
                             $answer1 = mysqli_real_escape_string($conn, $_POST['answer1']);
+                            $hashedanswer1 = password_hash($answer1, PASSWORD_BCRYPT, $options);
                             $id2 = mysqli_real_escape_string($conn, $_POST['securityQuestion2']);
                             $answer2 = mysqli_real_escape_string($conn, $_POST['answer2']);
+                            $hashedanswer2 = password_hash($answer2, PASSWORD_BCRYPT, $options);
         
                             //sql to update users password
                             $sql = "UPDATE `employees` SET `strEncryptedPassword`= 
                             '$hashedPassword',`securityQuestion1`= '$id1',
-                            `securityQuestion1Answer`= '$answer1',
+                            `securityQuestion1Answer`= '$hashedanswer1',
                             `securityQuestion2`= '$id2', 
-                            `securityQuestion2Answer`= '$answer2',  `firstAccess` ='0'
+                            `securityQuestion2Answer`= '$hashedanswer2',  `firstAccess` ='0'
                              WHERE `strUsername` = '$username'";
                              echo $sql;
                             //sql execution

@@ -27,10 +27,10 @@
     <div class="leftSide">
         <!--<h2>Quick Stats</h2>-->
         <div class="topBox">
-            <h3># of Weather Alerts This Week</h3>
+            <h3># of Weather Alerts Sent This Week</h3>
             <h1><?php include "numWeatherAlertsSentWeekly.php"?></h1>
             <div class="absolute">
-                <img src=<?php echo $_COOKIE['severeWeatherIcon']; ?> style="margin-right:30%;"></img>
+                <img src=<?php echo $_COOKIE['severeWeatherIcon']; ?> class="quickStats"></img>
             </div>
         </div>
         
@@ -38,7 +38,7 @@
             <h3># of Alerts Scheduled This Week</h3>
             <h1><?php include "numScheduledAlertsSentWeekly.php"?></h1>
             <div class="absolute">
-                <img src=<?php echo $_COOKIE['calendarIcon']; ?> style="margin-right:30%;"></img>
+                <img src=<?php echo $_COOKIE['calendarIcon']; ?> class="quickStats"></img>
             </div>
         </div>
         
@@ -46,7 +46,7 @@
             <h3># of Users Receiving Alerts</h3>
             <h1><?php include "numUsersReceivingNotifications.php"?></h1>
             <div class="absolute">
-                <img src=<?php echo $_COOKIE['alertsIcon']; ?> style="margin-right:30%;"></img>
+                <img src=<?php echo $_COOKIE['alertsIcon']; ?> class="quickStats"></img>
             </div>
         </div>
     </div>

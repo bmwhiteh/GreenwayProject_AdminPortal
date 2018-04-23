@@ -28,7 +28,7 @@
     <div id="myNotificationView" class="modal-content" style="margin-top:10%;">
         
         
-        <span id="closeNotification" class="close" onClick="closeNotification();">&times;</span>
+        <span id="closeNotification" class="close" onClick="closeTicket('myNotificationView');">&times;</span>
         
         
         <h1 class="modal-title" style="margin-top:0px; vertical-align:middle; text-align: center;" id="MapTicketId">Notification Id #: <?php echo $id?></h1>

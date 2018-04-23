@@ -54,16 +54,15 @@
     if($row['dtClosed'] == ''){ 
 		$submit = "0px"; 
 		$closed = '';	
-		$reopen_close = '<a href="action_close_ticket.php?ticketid='.$ticket.'" class="btn-close-reopen"  style="padding:10px;">CLOSE</a>';
+		$reopen_close = '<a href="action_close_ticket.php?ticketid='.$ticket.'" class="ticketView"  style="padding:10px;">CLOSE</a>';
 	
-		//'<button class="btn-close-reopen" type="button" name="myTicketButton" id="myTicketButton" onClick="closeTicket('.$row['intTicketId'].');">CLOSE</button>';
 
 	}else{ 
 	    $submit =  "20px";
 		$closed = $row['dtClosed'];
 
 	
-	    $reopen_close = '<a href="action_reopen_ticket.php?ticketid='.$ticket.'" class="btn-close-reopen">REOPEN</a>';
+	    $reopen_close = '<a href="action_reopen_ticket.php?ticketid='.$ticket.'" class="ticketView">REOPEN</a>';
 
 
 	}
@@ -77,14 +76,19 @@
 	    $words = "";
 	}
 	$urgentBtn = '<a href="action_set_urgent.php?ticketid='.$ticket.'&urgent='.$switch.'" class="btn-close-reopen" style="padding:10px; background-color:red; border-color:red;">CHANGE TO '.$words.'URGENT</a>';
-
+    
+    $sqlRangers = "SELECT strFirstName, strLastName, intEmployeeId\n"
+                        . "from employees\n";
+                        
+    $resultRangers = $conn->query($sqlRangers) or die("Query Rangers fail");
+                    
 ?>
 
     <!-- Modal content -->
     <div id="myTicketView" class="modal-content">
         
         
-        <span id="closeTicket" class="close" onClick="closeTicket();">&times;</span>
+        <span id="closeTicket" class="close" onClick="closeTicket('myTicketView');">&times;</span>
         
         
         <h1 class="modal-title" style="margin-top:0px; vertical-aligh:middle; text-align: center;" id="MapTicketId">Ticket Id #: <?php echo $id?></h1>
@@ -93,7 +97,7 @@
         <div class="modal-body">
         
        
-            <table style=" text-align:left; " >
+            <table style=" text-align:left;" >
                 
                 <tbody>
                 <!--Ticket Title & Submitted By-->
@@ -132,7 +136,20 @@
                     <td style="width:20px;">&nbsp;</td>
                     <th>Assigned Employee: </th>
                     <td>
-                        <?php echo $EmployeeName ?>
+                        <form>
+                            <select name="assignedEmployee" id="assignedEmployee" onChange="ReassignTicket(<?php echo $row['intTicketId'];?>);">
+                                <?php 
+                                if ($row['intEmployeeAssigned']!=''){
+                                    echo "<option value='".$row['intEmployeeAssigned']."'>".$EmployeeName."</option>";
+                                }else{
+                                    echo "<option value='%'>Select Employee</option>";
+                                }
+                                while($ranger = $resultRangers->fetch_array(MYSQLI_ASSOC)){ 
+                                    echo "<option value='". $ranger['intEmployeeId']."'>" .$ranger['strFirstName']." ".$ranger['strLastName']."</option>";
+                                }
+                                ?>
+                            </select>
+                        </form>
                     </td>
                 </tr>
                 
@@ -176,8 +193,9 @@
                     
                     <td colspan="2" style="width:30%;">
                         
-                        <div id="mapBucket" style="width: 500px; height: 400px;"></div>
+                        <div id="mapBucket" class="mapBucket"></div>
 
+                
                         
                     </td>
                     
