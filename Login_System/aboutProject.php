@@ -7,7 +7,7 @@
 
     <!--Links the CSS stylesheet to the login.html page -->
     <link rel="stylesheet" type="text/css" href="../css/loginSystem.css"/>
-    <link rel="shortcut icon" href="../Dashboard_Pages/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="../Dashboard_Pages/favicon.png" type="image/x-icon">
 </head>
 
 <script>
@@ -20,7 +20,7 @@
     <!--includes the Viridian Banner -->
 <div class="banner">
     <div class="logo">
-        <img src="../images/ViridianBanner.png" width="100%" height="150px"/>
+        <img src="../images/ViridianBanner.png" width="100%"; height="150px"/>
     </div>
 </div>
 
@@ -28,7 +28,7 @@
 <div class="about">
     <h2>Welcome to the Viridian Admin Portal!</h2>
     <h3>What is Viridian?</h3>
-    <p>This project was developed over the course of three years by students 
+    <p class="info">This project was developed over the course of three years by students 
     in the Computer Science Department at Indiana University-Purdue University, 
     Fort Wayne (IPFW) as part of their Senior Capstone course. Viridian is a
     Mobile App and Admin Portal project sponsored by the City of Fort Wayne.
@@ -39,7 +39,7 @@
     collected.  
     </p>
     <h3>How can I participate?</h3>
-    <p>Viridian is used by two types of users:  <ul><li>General Public - 
+    <p class="info">Viridian is used by two types of users:  <ul><li>General Public - 
     The Viridian mobile application is used by the general public. This app is
     accessible via both iOS and Android devices. It is a completely free fitness
     and activity tracker with maps specific to the River Greenway Trail System. 

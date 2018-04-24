@@ -4,7 +4,6 @@ $username = "whitbm06";
 $password = "WebDev2017";
 $db = "viridian_capstone_project";
 
-
 // Create connection
 $conn = new mysqli($servername, $username, $password, $db);
 

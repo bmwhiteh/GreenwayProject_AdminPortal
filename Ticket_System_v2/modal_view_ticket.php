@@ -54,7 +54,7 @@
     if($row['dtClosed'] == ''){ 
 		$submit = "0px"; 
 		$closed = '';	
-		$reopen_close = '<a href="action_close_ticket.php?ticketid='.$ticket.'" class="ticketView"  style="padding:10px;">CLOSE</a>';
+		$reopen_close = '<a href="action_close_ticket.php?ticketid='.$ticket.'" class="ticketView">CLOSE</a>';
 	
 
 	}else{ 
@@ -75,7 +75,7 @@
 	    $switch = '1';
 	    $words = "";
 	}
-	$urgentBtn = '<a href="action_set_urgent.php?ticketid='.$ticket.'&urgent='.$switch.'" class="btn-close-reopen" style="padding:10px; background-color:red; border-color:red;">CHANGE TO '.$words.'URGENT</a>';
+	$urgentBtn = '<a href="action_set_urgent.php?ticketid='.$ticket.'&urgent='.$switch.'" class="btn_close_urgent">CHANGE TO '.$words.'URGENT</a>';
     
     $sqlRangers = "SELECT strFirstName, strLastName, intEmployeeId\n"
                         . "from employees\n";
@@ -86,29 +86,28 @@
 
     <!-- Modal content -->
     <div id="myTicketView" class="modal-content">
-        
-        
+        <div class="modal_view_response">
         <span id="closeTicket" class="close" onClick="closeTicket('myTicketView');">&times;</span>
         
         
-        <h1 class="modal-title" style="margin-top:0px; vertical-aligh:middle; text-align: center;" id="MapTicketId">Ticket Id #: <?php echo $id?></h1>
+        <h1 class="modal-title" id="MapTicketId">Ticket Id #: <?php echo $id?></h1>
         
             
         <div class="modal-body">
         
        
-            <table style=" text-align:left;" >
+            <table>
                 
                 <tbody>
                 <!--Ticket Title & Submitted By-->
                 <tr>
-                    <th style="width:15%">Title:</th>
-                    <td style="width:15%">
+                    <th >Title:</th>
+                    <td class="modal_view_15">
                         <?php echo $row['strTitle']; ?>
                     </td>
-                    <td style="width:10%;">&nbsp;</td>
-                    <th style="width:15%">Submitted By: </th>
-                    <td style="width:15%">
+                    <td class="modal_view_10">&nbsp;</td>
+                    <th class="modal_view_15">Submitted By: </th>
+                    <td class="modal_view_15">
                         <?php echo $User['strFirstName']." ".$User['strLastName']; ?>
                     </td>
                 </tr>
@@ -119,7 +118,7 @@
                     <td>
                         <?php echo $row['intTypeId'] . " - " . $row['strTicketType'] ?>
                     </td>
-                    <td style="width:20px;">&nbsp;</td>
+                    <td class="modal_view_20px">&nbsp;</td>
                     <th>Date Submitted: </th>
                     <td>
                         <?php echo $row['dtSubmitted'] ?>
@@ -133,7 +132,7 @@
                     <td>
                         <?php echo $row['strDescription'] ?>
                     </td>
-                    <td style="width:20px;">&nbsp;</td>
+                    <td class="modal_view_20px">&nbsp;</td>
                     <th>Assigned Employee: </th>
                     <td>
                         <form>
@@ -156,7 +155,7 @@
                 <!--Urgent Flag-->
                 <tr>
                     <td colspan="2">&nbsp;</td>
-                    <td style="width:20px;">&nbsp;</td>
+                    <td class="modal_view_20px">&nbsp;</td>
                     <th>Urgent: </th>
                     <td>
                         <?php
@@ -173,25 +172,25 @@
                 <!--Image and Map Headers-->
                 <tr>
                     <th colspan="2">Image:</th>
-                    <td style="width:20px;">&nbsp;</td>
+                    <td class="modal_view_20px">&nbsp;</td>
                     <th colspan="2">Location: </th>
                     
                 </tr>
                 
                 <!--Image and Map-->
                 <tr>
-                    <td colspan="2" style="text-align:center;width:70%;margin-left:15%;">
+                    <td colspan="2" class="modal_image">
                             <?php 
                             $filename = "../Ticket_System_v2/Images_ticketSize/".$row['strImageFilePath'];
                             if(!file_exists($filename)){
                                 $filename = "/Ticket_System_v2/Images_ticketSize/no-image-available.png";
                             }
                         ?>
-                            <img src="<?php echo $filename;?>" style="margin:auto;width:80%;" alt="Ticket Image NOT Found">
+                            <img src="<?php echo $filename;?>" class="modal_image_img" alt="Ticket Image NOT Found">
                     </td>
-                    <td style="width:30px;">&nbsp;</td>
+                    <td class="modal_view_30px">&nbsp;</td>
                     
-                    <td colspan="2" style="width:30%;">
+                    <td colspan="2" class="modal_view_30">
                         
                         <div id="mapBucket" class="mapBucket"></div>
 
@@ -203,8 +202,8 @@
                 
                 <!---Allow the User to Close or Reopen a Closed Ticket--->
                 <tr>
-                    <td colspan="2" style="padding:15px;">
-                        <div style="display:inline-block;">
+                    <td colspan="2" class="modal_padding_15px">
+                        <div>
                         <ul>
                             <li>
                                 <?php echo $reopen_close;?>
@@ -222,7 +221,7 @@
                 </tr>
                 
                 <tr>
-                    <td colspan="5" height="100px;">&nbsp;</td>
+                    <td colspan="5" class="modal_height_100px">&nbsp;</td>
                 </tr>
                 
                 <!---Ticket Notes--->
@@ -236,7 +235,7 @@
                             <tr>
                                 <th>Date</th>
                                 <th>Employee</th>
-                                <th colspan="3" ><span style="margin-left: 10px;">Comment</span></th>
+                                <th colspan="3" ><span class="comment_header">Comment</span></th>
                                 
                             </tr>
                             
@@ -261,11 +260,11 @@
                                     <!---Comment Box--->
                                     <td colspan="3">
                                         
-                                        <span style="margin-left: 10px;">
+                                        <span class="comment_box">
                                             
-                                            <textarea name="comment" style="width:80%;" rows="2" style="overflow:hidden;" id="strComment" required></textarea>
+                                            <textarea name="comment" rows="2" id="strComment" required></textarea>
                                         
-                                            <button type="button" name="addNote" style="width:80px; height:30px; vertical-align:top;" onClick="AddNotesTicket(<?php echo $id;?>);">Add Note</button>
+                                            <button type="button" name="addNote" class="comment_note" onClick="AddNotesTicket(<?php echo $id;?>);">Add Note</button>
                                        
                                         </span>
                                         
@@ -321,7 +320,7 @@
             </table>
     
         </div>
-    
+    </div>
     </div>
 
 

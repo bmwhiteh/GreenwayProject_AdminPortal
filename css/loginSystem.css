@@ -26,6 +26,7 @@ input[type=text], input[type=password] {
     display: inline-block;
     border: 1px solid #ccc;
     box-sizing: border-box;
+    font-family: "Bookman Old Style";
 }
 
 select{
@@ -48,6 +49,8 @@ button {
     border: none;
     cursor: pointer;
     width: 100%;
+    font-variant: small-caps;
+    font-family: "Odin Bold"
 }
 
 button:hover {

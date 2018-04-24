@@ -4,7 +4,7 @@
 <head>
     <title>Home</title>
     <link rel="stylesheet" type="text/css" href="/css/dashboardPages.css"/>
-    <link rel="shortcut icon" href="../Dashboard_Pages/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="../Dashboard_Pages/favicon.png" type="image/x-icon">
 
 </head>
 

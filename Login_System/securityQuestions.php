@@ -7,7 +7,7 @@
 
     <!--Links the CSS stylesheet to the login.html page -->
     <link rel="stylesheet" type="text/css" href="../css/loginSystem.css"/>
-    <link rel="shortcut icon" href="../Dashboard_Pages/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="../Dashboard_Pages/favicon.png" type="image/x-icon">
 </head>
 
 <body>

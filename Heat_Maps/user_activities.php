@@ -13,7 +13,7 @@
         <title>User Activities Heat Map</title>
     <link rel="stylesheet" type="text/css" href="/css/heatMaps.css"/>
     <link rel="stylesheet" type="text/css" href=<?php echo $_COOKIE['colorCssLink']; ?>>
-    <link rel="shortcut icon" href="../Dashboard_Pages/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="../Dashboard_Pages/favicon.png" type="image/x-icon">
     <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
         <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDVZ9qSBrT-dnmrBaxkX2PzWbfmxv6xZgM&v=3&sensor=true&libraries=visualization"></script>
         <script type="text/javascript">

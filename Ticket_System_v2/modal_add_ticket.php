@@ -21,7 +21,7 @@
         <span id="closeModal" class="close" onClick="closeTicket('myModal');">&times;</span>
         
         <!-- Popup Header -->
-        <h3 class="modal-title" style="text-decoration:underline;">Add New Maintenance Ticket</h3>
+        <h3 class="modal-title">Add New Maintenance Ticket</h3>
         
         
         <div class="modal-body">
@@ -40,8 +40,8 @@
                 <input type="hidden" name="gpsLong" id="gpsLong" value="-85.111250">
     
     
-                <div>
-                    <span style="float:left;">
+                <div class="modal_view">
+                    <span>
                         
                         <!--Ticket Title-->
                         <div class="form-group">
@@ -69,7 +69,7 @@
         
                                 <label for="strImageFilePath" class="col-sm-2 control-label">Upload Image</label>
                                 <input type="file" name="strImageFilePath" id="strImageFilePath" class="form-control" onChange="checkImageSize();">
-                                <div id="ShowError" style="display:none"><span style="color:red">Image is too big!</span></div>
+                                <div id="ShowError"><span>Image is too big!</span></div>
                             </div>
                         </div>
                         
@@ -92,7 +92,7 @@
                             <div class="col-sm-10">
         
                                 <label for="bitUrgent" class="col-sm-2 control-label">Urgent</label>
-                                <input type="checkbox" name="bitUrgent" style="vertical-align:middle;width:20px; height:20px"   class="form-control">
+                                <input type="checkbox" name="bitUrgent" class="urgentCheck" >
                                 
                             </div>
                          </div> 
@@ -100,20 +100,20 @@
                          <!--Submit Button-->
                          <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-10">
-                                <button type="submit" name="submit" class="btn btn-default" style="width:100px; height: 50px;">Submit</button>
+                                <button type="submit" name="submit" class="btn btn-default">Submit</button>
                             </div>
                         </div>
                         
                     </span>
                 
                     <!--Google Map to mark the ticket location-->
-                    <span style="float:right;">
+                    <span class="Modal_add_Map">
                         
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-10">
                                 
                                 <label for="mapCanvas" class="col-sm-2 control-label">Drag the Marker to Set the Problem Location</label>
-                                <div id="mapCanvas" style="width: 500px; height: 400px;"></div>
+                                <div id="mapCanvas" class="mapCanvas"></div>
                       
                            </div>
                         </div>

@@ -5,7 +5,7 @@
     <title>Medal Rack</title>
         <link rel="stylesheet" type="text/css" href=<?php echo $_COOKIE['colorCssLink'];?>>
         <link rel="stylesheet" type="text/css" href="/css/medalRack.css"/>
-        <link rel="shortcut icon" href="../Dashboard_Pages/favicon.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="../Dashboard_Pages/favicon.png" type="image/x-icon">
         
         <script src="https://code.jquery.com/jquery-1.11.0.min.js" /></script>
         <script src = "../js/changeColorScheme.js"></script>

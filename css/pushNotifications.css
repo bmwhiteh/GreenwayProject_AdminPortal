@@ -147,6 +147,8 @@ body{
         }
 
         .quickStats{
-             height:85%;
-             margin-right:25%;
+            max-width: 80%;
+        	height: auto;
+        	width: auto\9; /* IE8 */
+            margin-right:30%;
         }

@@ -91,3 +91,7 @@ src: local('Odin Bold'), url('../fonts/Odin-Rounded---Bold.woff') format('woff')
 .lockUnlock, .grantRemove{
     width: 100%;
 }
+
+.info{
+    font-family: "Bookman Old Style" !important;
+}

@@ -5,7 +5,7 @@
     <link rel="stylesheet" type="text/css" href="../fonts/style.css">
     <link rel="stylesheet" type="text/css" href="../Dashboard_Pages/nav.css">
     <link rel="stylesheet" type="text/css" href=<?php echo $_COOKIE['colorCssLink']; ?>>
-    <link rel="shortcut icon" href="../Dashboard_Pages/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="../Dashboard_Pages/favicon.png" type="image/x-icon">
     <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
     
 </head>

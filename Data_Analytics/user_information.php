@@ -7,12 +7,12 @@
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
        <link rel="stylesheet" type="text/css" href="/Data_Analytics/data_analytics.css"/>
 
-	<link rel="icon" type="image/png" href="assets/img/favicon.ico">
+	<link rel="icon" type="image/png" href="assets/img/favicon.png">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
     <!---<link rel="stylesheet" type="text/css" href="./css/styles.css"/>
     <link rel="stylesheet" type="text/css" href="./css/viridian.css"/>--->
-    <link rel="shortcut icon" href="../Dashboard_Pages/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="../Dashboard_Pages/favicon.png" type="image/x-icon">
     <script src="../js/jquery-3.2.1.min.js"></script>
     
 	<!--  Charts Plugin -->

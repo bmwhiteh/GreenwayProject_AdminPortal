@@ -73,18 +73,18 @@
         
         <div class="theBox">
 
-     <div style="border:2px solid grey; background-color:white; border-radius: 10px; width:40%; padding:10px; margin:auto; vertical-align:top; text-align:center;display:block;  clear: both;">
-        <div style="font-size:20px;font-weight:bold; text-decoration:underline;margin-bottom:5px;">Ticket Options</div>
+     <div class="header_box">
+        <div class="header_options_title">Ticket Options</div>
 
-          <div style="text-align:center; width:100%">
-             <form name="setViewPreferences" style="display:inline-block;background-color:#FFF;" onChange="FilterResults(<?php echo $pageno;?>,'all');">
+          <div style="">
+             <form name="setViewPreferences" onChange="FilterResults(<?php echo $pageno;?>,'all');">
                <table>
                  <tr>
                     <td>
                         <input type="checkbox" name="ShowUserTickets"  id="ShowUserTickets" onClick="FilterResults(<?php echo $pageno .",'".$_COOKIE['user'];?>');" >
                         My Tickets Only
                     </td>
-                   <td style="width:30%">
+                   <td class="header_options_td_30">
                       Ticket Status: <br/>
                             
                        <select name="statOpenClosed" id="statOpenClosed">
@@ -94,22 +94,22 @@
                           <option value="all" <?php if ($_COOKIE['ticket_status'] == "all"){echo "selected";}?>>All</option>
                        </select>
                    </td>
-                   <td style="width:30%">
+                   <td class="header_options_td_30">
                       Ticket View:<br/>
                       
-                  <input type="radio" id="cardView" name="ticketView" style="position: absolute; left: -9999px;" <?php if($_COOKIE['page_view'] == "cards"){echo "checked";}?>/>
+                      <input type="radio" id="cardView" name="ticketView" class="header_options_view"  <?php if($_COOKIE['page_view'] == "cards"){echo "checked";}?>/>
                       <label for="cardView">
-                        <img src="/Ticket_System_v2/Iconography/cards_icon.png" style="width:30px; height:30px;" title="View As Cards" id="viewCards">
+                        <img src="/Ticket_System_v2/Iconography/cards_icon.png" class="header_options_view_img" title="View As Cards" id="viewCards">
                       </label>
 
                   
-                  <input type="radio" id="tableView" name="ticketView" style="position: absolute; left: -9999px;" <?php if($_COOKIE['page_view'] == "table"){echo "checked";}?>/>
+                  <input type="radio" id="tableView" name="ticketView" class="header_options_view"  <?php if($_COOKIE['page_view'] == "table"){echo "checked";}?>/>
                   <label for="tableView" >
-                          <img src="/Ticket_System_v2/Iconography/table_icon.png" style="width:30px; height:30px;" title="View As Table" id="viewTable" >
+                          <img src="/Ticket_System_v2/Iconography/table_icon.png" class="header_options_view_img"  title="View As Table" id="viewTable" >
 
                   </label>
                    </td>
-                   <td style="width:30%"><button style="width:100px; height:50px;" type="button" name="myBtn" id="myBtn" onClick="openModal();initialize();">Add Ticket</button></td>
+                   <td class="header_options_td_30"><button class="header_add_ticket" type="button" name="myBtn" id="myBtn" onClick="openModal();initialize();">Add Ticket</button></td>
                  </tr>
                </table>
                

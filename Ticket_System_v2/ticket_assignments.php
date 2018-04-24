@@ -24,9 +24,7 @@
       
       <!---Javascript to open & Close Modals, and populate the Google Maps with the Markers--->
             <script src=/Ticket_System_v2/functions.js></script>
-        <style>
-            
-        </style>
+
 
     <script>
         function AllowAssign(){
@@ -131,13 +129,13 @@
                 
 ?>
 
-     <div style="border:2px solid grey; background-color:white; border-radius: 10px; width:80%; margin:auto; vertical-align:top; text-align:center;display:block;">
+     <div class="assign_box">
 
     <form method="post" action="action_assign_ticket.php">
         <div>
-            <div style="margin:auto; font-size: 22px;">
+            <div class="assign_choose_employee">
                 <br/>
-                <span style="text-decoration: underline">Assign Tickets to Employees </span><br/><br/>
+                <span>Assign Tickets to Employees </span><br/><br/>
                 Choose Employee: 
                 <select name="assignedEmployee" id="assignedEmployee" onChange="AllowAssign();">
                     <?php 
@@ -168,9 +166,9 @@
         
     <br/><br/>
             <div class="wrapper">
-                <ul class="ranger-counts" style="background-color:white;margin:auto;text-align:center;">
+                <ul class="assign_ranger_counts">
                     <?php while($ranger = $resultRangerTickets->fetch_array(MYSQLI_ASSOC)){ ?>
-                        <li style="background-color:white">
+                        <li>
                             <?php echo $ranger['strUsername'];?>
                             <br/>
                             <?php echo $ranger['assignedTickets'];?>
@@ -223,21 +221,21 @@
                 			break;
                 		}
                 	}
-                            echo "<span style='padding: 5px;background-color:".$TicketColor."'>".$type['strTicketType']."</span>";?>
+                            echo "<span style='background-color:".$TicketColor."'>".$type['strTicketType']."</span>";?>
                     </li>
                     <?php } ?>
                 </ul>
             </div>
             <br/>
         <div>
-                <button name="AssignTickets" id="btnAssign1" type="submit" style="width:100px; height:50px;margin-right: 100px;margin-left: 100px;">Assign Tickets</button>
+                <button name="AssignTickets" id="btnAssign1" type="submit" class="assign_btn">Assign Tickets</button>
     
             </div>
             <div id="TicketList"></div>
         
         
          <div>
-                <button name="AssignTickets" id="btnAssign2" type="submit" style="width:100px; height:50px;margin-right: 100px;margin-left: 100px;">Assign Tickets</button>
+                <button name="AssignTickets" id="btnAssign2" type="submit" class="assign_btn">Assign Tickets</button>
     
             </div>
         <br/><br/>

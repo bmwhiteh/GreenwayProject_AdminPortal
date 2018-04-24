@@ -7,7 +7,7 @@
 
     <!--Links the CSS stylesheet to the login.html page -->
     <link rel="stylesheet" type="text/css" href="../css/loginSystem.css"/>
-    <link rel="shortcut icon" href="../Dashboard_Pages/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="../Dashboard_Pages/favicon.png" type="image/x-icon">
 </head>
 
 <body>
@@ -87,6 +87,7 @@ include("../MySQL_Connections/config.php");
                     setcookie("severeWeatherIcon", $severeWeatherIcon, time() + (86400 *30), "/"); // 86400 = 1 day
                     setcookie("calendarIcon", $calendarIcon, time() + (86400 *30), "/"); // 86400 = 1 day
                     setcookie("alertsIcon", $alertsIcon, time() + (86400 *30), "/"); // 86400 = 1 day
+                    setcookie("profileImage", $profileImage, time() + (86400 *30), "/"); //86400 = 1 day
                     
                     //redirects to dashboard
                     header("location: ../Dashboard_Pages/dashboard.php");

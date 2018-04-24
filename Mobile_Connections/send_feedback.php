@@ -1,4 +1,3 @@
-<!--- This is where the jsons will be sent--->
 <?php
     include("../MySQL_Connections/config.php");
    
@@ -32,16 +31,14 @@
     $result = $conn->query($sql) or die("Query fail");  
     
     echo $data. "\n";*/
-    /* 
-    $data = '
+     
+    /*$data = '
        {
-       "currentTime":1520965497444,
-       "feedback":"Test Again With Time"
+       "feedback":"Test Again" With Time"
       
        }
         ';
-    */   
-
+     */  
 
     //JSON must be decoded using PHP function
         $dataArray = json_decode($data);

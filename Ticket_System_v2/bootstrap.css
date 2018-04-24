@@ -718,6 +718,8 @@ fieldset[disabled] a.btn {
   color: #333333;
   background-color: #ffffff;
   border-color: #cccccc;
+  width:100px;
+  height: 50px;
 }
 .btn-default:focus,
 .btn-default.focus {
@@ -1257,6 +1259,7 @@ button.close {
 .modal-title {
   margin: 0;
   line-height: 1.42857143;
+  text-decoration:underline;
 }
 .modal-body {
   position: relative;

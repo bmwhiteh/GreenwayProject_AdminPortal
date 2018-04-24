@@ -1,481 +1,1425 @@
+Code Beautifier
+CSS Formatter and Optimiser
+based on csstidy 1.3
+language: en de fr ptAddThis
+CSS Input
+CSS-Code:
+
 @font-face {
-font-family: 'Odin Bold';
-font-style: normal;
-font-weight: normal;
-src: local('Odin Bold'), url('../fonts/Odin-Rounded---Bold.woff') format('woff');
+     font-family: 'Odin Bold';
+     font-style: normal;
+     font-weight: normal;
+     src: local('Odin Bold'), url('../fonts/Odin-Rounded---Bold.woff') format('woff');
+}
+ body {
+     font-variant: small-caps;
+     font-family: "Odin Bold";
+}
+/* The Modal (background) */
+ .modal {
+     display: none;
+    /* Hidden by default */
+     position: fixed;
+    /* Stay in place */
+     z-index:20;
+    /* Sit on top */
+     padding-top: 2%;
+    /* Location of the box */
+     left: 0;
+     top: 0;
+     width: 100%;
+    /* Full width */
+    /*height: 100%;
+    /* Full height */
+     overflow: auto;
+    /* Enable scroll if needed */
+     vertical-align:top;
+}
+ .modal-body{
+     width:100%;
+}
+/* Modal Content */
+ .modal-content {
+     background-color: #fefefe;
+     margin: auto;
+     padding: 20px;
+     border: 1px solid #888;
+     width: 70%;
+}
+ .modal-content td {
+     vertical-align:top;
+}
+/* The Close Button */
+ .close {
+     color: #aaaaaa;
+     float: right;
+     font-size: 28px;
+     font-weight: bold;
+}
+ .close:hover, .close:focus {
+     color: #000;
+     text-decoration: none;
+     cursor: pointer;
+}
+ .locationMap{
+     width:100%;
+     height:100%;
+     overflow:visible;
+     position:relative;
+     float:right;
+}
+ .theBox{
+     display: block !important;
+     clear:both;
+}
+ .card-1 {
+     border:2px solid grey;
+     background-color:white;
+     border-radius: 10px;
+     width:20%;
+     padding:10px;
+     display:inline-block;
+     margin:20px 15px 20px 30px;
+     vertical-align:top;
+     text-align:center;
+}
+ .card-number {
+     font-size:20px;
+     margin-bottom:5px;
+}
+ .card-type{
+     font-size:16px;
+     color:black;
+     margin:0px 0px 20px 10px;
+     padding:5px;
+}
+ .card-title{
+     font-size:16px;
+     text-overflow: ellipsis;
+     text-align:center;
+     font-weight:bold;
+}
+ .card-desc{
+     font-size:14px;
+     text-align:center;
+     text-overflow: ellipsis;
+     height:50px;
+}
+ .card-image{
+     max-height:300px;
+     margin:0px 0px 0px 10px;
+     width:70%;
+     margin-left:15%;
+}
+ .card-image img {
+     margin:auto;
+     width:100%;
+     height:100%;
+}
+ .card-date{
+     font-size:14px;
+     text-align:center;
+}
+ .card-date-closed{
+     font-size:14px;
+     text-align:center;
+     margin:0px 0px 20px 0px;
+}
+ .card-action{
+     display:inline-block;
+     margin:0px 0px 20px 0px;
+}
+/* Popup container - can be anything you want */
+ .popup {
+     position: relative;
+     display: inline-block;
+     cursor: pointer;
+     -webkit-user-select: none;
+     -moz-user-select: none;
+     -ms-user-select: none;
+     user-select: none;
+}
+ .popup img {
+     width:40px;
+    vertical-align:middle;
+}
+/* The actual popup */
+ .popup .popuptext {
+     visibility: hidden;
+     width: 160px;
+     background-color: #555;
+     color: #fff;
+     text-align: center;
+     border-radius: 6px;
+     padding: 8px 0;
+     position: absolute;
+     z-index: 1;
+     bottom: 125%;
+     left: 50%;
+     margin-left: -80px;
+     max-width:100%;
+     margin:auto;
+}
+/* Popup arrow */
+ .popup .popuptext::after {
+     content: "";
+     position: absolute;
+     top: 100%;
+     left: 50%;
+     margin-left: -5px;
+     border-width: 5px;
+     border-style: solid;
+     border-color: #555 transparent transparent transparent;
+}
+/* Toggle this class - hide and show the popup */
+ .popup .show {
+     visibility: visible;
+     -webkit-animation: fadeIn 1s;
+     animation: fadeIn 1s;
+}
+/* Add animation (fade in the popup) */
+ @-webkit-keyframes fadeIn {
+     from {
+        opacity: 0;
+    }
+     to {
+        opacity: 1;
+    }
+}
+ @keyframes fadeIn {
+     from {
+        opacity: 0;
+    }
+     to {
+        opacity:1 ;
+    }
+}
+ .hoverImage{
+     background-color:white;
+}
+ .hoverImage:hover {
+     background-color:lightgray;
+}
+ #assignDiv {
+     width: 100%;
+     border: 1px solid black;
+     display: -webkit-flex;
+    /* Safari */
+     display: flex;
+}
+/* Safari 6.1+ */
+ #assignDiv div:nth-of-type(1) {
+    -webkit-flex-grow: 3;
+}
+ #assignDiv div:nth-of-type(2) {
+    -webkit-flex-grow: 1;
+}
+ #assignDiv div:nth-of-type(3) {
+    -webkit-flex-grow: 2;
+}
+/* Standard syntax */
+ #assignDiv div:nth-of-type(1) {
+    flex-grow: 3;
+}
+ #assignDiv div:nth-of-type(2) {
+    flex-grow: 1;
+}
+ #assignDiv div:nth-of-type(3) {
+    flex-grow: 2;
+}
+ .wrapper {
+     text-align: center;
+}
+ .wrapper ul {
+     display: inline-block;
+     padding: 0;
+    /* For IE, the outcast */
+     zoom:1;
+}
+ .wrapper li {
+     float: left;
+     padding: 2px 5px;
+     border: 1px solid black;
+}
+ .card-1 .circle-box{
+     float:left;
+     width:10%;
+     height:20%;
+}
+ .card-1 .circle-box .circle{
+     border: 2px solid black;
+     border-radius: 50%;
+     background-color:red;
+     color:white;
+}
+ .image-table {
+     padding:20px 20px 20px 20px;
+}
+ .image-table .circle-box{
+     float:left;
+     width:50%;
+     height:60%;
+}
+ .image-table .circle-box .circle{
+     border: 2px solid black;
+     border-radius: 50%;
+     background-color:red;
+     color:white;
+}
+ .typesList ul li span {
+     color:white;
+     cursor: pointer;
+     border:2px solid black;
+     padding: 5px;
+}
+ .typesList ul li span:hover {
+     background-color:#F8F8F8;
+     border:2px solid grey;
+     color:#36454F;
+     cursor: pointer;
+     padding: 5px;
+}
+ .mapBucket{
+     width:300px;
+     height:300px;
+}
+ .txtLoading {
+     position: fixed;
+     left: 0px;
+     top: 0px;
+     width: 100%;
+     height: 100%;
+     z-index: 9999;
+     background: url('/Ticket_System_v2/Iconography/loadingGIF.gif') 50% 50% no-repeat rgb(249,249,249);
+     opacity: .8;
+}
+/* Customize the label (the container) */
+ .container-chkbox {
+    /*display: block;
+    */
+     position: relative;
+     padding-left: 35px;
+     margin-bottom: 12px;
+     margin-left:10px;
+     cursor: pointer;
+     font-size: 22px;
+     -webkit-user-select: none;
+     -moz-user-select: none;
+     -ms-user-select: none;
+     user-select: none;
+}
+/* Hide the browser's default checkbox */
+ .container-chkbox input {
+     position: absolute;
+     opacity: 0;
+     cursor: pointer;
+}
+/* Create a custom checkbox */
+ .checkmark1 {
+     position: absolute;
+     top: 0;
+     left: 0;
+     height: 35px;
+     width: 35px;
+     background-color: #eee;
+}
+/* Create a custom checkbox */
+ .checkmark2 {
+     position: absolute;
+     top: 0;
+     left: 0;
+     height: 35px;
+     width: 35px;
+     background-color: #eee;
+}
+/* Create a custom checkbox */
+ .checkmark3 {
+     position: absolute;
+     top: 0;
+     left: 0;
+     height: 35px;
+     width: 35px;
+     background-color: #eee;
+}
+/* When the checkbox is checked, add a blue background */
+ .container-chkbox input:checked ~ .checkmark1 {
+     background-color: #194400;
+}
+ .container-chkbox input:checked ~ .checkmark2 {
+     background-color: #37721b;
+}
+ .container-chkbox input:checked ~ .checkmark3 {
+     background-color: red;
+}
+/* Create the checkmark/indicator (hidden when not checked) */
+ .checkmark1:after, .checkmark2:after, .checkmark3:after {
+     content: "";
+     position: absolute;
+     display: none;
+}
+/* Show the checkmark when checked */
+ .container-chkbox input:checked ~ .checkmark1:after , .container-chkbox input:checked ~ .checkmark2:after , .container-chkbox input:checked ~ .checkmark3:after{
+     display: block;
+}
+/* Style the checkmark/indicator */
+ .container-chkbox .checkmark1:after,.container-chkbox .checkmark2:after,.container-chkbox .checkmark3:after {
+     left: 9px;
+     top: 5px;
+     width: 12px;
+     height: 20px;
+     border: solid white;
+     border-width: 0 6px 6px 0;
+     -webkit-transform: rotate(45deg);
+     -ms-transform: rotate(45deg);
+     transform: rotate(45deg);
+}
+ .typesList{
+     margin-left:50px;
+     text-align:center;
+}
+ .typesList li{
+     padding: 10px;
+     text-align:center;
+}
+ .pagination {
+     background-color:#333;
+}
+ .tableTicket table{
+     vertical-align:top;
+     text-align:center;
+     border-collapse:collapse;
+     margin-top:30px;
+     margin-left:auto;
+     width:90%;
+}
+ .tableTicket thead th{
+     padding:20px;
+}
+ .tableTicket tbody{
+     background-color: white;
+}
+ .cardsList {
+     margin-left:auto;
+     width:100%;
+}
+ .firstCell {
+     width:20px;
+}
+ .secondCell {
+     padding:20px;
+}
+ .lastCell {
+     text-align:center;
+}
+ .greyBorder {
+     border:2px solid grey;
+}
+ .ticketCells {
+     text-align:left;
+     padding:20px;
+}
+ .ticketCellInfo{
+     font-size:14px;
+     text-overflow: ellipsis;
+     text-align:center;
+}
+ .ticketCellTitle{
+     font-size:14px;
+    text-overflow: ellipsis;
+    text-align:center;
+}
+ .ticketCellType{
+     font-size: 16px;
+     color:black;
+     margin:0px 0px 20px 10px;
+}
+ .ticketButtons {
+     display:inline-block;
+}
+ .unassignedList {
+     margin-left: 100px;
+     margin-right:100px 
+}
+ .unassignedType {
+     font-size:22px;
+     margin-left: 10px;
+     margin-top:0px;
+     text-align:left;
+}
+ .unassignedSpace {
+     padding:10px;
+     overflow:visible;
+}
+ .unassignedBtns {
+     float:right;
+}
+ .unassignedBtns label {
+     font-size: 20px;
+}
+ .unassignedTicketNumber {
+     text-indent: 25px;
+     padding:10px;
+}
+ .unassignedTicketTile {
+     padding:10px;
+     overflow:visible;
+}
+ .unassignedCheckboxes{
+     float:right;
+    padding:15px;
+}
+ .unassignedCheckboxes span {
+     font-weight:bold;
+    padding:5px;
+     vertical-align:middle;
+}
+ .modal_view span{
+     float:left;
+}
+ .urgentCheck {
+     vertical-align:middle;
+    width:20px;
+     height:20px 
+}
+ .Modal_add_Map {
+     float:right;
+}
+ .mapCanvas {
+     width: 500px;
+     height: 400px;
+}
+ #ShowError {
+     display:none;
+    color:red;
+}
+ .ticketView {
+     padding:10px;
+}
+ .btn_close_urgent {
+     padding:10px;
+     background-color:red;
+     border-color:red;
+}
+ #MapTicketId {
+     margin-top:0px;
+     vertical-align:middle;
+     text-align: center;
+}
+ .modal-body table{
+     text-align:left;
+}
+ .modal_view_15 {
+     width:15% 
+}
+ .modal_view_10 {
+     width:10%;
+}
+ .modal_view_30 {
+     width:30%;
+}
+ .modal_padding_15px {
+     padding:15px;
+}
+ .modal_padding_15px div{
+     display:inline-block;
+}
+ .modal_view_20px {
+     width:20px;
+}
+ .modal_view_30px {
+     width:30px;
+}
+ .modal_height_100px {
+     height:100px;
+}
+ .comment_header {
+     margin-left: 10px;
+}
+ .comment_box {
+     margin-left: 10px;
+}
+ .comment_box textarea {
+     width:80%;
+     overflow:hidden;
+}
+ .comment_note {
+     width:80px;
+     height:30px;
+     vertical-align:top;
+}
+ .modal_image {
+     text-align:center;
+     width:30%;
+     margin-left:15%;
+}
+ .modal_image_img{
+     margin:auto;
+     width:80%;
+}
+ .assign_box {
+     border:2px solid grey;
+     background-color:white;
+     border-radius: 10px;
+     width:80%;
+     margin:auto;
+     text-align:center;
+     display:block;
+}
+ .assign_choose_employee {
+     margin:auto;
+     font-size: 22px;
+}
+ .assign_choose_employee span {
+     text-decoration: underline 
+}
+ .assign_ranger_counts {
+     background-color:white;
+    margin:auto;
+    text-align:center;
+}
+ .assign_ranger_counts li{
+     background-color:white 
+}
+ .assign_btn {
+     width:100px;
+     height:50px;
+    margin-right: 100px;
+    margin-left: 100px;
+}
+ .header_box {
+     border:2px solid grey;
+     background-color:white;
+     border-radius: 10px;
+     width:40%;
+     padding:10px;
+     margin:auto;
+     text-align:center;
+     display:block;
+     clear: both;
+}
+ .header_options_title {
+     font-size:20px;
+    font-weight:bold;
+     text-decoration:underline;
+    margin-bottom:5px;
+}
+ .header_options {
+     text-align:center;
+     width:100% 
+}
+ .header_options form{
+     display:inline-block;
+    background-color:#FFF;
+}
+ .header_options_td_30 {
+     width:30%;
+}
+ .header_options_view {
+     position: absolute;
+     left: -9999px;
+}
+ .header_options_view_img {
+     width:30px;
+     height:30px;
+}
+ .header_add_ticket {
+     width:100px;
+     height:50px;
+}
+ .modal_view_response {
+     width:100%;
+}
+ 
+CSS from URL:
+
+ Code Layout
+Compression (code layout):
+
+Custom template
+
+ Options
+ Preserve CSS
+ Sort Selectors (caution)
+ Sort Properties
+Regroup selectors
+
+Optimise shorthands
+
+ Compress colors
+ Compress font-weight
+ Lowercase selectors
+Case for properties:
+ None
+ Lowercase
+ Uppercase
+ Remove unnecessary backslashes
+ Remove last ;
+ Discard invalid properties
+
+ Add timestamp
+ Output as file
+  Messages
+4
+Optimised font-weight: Changed "normal" to "400"
+5
+Invalid property in CSS2.1: src
+47
+Optimised color: Changed "#aaaaaa" to "#aaa"
+50
+Optimised font-weight: Changed "bold" to "700"
+70
+Optimised color: Changed "white" to "#FFF"
+71
+Invalid property in CSS2.1: border-radius
+85
+Optimised color: Changed "black" to "#000"
+86
+Optimised number: Changed "0px" to "0"
+91
+Invalid property in CSS2.1: text-overflow
+93
+Optimised font-weight: Changed "bold" to "700"
+98
+Invalid property in CSS2.1: text-overflow
+103
+Optimised number: Changed "0px" to "0"
+119
+Optimised number: Changed "0px" to "0"
+Optimised shorthand notation (margin): Changed "0 0 20px 0" to "0 0 20px"
+123
+Optimised number: Changed "0px" to "0"
+Optimised shorthand notation (margin): Changed "0 0 20px 0" to "0 0 20px"
+130
+Invalid property in CSS2.1: -webkit-user-select
+131
+Invalid property in CSS2.1: -moz-user-select
+132
+Invalid property in CSS2.1: -ms-user-select
+133
+Invalid property in CSS2.1: user-select
+146
+Invalid property in CSS2.1: border-radius
+165
+Optimised shorthand notation (border-color): Changed "#555 transparent transparent transparent" to "#555 transparent transparent"
+170
+Invalid property in CSS2.1: -webkit-animation
+171
+Invalid property in CSS2.1: animation
+174
+Invalid @-rule: (removed)
+176
+Invalid property in CSS2.1: fromopacity
+179
+Invalid property in CSS2.1: opacity
+182
+Invalid @-rule: keyframes (removed)
+184
+Invalid property in CSS2.1: fromopacity
+187
+Invalid property in CSS2.1: opacity
+191
+Optimised color: Changed "white" to "#FFF"
+198
+Optimised color: Changed "black" to "#000"
+199
+Optimised number: Changed "-webkit-flex" to "0"
+205
+Invalid property in CSS2.1: -webkit-flex-grow
+208
+Invalid property in CSS2.1: -webkit-flex-grow
+211
+Invalid property in CSS2.1: -webkit-flex-grow
+215
+Invalid property in CSS2.1: flex-grow
+218
+Invalid property in CSS2.1: flex-grow
+221
+Invalid property in CSS2.1: flex-grow
+230
+Invalid property in CSS2.1: zoom
+235
+Optimised color: Changed "black" to "#000"
+243
+Optimised color: Changed "black" to "#000"
+244
+Invalid property in CSS2.1: border-radius
+246
+Optimised color: Changed "white" to "#FFF"
+249
+Optimised shorthand notation (padding): Changed "20px 20px 20px 20px" to "20px"
+257
+Optimised color: Changed "black" to "#000"
+258
+Invalid property in CSS2.1: border-radius
+260
+Optimised color: Changed "white" to "#FFF"
+263
+Optimised color: Changed "white" to "#FFF"
+265
+Optimised color: Changed "black" to "#000"
+281
+Optimised number: Changed "0px" to "0"
+282
+Optimised number: Changed "0px" to "0"
+286
+Optimised color: Changed "rgb(249,249,249)" to "#f9f9f9"
+287
+Invalid property in CSS2.1: opacity
+299
+Invalid property in CSS2.1: -webkit-user-select
+300
+Invalid property in CSS2.1: -moz-user-select
+301
+Invalid property in CSS2.1: -ms-user-select
+302
+Invalid property in CSS2.1: user-select
+307
+Invalid property in CSS2.1: opacity
+363
+Optimised color: Changed "white" to "#FFF"
+365
+Invalid property in CSS2.1: -webkit-transform
+366
+Invalid property in CSS2.1: -ms-transform
+367
+Invalid property in CSS2.1: transform
+392
+Optimised color: Changed "white" to "#FFF"
+416
+Invalid property in CSS2.1: text-overflow
+421
+Invalid property in CSS2.1: text-overflow
+426
+Optimised color: Changed "black" to "#000"
+427
+Optimised number: Changed "0px" to "0"
+439
+Optimised number: Changed "0px" to "0"
+465
+Optimised font-weight: Changed "bold" to "700"
+497
+Optimised number: Changed "0px" to "0"
+554
+Optimised color: Changed "white" to "#FFF"
+555
+Invalid property in CSS2.1: border-radius
+569
+Optimised color: Changed "white" to "#FFF"
+574
+Optimised color: Changed "white" to "#FFF"
+584
+Optimised color: Changed "white" to "#FFF"
+585
+Invalid property in CSS2.1: border-radius
+595
+Optimised font-weight: Changed "bold" to "700"
+Input: 12.463KB, Output:8.049KB, Compression Ratio: 35.4%(-4414 Bytes)
+Select or Copy to Clipboard
+@font-face {
+font-family:'Odin Bold';
+font-style:normal;
+font-weight:400;
+src:local('Odin Bold'), url(../fonts/Odin-Rounded---Bold.woff) format(woff);
 }
 
 body {
-            font-variant: small-caps;
-font-family: "Odin Bold";}
-* {
-            margin: 0;
-            padding: 0;
-            -webkit-box-sizing: border-box;
-            -moz-box-sizing: border-box;
-            box-sizing: border-box;
-        }
- /* The Modal (background) */
-        .modal {
-            display: none; /* Hidden by default */
-            position: fixed; /* Stay in place */
-            z-index:20; /* Sit on top */
-            padding-top: 2%; /* Location of the box */
-            left: 0;
-            top: 0;
-            width: 100%; /* Full width */
-            /*height: 100%; /* Full height */
-            overflow: auto; /* Enable scroll if needed */
-            vertical-align:top;
-        }
-        
-        .modal-body{
-            width:100%;
-        }
+font-variant:small-caps;
+font-family:"Odin Bold";
+}
 
-        /* Modal Content */
-        .modal-content {
-            background-color: #fefefe;
-            margin: auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 70%;
-        }
-        
-        .modal-content td {
-            vertical-align:top;
-        }
+.modal {
+display:none;
+position:fixed;
+z-index:20;
+padding-top:2%;
+left:0;
+top:0;
+width:100%;
+overflow:auto;
+vertical-align:top;
+}
 
-        /* The Close Button */
-        .close {
-            color: #aaaaaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
+.modal-content {
+background-color:#fefefe;
+border:1px solid #888;
+width:70%;
+margin:auto;
+padding:20px;
+}
 
-        .close:hover,
-        .close:focus {
-            color: #000;
-            text-decoration: none;
-            cursor: pointer;
-        }
-        .locationMap{
-             width:100%; 
-             height:100%; 
-             overflow:visible; 
-             position:relative;
-             float:right;
-        }
-        
-       
-        .theBox{
-            
-            display: block !important;
-            clear:both;
-            
-        }
-        
-        
-        .card-1 {
-            border:2px solid grey; background-color:white; border-radius: 10px; width:20%; padding:10px;display:inline-block; margin:20px 15px 20px 30px; vertical-align:top; text-align:center;
-        }
-        
-        .card-number {
-            font-size:20px;
-            margin-bottom:5px;
-        }
-        
-        .card-type{
-            font-size:16px; 
-            color:black; 
-            margin:0px 0px 20px 10px;
-            padding:5px; 
-            font-size:16px;
-        }
-        
-        .card-title{font-size:16px;text-overflow: ellipsis;text-align:center; font-weight:bold;}
-        
-        .card-desc{font-size:14px;text-align:center;text-overflow: ellipsis;height:50px;}
-        
-        .card-image{
-            max-height:300px; 
-            margin:0px 0px 0px 10px;
-            width:70%;
-            margin-left:15%;
-        }
-        
-        .card-image img {
-            margin:auto;
-            width:100%;
-            height:100%;
-        }
-        
-        .card-date{font-size:14px;text-align:center; }
-        .card-date-closed{
-            font-size:14px;
-            text-align:center;
-            margin:0px 0px 20px 0px;
-            
-        }
-        .card-action{display:inline-block; margin:0px 0px 20px 0px;}
-        
-        
-     
-     
-     /* Popup container - can be anything you want */
+.modal-content td {
+vertical-align:top;
+}
+
+.close {
+color:#aaa;
+float:right;
+font-size:28px;
+font-weight:700;
+}
+
+.close:hover,.close:focus {
+color:#000;
+text-decoration:none;
+cursor:pointer;
+}
+
+.locationMap {
+width:100%;
+height:100%;
+overflow:visible;
+position:relative;
+float:right;
+}
+
+.theBox {
+display:block!important;
+clear:both;
+}
+
+.card-1 {
+border:2px solid grey;
+background-color:#FFF;
+border-radius:10px;
+width:20%;
+display:inline-block;
+vertical-align:top;
+text-align:center;
+margin:20px 15px 20px 30px;
+padding:10px;
+}
+
+.card-number {
+font-size:20px;
+margin-bottom:5px;
+}
+
+.card-type {
+font-size:16px;
+color:#000;
+margin:0 0 20px 10px;
+padding:5px;
+}
+
+.card-title {
+font-size:16px;
+text-overflow:ellipsis;
+text-align:center;
+font-weight:700;
+}
+
+.card-desc {
+font-size:14px;
+text-align:center;
+text-overflow:ellipsis;
+height:50px;
+}
+
+.card-image {
+max-height:300px;
+width:70%;
+margin:0 0 0 15%;
+}
+
+.card-image img {
+width:100%;
+height:100%;
+margin:auto;
+}
+
+.card-date {
+font-size:14px;
+text-align:center;
+}
+
+.card-date-closed {
+font-size:14px;
+text-align:center;
+margin:0 0 20px;
+}
+
+.card-action {
+display:inline-block;
+margin:0 0 20px;
+}
+
 .popup {
-    position: relative;
-    display: inline-block;
-    cursor: pointer;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    
+position:relative;
+display:inline-block;
+cursor:pointer;
+-webkit-user-select:none;
+-moz-user-select:none;
+-ms-user-select:none;
+user-select:none;
 }
 
 .popup img {
-    width:40px;vertical-align:middle;
+width:40px;
+vertical-align:middle;
 }
 
-/* The actual popup */
 .popup .popuptext {
-    visibility: hidden;
-    width: 160px;
-    background-color: #555;
-    color: #fff;
-    text-align: center;
-    border-radius: 6px;
-    padding: 8px 0;
-    position: absolute;
-    z-index: 1;
-    bottom: 125%;
-    left: 50%;
-    margin-left: -80px;
-    max-width:100%;
-    margin:auto;
+visibility:hidden;
+width:160px;
+background-color:#555;
+color:#fff;
+text-align:center;
+border-radius:6px;
+position:absolute;
+z-index:1;
+bottom:125%;
+left:50%;
+max-width:100%;
+margin:auto;
+padding:8px 0;
 }
 
-/* Popup arrow */
 .popup .popuptext::after {
-    content: "";
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    margin-left: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: #555 transparent transparent transparent;
+content:"";
+position:absolute;
+top:100%;
+left:50%;
+margin-left:-5px;
+border-color:#555 transparent transparent;
+border-style:solid;
+border-width:5px;
 }
 
-/* Toggle this class - hide and show the popup */
 .popup .show {
-    visibility: visible;
-    -webkit-animation: fadeIn 1s;
-    animation: fadeIn 1s;
+visibility:visible;
+-webkit-animation:fadeIn 1s;
+animation:fadeIn 1s;
 }
 
-/* Add animation (fade in the popup) */
-@-webkit-keyframes fadeIn {
-    from {opacity: 0;} 
-    to {opacity: 1;}
+to {
+opacity:1;
 }
 
-@keyframes fadeIn {
-    from {opacity: 0;}
-    to {opacity:1 ;}
-}
-
-.hoverImage{
-    background-color:white;
-}
 .hoverImage:hover {
-    background-color:lightgray;
-    
+background-color:lightgray;
 }
 
 #assignDiv {
-    width: 100%;
-    border: 1px solid black;
-    display: -webkit-flex; /* Safari */
-    display: flex;
+width:100%;
+border:1px solid #000;
+display:flex;
 }
 
-/* Safari 6.1+ */
-#assignDiv div:nth-of-type(1) {-webkit-flex-grow: 3;}
-#assignDiv div:nth-of-type(2) {-webkit-flex-grow: 1;}
-#assignDiv div:nth-of-type(3) {-webkit-flex-grow: 2;}
+#assignDiv div:nth-of-type(1) {
+-webkit-flex-grow:3;
+flex-grow:3;
+}
 
-/* Standard syntax */
-#assignDiv div:nth-of-type(1) {flex-grow: 3;}
-#assignDiv div:nth-of-type(2) {flex-grow: 1;}
-#assignDiv div:nth-of-type(3) {flex-grow: 2;}
+#assignDiv div:nth-of-type(2) {
+-webkit-flex-grow:1;
+flex-grow:1;
+}
 
+#assignDiv div:nth-of-type(3) {
+-webkit-flex-grow:2;
+flex-grow:2;
+}
 
+.wrapper ul {
+display:inline-block;
+zoom:1;
+padding:0;
+}
 
- .wrapper {
-        text-align: center;
-    }
-    .wrapper ul {
-        display: inline-block;
-        margin: 0;
-        padding: 0;
-        /* For IE, the outcast */
-        zoom:1;
-        *display: inline;
-    }
-    .wrapper li {
-        float: left;
-        padding: 2px 5px;
-        border: 1px solid black;
-    }
-    
-    .card-1 .circle-box{
-        float:left;
-        width:10%;
-        height:20%;
-    }
-    
-    .card-1 .circle-box .circle{
-        border: 2px solid black;
-        border-radius: 50%;
-        background-color:red;
-        color:white;
-    }
-    
-    .image-table {
-        padding:20px 20px 20px 20px;
-    }
-    .image-table .circle-box{
-        float:left;
-        width:50%;
-        height:60%;
-    }
-    
-    .image-table .circle-box .circle{
-        border: 2px solid black;
-        border-radius: 50%;
-        background-color:red;
-        color:white;
-    }
-    
+.wrapper li {
+float:left;
+border:1px solid #000;
+padding:2px 5px;
+}
+
+.card-1 .circle-box {
+float:left;
+width:10%;
+height:20%;
+}
+
+.image-table .circle-box {
+float:left;
+width:50%;
+height:60%;
+}
 
 .typesList ul li span {
-    color:white;
-    cursor: pointer;
-    border:2px solid black;
-}   
-.typesList ul li span:hover {
-    background-color:#F8F8F8;
-    border:2px solid charcoal;
-    color:#36454F;
-    cursor: pointer;
+color:#FFF;
+cursor:pointer;
+border:2px solid #000;
+padding:5px;
 }
 
-.mapBucket{
-    width:300px;
-    height:300px;
+.typesList ul li span:hover {
+background-color:#F8F8F8;
+border:2px solid grey;
+color:#36454F;
+cursor:pointer;
+padding:5px;
+}
+
+.mapBucket {
+width:300px;
+height:300px;
 }
 
 .txtLoading {
-                position: fixed;
-                left: 0px;
-                top: 0px;
-                width: 100%;
-                height: 100%;
-                z-index: 9999;
-                background: url('/Ticket_System_v2/Iconography/loadingGIF.gif') 50% 50% no-repeat rgb(249,249,249);
-                opacity: .8;
-            }
-            /* Customize the label (the container) */
-            .container-chkbox {
-              /*display: block;*/
-              position: relative;
-              padding-left: 35px;
-              margin-bottom: 12px;
-              cursor: pointer;
-              font-size: 22px;
-              -webkit-user-select: none;
-              -moz-user-select: none;
-              -ms-user-select: none;
-              user-select: none;
-            }
-            
-            
-            
-            /* Hide the browser's default checkbox */
-            .container-chkbox input {
-              position: absolute;
-              opacity: 0;
-              cursor: pointer;
-            }
-            /* Create a custom checkbox */
-            .checkmark1 {
-              position: absolute;
-              top: 0;
-              left: 0;
-              height: 35px;
-              width: 35px;
-              background-color: #eee;
-            }
-            
-            /* Create a custom checkbox */
-            .checkmark2 {
-              position: absolute;
-              top: 0;
-              left: 0;
-              height: 35px;
-              width: 35px;
-              background-color: #eee;
-            }
-            
-            /* Create a custom checkbox */
-            .checkmark3 {
-              position: absolute;
-              top: 0;
-              left: 0;
-              height: 35px;
-              width: 35px;
-              background-color: #eee;
-            }
-            
-            
-            /* When the checkbox is checked, add a blue background */
-            .container-chkbox input:checked ~ .checkmark1 {
-              background-color: #194400;
-            }
-            
-            .container-chkbox input:checked ~ .checkmark2 {
-              background-color: #37721b;
-            }
-            
-            .container-chkbox input:checked ~ .checkmark3 {
-              background-color: red;
-            }
-            
-            /* Create the checkmark/indicator (hidden when not checked) */
-            .checkmark1:after, .checkmark2:after, .checkmark3:after {
-              content: "";
-              position: absolute;
-              display: none;
-            }
-            
-            /* Show the checkmark when checked */
-            .container-chkbox input:checked ~ .checkmark1:after , .container-chkbox input:checked ~ .checkmark2:after  , .container-chkbox input:checked ~ .checkmark3:after{
-              display: block;
-            }
-            
-            /* Style the checkmark/indicator */
-            .container-chkbox .checkmark1:after,.container-chkbox .checkmark2:after,.container-chkbox .checkmark3:after {
-              left: 9px;
-              top: 5px;
-              width: 12px;
-              height: 20px;
-              border: solid white;
-              border-width: 0 6px 6px 0;
-              -webkit-transform: rotate(45deg);
-              -ms-transform: rotate(45deg);
-              transform: rotate(45deg);
-            }
-            
-            
-            
-            .typesList{
-                margin-left:50px;
-                text-align:center;
-            }
-            .typesList li{
-                padding: 10px;
-                text-align:center;
-            }
-            
-            .pagination {
-                background-color:#333;
-            }
-            
-            .tableTicket table{
-                vertical-align:top; 
-                text-align:center;
-                border-collapse:collapse;
-                margin-top:30px;
-                margin-left:auto;
-                width:90%;
-            }
-            
-            .tableTicket thead th{
-                padding:20px; 
+position:fixed;
+left:0;
+top:0;
+width:100%;
+height:100%;
+z-index:9999;
+background:url(/Ticket_System_v2/Iconography/loadingGIF.gif) 50% 50% no-repeat #f9f9f9;
+opacity:.8;
+}
 
-            }
-            
-            .tableTicket tbody{
-                background-color: white;
-            }
-            
-            .cardsList {
-                
-                margin-left:auto;
-                width:100%;
-            }
-            
-            .firstCell {
-                width:20px;
-            }
-            
-            .secondCell {
-                padding:20px;
-            }
-            
-            .lastCell {
-                text-align:center;
-            }
-            
-            .greyBorder {
-                border:2px solid grey;
-            }
-            
-            .ticketCells {
-                text-align:left;
-                padding:20px;
-            }
-            .ticketCellInfo{
-                font-size:14px;
-                text-overflow: ellipsis;
-                text-align:center;
-            }
-            .ticketCellTitle{
-                font-size:14px;text-overflow: ellipsis;text-align:center;
-            }
-            .ticketCellType{
-                font-size: 16px; 
-                color:black; 
-                margin:0px 0px 20px 10px;
-            }
-            .ticketButtons {
-                display:inline-block;
-            }
-            
-            .unassignedList {
-                margin-left: 100px;
-                margin-right:100px
-            }
-            
-            .unassignedType {
-                font-size:22px;
-                margin-left: 10px; 
-                margin-top:0px;
-                text-align:left;
-            }
-            
-            .unassignedSpace {
-                padding:10px; 
-                overflow:visisble
-            }
-            
-            .unassignedBtns {
-                float:right;
-            }
-            
-            .unassignedBtns label {
-                font-size: 20px;
-            }
+.container-chkbox {
+position:relative;
+padding-left:35px;
+margin-bottom:12px;
+margin-left:10px;
+cursor:pointer;
+font-size:22px;
+-webkit-user-select:none;
+-moz-user-select:none;
+-ms-user-select:none;
+user-select:none;
+}
+
+.container-chkbox input {
+position:absolute;
+opacity:0;
+cursor:pointer;
+}
+
+.container-chkbox input:checked ~ .checkmark1 {
+background-color:#194400;
+}
+
+.container-chkbox input:checked ~ .checkmark2 {
+background-color:#37721b;
+}
+
+.container-chkbox input:checked ~ .checkmark3 {
+background-color:red;
+}
+
+.checkmark1:after,.checkmark2:after,.checkmark3:after {
+content:"";
+position:absolute;
+display:none;
+}
+
+.container-chkbox input:checked ~ .checkmark1:after,.container-chkbox input:checked ~ .checkmark2:after,.container-chkbox input:checked ~ .checkmark3:after {
+display:block;
+}
+
+.container-chkbox .checkmark1:after,.container-chkbox .checkmark2:after,.container-chkbox .checkmark3:after {
+left:9px;
+top:5px;
+width:12px;
+height:20px;
+border:solid #FFF;
+-webkit-transform:rotate(45deg);
+-ms-transform:rotate(45deg);
+transform:rotate(45deg);
+border-width:0 6px 6px 0;
+}
+
+.typesList {
+margin-left:50px;
+text-align:center;
+}
+
+.typesList li {
+text-align:center;
+padding:10px;
+}
+
+.pagination {
+background-color:#333;
+}
+
+.tableTicket table {
+vertical-align:top;
+text-align:center;
+border-collapse:collapse;
+margin-top:30px;
+margin-left:auto;
+width:90%;
+}
+
+.cardsList {
+margin-left:auto;
+width:100%;
+}
+
+.greyBorder {
+border:2px solid grey;
+}
+
+.ticketCells {
+text-align:left;
+padding:20px;
+}
+
+.ticketCellType {
+font-size:16px;
+color:#000;
+margin:0 0 20px 10px;
+}
+
+.unassignedList {
+margin-left:100px;
+margin-right:100px;
+}
+
+.unassignedType {
+font-size:22px;
+margin-left:10px;
+margin-top:0;
+text-align:left;
+}
+
+.unassignedBtns label {
+font-size:20px;
+}
+
+.unassignedTicketNumber {
+text-indent:25px;
+padding:10px;
+}
+
+.unassignedCheckboxes {
+float:right;
+padding:15px;
+}
+
+.unassignedCheckboxes span {
+font-weight:700;
+vertical-align:middle;
+padding:5px;
+}
+
+.modal_view span {
+float:left;
+}
+
+.urgentCheck {
+vertical-align:middle;
+width:20px;
+height:20px;
+}
+
+.mapCanvas {
+width:500px;
+height:400px;
+}
+
+#ShowError {
+display:none;
+color:red;
+}
+
+.ticketView {
+padding:10px;
+}
+
+.btn_close_urgent {
+background-color:red;
+border-color:red;
+padding:10px;
+}
+
+#MapTicketId {
+margin-top:0;
+vertical-align:middle;
+text-align:center;
+}
+
+.modal-body table {
+text-align:left;
+}
+
+.modal_view_15 {
+width:15%;
+}
+
+.modal_view_10 {
+width:10%;
+}
+
+.modal_padding_15px {
+padding:15px;
+}
+
+.modal_view_30px {
+width:30px;
+}
+
+.modal_height_100px {
+height:100px;
+}
+
+.comment_box textarea {
+width:80%;
+overflow:hidden;
+}
+
+.comment_note {
+width:80px;
+height:30px;
+vertical-align:top;
+}
+
+.modal_image {
+text-align:center;
+width:30%;
+margin-left:15%;
+}
+
+.modal_image_img {
+width:80%;
+margin:auto;
+}
+
+.assign_box {
+border:2px solid grey;
+background-color:#FFF;
+border-radius:10px;
+width:80%;
+text-align:center;
+display:block;
+margin:auto;
+}
+
+.assign_choose_employee {
+font-size:22px;
+margin:auto;
+}
+
+.assign_choose_employee span {
+text-decoration:underline;
+}
+
+.assign_ranger_counts {
+background-color:#FFF;
+text-align:center;
+margin:auto;
+}
+
+.assign_btn {
+width:100px;
+height:50px;
+margin-right:100px;
+margin-left:100px;
+}
+
+.header_box {
+border:2px solid grey;
+background-color:#FFF;
+border-radius:10px;
+width:40%;
+text-align:center;
+display:block;
+clear:both;
+margin:auto;
+padding:10px;
+}
+
+.header_options_title {
+font-size:20px;
+font-weight:700;
+text-decoration:underline;
+margin-bottom:5px;
+}
+
+.header_options {
+text-align:center;
+width:100%;
+}
+
+.header_options form {
+display:inline-block;
+background-color:#FFF;
+}
+
+.header_options_view {
+position:absolute;
+left:-9999px;
+}
+
+.header_options_view_img {
+width:30px;
+height:30px;
+}
+
+.header_add_ticket {
+width:100px;
+height:50px;
+}
+
+.modal-body,.modal_view_response {
+width:100%;
+}
+
+.hoverImage,.tableTicket tbody,.assign_ranger_counts li {
+background-color:#FFF;
+}
+
+.wrapper,.lastCell {
+text-align:center;
+}
+
+.card-1 .circle-box .circle,.image-table .circle-box .circle {
+border:2px solid #000;
+border-radius:50%;
+background-color:red;
+color:#FFF;
+}
+
+.image-table,.tableTicket thead th,.secondCell {
+padding:20px;
+}
+
+.checkmark1,.checkmark2,.checkmark3 {
+position:absolute;
+top:0;
+left:0;
+height:35px;
+width:35px;
+background-color:#eee;
+}
+
+.firstCell,.modal_view_20px {
+width:20px;
+}
+
+.ticketCellInfo,.ticketCellTitle {
+font-size:14px;
+text-overflow:ellipsis;
+text-align:center;
+}
+
+.ticketButtons,.modal_padding_15px div {
+display:inline-block;
+}
+
+.unassignedSpace,.unassignedTicketTile {
+overflow:visible;
+padding:10px;
+}
+
+.unassignedBtns,.Modal_add_Map {
+float:right;
+}
+
+.modal_view_30,.header_options_td_30 {
+width:30%;
+}
+
+.comment_header,.comment_box {
+margin-left:10px;
+}
