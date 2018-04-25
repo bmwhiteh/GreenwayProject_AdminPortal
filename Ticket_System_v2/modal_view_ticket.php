@@ -96,7 +96,7 @@
         <div class="modal-body">
         
        
-            <table>
+            <table class="modal_width">
                 
                 <tbody>
                 <!--Ticket Title & Submitted By-->

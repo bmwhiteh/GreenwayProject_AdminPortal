@@ -1423,3 +1423,7 @@ width:30%;
 .comment_header,.comment_box {
 margin-left:10px;
 }
+
+.modal_width {
+ width:100%;
+}

@@ -186,45 +186,12 @@
             
                     
         </script>
-        <style>
-            
-            
-            
-        .theBox{
-            background-color: #8c8c8c;
-            margin: 0px 100px 50px 100px;
-            
-            
-        }
-
-        
-          #calendar {
-            max-width:3000px;
-          }
-          
-          fieldset { 
-            display: inline;
-            margin-left: 2px;
-            margin-right: 2px;
-            padding: 0.35em 0.75em 0.625em 0.75em;
-            
-            vertical-align:top;
-          }
-
-          .prettyButtons button{
-            padding:5px;
-            font-size:14px;
-            height:30px;
-            margin-bottom:5px;
-          }
-        </style>
     </head>
 
 </html>
 
 
 
-<!-- style="background-color: #1B371A;"-->
 <body class="genericBody">
 
   
@@ -240,10 +207,10 @@
     <div id="myTicket" class="modal" style="display:none;">I'm Here</div>
 
       <br/><br/>
-      <div style="border:2px solid grey; background-color:white; border-radius: 10px; margin:0% 5% 0% 5%; vertical-align:top; text-align:center;padding-bottom:1%;padding-top:2%;">
-        <div style="font-size:24px;font-weight:bold; text-decoration:underline;margin-bottom:5px;">Calendar Options</div>
+      <div class="calendarOptions">
+        <div class="calendarOptions_box">Calendar Options</div>
             <form method="post" name="ShowEvents">
-                <ul style="margin-left:5%;width:85vm;font-size:14px;">
+                <ul class="calendar_ul">
                   <li>
                     <fieldset>
                     
@@ -294,8 +261,8 @@
         </div>
       
       <br/>
-      <div style="margin:0% 5% 5% 5%; width:90%;">
-        <div id='calendar' style="background-color:white;z-index:5; "></div>
+      <div class="calendar_box">
+        <div id='calendar' class="calendar_bg"></div>
       </div>
     </div>
    

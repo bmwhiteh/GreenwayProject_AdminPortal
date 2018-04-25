@@ -33,13 +33,13 @@
 ?>
 
     <!-- Modal content -->
-    <div id="myNotificationView" class="modal-content" style="margin-top:10%;width:50%;">
+    <div id="myNotificationView" class="modal-content"\>
         
         
         <span id="closeNotification" class="close" onClick="closeTicket('myNotificationView');">&times;</span>
         
         
-        <h1 class="modal-title" style="margin-top:0px; vertical-align:middle; text-align: center;" id="MapTicketId">Event Id #: <?php echo $id?></h1>
+        <h1 class="modal-title" id="MapTicketId">Event Id #: <?php echo $id?></h1>
         
             
         <div class="modal-body">
@@ -50,16 +50,16 @@
                 <tbody>
 
                 <tr>
-                    <th style="width:30%;text-align:right;">Title:</th>
+                    <th class="calendar_view_30">Title:</th>
                     <td>&nbsp;</td>
-                    <td style="width:50%">
+                    <td class="calendar_view_50">
                         <?php echo $row['strEventTitle']; ?>
                     </td>
                     
                 </tr>
                 
                 <tr>
-                    <th style="text-align:right;">Start Date: </th>
+                    <th class="calendar_right">Start Date: </th>
                     <td>&nbsp;</td>
                     <td>
                         <?php echo $dtStartDate; ?>
@@ -69,7 +69,7 @@
         
         
                 <tr>
-                    <th style="text-align:right;">End Date: </th>
+                    <th class="calendar_right">End Date: </th>
                     <td>&nbsp;</td>
                     <td>
                         <?php echo $dtEndDate; ?>
@@ -79,7 +79,7 @@
                 
                 <!--Message-->
                 <tr>
-                    <th style="text-align:right;">Description: </th>
+                    <th class="calendar_right">Description: </th>
                     <td>&nbsp;</td>
                     <td>
                         <?php echo $row['strEventDescription'] ?>

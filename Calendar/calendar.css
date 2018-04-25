@@ -65,7 +65,8 @@ font-family: "Odin Bold";}
             margin: auto;
             padding: 20px;
             border: 1px solid #888;
-            width: 70%;
+            width: 80%;
+            margin-top:5%;
         }
 
         /* The Close Button */
@@ -186,4 +187,81 @@ font-family: "Odin Bold";}
 .mapBucket{
     width:300px;
     height:300px;
+}
+
+.calendarOptions{
+    border:2px solid grey; background-color:white; border-radius: 10px; margin:0% 5% 0% 5%; vertical-align:top; text-align:center;padding-bottom:1%;padding-top:2%;
+}
+
+.calendarOptions_box {
+    font-size:24px;font-weight:bold; text-decoration:underline;margin-bottom:5px;
+}
+
+.calendar_ul {
+    margin-left:5%;
+    width:85vw;
+    font-size:14px;
+}
+
+.calendar_box {
+    margin:0% 5% 5% 5%;
+    width:90%;
+}
+
+.calendar_bg {
+    background-color:white;z-index:5;
+}
+
+#MapTicketId {
+    margin-top:0px; vertical-align:middle; text-align: center;
+}
+
+#myNotificationView {
+    margin-top:10%;width:50%;
+}
+
+
+          #calendar {
+            max-width:3000px;
+          }
+          
+          fieldset { 
+            display: inline;
+            margin-left: 2px;
+            margin-right: 2px;
+            padding: 0.35em 0.75em 0.625em 0.75em;
+            
+            vertical-align:top;
+          }
+
+          .prettyButtons button{
+            padding:5px;
+            font-size:14px;
+            height:30px;
+            margin-bottom:5px;
+          }
+          
+          
+        
+        #MapTicketId {
+            margin-top:0px; vertical-align:middle; text-align: center;
+        }
+        
+        .calendar_view_30 {
+            width:30%;text-align:right;
+        }
+
+        .calendar_view_50 {
+            width:50%;
+        }
+        
+        .calendar_right {
+            text-align:right;
+        }
+        
+        #myNotificationView {
+            margin-top:10%;
+        }
+        .modal_width {
+ width:100%;
 }

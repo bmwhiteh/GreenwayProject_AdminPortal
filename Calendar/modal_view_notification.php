@@ -25,13 +25,13 @@
 ?>
 
     <!-- Modal content -->
-    <div id="myNotificationView" class="modal-content" style="margin-top:10%;">
+    <div id="myNotificationView" class="modal-content">
         
         
         <span id="closeNotification" class="close" onClick="closeTicket('myNotificationView');">&times;</span>
         
         
-        <h1 class="modal-title" style="margin-top:0px; vertical-align:middle; text-align: center;" id="MapTicketId">Notification Id #: <?php echo $id?></h1>
+        <h1 class="modal-title" id="MapTicketId">Notification Id #: <?php echo $id?></h1>
         
             
         <div class="modal-body">
@@ -42,9 +42,9 @@
                 <tbody>
                 <!--Notification Type-->
                 <tr>
-                    <th style="width:30%;text-align:right;">Type:</th>
+                    <th class="calendar_view_30">Type:</th>
                     <td>&nbsp;</td>
-                    <td style="width:50%">
+                    <td class="calendar_view_50">
                         <?php echo $row['strNotificationType']; ?>
                     </td>
                     
@@ -52,7 +52,7 @@
                 
                 <!--Date Sent-->
                 <tr>
-                    <th style="text-align:right;">Date Sent: </th>
+                    <th class="calendar_right">Date Sent: </th>
                                         <td>&nbsp;</td>
 
                     <td>
@@ -64,7 +64,7 @@
         
                 <!--Time Sent-->
                 <tr>
-                    <th style="text-align:right;">Time Sent: </th>                    <td>&nbsp;</td>
+                    <th class="calendar_right">Time Sent: </th>                    <td>&nbsp;</td>
 
                     <td>
                         <?php echo $row['strDateTime'] ?>
@@ -74,7 +74,7 @@
                 
                 <!--Message-->
                 <tr>
-                    <th style="text-align:right;">Message: </th>                    <td>&nbsp;</td>
+                    <th class="calendar_right">Message: </th>                    <td>&nbsp;</td>
 
                     <td>
                         <?php echo $row['strJSONMessage'] ?>
