@@ -9,7 +9,6 @@ body{
         }
 
         .contentBox{
-            background-color: #8c8c8c;
             margin: 0px 100px 50px 100px;
             display: -webkit-flex;
             display: flex;

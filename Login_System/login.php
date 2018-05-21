@@ -77,6 +77,7 @@ include("../MySQL_Connections/config.php");
                     $severeWeatherIcon = $row['severeWeatherLink'];
                     $calendarIcon = $row['calendarLink'];
                     $alertsIcon = $row['alertsLink'];
+                    $profileImage = $row['profileLink'];
 
                     setcookie("colorCssLink", $cssLink, time() + (86400 * 30), "/"); // 86400 = 1 day
                     setcookie("bannerLink", $bannerLink, time() + (86400 *30), "/"); // 86400 = 1 day

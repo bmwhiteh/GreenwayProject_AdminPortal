@@ -72,11 +72,11 @@
      <div class="contentBox" >
         
         <div class="theBox">
-
+<br/><br/>
      <div class="header_box">
         <div class="header_options_title">Ticket Options</div>
 
-          <div style="">
+          <div>
              <form name="setViewPreferences" onChange="FilterResults(<?php echo $pageno;?>,'all');">
                <table>
                  <tr>

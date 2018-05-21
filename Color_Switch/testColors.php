@@ -34,17 +34,17 @@ include("../MySQL_Connections/config.php");
                 <th>Black</th>
             </tr>
             <?php
-                                   //baseColors Viridian,   Atlantean   Carmine     DayBreak    Sangria     Sapphire    Autumnal    Espresso    Gunmetal    High Roller LemonDrop   Sakura
-                $baseColors     = ["#FFFFFF",   "#55ad52",  "#007393",  "#9a3432",  "#ca4d27",  "#a04664",  "#3366CC",  "#DFAE2E",  "#bb9966",  "#71618f",  "#fffbb6",  "#ffdf30",  "#b8226f"];
-                $blueArray      = ["#0247FE",   "#3c8e86",  "#0156d9",  "#3041c1",  "#3448c8",  "#2a47d8",  "#094cf6",  "#4466c0",  "#305cd8",  "#2e51d2",  "#356bf0",  "#416dca",  "#423acc"]; //High Water 
-                $yellowArray    = ["#FEFE33",   "#a1d144",  "#d8e941",  "#ead633",  "#f9ec32",  "#f0e23a",  "#d5e052",  "#f8ee32",  "#ede540",  "#dbd74a",  "#fefd6e",  "#fef933",  "#f4dd3c"]; //Pot Hole
-                $brownArray     = ["#663300",   "#625214",  "#3d4d3b",  "#73330c",  "#7a3808",  "#7a3a23",  "#57423d",  "#84520c",  "#774714",  "#6c4a48",  "#8c652e",  "#8c5e0c",  "#7f2e21"]; //Tree Branch
-                $purpleArray    = ["#8601AF",   "#753d8e",  "#5729a5",  "#8c108a",  "#941094",  "#8b0fa0",  "#7a10b3",  "#9c2c8f",  "#93279d",  "#830faa",  "#a440b1",  "#a4388f",  "#9008a2"]; //Trash Full
-                $orangeArray    = ["#FC600A",   "#db6f18",  "#ca6425",  "#ed5910",  "#f75e0d",  "#f35d13",  "#ca623a",  "#ec8b1e",  "#dc7c38",  "#e06025",  "#fda657",  "#fd9319",  "#f55a14"]; //Litter
-                $greenArray     = ["#66B032",   "#62af3a",  "#38955e",  "#739132",  "#75a130",  "#729b3c",  "#579a60",  "#84b031",  "#7baa3f",  "#69984e",  "#8cc353",  "#85b932",  "#76943e"]; //Overgrown Brush
-                $redArray       = ["#FE2712",   "#ed3418",  "#7f4d52",  "#b3312a",  "#fb2913",  "#eb2d22",  "#cb3740",  "#f93b16",  "#e05a38",  "#db3631",  "#fe5133",  "#fe4316",  "#f02625"]; //Vandalism
-                $pinkArray      = ["#C21460",   "#9c4a5b",  "#9b276a",  "#ba1a57",  "#c42252",  "#b82361",  "#a52476",  "#cb4251",  "#c03562",  "#a62f70",  "#d14e76",  "#d14754",  "#c01763"]; //Suspicious Persons
-                $blackArray     = ["#808080",   "#758b74",  "#667d84",  "#857170",  "#8f766e",  "#887279",  "#6d7a93",  "#938970",  "#8c857b",  "#7d7a83",  "#a09f8e",  "#999370",  "#8b6d7d"]; //Other
+                                   //baseColors Viridian,   Atlantean   Carmine     DayBreak    Sangria     Sapphire    Autumnal    Espresso    Gunmetal    High Roller LemonDrop   Sakura      City-Blue   GoldCity
+                $baseColors     = ["#FFFFFF",   "#55ad52",  "#007393",  "#9a3432",  "#ca4d27",  "#a04664",  "#3366CC",  "#DFAE2E",  "#bb9966",  "#71618f",  "#fffbb6",  "#ffdf30",  "#b8226f",  "#C9A23A", "#003056"];
+                $blueArray      = ["#0247FE",   "#3c8e86",  "#0156d9",  "#3041c1",  "#3448c8",  "#2a47d8",  "#094cf6",  "#4466c0",  "#305cd8",  "#2e51d2",  "#356bf0",  "#416dca",  "#423acc",  "#4867b9", "#013aa2"]; //High Water 
+                $yellowArray    = ["#FEFE33",   "#a1d144",  "#d8e941",  "#ead633",  "#f9ec32",  "#f0e23a",  "#d5e052",  "#f8ee32",  "#ede540",  "#dbd74a",  "#fefd6e",  "#fef933",  "#f4dd3c",  "#dcc238", "#cbd53a"]; //Pot Hole
+                $brownArray     = ["#663300",   "#625214",  "#3d4d3b",  "#73330c",  "#7a3808",  "#7a3a23",  "#57423d",  "#84520c",  "#774714",  "#6c4a48",  "#8c652e",  "#8c5e0c",  "#7f2e21",  "#93651a", "#4c3216"]; //Tree Branch
+                $purpleArray    = ["#8601AF",   "#753d8e",  "#5729a5",  "#8c108a",  "#941094",  "#8b0fa0",  "#7a10b3",  "#9c2c8f",  "#93279d",  "#830faa",  "#a440b1",  "#a4388f",  "#9008a2",  "#9a318c", "#7208a2"]; //Trash Full
+                $orangeArray    = ["#FC600A",   "#db6f18",  "#ca6425",  "#ed5910",  "#f75e0d",  "#f35d13",  "#ca623a",  "#ec8b1e",  "#dc7c38",  "#e06025",  "#fda657",  "#fd9319",  "#f55a14",  "#ed7418", "#ca5619"]; //Litter
+                $greenArray     = ["#66B032",   "#62af3a",  "#38955e",  "#739132",  "#75a130",  "#729b3c",  "#579a60",  "#84b031",  "#7baa3f",  "#69984e",  "#8cc353",  "#85b932",  "#76943e",  "#84ac34", "#337044"]; //Overgrown Brush
+                $redArray       = ["#FE2712",   "#ed3418",  "#7f4d52",  "#b3312a",  "#fb2913",  "#eb2d22",  "#cb3740",  "#f93b16",  "#e05a38",  "#db3631",  "#fe5133",  "#fe4316",  "#f02625",  "#f93316", "#982b2d"]; //Vandalism
+                $pinkArray      = ["#C21460",   "#9c4a5b",  "#9b276a",  "#ba1a57",  "#c42252",  "#b82361",  "#a52476",  "#cb4251",  "#c03562",  "#a62f70",  "#d14e76",  "#d14754",  "#c01763",  "#c43f55", "#741f5c"]; //Suspicious Persons
+                $blackArray     = ["#808080",   "#758b74",  "#667d84",  "#857170",  "#8f766e",  "#887279",  "#6d7a93",  "#938970",  "#8c857b",  "#7d7a83",  "#a09f8e",  "#999370",  "#8b6d7d",  "#92886e", "#606c76"]; //Other
                 
                 
                 
@@ -139,6 +139,20 @@ include("../MySQL_Connections/config.php");
                                 $MidBoxColor="#b8226f";
                                 $BottomBoxColor="#eb74ad";
                                 $colorArray = [$blueArray[12],$yellowArray[12],$brownArray[12],$purpleArray[12],$orangeArray[12],$greenArray[12],$redArray[12],$pinkArray[12],$blackArray[12]];
+                                break;
+                            case 'City':
+                               $backgroundColor="#003056";
+                                $TopBoxColor="linear-gradient(#91662F, #C9A23A, #FBF295)";
+                                $MidBoxColor="linear-gradient(#91662F,#FBF295, #C9A23A)";
+                                $BottomBoxColor="linear-gradient(#FBF295, #C9A23A, #91662F)";
+                                $colorArray = [$blueArray[13],$yellowArray[13],$brownArray[13],$purpleArray[13],$orangeArray[13],$greenArray[13],$redArray[13],$pinkArray[13],$blackArray[13]];
+                                break;
+                            case 'GoldCity':
+                               $backgroundColor="#6c1442";
+                                $TopBoxColor="#6C0A3E";
+                                $MidBoxColor="#b8226f";
+                                $BottomBoxColor="#eb74ad";
+                                $colorArray = [$blueArray[14],$yellowArray[14],$brownArray[14],$purpleArray[14],$orangeArray[14],$greenArray[14],$redArray[14],$pinkArray[14],$blackArray[14]];
                                 break;
                         }
                         

@@ -40,6 +40,8 @@ function closeChangeColor() {
             <form class="colorChange" method="post" action="../Color_Switch/getColor.php">
             
             <select id="color" name="color"> 
+              <option value="City">Kekionga</option>
+              <option value="GoldCity">Golden Kekionga</option>
               <option value="Atlantean">Atlantean</option>
               <option value="Autumnal">Autumnal</option>
               <option value="Carmine">Carmine</option>

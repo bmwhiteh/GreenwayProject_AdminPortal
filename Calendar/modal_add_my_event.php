@@ -19,7 +19,7 @@
         <span id="closeNotification" class="close" onClick="closeTicket('myNotificationView');">&times;</span>
         
         
-        <h1 class="modal-title" style="" id="MapTicketId">Add A New Personal Event</h1>
+        <h1 class="modal-title" id="MapTicketId">Add A New Personal Event</h1>
          <!---
         All of the Available values that can be sent back in the json
         "id":               String/Integer. Optional Uniquely identifies the given event. Different instances of repeating events should all have the same id.

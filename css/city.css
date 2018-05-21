@@ -1,0 +1,108 @@
+.genericBody{
+    background:0;
+    width: 100%;
+    background-color: #003056 !important;
+    overflow-x: hidden;
+}
+
+.contentBox{
+    background-color: #B6C3CD;
+    margin: 0px 100px 50px 100px;
+    display: -webkit-flex;
+    display: flex;
+    width:85vw;
+    
+}
+
+.active{
+    background-color:green;
+    border: 2px solid white;
+    border-radius: 25px;
+}
+
+.maptest{
+    height:100%;
+}
+
+.map#map{
+    background-color: rgba(0,48,86,.3);
+}
+.mapView{
+    height:100%;
+}
+.topBox{
+    height: 29%;
+    /*background: linear-gradient(#91662F,#C9A23A);*/
+    background: linear-gradient(#91662F, #C9A23A, #FBF295);
+    text-align: center;
+    font-size: 1.2vw;
+    box-shadow: 5px 5px rgba(0,48,86,.3);
+    position:relative;
+    font-variant: small-caps;
+    font-family: "Odin Bold";
+}
+
+.midBox{
+    height: 29%;
+    margin-top: 5%;
+    /*background: linear-gradient(#C9A23A, #FBF295);*/
+    background: linear-gradient(#91662F,#FBF295, #C9A23A);
+    text-align: center;
+    font-size: 1.2vw;
+    box-shadow: 5px 5px rgba(0,48,86,.3);
+    position:relative;
+    font-variant: small-caps;
+    font-family: "Odin Bold";
+}
+
+.bottomBox{
+    height: 29%;
+    margin-top: 5%;
+    background: linear-gradient(#FBF295, #C9A23A, #91662F);
+    text-align: center;
+    font-size: 1.2vw;
+    box-shadow: 5px 5px rgba(0,48,86,.3);
+    position:relative;
+    font-variant: small-caps;
+    font-family: "Odin Bold";
+}
+
+.dropdown-content a:hover {
+    background-color: #7F96A9;
+}
+
+.tableHeader, .tableFooter{
+    background-color: #CBA63F;
+}
+.ticketLayout {
+    background-color: #B6C3CD;
+}
+
+.ticketView {
+    background-color: #FBF295;
+    border:2px solid #FBF295; 
+    padding:5px;
+    color:black; 
+    font-weight:bold;
+
+}
+
+.ticketClose{
+        background-color: #C9A23A;
+        border:2px solid #C9A23A;
+        padding:5px;
+        color:black;
+        font-weight:bold;
+
+}
+ .txtLoading {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background: url('/Ticket_System_v2/Iconography/loadingGIF_atlantean.gif') 50% 50% no-repeat rgb(249,249,249);
+    opacity: .8;
+}
+

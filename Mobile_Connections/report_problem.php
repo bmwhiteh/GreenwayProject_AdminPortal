@@ -23,15 +23,15 @@
         
         exit(0);
     }
-   /*
+   
    //get the json data
    $data = file_get_contents("php://input");
     $sql = "INSERT INTO `databaseTests` (`dataSent`)
                 VALUES ( '".$data."' );";
                 
     $result = $conn->query($sql) or die("Query fail");  
-   */
-  
+   
+  /*
   $data = '
         {
            
@@ -48,7 +48,7 @@
 	    }
     ';
     
-
+*/
 
     
     

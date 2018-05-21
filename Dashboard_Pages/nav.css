@@ -63,7 +63,7 @@ logo{
     text-align: left;
 }
 
-.dropdown-content a:hover {background-color: #77be74}
+/*.dropdown-content a:hover {background-color: #77be74}*/
 
 .dropdown:hover .dropdown-content {
     display: block;

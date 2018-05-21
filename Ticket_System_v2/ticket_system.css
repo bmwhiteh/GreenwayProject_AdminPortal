@@ -90,8 +90,13 @@ CSS-Code:
  .card-type{
      font-size:16px;
      color:black;
-     margin:0px 0px 20px 10px;
-     padding:5px;
+     margin:0px 0px 15px 10px;
+     padding:10px;
+}
+
+.card-type span {
+      padding:5px;
+
 }
  .card-title{
      font-size:16px;
@@ -283,16 +288,7 @@ CSS-Code:
      width:300px;
      height:300px;
 }
- .txtLoading {
-     position: fixed;
-     left: 0px;
-     top: 0px;
-     width: 100%;
-     height: 100%;
-     z-index: 9999;
-     background: url('/Ticket_System_v2/Iconography/loadingGIF.gif') 50% 50% no-repeat rgb(249,249,249);
-     opacity: .8;
-}
+
 /* Customize the label (the container) */
  .container-chkbox {
     /*display: block;
@@ -418,6 +414,11 @@ CSS-Code:
      text-align:left;
      padding:20px;
 }
+
+.ticketCells span {
+
+      padding:5px;
+}
  .ticketCellInfo{
      font-size:14px;
      text-overflow: ellipsis;
@@ -492,9 +493,7 @@ CSS-Code:
      display:none;
     color:red;
 }
- .ticketView {
-     padding:10px;
-}
+
  .btn_close_urgent {
      padding:10px;
      background-color:red;
@@ -629,192 +628,7 @@ CSS-Code:
  .modal_view_response {
      width:100%;
 }
- 
-CSS from URL:
 
- Code Layout
-Compression (code layout):
-
-Custom template
-
- Options
- Preserve CSS
- Sort Selectors (caution)
- Sort Properties
-Regroup selectors
-
-Optimise shorthands
-
- Compress colors
- Compress font-weight
- Lowercase selectors
-Case for properties:
- None
- Lowercase
- Uppercase
- Remove unnecessary backslashes
- Remove last ;
- Discard invalid properties
-
- Add timestamp
- Output as file
-  Messages
-4
-Optimised font-weight: Changed "normal" to "400"
-5
-Invalid property in CSS2.1: src
-47
-Optimised color: Changed "#aaaaaa" to "#aaa"
-50
-Optimised font-weight: Changed "bold" to "700"
-70
-Optimised color: Changed "white" to "#FFF"
-71
-Invalid property in CSS2.1: border-radius
-85
-Optimised color: Changed "black" to "#000"
-86
-Optimised number: Changed "0px" to "0"
-91
-Invalid property in CSS2.1: text-overflow
-93
-Optimised font-weight: Changed "bold" to "700"
-98
-Invalid property in CSS2.1: text-overflow
-103
-Optimised number: Changed "0px" to "0"
-119
-Optimised number: Changed "0px" to "0"
-Optimised shorthand notation (margin): Changed "0 0 20px 0" to "0 0 20px"
-123
-Optimised number: Changed "0px" to "0"
-Optimised shorthand notation (margin): Changed "0 0 20px 0" to "0 0 20px"
-130
-Invalid property in CSS2.1: -webkit-user-select
-131
-Invalid property in CSS2.1: -moz-user-select
-132
-Invalid property in CSS2.1: -ms-user-select
-133
-Invalid property in CSS2.1: user-select
-146
-Invalid property in CSS2.1: border-radius
-165
-Optimised shorthand notation (border-color): Changed "#555 transparent transparent transparent" to "#555 transparent transparent"
-170
-Invalid property in CSS2.1: -webkit-animation
-171
-Invalid property in CSS2.1: animation
-174
-Invalid @-rule: (removed)
-176
-Invalid property in CSS2.1: fromopacity
-179
-Invalid property in CSS2.1: opacity
-182
-Invalid @-rule: keyframes (removed)
-184
-Invalid property in CSS2.1: fromopacity
-187
-Invalid property in CSS2.1: opacity
-191
-Optimised color: Changed "white" to "#FFF"
-198
-Optimised color: Changed "black" to "#000"
-199
-Optimised number: Changed "-webkit-flex" to "0"
-205
-Invalid property in CSS2.1: -webkit-flex-grow
-208
-Invalid property in CSS2.1: -webkit-flex-grow
-211
-Invalid property in CSS2.1: -webkit-flex-grow
-215
-Invalid property in CSS2.1: flex-grow
-218
-Invalid property in CSS2.1: flex-grow
-221
-Invalid property in CSS2.1: flex-grow
-230
-Invalid property in CSS2.1: zoom
-235
-Optimised color: Changed "black" to "#000"
-243
-Optimised color: Changed "black" to "#000"
-244
-Invalid property in CSS2.1: border-radius
-246
-Optimised color: Changed "white" to "#FFF"
-249
-Optimised shorthand notation (padding): Changed "20px 20px 20px 20px" to "20px"
-257
-Optimised color: Changed "black" to "#000"
-258
-Invalid property in CSS2.1: border-radius
-260
-Optimised color: Changed "white" to "#FFF"
-263
-Optimised color: Changed "white" to "#FFF"
-265
-Optimised color: Changed "black" to "#000"
-281
-Optimised number: Changed "0px" to "0"
-282
-Optimised number: Changed "0px" to "0"
-286
-Optimised color: Changed "rgb(249,249,249)" to "#f9f9f9"
-287
-Invalid property in CSS2.1: opacity
-299
-Invalid property in CSS2.1: -webkit-user-select
-300
-Invalid property in CSS2.1: -moz-user-select
-301
-Invalid property in CSS2.1: -ms-user-select
-302
-Invalid property in CSS2.1: user-select
-307
-Invalid property in CSS2.1: opacity
-363
-Optimised color: Changed "white" to "#FFF"
-365
-Invalid property in CSS2.1: -webkit-transform
-366
-Invalid property in CSS2.1: -ms-transform
-367
-Invalid property in CSS2.1: transform
-392
-Optimised color: Changed "white" to "#FFF"
-416
-Invalid property in CSS2.1: text-overflow
-421
-Invalid property in CSS2.1: text-overflow
-426
-Optimised color: Changed "black" to "#000"
-427
-Optimised number: Changed "0px" to "0"
-439
-Optimised number: Changed "0px" to "0"
-465
-Optimised font-weight: Changed "bold" to "700"
-497
-Optimised number: Changed "0px" to "0"
-554
-Optimised color: Changed "white" to "#FFF"
-555
-Invalid property in CSS2.1: border-radius
-569
-Optimised color: Changed "white" to "#FFF"
-574
-Optimised color: Changed "white" to "#FFF"
-584
-Optimised color: Changed "white" to "#FFF"
-585
-Invalid property in CSS2.1: border-radius
-595
-Optimised font-weight: Changed "bold" to "700"
-Input: 12.463KB, Output:8.049KB, Compression Ratio: 35.4%(-4414 Bytes)
-Select or Copy to Clipboard
 @font-face {
 font-family:'Odin Bold';
 font-style:normal;
@@ -1064,16 +878,7 @@ width:300px;
 height:300px;
 }
 
-.txtLoading {
-position:fixed;
-left:0;
-top:0;
-width:100%;
-height:100%;
-z-index:9999;
-background:url(/Ticket_System_v2/Iconography/loadingGIF.gif) 50% 50% no-repeat #f9f9f9;
-opacity:.8;
-}
+
 
 .container-chkbox {
 position:relative;
@@ -1223,9 +1028,6 @@ display:none;
 color:red;
 }
 
-.ticketView {
-padding:10px;
-}
 
 .btn_close_urgent {
 background-color:red;
