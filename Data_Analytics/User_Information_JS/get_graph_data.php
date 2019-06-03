@@ -13,30 +13,29 @@ if (is_ajax()) {
        $sql = "SELECT\n"
         . " COUNT(*) AS countUsers,\n"
         . " CASE\n"
-        . " WHEN `intAge` >=10 AND `intAge` <=20 THEN '10-20'\n"
-        . " WHEN `intAge` >=21 AND `intAge` <=30 THEN '21-30'\n"
-        . " WHEN `intAge` >=31 AND `intAge` <=40 THEN '31-40'\n"
-        . " WHEN `intAge` >=41 AND `intAge` <=50 THEN '41-50'\n"
-        . " WHEN `intAge` >=51 AND `intAge` <=60 THEN '51-60'\n"
-        . " WHEN `intAge` >=61 THEN '61+'\n"
+        . " WHEN TIMESTAMPDIFF(YEAR, dtBirthdate, CURDATE()) BETWEEN 10 AND 20 THEN '10-20'\n"
+        . " WHEN TIMESTAMPDIFF(YEAR, dtBirthdate, CURDATE()) BETWEEN 21 AND 30 THEN '21-30'\n"
+        . " WHEN TIMESTAMPDIFF(YEAR, dtBirthdate, CURDATE()) BETWEEN 31 AND 40 THEN '31-40'\n"
+        . " WHEN TIMESTAMPDIFF(YEAR, dtBirthdate, CURDATE()) BETWEEN 41 AND 50 THEN '41-50'\n"
+        . " WHEN TIMESTAMPDIFF(YEAR, dtBirthdate, CURDATE()) BETWEEN 51 AND 60 THEN '51-60'\n"
+        . " WHEN TIMESTAMPDIFF(YEAR, dtBirthdate, CURDATE()) >=61 THEN '61+'\n"
         . " END AS ageband\n"
         . "FROM\n"
-        . " users\n"
+        . "firebaseusers\n"
         . "GROUP BY ageband";
-
     }
     
     else if($graphType == 'get_zipcodes'){
      
         //Distribution of Tickets (Line Graph)
         $sql = "SELECT DISTINCT intZipcode\n"
-            . "FROM users\n"
+            . "FROM firebaseusers\n"
             . " LIMIT 0, 30 ";
 
     }
     else if($graphType == 'bar_graph'){
-         $sql = "select count(intUserId) as countUsers, intZipCode\n"
-            . "from users\n"
+         $sql = "select count(userId) as countUsers, intZipCode\n"
+            . "from firebaseusers\n"
             . "group by intZipCode\n"
             . " LIMIT 0, 30 ";
 
@@ -44,9 +43,9 @@ if (is_ajax()) {
     else if($graphType == 'radar'){
      
         //Distribution of Tickets (Radar)
-       $sql = "SELECT count(intUserId) AS countUsers, strGender, Month(dtStartDate) as Month\n"
-            . "FROM users\n"
-            . "GROUP BY strGender, Month(dtStartDate)\n"
+       $sql = "SELECT count(userId) AS countUsers, strGender, Month(dtCreated) as Month\n"
+            . "FROM firebaseusers \n"
+            . "GROUP BY strGender, Month(dtCreated)\n"
             . " LIMIT 0, 30 ";
 
 

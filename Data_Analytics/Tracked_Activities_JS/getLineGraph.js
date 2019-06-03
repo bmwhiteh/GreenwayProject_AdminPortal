@@ -66,6 +66,7 @@ function getLineGraph(types){
 		data: data,
 		success: function(data) {
 			//get the JSON
+		//	console.log(data["json"]);
 			var activityJSON = JSON.parse(data["json"]);
 			
 					var name = "colorArray=";

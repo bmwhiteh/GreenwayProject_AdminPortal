@@ -16,7 +16,7 @@ if ($_COOKIE['ticket_status'] == "closed"){
 	$status = 'where dtClosed IS NOT NULL';
 }
 else if ($_COOKIE['ticket_status'] == "all"){
-	$status = '';
+	$status = 'where (dtClosed IS NOT NULL or dtClosed IS NULL)';
 }else{
 	$status = 'where dtClosed IS NULL';
 }
@@ -40,11 +40,24 @@ if(isset($status)){
 	}else{
 		$startingLimit = $offset;
 	}
+	$assigned = $_GET['assigned'];
+	if($assigned != 'all'){
+		$user = $_COOKIE['user'];
+		$assignedEmployee = "AND strEmployeeAssigned = '$user'";
+		$startingLimit = 0;
+		$pageno = 1;
+		setcookie("page_number", $pageno, time() + (86400 * 30), "/"); // 86400 = 1 day
+
+	}else{
+		$assignedEmployee = '';
+	}
+    $stop = $no_of_records_per_page+$startingLimit;
     
 	$sql = "SELECT strTicketType, intTicketId, strDescription, dtSubmitted, dtClosed, strTitle, strImageFilePath, gpsLat, gpsLong, bitUrgent\n"
 	. "from maintenancetickets\n"
 	. "left join tickettypes on tickettypes.intTypeId = maintenancetickets.intTypeId\n"
-	. $status. " LIMIT $startingLimit, $no_of_records_per_page";       
+	. $status. " ".$assignedEmployee." LIMIT $startingLimit, $stop"; 
+	
 	$result = $conn->query($sql) or die($sql);
 
 }
@@ -112,11 +125,7 @@ if(isset($status)){
                 			break;
                 		}
                 	}
-                    $sqlRangers = "SELECT strFirstName, strLastName, intEmployeeId\n"
-                        . "from employees\n"
-                        . "where intSecurityLevel = '3'\n";
-                        
-                    $resultRangers = $conn->query($sqlRangers) or die("Query Rangers fail");
+                    
                    $ticketid=  $row['intTicketId'];
     	if($row['dtClosed'] == ''){ 
 		$submit = "0px"; 
@@ -153,7 +162,7 @@ if(isset($status)){
                      <span class="popup" >
                        <img src="<?php echo $filename;?>"  onClick="ShowImagePopup(<?php echo $row['intTicketId'];?>);"  class="hoverImage" alt="No Image Available">
 
-                        <span class="popuptext" id="ticketPopup_<?php echo $row['intTicketId'];?>"><img src="<?php echo $filename;?>" alt="Ticket Image Not Found"></span>
+                        <span class="popuptext" id="ticketPopup_<?php echo $row['intTicketId'];?>"><img class="largeTicketPopup" src="<?php echo $filename;?>" alt="Ticket Image Not Found"></span>
                     </span>
                     
                 </td>

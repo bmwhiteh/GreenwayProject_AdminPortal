@@ -5,9 +5,7 @@
     $startDate = $_POST["start"];
 
     $data = file_get_contents("php://input");
- //$data ="e1=false&start=2018-04-01&end=2018-05-13";
-    
-         
+ //$data ="e1=true&start=2018-04-01&end=2018-05-13";
 
     //break the string into "n#=false" bits
     $dataArray = explode("&",$data);
@@ -18,32 +16,27 @@
         $temp = explode("=",$dataArray[$i]);
         $myObj[$i] = $temp[1];
     }
-
-    //now we add to the query string the tickets to avoid (false)
     $includedEvents= "";
-    for ($i = 0; $i<count($myObj)-2; $i++){
-        if ($myObj[$i] == 'false'){
-            if($i == 0){
-                $id = '0';
-            }
-        $includedEvents = $includedEvents. " AND strEventType != '$id'";
-        }
-    }
+    if($myObj[0] == 'false'){
+        $includedEvents = $includedEvents. " AND strEventType != 'personal'";
+    }else{
+        $includedEvents = $includedEvents. " AND strEventType = 'personal'";
+    };
 
          $current_employee = $_COOKIE["user"];
             
-        $sqlRangers = "SELECT intEmployeeId\n"
-            . "from employees WHERE strUsername = '$current_employee'\n";
+        $sqlRangers = "SELECT *\n"
+            . "from firebaseusers WHERE userId = '$current_employee'\n";
             
         $resultRangers = $conn->query($sqlRangers) or die("Query Rangers fail");
         $ranger = $resultRangers->fetch_array(MYSQLI_ASSOC);
             
-            $employeeid = $ranger['intEmployeeId'];
+            $employeeid = $ranger['userId'];
             
-    $sqlEvents = "SELECT `intEventId`, `strEventType`, `strEventTitle`, `strEventDescription`, `intEmployeeId`, `dtStartDate`, `dtEndDate`, `strEventColor`\n"
+    $sqlEvents = "SELECT `intEventId`, `strEventType`, `strEventTitle`, `strEventDescription`, `strEmployeeId`, `dtStartDate`, `dtEndDate`, `strEventColor`\n"
     . "FROM `CalendarEvents`\n"
-    . "where dtStartDate > '$startDate' and intEmployeeId = '$employeeid' " .$includedEvents;
-
+    . "where strEmployeeId = '$employeeid' $includedEvents";
+   // echo $sqlEvents;
     $resultEvents = $conn->query($sqlEvents) or die("Query fail");
    
     /*

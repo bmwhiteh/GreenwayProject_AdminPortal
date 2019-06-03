@@ -148,10 +148,14 @@ CSS-Code:
      width:40px;
     vertical-align:middle;
 }
+
+.largeTicketPopup{
+    width: 160px !important;
+}
 /* The actual popup */
  .popup .popuptext {
      visibility: hidden;
-     width: 160px;
+     min-width: 160px;
      background-color: #555;
      color: #fff;
      text-align: center;
@@ -384,8 +388,8 @@ CSS-Code:
      vertical-align:top;
      text-align:center;
      border-collapse:collapse;
-     margin-top:30px;
-     margin-left:auto;
+     margin: 20px 20px;
+    margin-left: 5%;
      width:90%;
 }
  .tableTicket thead th{
@@ -395,7 +399,7 @@ CSS-Code:
      background-color: white;
 }
  .cardsList {
-     margin-left:auto;
+    margin-left: 5%;
      width:100%;
 }
  .firstCell {
@@ -687,6 +691,7 @@ float:right;
 }
 
 .theBox {
+ width:100%;
 display:block!important;
 clear:both;
 }
@@ -699,7 +704,8 @@ width:20%;
 display:inline-block;
 vertical-align:top;
 text-align:center;
-margin:20px 15px 20px 30px;
+/*margin:20px 15px 20px 30px;*/
+margin: 20px 20px;
 padding:10px;
 }
 
@@ -951,13 +957,13 @@ background-color:#333;
 vertical-align:top;
 text-align:center;
 border-collapse:collapse;
-margin-top:30px;
-margin-left:auto;
+margin: 20px 20px;
+margin-left: 5%;
 width:90%;
 }
 
 .cardsList {
-margin-left:auto;
+margin-left: 5%;
 width:100%;
 }
 
@@ -1010,6 +1016,7 @@ padding:5px;
 
 .modal_view span {
 float:left;
+margin-left: 50px;
 }
 
 .urgentCheck {

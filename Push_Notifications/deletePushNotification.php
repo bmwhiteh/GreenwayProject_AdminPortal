@@ -12,9 +12,9 @@
   
     $ch = curl_init();
     $httpHeader = array(
-          'Authorization: Basic YjQyMzY3NDQtOWE4NS00MDc1LWE1ZTMtZGExMjRkN2FhOThi'
+          'Authorization: Basic NTcxMjE0NTgtYTE0Yy00YmFlLWEyNzktZjFhMDA1NGViODc4'
         );
-    $url = "https://onesignal.com/api/v1/notifications/" . $oneSignalId. "?app_id=eecf381c-62fd-4ac7-ac38-4496d79c71fb";
+    $url = "https://onesignal.com/api/v1/notifications/" . $oneSignalId. "?app_id=7df26352-e23a-40db-9ce3-31c5e383bcf8";
 
     $options = array (
       CURLOPT_URL => $url,

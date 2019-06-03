@@ -2,8 +2,8 @@
 //function sendMessage(){
 
     $fields = array(
-        'app_id' => "eecf381c-62fd-4ac7-ac38-4496d79c71fb",
-        'include_email_tokens' => ["andreamoorman26@gmail.com"],
+        'app_id' => "7df26352-e23a-40db-9ce3-31c5e383bcf8",
+        'include_email_tokens' => ["andreamoorman26@gmail.com","cghier@gmail.com"],
         'email_subject' => "Welcome to Cat Facts!",
         'email_body' => "<html><body><h1>Welcome to Viridian!<h1><h4>The official application of the City of Fort Wayne Trail Systems!</h4><hr/><p>Hi $firstName,</p><p>Your Viridian Admin Portal login information is below.</p><p>Username:<h5> $username</h5></p><p>Password:<h5> $password</h5></p><p><small><a href='[unsubscribe_url]'>Unsubscribe</a></small></p></body></html>"
         
@@ -16,7 +16,7 @@ print($fields);
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, "https://onesignal.com/api/v1/notifications");
     curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json; charset=utf-8',
-                                               'Authorization: Basic YjQyMzY3NDQtOWE4NS00MDc1LWE1ZTMtZGExMjRkN2FhOThi'));
+                                               'Authorization: Basic NTcxMjE0NTgtYTE0Yy00YmFlLWEyNzktZjFhMDA1NGViODc4'));
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
     curl_setopt($ch, CURLOPT_HEADER, FALSE);
     curl_setopt($ch, CURLOPT_POST, TRUE);

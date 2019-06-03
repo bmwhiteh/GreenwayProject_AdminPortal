@@ -45,18 +45,18 @@
         <?php
             $current_employee = $_COOKIE["user"];
             
-            $sqlRangers = "SELECT intEmployeeId\n"
-                . "from employees WHERE strUsername = '$current_employee'\n";
+            $sqlRangers = "SELECT *\n"
+                . "from firebaseusers WHERE userId = '$current_employee'\n";
                 
             $resultRangers = $conn->query($sqlRangers) or die("Query Rangers fail");
             $ranger = $resultRangers->fetch_array(MYSQLI_ASSOC);
             
-            $employeeid = $ranger['intEmployeeId'];
+            $employeeid = $ranger['userId'];
         ?>
         <div class="modal-body">
         
            <form class="my_event_form" action="action_add_event.php" method="post">
-                    <input type="hidden" name="intEmployeeId" value="<?php echo $employeeid; ?>">
+                    <input type="hidden" name="userId" value="<?php echo $employeeid; ?>">
                     
                     <label for="event_title">Event Title:</label><br/> <input type="text" name="event_title" id="event_title"/><br/><br/>
                     <table>

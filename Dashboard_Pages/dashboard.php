@@ -5,12 +5,47 @@
     <title>Home</title>
     <link rel="stylesheet" type="text/css" href="/css/dashboardPages.css"/>
     <link rel="shortcut icon" href="../Dashboard_Pages/favicon.png" type="image/x-icon">
-
+    <script src="../../js/jquery-3.2.1.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase.js"></script>
+    <!--<script rel="preload" as="script" src="../../Login_System/verifyFirebaseAuth.js"></script>-->
 </head>
+<script>
+    function animationHover(element, animation){
+    element = $(element);
+    element.hover(
+        function() {
+            element.addClass('animated ' + animation);        
+        },
+        function(){
+            //wait for animation to finish before removing classes
+            window.setTimeout( function(){
+                element.removeClass('animated ' + animation);
+            }, 2000);         
+        });
+}
 
-<?php require_once("../Login_System/verifyAuth.php"); ?>
+$(document).ready(function(){
+    $('#quickStats1').each(function() {
+        animationHover(this, 'rubberBand');
+        console.log("In each");
+    });
+
+    $('#quickStats2').each(function() {
+        animationHover(this, 'rubberBand');
+    });
+    
+    $('#quickStats3').each(function() {
+        animationHover(this, 'rubberBand');
+    });
+    
+    $('#mapButton').each(function() {
+        animationHover(this, 'pulse');
+    });
+    
+});
+</script>
+
 <body class="genericBody">
-
 <?php include "navBar.php"; ?>
 
 <div class="contentBox">
@@ -19,21 +54,21 @@
         <div class="topBox"><h3>Number of People on the Trail</h3>
             <h1><?php include "numCurrentUsers.php"?></h1>
             <div class="absolute">
-                <img src=<?php echo $_COOKIE['userIcon']; ?> class="quickStats"></img>
+                <img src=<?php echo $_COOKIE['userIcon']; ?> id="quickStats1"></img>
             </div>
         </div>
         
         <div class="midBox"><h3>Open Maintenance Tickets</h3>
             <h1><?php include "numOpenTickets.php"?></h1>
             <div class="absolute">
-                <img src=<?php echo $_COOKIE['openTicketsIcon']; ?> class="quickStats"></img>
+                <img src=<?php echo $_COOKIE['openTicketsIcon']; ?> id="quickStats2"></img>
             </div>
         </div>
         
         <div class="bottomBox"><h3>Tickets Closed This Week</h3>
             <h1><?php include "numClosedTickets.php" ?></h1>
             <div class="absolute">
-                <img src=<?php echo $_COOKIE['closedTicketsIcon']; ?> class="quickStats"></img>
+                <img src=<?php echo $_COOKIE['closedTicketsIcon']; ?> id="quickStats3"></img>
             </div>
         </div>
     </div>

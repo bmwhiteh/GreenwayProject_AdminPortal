@@ -1,17 +1,33 @@
 <?php
-include("../MySQL_Connections/config.php");
-if($_SERVER["REQUEST_METHOD"] == "POST") {
-    $firstName = $_POST['firstName'];
-    $lastName = $_POST['lastName'];
-    $email = $_POST['email'];
-    $securityLevel = $_POST['intSecurityLevel'];
-    $employeeId = $_POST['listOfUsers'];
+
+require '../Mobile_Connections/vendor/autoload.php';
+    include("../MySQL_Connections/config.php");
     
-    $sql = "UPDATE `employees` SET `strFirstName`= '$firstName',`strLastName`= 
-    '$lastName',`strEmailAddress`= '$email', `intSecurityLevel` = '$securityLevel'
-    WHERE `intEmployeeId`= '$employeeId'";
+    use Kreait\Firebase\Factory;
+    use Kreait\Firebase\ServiceAccount;
+
+    $serviceAccount = ServiceAccount::fromJsonFile('../Mobile_Connections/firebase-adminsdk.json');
+    $firebase = (new Factory)
+        ->withServiceAccount($serviceAccount)
+        ->create();
+    $auth = $firebase->getAuth();
+
+if($_SERVER["REQUEST_METHOD"] == "GET") {
+    $displayName = $_GET['displayName'];
+   $email = $_GET['email'];
+    $securityLevel = $_GET['intSecurityLevel2'];
+   $userId = $_GET['userId'];
+    $sql = "UPDATE `firebaseusers` SET `intSecurityLevel` = '$securityLevel'
+    WHERE `userId`= '$userId'";
     
     $resultset = $conn->query($sql) or die("Query fail");
-    header("location: ../Management/manageEmployees.php");
-}
+    
+    $userProperties = [
+            'displayName' => $displayName,
+            'email' => $email
+        ];
+        
+        $updatedUser = $auth->updateUser($userId, $userProperties);
+    }
+
 ?>

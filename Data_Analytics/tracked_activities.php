@@ -10,7 +10,6 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
     <!---<link rel="stylesheet" type="text/css" href="./css/styles.css"/>--->
-    <link rel="stylesheet" type="text/css" href="./css/viridian.css"/>
     <link rel="stylesheet" type="text/css" href="/Data_Analytics/data_analytics.css"/>
     <link rel="shortcut icon" href="../Dashboard_Pages/favicon.png" type="image/x-icon">
     <script src="../js/jquery-3.2.1.min.js"></script>
@@ -46,7 +45,6 @@
 
             getRadarGraph();
             getBarGraph();
-           //getTicketList();
 
     	};
 	</script>
@@ -88,7 +86,13 @@
             
         }
         
-
+         .col-md-6 {
+            width: 47% !important;
+        }
+        
+        .col-md-5, .col-md-7 {
+            width:95% !important;
+        }
         
 
     </style>
@@ -115,7 +119,7 @@
 
                             <div class="header">
                                 <h4 class="title">Activity Distribution</h4>
-                                <p class="category">All Users divided by Age</p>
+                                <p class="category">All Activities Divided by Type</p>
                             </div>
                             <div class="content" style="height: 100%">
                                 <!---<div id="chartPreferences" class="ct-chart ct-perfect-fourth" ></div>--->
@@ -138,7 +142,7 @@
                         <!---Radar Chart--->
                         <div class="card ">
                             <div class="header">
-                                <h4 class="title">Users per Month</h4>
+                                <h4 class="title">Activities per Month</h4>
                                 <p class="category">Monthly Distribution</p>
                             </div>
                             <div class="content">
@@ -196,6 +200,7 @@
                             </div>
                         </div>
                     </div>
+                    
                 </div>
 
 

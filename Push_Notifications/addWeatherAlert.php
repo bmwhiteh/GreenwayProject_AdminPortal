@@ -33,8 +33,8 @@ foreach ($data['alerts'] as $key => $value) {
         $description = $value['description'];
         $message =  $value['message'];
         $dt = date("y-m-d");
-        $addNotificationSql = "INSERT INTO `pushnotifications`(`oneSignalId`, `strNotificationType`, `strNotificationContent`, `dtSentToUsers`, `dtReceivedFromAPI`, `strDateTime` ,`intSevereWeatherAlertsSent`, `strJSONMessage`)
-        VALUES ('$oneSignalId','Severe Weather','$description','$dt','$dt','$date',$usersReceivingNotifications,'$message')";
+        $addNotificationSql = "INSERT INTO `pushnotifications`(`oneSignalId`, `strNotificationType`, `intType`, `strNotificationContent`, `dtSentToUsers`, `dtReceivedFromAPI`, `strDateTime` ,`intSevereWeatherAlertsSent`, `strJSONMessage`)
+        VALUES ('$oneSignalId','Severe Weather','3','$description','$dt','$dt','$date',$usersReceivingNotifications,'$message')";
         $addNotificationResult = $conn->query($addNotificationSql) or die("Insert fail");
 
         date_default_timezone_set('UTC');

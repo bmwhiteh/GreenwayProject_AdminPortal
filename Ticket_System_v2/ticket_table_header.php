@@ -7,7 +7,7 @@
     *
     */
      include("../Dashboard_Pages/navBar.php"); 
-        require_once("../Login_System/verifyAuth.php"); 
+     require_once("../Login_System/verifyAuth.php"); 
 
     $sqlTicketTypes = "SELECT `strTicketType`,`intTypeId` FROM `tickettypes` LIMIT 0, 30 ";
     $resultTicketTypes = $conn->query($sqlTicketTypes) or die("Query fail");
@@ -41,7 +41,7 @@
             $pageno = $_COOKIE['page_number'];
         } else {
             $pageno = 1;
-            //setcookie("page_number", $pageno, time() + (86400 * 30), "/"); // 86400 = 1 day
+            setcookie("page_number", $pageno, time() + (86400 * 30), "/"); // 86400 = 1 day
         }
         
         if(isset($_COOKIE['page_view'])){
@@ -49,7 +49,7 @@
             
         }else{
             $view = "cards";
-            //setcookie("page_view", $view, time() + (86400 * 30), "/"); // 86400 = 1 day
+            setcookie("page_view", $view, time() + (86400 * 30), "/"); // 86400 = 1 day
 
         }
         
@@ -58,10 +58,9 @@
             
         }else{
             $status = "open";
-            //setcookie("page_view", $view, time() + (86400 * 30), "/"); // 86400 = 1 day
+            setcookie("ticket_status", $status, time() + (86400 * 30), "/"); // 86400 = 1 day
 
         }
-        
         
         
         if(isset($_POST['ticketid'])){$id = $_POST['ticketid'];}elseif (isset($_GET['ticketid'])){$id = $_GET['ticketid'];}
@@ -77,17 +76,18 @@
         <div class="header_options_title">Ticket Options</div>
 
           <div>
-             <form name="setViewPreferences" onChange="FilterResults(<?php echo $pageno;?>,'all');">
+             <form name="setViewPreferences" onChange="FilterResults(<?php echo $pageno;?>, 'all');">
                <table>
                  <tr>
                     <td>
-                        <input type="checkbox" name="ShowUserTickets"  id="ShowUserTickets" onClick="FilterResults(<?php echo $pageno .",'".$_COOKIE['user'];?>');" >
+                        <input type="checkbox" name="ShowUserTickets"  id="ShowUserTickets" >
                         My Tickets Only
                     </td>
+                    <input type="hidden" id="userId" name="userId" value="<?php echo $_COOKIE['user'];?>">
                    <td class="header_options_td_30">
                       Ticket Status: <br/>
                             
-                       <select name="statOpenClosed" id="statOpenClosed">
+                       <select name="statOpenClosed" id="statOpenClosed" >
                           
                           <option value="open" <?php if ($_COOKIE['ticket_status'] == "open"){echo "selected";}?>>Open</option>
                          <option value="closed" <?php if ($_COOKIE['ticket_status'] == "closed"){echo "selected";}?>>Closed</option>

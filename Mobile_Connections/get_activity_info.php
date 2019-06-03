@@ -25,23 +25,16 @@
     //get the json data
     $data = file_get_contents("php://input");
     $sql = "INSERT INTO `databaseTests` (`dataSent`)
-                VALUES ( '".$data."' );";
+                VALUES ( 'Activity Info ".$data."' );";
                 
     $result = $conn->query($sql) or die("Query fail");  
-    
-    //echo $data. "\n";
-    
-  /*  $data = '{
-        "activityId":"560"
-        }';
-   */ 
     
     if(isset($data)){
         $dataArray = json_decode($data);
         $intActivityId = mysqli_real_escape_string($conn, $dataArray->activityId);
         
         $activitySql = "SELECT `intActivityType`,`timeTotalDuration`,`milesTotalDistance`,
-        `calTotalCalories` FROM `userActivities` WHERE `intActivityId` = '$intActivityId'";
+        `calTotalCalories`, `averageSpeed` FROM `activities` WHERE `id` = '$intActivityId'";
         $activityResults = $conn->query($activitySql);
         $row = $activityResults->fetch_array(MYSQLI_ASSOC);
         
@@ -50,6 +43,7 @@
             $activityObj->duration = $row['timeTotalDuration'];
             $activityObj->distance = $row['milesTotalDistance'];
             $activityObj->calories = $row['calTotalCalories'];
+            $activityObj->averageSpeed = $row['averageSpeed'];
         
         $locationSql = "SELECT gpsLat, gpsLong from locationData WHERE intActivityId = '$intActivityId'";
         $locationResults = $conn->query($locationSql);

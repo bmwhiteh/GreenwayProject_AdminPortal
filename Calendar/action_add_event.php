@@ -7,7 +7,7 @@
     $strEventType = 'personal';
     $strEventTitle = $_POST["event_title"];
     $strEventDescription = $_POST["event_description"];
-    $intEmployeeId = $_POST["intEmployeeId"];
+    $userId = $_POST["userId"];
     $startDate = $_POST["event_start"];
     $dtStartTime = $_POST["time_start"];
     $endDate = $_POST["event_end"];
@@ -20,7 +20,7 @@
         $dtEndTime = "23:59:59";
     }
     
-    date_default_timezone_set('America/Indiana/Indianapolis');
+    date_default_timezone_set('EST');
     $offset =  date('Z') / 3600;
     $offsetString = (string) $offset;
     $hours = $offsetString[1];
@@ -42,8 +42,8 @@
     
 
     
-    $sqlAddEvent = "INSERT INTO `CalendarEvents`( `strEventType`, `strEventTitle`, `strEventDescription`, `intEmployeeId`, `dtStartDate`, `dtEndDate`, `strEventColor`) 
-            VALUES ('$strEventType','$strEventTitle','$strEventDescription','$intEmployeeId','$dtStartDate','$dtEndDate','$strEventColor')";
+    $sqlAddEvent = "INSERT INTO `CalendarEvents`( `strEventType`, `strEventTitle`, `strEventDescription`, `strEmployeeId`, `dtStartDate`, `dtEndDate`, `strEventColor`) 
+            VALUES ('$strEventType','$strEventTitle','$strEventDescription','$userId','$dtStartDate','$dtEndDate','$strEventColor')";
 
     $resultAddEvent = $conn->query($sqlAddEvent);
     

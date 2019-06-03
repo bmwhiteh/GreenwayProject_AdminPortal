@@ -14,7 +14,7 @@ if ($_COOKIE['ticket_status'] == "closed"){
 	$status = 'where dtClosed IS NOT NULL';
 }
 else if ($_COOKIE['ticket_status'] == "all"){
-	$status = '';
+	$status = 'where (dtClosed IS NOT NULL or dtClosed IS NULL)';
 }else{
 	$status = 'where dtClosed IS NULL';
 }
@@ -42,12 +42,7 @@ if(isset($status)){
 	$assigned = $_GET['assigned'];
 	if($assigned != 'all'){
 		
-		 $sqlRangers = "SELECT intEmployeeId\n"
-                        . "from employees\n"
-                        . "where strUserName = '$assigned'\n";
-        $resultRangers = $conn->query($sqlRangers) or die("Query Rangers fail");
-    	$employee = $resultRangers->fetch_array(MYSQLI_ASSOC);
-		$assignedEmployee = "AND intEmployeeAssigned = '".$employee["intEmployeeId"]."'";
+		$assignedEmployee = "AND strEmployeeAssigned = '".$_COOKIE['user']."'";
 		$startingLimit = 0;
 		$pageno = 1;
 		setcookie("page_number", $pageno, time() + (86400 * 30), "/"); // 86400 = 1 day
@@ -59,7 +54,7 @@ if(isset($status)){
 	$sql = "SELECT strTicketType, intTicketId, strDescription, dtSubmitted, dtClosed, strTitle, strImageFilePath, bitUrgent, gpsLat, gpsLong\n"
 	. "from maintenancetickets\n"
 	. "left join tickettypes on tickettypes.intTypeId = maintenancetickets.intTypeId\n"
-	. $status. " ".$assignedEmployee." LIMIT $startingLimit, $stop";       
+	. $status. " ".$assignedEmployee." LIMIT $startingLimit, $stop";   
 	$result = $conn->query($sql) or die($sql);
 }
 

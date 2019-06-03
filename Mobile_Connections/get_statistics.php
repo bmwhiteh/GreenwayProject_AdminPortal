@@ -44,36 +44,36 @@
      if(isset($data)){     
         //JSON must be decoded using PHP function
         $dataArray = json_decode($data);
-        $intUserId = $dataArray->userId;
+        $strUserId = $dataArray->userId;
         
-        if(isset($intUserId) and $intUserId > 0){
+        if(isset($strUserId) and $strUserId != ''){
             $sqlWalking = "SELECT sum(milesTotalDistance) as totalDistance_Walking, 3600 * SUM( milesTotalDistance ) / ( SUM( TIME_TO_SEC( timeTotalDuration ) ) ) as avgSpeed_Walking,\n"
                 . "sum(calTotalCalories) as totalCalories_Walking\n"
-                . "FROM userActivities\n"
-                . "WHERE intUserId = '$intUserId' and intActivityType = '2'";
+                . "FROM activities\n"
+                . "WHERE strUserId = '$strUserId' and intActivityType = '2'";
                 
             $sqlRunning = "SELECT sum(milesTotalDistance) as totalDistance_Running, 3600 * SUM( milesTotalDistance ) / ( SUM( TIME_TO_SEC( timeTotalDuration ) ) )  as avgSpeed_Running,\n"
                 . "sum(calTotalCalories) as totalCalories_Running\n"
-                . "FROM userActivities\n"
-                . "WHERE intUserId = '$intUserId' and intActivityType = '1'";
+                . "FROM activities\n"
+                . "WHERE strUserId = '$strUserId' and intActivityType = '1'";
                 
             $sqlBiking = "SELECT sum(milesTotalDistance) as totalDistance_Biking, 3600 * SUM( milesTotalDistance ) / ( SUM( TIME_TO_SEC( timeTotalDuration ) ) )  as avgSpeed_Biking,\n"
                 . "sum(calTotalCalories) as totalCalories_Biking\n"
-                . "FROM userActivities\n"
-                . "WHERE intUserId = '$intUserId' and intActivityType = '3'";
+                . "FROM activities\n"
+                . "WHERE strUserId = '$strUserId' and intActivityType = '3'";
                 
             $sqlOverall = "SELECT avg(milesTotalDistance) as totalDistance_Overall, 3600 * SUM( milesTotalDistance ) / ( SUM( TIME_TO_SEC( timeTotalDuration ) ) )  as avgSpeed_Overall,\n"
                 . "sum(calTotalCalories) as totalCalories_Overall\n"
-                . "FROM userActivities\n"
-                . "WHERE intUserId = '$intUserId'";
+                . "FROM activities\n"
+                . "WHERE strUserId = '$strUserId'";
                 
             $sqlAllTickets = "SELECT count(intTicketId) as hazards_reported \n"
                 . "FROM maintenancetickets\n"
-                . "WHERE intUserId = '$intUserId'";
+                . "WHERE strUserId = '$strUserId'";
                 
             $sqlClosedTickets = "SELECT count(intTicketId) as hazards_removed \n"
                 . "FROM maintenancetickets\n"
-                . "WHERE intUserId = '$intUserId' and dtClosed IS NOT NULL";
+                . "WHERE strUserId = '$strUserId' and dtClosed IS NOT NULL";
             
             $resultWalking = $conn->query($sqlWalking) or die($sqlWalking);  
             $resultRunning = $conn->query($sqlRunning) or die($sqlRunning);  

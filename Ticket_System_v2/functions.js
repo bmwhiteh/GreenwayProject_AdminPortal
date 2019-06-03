@@ -231,12 +231,18 @@
       
       
       function FilterResults(page, assigned){
-  
+        console.log("In Filter Results");
          var status = document.getElementById("statOpenClosed").value;
           var tableView = document.getElementById("tableView").checked;
+          var myTicketsOnly = document.getElementById("ShowUserTickets").checked;
+          if(myTicketsOnly){
+            var user = document.getElementById("userId").value;
+            assigned = user;
+          }
           var ticketView = "cards";
           var today = new Date();
           var assignedEmployee = assigned;
+          console.log("Assigned Employee: " + assignedEmployee);
 
           var userOnly = document.getElementById("ShowUserTickets").checked;
           if(userOnly == true){
@@ -330,7 +336,7 @@
 
         }
 
-        xmlhttp.open("GET","get_ticket_"+page_view+".php?status="+ticket_status+"&pageno="+page+"&view="+page_view+"&assigned="+assignedEmployee,true);
+        xmlhttp.open("GET","get_ticket_"+page_view+".php?status"+ticket_status+"&pageno="+page+"&view="+page_view+"&assigned="+assignedEmployee,true);
                     $(".txtLoading").fadeOut("slow");
 
         xmlhttp.send();
@@ -410,7 +416,9 @@
     }
     
     function ReassignTicket(id){
+      console.log("In ReassignTicket");
         var new_employee = document.getElementById("assignedEmployee").value;
+        console.log(new_employee);
         var tickets = [id];
         var params = "assign="+tickets+"&assignedEmployee="+new_employee;
 
@@ -441,3 +449,38 @@
         
     }
     
+    function flipNotify(id){
+      console.log("in flip notify " + id);
+      //add ajax call to flipNotifyBit.php
+       $.ajax({
+          url: "flipNotifyBit.php",
+          type: "get", //send it through get method
+          data: { 
+            ticketId: id
+          },
+          success: function(response) {
+          	console.log("Notify bit flipped successfully");
+          },
+          error: function(xhr) {
+          	console.log("In error");
+          }
+        });
+    }
+    
+    function flipUrgent(id){
+      console.log("in flip urgent" + id);
+      //add ajax call to flipNotifyBit.php
+       $.ajax({
+          url: "flipUrgentBit.php",
+          type: "get", //send it through get method
+          data: { 
+            ticketId: id
+          },
+          success: function(response) {
+          	console.log("Urgent bit flipped successfully");
+          },
+          error: function(xhr) {
+          	console.log("In error");
+          }
+        });
+    }

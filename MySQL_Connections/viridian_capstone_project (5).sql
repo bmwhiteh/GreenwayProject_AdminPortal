@@ -287,10 +287,10 @@ CREATE TABLE IF NOT EXISTS `tickettypes` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `userActivities`
+-- Table structure for table `activities`
 --
 
-CREATE TABLE IF NOT EXISTS `userActivities` (
+CREATE TABLE IF NOT EXISTS `activities` (
   `intActivityId` int(11) NOT NULL AUTO_INCREMENT,
   `intUserId` int(11) NOT NULL,
   `intActivityType` int(11) NOT NULL DEFAULT '2',
@@ -308,10 +308,10 @@ CREATE TABLE IF NOT EXISTS `userActivities` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `userActivitiesType`
+-- Table structure for table `activitiesType`
 --
 
-CREATE TABLE IF NOT EXISTS `userActivitiesType` (
+CREATE TABLE IF NOT EXISTS `activitiesType` (
   `intTypeId` int(11) NOT NULL AUTO_INCREMENT,
   `strActivity` varchar(50) NOT NULL,
   PRIMARY KEY (`intTypeId`)
@@ -386,10 +386,10 @@ ALTER TABLE `ticketnotes`
   ADD CONSTRAINT `ticketnotes_ibfk_1` FOREIGN KEY (`intTicketId`) REFERENCES `maintenancetickets` (`intTicketId`);
 
 --
--- Constraints for table `userActivities`
+-- Constraints for table `activities`
 --
-ALTER TABLE `userActivities`
-  ADD CONSTRAINT `userActivities_ibfk_1` FOREIGN KEY (`intUserId`) REFERENCES `users` (`intUserId`);
+ALTER TABLE `activities`
+  ADD CONSTRAINT `activities_ibfk_1` FOREIGN KEY (`intUserId`) REFERENCES `users` (`intUserId`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

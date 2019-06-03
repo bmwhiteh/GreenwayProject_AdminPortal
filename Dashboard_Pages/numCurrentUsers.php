@@ -1,7 +1,7 @@
 <?php 
 include("../MySQL_Connections/config.php");
 
-$sql = "SELECT * FROM `users` WHERE `active`= 1";
+$sql = "SELECT * FROM `firebaseusers` WHERE `active`= 1";
 
 $result = $conn->query($sql) or die("Query fail");
     

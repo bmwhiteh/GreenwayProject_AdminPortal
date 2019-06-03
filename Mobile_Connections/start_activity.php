@@ -45,7 +45,7 @@
      if(isset($data)){     
         //JSON must be decoded using PHP function
         $dataArray = json_decode($data);
-        $intUserId = $dataArray->userId;
+        $strUserId = $dataArray->userId;
         $intActivityId = $dataArray->activityId;
         
             
@@ -55,17 +55,17 @@
             $startTime =$dateStart->format('H:i:s');    
        
         
-        if((($intActivityId == NULL)||($intActivityId == ''))&&isset($intUserId)){
+        if((($intActivityId == NULL)||($intActivityId == ''))&&isset($strUserId)){
             //it's a new activity
             
             //store the new activity
-            $sqlAddNewActivity = "INSERT INTO `userActivities`(`intUserId`, `startDate`, `startTime`) VALUES ('".$intUserId."','".$startDate."','".$startTime."')";
+            $sqlAddNewActivity = "INSERT INTO `activities`(`strUserId`, `startDate`, `startTime`) VALUES ('".$strUserId."','".$startDate."','".$startTime."')";
             $resultAddNewActivity = $conn->query($sqlAddNewActivity);
 
             if($resultAddNewActivity == TRUE){
 
                 //get the just created id
-                $sqlGetResponse = "SELECT intActivityId FROM `userActivities` WHERE intUserId = '$intUserId' AND startDate = '$startDate' AND startTime = '$startTime'";            
+                $sqlGetResponse = "SELECT intActivityId FROM `activities` WHERE strUserId = '$strUserId' AND startDate = '$startDate' AND startTime = '$startTime'";            
                 $resultGetResponse = $conn->query($sqlGetResponse);
     
                  if ($resultGetResponse->num_rows > 0) {
@@ -84,7 +84,7 @@
             if(isset($newActivityId)){
                 $intActivityId = $newActivityId;
                 
-                $sqlSetActive = "UPDATE `users` SET `active`= '1' WHERE `intUserId` = '$intUserId'";
+                $sqlSetActive = "UPDATE `users` SET `active`= '1' WHERE `strUserId` = '$strUserId'";
                 $resultSetActive = $conn->query($sqlSetActive); 
                 echo $intActivityId;
                 

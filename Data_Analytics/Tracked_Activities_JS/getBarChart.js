@@ -56,7 +56,7 @@ function getBarGraph(){
 
 			    var d = new Date();
 			    var year = d.getFullYear();
-			    var first = "01";
+			    var first = "00";
 			    
 			    if(month.toString().length <2){
 			    	month = "0"+month;

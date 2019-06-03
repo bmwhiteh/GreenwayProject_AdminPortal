@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Sample FirebaseUI App</title>
+    <link rel="stylesheet" href="../Push_Notifications/customBootstrap/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../css/fireBaseLogin.css"/>
+    <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyD2MKXo--r3wLd-YlpvuAre93fiw154Ukc",
+    authDomain: "greenwaytest-aeb36.firebaseapp.com",
+    databaseURL: "https://greenwaytest-aeb36.firebaseio.com",
+    projectId: "greenwaytest-aeb36",
+    storageBucket: "greenwaytest-aeb36.appspot.com",
+    messagingSenderId: "726052510477"
+  };
+  firebase.initializeApp(config);
+</script>
+    <script src="https://cdn.firebase.com/libs/firebaseui/3.2.0/firebaseui.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.2.0/firebaseui.css" />
+    <script type="text/javascript">
+      // FirebaseUI config.
+      var uiConfig = {
+        signInSuccessUrl: '../Dashboard_Pages/dashboard.php',
+        signInOptions: [
+          // Leave the lines as is for the providers you want to offer your users.
+          //firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+          //firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+         /* firebase.auth.EmailAuthProvider.PROVIDER_ID*/
+        ],
+        // Terms of service url.
+        tosUrl: '<your-tos-url>',
+        // Privacy policy url.
+        privacyPolicyUrl: '<your-privacy-policy-url>'
+      };
+
+      // Initialize the FirebaseUI Widget using Firebase.
+      var ui = new firebaseui.auth.AuthUI(firebase.auth());
+      // The start method will wait until the DOM is loaded.
+      ui.start('#firebaseui-auth-container', uiConfig);
+      
+function signIn(){
+	console.log("In signin");
+	var email =  document.getElementById('usernameInput').value;
+	console.log(email);
+	var password = document.getElementById('passwordInput').value;
+	console.log(password);
+	alert("Create Account");
+    firebase.auth().createUserWithEmailAndPassword(email, password)
+    .catch(function(error) {
+  // Handle Errors here.
+  var errorCode = error.code;
+  var errorMessage = error.message;
+  if (errorCode == 'auth/weak-password') {
+    alert('The password is too weak.');
+  } else if(errorCode === 'auth/email-already-in-use'){
+  	alert('Email already in use');
+  }else if (errorCode === 'auth/invalid-email') {
+  	alert('Invalid email')
+  } else if(errorCode === 'auth/operation-not-allowed'){
+    alert('Email/password login not supported by Firebase');
+  }else{
+      alert(errorMessage);
+  }
+  console.log(error);
+});
+console.log("what is happening");
+firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+    // User is signed in.
+    var displayName = user.displayName;
+    var email = user.email;
+    console.log("Email is " + email);
+    var emailVerified = user.emailVerified;
+    var photoURL = user.photoURL;
+    var isAnonymous = user.isAnonymous;
+    var uid = user.uid;
+    var providerData = user.providerData;
+    window.location = '../Dashboard_Pages/dashboard.php';
+  } else {
+    // User is signed out.
+    // ...
+  }
+});
+      }
+    </script>
+  </head>
+ <body>
+        <div class="login-form padding-horizontal">
+			<div class="login-form__inner-container">
+				<div class="login-form_logo login-logo margin-bottom">- VIRIDIAN TRAILS -</div>
+				<div name="loginForm" id="loginForm" novalidate role="form" class="ng-pristine ng-invalid ng-touched">
+					<div id="loginMessage" class="alert alert-danger login-message"></div>
+					<div class="form-group">
+						<label id="usernameLabel" for="usernameInput">User Name</label>
+						<input id="usernameInput" class="form-control" type="text" autocorrect="off" autocapitalize="none">
+					</div>
+					<div class="form-group">
+						<label id="passwordLabel" for="passwordInput">Password</label>
+						<input id="passwordInput" class="form-control" type="password" autocorrect="off" autocapitalize="none">
+					</div>
+					<button class="btn btn-primary btn-block margin-none" id="loginButton" type="submit" onClick="signIn()">Log In</button>
+					   <div id="firebaseui-auth-container"></div>
+				</div>
+			</div>
+		</div>
+
+<!-- The Privacy Policy Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+	<div class="modal--header">
+		<span>Privacy Policy</span>
+	</div>
+	<div class="modal-body">
+		<span>Viridian Trails uses both session cookies (which expire when you close your browser) and persistent cookies (which remain on your hard drive for an extended period of time) to help enhance your site experience. These cookies do not contain or collect any personal data and are used to deliver content relative to your interests in the site.</span>
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-primary close-btn">Ok</button>
+	</div>
+  </div>
+
+</div>
+
+<!--What is this Page Modal -->
+<div id="whatIsThisPageModal" class="modal">
+	<div class="modal-content">
+		<div class="modal--header">
+			<span>Welcome to the Viridian Admin Portal!</span>
+		</div>
+		<div class="modal-body">
+			<div class="container-fluid">
+				<div class="row">
+					<h4>What is Viridian?</h4>
+					<p class="text-justify">
+						This project was developed over the course of three
+						years by students in the Computer Science Department at
+						Indiana University-Purdue University, Fort Wayne (IPFW) 
+						as part of their Senior Capstone course. Viridian is a
+						Mobile App and Admin Portal project sponsored by the 
+						City of Fort Wayne. The goal of Viridian is to provide
+						an easy-to-use application that allows monitoring of 
+						trail system usage in the River Greenway Trail System.
+						This monitoring system allows the City to promote sections
+						of the trails that are less commonly used and make 
+						improvements to trails based on the data collected.
+					</p>
+				</div>
+				<div class="row">
+					<h4>How can I participate?</h4>
+					<p class="text-justify">
+						Viridian is used by two types of users:
+					</p>
+					<ul>
+						<li>General User:</li>
+						<p class="text-justify">
+							The Viridian mobile application is used by the 
+							general public. This app is accessible via both iOS
+							and Android devices. It is a completely free fitness
+							and activity tracker with maps specific to the River
+							Greenway Trail System. Users can track fitness 
+							activities, such as walking, running, or biking. 
+							Users can submit maintenance requests via the app to
+							alert the City of trail issues. Earning achievements
+							unlocks special surprises! Download Viridian from
+							your phone or tablet via the App Store.
+						</p>
+						<li>City of Fort Wayne Representatives:</li>
+						<p class="text-justify">
+							The Viridian Admin Portal is used by City officials
+							to view usage analytics on the River Greenway Trail
+							System. It is also equipped with an advanced ticket
+							management system that allows the City of Fort Wayne
+							to organize and complete maintenance tasks along the
+							trail system in a quick and timely fashion.
+						</p>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<button class="btn btn-primary close-btn">Ok</button>
+		</div>
+	</div>
+</div>
+	
+<!-- The Contact Us Modal -->
+<div id="contactUsModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+	<div class="modal--header">
+		<span>Contact Us</span>
+	</div>
+	<div class="modal-body">
+		<span>To contact us, please e-mail viridianTrails@gmail.com.</span>
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-primary close-btn">Ok</button>
+	</div>
+  </div>
+
+</div>							
+
+		<footer class="footer">
+			<div class="row footer-container">
+				<div class="col-sm-4">
+					<a class="footer-link" id="contactUsBtn">Contact Us</a>
+				</div>
+				<div class="col-sm-4">
+					<a class="footer-link" id="myBtn">Privacy Policy</a>
+				</div>
+				<div class="col-sm-4">
+					<a class="footer-link" id="whatIsThisPageBtn">What is this page?</a>
+				</div>
+			</div>
+			<br>
+			<hr class="footer-divider">
+			<div class="row footer-copyright footer-container">
+				<div class="col-sm-6" id="footerInfo">
+					<span>Powered by Viridan Trails</span>
+				</div>
+				<div class="col-sm-6" id="footerInfo">
+					<span>© 2017-2018 Viridian Trails Network</span>
+				</div>
+			</div>
+		</footer>
+				
+
+<script>
+
+// Get the modal
+var modal = document.getElementById('myModal');
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close-btn")[0];
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+    modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+
+<!-- Data Retention Modal -->
+// Get the modal
+var modal2 = document.getElementById('whatIsThisPageModal');
+
+// Get the button that opens the modal
+var btn2 = document.getElementById("whatIsThisPageBtn");
+
+// Get the <span> element that closes the modal
+var span2 = document.getElementsByClassName("close-btn")[1];
+
+// When the user clicks the button, open the modal 
+btn2.onclick = function() {
+    modal2.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span2.onclick = function() {
+    modal2.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal2) {
+        modal2.style.display = "none";
+    }
+}
+
+<!--Contact Us Modal -->
+// Get the modal
+var modal3 = document.getElementById('contactUsModal');
+
+// Get the button that opens the modal
+var btn3 = document.getElementById("contactUsBtn");
+
+// Get the <span> element that closes the modal
+var span3 = document.getElementsByClassName("close-btn")[2];
+
+// When the user clicks the button, open the modal 
+btn3.onclick = function() {
+    modal3.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span3.onclick = function() {
+    modal3.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal2) {
+        modal3.style.display = "none";
+    }
+}
+</script>
+    </body>
+ 
+  </body>
+</html>

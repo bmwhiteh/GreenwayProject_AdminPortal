@@ -107,10 +107,10 @@ INSERT INTO `tickettypes` (`intTypeId`, `strTicketType`, `strTicketDescription`)
 (9, 'Other', 'Anything not covered by other tickets');
 
 --
--- Dumping data for table `userActivitiesType`
+-- Dumping data for table `activitiesType`
 --
 
-INSERT INTO `userActivitiesType` (`intTypeId`, `strActivity`) VALUES
+INSERT INTO `activitiesType` (`intTypeId`, `strActivity`) VALUES
 (1, 'RUN'),
 (2, 'WALK'),
 (3, 'BIKE'),

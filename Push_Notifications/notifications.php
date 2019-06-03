@@ -55,7 +55,7 @@
         <h2>Recent Notifications Sent</h2>
         <?php 
             $user = $_COOKIE['user'];
-            $sql = "SELECT intSecurityLevel FROM `employees` WHERE strUsername = '$user'";
+            $sql = "SELECT intSecurityLevel FROM `firebaseusers` WHERE userId = '$user'";
             $result = $conn->query($sql) or die("Could not find security level");
             
             if ($result->num_rows>0){

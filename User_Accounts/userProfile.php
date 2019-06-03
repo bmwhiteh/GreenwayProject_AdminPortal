@@ -5,9 +5,90 @@
     <link rel="stylesheet" type="text/css" href="../Dashboard_Pages/nav.css">
     <link rel="stylesheet" type="text/css" href="../css/userProfilePages.css">
      <script src="../js/jquery-3.2.1.min.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase.js"></script>
+     <script src="https://cdn.firebase.com/libs/firebaseui/3.2.0/firebaseui.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 <script>
+         // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyD2MKXo--r3wLd-YlpvuAre93fiw154Ukc",
+    authDomain: "greenwaytest-aeb36.firebaseapp.com",
+    databaseURL: "https://greenwaytest-aeb36.firebaseio.com",
+    projectId: "greenwaytest-aeb36",
+    storageBucket: "greenwaytest-aeb36.appspot.com",
+    messagingSenderId: "726052510477"
+  };
+  firebase.initializeApp(config);
+  
+function getUser(){
+  
+  var authenticator = firebase.auth();
+  authenticator.onAuthStateChanged(function(user) {
+  if (user) {
+    // User is signed in.
+    console.log("Firebase User: " + authenticator.currentUser.displayName);
+    
+      $.ajax({
+  url: "/User_Accounts/setDisplayName.php",
+  type: "get", //send it through get method
+  data: { 
+    displayName: authenticator.currentUser.displayName
+  },
+  success: function(response) {
+  	console.log("Success");
+  },
+  error: function(xhr) {
+  	console.log(xhr);
+  }
+});
+
+    document.getElementById("userName").innerHTML = "Name: " + authenticator.currentUser.displayName;
+     document.getElementById("userEmail").innerHTML = "Email: " + authenticator.currentUser.email;
+  } else {
+    // No user is signed in.
+    console.log("NO user");
+  }
+});
+   
+}
+
+function sendReset(){
+	    var auth = firebase.auth();
+	    var emailAddress =  auth.currentUser.email;
+	    auth.sendPasswordResetEmail(emailAddress).then(function() {
+	      // Email sent. 
+	      console.log("Email Sent");
+	    }).catch(function(error) {
+	      // An error happened.
+	      var errorCode = error.code;
+		  var errorMessage = error.message;
+		  if (errorCode === 'auth/invalid-email') {
+		    alert('Invalid email.');
+		  } else if(errorCode === 'auth/user-not-found'){
+		  	alert('User not found');
+		  }else if (errorCode === 'auth/missing-android-pkg-name') {
+		  	alert('Missing Android Package Name');
+		  } else if (errorCode === 'auth/missing-continue-uri') {
+		  	alert('Missing Continue URI');
+		  }else if (errorCode === 'auth/missing-ios-bundle-id') {
+		  	alert('Missing IOS bundle ID')
+		  }else if (errorCode === 'auth/invalid-continue-uri') {
+		  	alert('Invalid Continue URI')
+		  }else if (errorCode === 'auth/unauthorized-continue-uri') {
+		  	alert('Unauthorized Continue URI')
+		  }else {
+		    alert("We're sorry. There was an issue resetting your password.  Our team of highly trained monkeys has been dispatched to deal with this issue.");
+		  }
+	      
+	      
+	    });
+	    
+	    document.getElementById("resetMessage").innerHTML = "Password reset sent to email.";
+	}
+
+
 function openNav() {
+    getUser();
     document.getElementById("mySidenav").style.width = "20%";
     document.getElementById("contentBox").style.marginLeft = "250px";
     document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
@@ -30,19 +111,7 @@ function closeChangePassword() {
     document.body.style.backgroundColor = "white";
 }
 
-function openChangeSecurityQuestions() {
-	document.getElementById("mySidenav3").style.width="25%";
-	document.getElementById("contentBox").style.marginLeft="250x";
-	document.body.style.backgroundColor="rgba(0,0,0,0.8)";
-}
-function closeChangeSecurityQuestions() {
-    document.getElementById("mySidenav3").style.width = "0";
-    document.getElementById("contentBox").style.marginLeft= "0";
-    document.body.style.backgroundColor = "white";
-}
-
 $(document).ready(function(){
-    console.log("Break?");
     $("#changePasswordButton").click(function(){
         var password1 = $("#password1").val().trim();
         var password2 = $("#password2").val().trim();
@@ -82,6 +151,7 @@ $(document).ready(function(){
         
     });
 });
+
 </script>
 
 </head>
@@ -89,8 +159,7 @@ $(document).ready(function(){
     
     <?php
 		include("../MySQL_Connections/config.php");
-		
-	    $sql = "SELECT * FROM employees WHERE strUsername = '". $_COOKIE["user"] ."'";
+	    $sql = "SELECT * FROM firebaseusers WHERE userId = '". $_COOKIE["user"] ."'";
 		$result = $conn->query($sql) or die("Query fail");
 		$row = $result->fetch_array(MYSQLI_ASSOC);
 	?>
@@ -99,8 +168,8 @@ $(document).ready(function(){
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
             <img id="profileImage" src=<?php echo $_COOKIE['profileImage']; ?>></img>
             <a><h5 id="profileHeader">User Profile</h5></a>
-            <a><h6 id="profileInfo">Name: <?php echo $row['strFirstName'] . " " . $row['strLastName']?></h6></a>
-            <a><h6 id="profileInfo">Security Level: 
+            <a><h6 class="profileInfo" id="userName"></h6></a>
+            <a><h6 class="profileInfo">Security Level: 
 				<?php 
 				    $level = $row['intSecurityLevel'];
 				    $sql = "SELECT strSecurityTitle,bitManageTickets, bitManageUsers, bitSendNotifications FROM securitylevels WHERE intSecurityLevelId = $level";
@@ -109,7 +178,7 @@ $(document).ready(function(){
 					$SecurityTitle = $findSecurity['strSecurityTitle'];
 					echo $SecurityTitle;?>
 			</h6></a>
-			<a><h6 id="profileInfo">Email: <?php echo $row['strEmailAddress']?></h6></a>
+			<a><h6 class="profileInfo" id="userEmail"></h6></a>
 			
 		    <!--	<button type="button">Change Password</button> -->
 			<?php
@@ -132,11 +201,11 @@ $(document).ready(function(){
 			   }
 			?>
 			<a><h5 id="profileHeader">Permissions</h5></a>
-			<a><h6 id="profileInfo">Manage Tickets?: <?php echo $manageTickets;?></h6></a>
-			<a><h6 id="profileInfo">Manage Users?: <?php echo $manageEmployees;?></h6></a>
-			<a><h6 id="profileInfo">Send Notifications?: <?php echo $sendNotifications?></h6></a>
-			<button id="button" type="button" onClick="openChangePassword() "><b>Reset Password</b></button>
-			<button id="button" type="button" onClick="openChangeSecurityQuestions() "><b>Change Security Questions</b></button>
+			<a><h6 class="profileInfo">Manage Tickets?: <?php echo $manageTickets;?></h6></a>
+			<a><h6 class="profileInfo">Manage Users?: <?php echo $manageEmployees;?></h6></a>
+			<a><h6 class="profileInfo">Send Notifications?: <?php echo $sendNotifications?></h6></a>
+			<button id="button" type="button" onClick="sendReset() "><b>Reset Password</b></button>
+			<div id="resetMessage"><span id = "invalid"></span></div>
           
           
 </div>
@@ -173,50 +242,6 @@ $(document).ready(function(){
         </form>
 </div>
 
-<div id="mySidenav3" class="sidenav">
-            <a href="javascript:void(0)" class="closebtn" onclick="closeChangeSecurityQuestions()">&times;</a>
-            <img id="profileImage" src=<?php echo $_COOKIE['profileImage']; ?>></img>
-            <a><h5 id="changePasswordHeader">Change Security Questions</h5></a>
-            
-            <form class="securityQuestionChange" method="post" action="../User_Accounts/changeSecurityQuestions.php">
-            <!--The "Security Question 1" field -->
-            <label class="passwordLabel"><b>Security Question 1</b></label>
-            <select name="securityQuestion1" id="securityQuestion1">
-                <?php 
-                    $sql = "SELECT `id`,`question` FROM `securityQuestions` WHERE `id` < 5 ";
-                    //sql execution
-                    $result = $conn->query($sql) or die("Query fail"); 
-                
-               while($row = $result->fetch_array(MYSQLI_ASSOC)){
-                    echo "<option value=".$row['id'].">" . $row['question'] . "</option>";
-                }
-                ?>
-            </select>
-            <input type="text" id="answer1" name ="answer1" placeholder="Enter Answer"  autocomplete="off" required>
-            <br/>
-            
-            <!--The "Security Question 2" field -->
-            <label class="passwordLabel"><b>Security Question 2</b></label>
-            <select name="securityQuestion2" id="securityQuestion2">
-                <?php 
-                    $sql = "SELECT  `id`,`question` FROM `securityQuestions` WHERE `id` > 4";
-                    //sql execution
-                    $result = $conn->query($sql) or die("Query fail"); 
-                
-               while($row = $result->fetch_array(MYSQLI_ASSOC)){
-                    echo "<option value=".$row['id'].">" . $row['question'] . "</option>";
-                }
-                ?>
-            </select>
-            <input type="text" id="answer2" name ="answer2" placeholder="Enter Password"  autocomplete="off" required>
-            <br/>
-            
-            <!-- The button to reset password --> 
-            <button id="changeSecurityQuestionsButton" type="submit"><b>Change Security Questions</b></button>
-            <?php
-                echo $error;
-            ?>
-        </form>
 </div>
 </body>
 </html>
