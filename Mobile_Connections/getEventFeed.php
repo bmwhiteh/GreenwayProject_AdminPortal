@@ -22,10 +22,10 @@
         exit(0);
     }
         
-    $geofenceSql = "SELECT `strNotifText`,`strDescription`, `dblLatitude`, `dblLongitude`
+    $geofenceSql = "SELECT `strNotifText`,`strDescription`, `dblLatitude`, `dblLongitude`,`dtEventDate`, `dtEndDate`, `intId`
     FROM `geofences` where btActive = '1' and ((curdate() between `dtEventDate` and `dtEndDate`) or (`dtEventDate` between curdate() and DATE_ADD(curdate(), INTERVAL 1 WEEK)))";
     $geofenceResults = $conn->query($geofenceSql);
-        
+    
     $geofenceArrayObj = array(); // object(stdClass)
     while($row = $geofenceResults->fetch_array(MYSQLI_ASSOC)){
         $geofenceObj = (object)array();
@@ -33,6 +33,16 @@
         $geofenceObj->description = $row['strDescription'];
         $geofenceObj->gpsLat = $row['dblLatitude'];
         $geofenceObj->gpsLong = $row['dblLongitude'];
+        
+        $startDate = $row['dtEventDate'];
+        $startDate = date("M d", strtotime($startDate));
+        
+        $endDate = $row['dtEndDate'];
+        $endDate = date("M d", strtotime($endDate));
+        
+        $geofenceObj->startDate = $startDate;
+        $geofenceObj->endDate = $endDate;
+        $geofenceObj->geofenceId = $row['intId'];
         array_push($geofenceArrayObj, $geofenceObj);
     }
     $geofenceJSON = json_encode($geofenceArrayObj);
