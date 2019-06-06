@@ -80,6 +80,10 @@
             
         }
         
+        .col-md-6 {
+            width: 47% !important;
+        }
+        
 
         
 
@@ -129,7 +133,7 @@
                         <!---Radar Chart--->
                         <div class="card ">
                             <div class="header">
-                                <h4 class="title">Users per Month</h4>
+                                <h4 class="title">Users Created per Month</h4>
                                 <p class="category">Monthly Distribution</p>
                             </div>
                             <div class="content">

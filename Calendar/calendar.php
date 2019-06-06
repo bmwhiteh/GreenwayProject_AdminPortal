@@ -76,7 +76,7 @@
               }
               curSource[0] = { url: './get_tickets.php', type: 'POST', data: filter_tickets, error: function(){alert('There was an error while getting the events.');}};
               curSource[1] = { url: './get_notifications.php', type: 'POST', data: filter_notifications, error: function(){alert('There was an error while getting the events.');}};
-              curSource[2] = { url: './get_events.php', type: 'POST',  data: filter_events, error: function(){alert('There was an error while getting the events.');}};
+              curSource[2] = { url: './get_events.php', type: 'POST',  data: filter_events, error: function(){alert('There was an error while getting the events. 3');}};
             
             
             

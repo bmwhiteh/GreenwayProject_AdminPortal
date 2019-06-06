@@ -195,7 +195,7 @@
 
 
 
-        <?php if($_GET["show"] == "userActivities"): include "Heat_Maps/user_activities.php";
+        <?php if($_GET["show"] == "activities"): include "Heat_Maps/user_activities.php";
             elseif ($_GET["show"]=="ticketDensity"): include "Heat_Maps/ticket_density.php";
             elseif ($_GET["show"]=="userInformation"): include "Graphs/user_information.php";
             elseif ($_GET["show"]=="trackedActivities"): include "Graphs/tracked_activities.php";

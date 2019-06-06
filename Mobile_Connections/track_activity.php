@@ -48,7 +48,7 @@
      if(isset($data)){     
         //JSON must be decoded using PHP function
         $dataArray = json_decode($data);
-        $intUserId = $dataArray->userId;
+        $strUserId = $dataArray->userId;
         $intActivityId = $dataArray->activityId;
         $gpsLat = $dataArray->lat;
         $gpsLong = $dataArray->lng;
@@ -58,19 +58,6 @@
             $dateStart->setTimeZone(new DateTimeZone('UTC'));
             $startDate =$dateStart->format('Y-m-d');
             $startTime =$dateStart->format('H:i:s');    
-         
-        
-/*        $sql = "SELECT * FROM `userActivities` WHERE `intActivityId` = '$intActivityId'";
-        $result = $conn->query($sql) or die("Query fail");
-        $row = $result->fetch_array(MYSQLI_ASSOC);
-        $count =  $result->num_rows;
-        echo "Count: " . $count;
-        if($count == 0){
-            //store the new activity
-            $sqlAddNewActivity = "INSERT INTO `userActivities`(`intActivityId`, `intUserId`, `startDate`, `startTime`) VALUES ('$intUserId','$startDate','$startTime')";
-            $resultAddNewActivity = $conn->query($sqlAddNewActivity);
-        }
-        */
         
         if (isset($intActivityId) && $intActivityId != "" ){
             //it's an ongoing activity, just track location

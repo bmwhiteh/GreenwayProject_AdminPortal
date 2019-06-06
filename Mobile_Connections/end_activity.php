@@ -39,7 +39,7 @@
         $milesTotalDistance = 0.01;
         $calTotalCalories = 1;
         
-        $intUserId = mysqli_real_escape_string($conn, $dataArray->userId);
+        $strUserId = mysqli_real_escape_string($conn, $dataArray->userId);
         $intActivityId = mysqli_real_escape_string($conn, $dataArray->activityId);
         
         if(isset($dataArray->activityType)){
@@ -48,13 +48,11 @@
             $intActivityType = 1; 
         }
 
-       
             $dateStart = new DateTime('now'); 
             $dateStart->setTimeZone(new DateTimeZone('UTC'));
             $endDate =$dateStart->format('Y-m-d');
             $endTime =$dateStart->format('H:i:s');   
-        
-        
+    
         if(isset($dataArray->totalDuration)){
             $timeTotalDuration = mysqli_real_escape_string($conn, $dataArray->totalDuration);
         }
@@ -73,19 +71,19 @@
             $sql = "UPDATE `tasks` SET `lastCompleted`= '$date' WHERE `taskId`= '4'";
             $result = $conn->query($sql) or die("Update fail");
             
-            $getRunActivityCountSql = "SELECT * FROM `userActivities` WHERE `intUserId` = '$intUserId' && `intActivityType` = '1'";
+            $getRunActivityCountSql = "SELECT * FROM `activities` WHERE `strUserId` = '$strUserId' && `intActivityType` = '1'";
             $getCountResults = $conn->query($getRunActivityCountSql);
             $count = $getCountResults->num_rows;
             
             if($count == 0){
                 //check if badge has been earned previously
-                $badgeCheckSql = "SELECT * FROM `medalsEarned` WHERE `intUserId` = '$intUserId' && `intMedalId` = '1'";
+                $badgeCheckSql = "SELECT * FROM `medalsEarned` WHERE `strUserId` = '$strUserId' && `intMedalId` = '1'";
                 $badgeCheckResults = $conn->query($badgeCheckSql);
                 $badgeCount = $badgeCheckResults->num_rows;
             
                 if($badgeCount == 0){
                     //earn Starting Strong badge
-                    $addBadgeSql = "INSERT INTO `medalsEarned`(`intUserId`, `intMedalId`) VALUES ('$intUserId', '1')";
+                    $addBadgeSql = "INSERT INTO `medalsEarned`(`strUserId`, `intMedalId`) VALUES ('$strUserId', '1')";
                     $addBadgeResult = $conn->query($addBadgeSql);
                 }
             }
@@ -96,26 +94,26 @@
             
             if($milesTotalDistance >= 2.0){
                 //check if badge has been earned previously
-                $badgeCheckSql = "SELECT * FROM `medalsEarned` WHERE `intUserId` = '$intUserId' && `intMedalId` = '4'";
+                $badgeCheckSql = "SELECT * FROM `medalsEarned` WHERE `strUserId` = '$strUserId' && `intMedalId` = '4'";
                 $badgeCheckResults = $conn->query($badgeCheckSql);
                 $badgeCount = $badgeCheckResults->num_rows;
             
                 if($badgeCount == 0){
                     //earn Nomad badge
-                    $addBadgeSql = "INSERT INTO `medalsEarned`(`intUserId`, `intMedalId`) VALUES ('$intUserId', '4')";
+                    $addBadgeSql = "INSERT INTO `medalsEarned`(`strUserId`, `intMedalId`) VALUES ('$strUserId', '4')";
                     $addBadgeResult = $conn->query($addBadgeSql);
                 }
             }
             
             if($timeTotalDuration >= "02:00:00"){
                 //check if badge has been earned previously
-                $badgeCheckSql = "SELECT * FROM `medalsEarned` WHERE `intUserId` = '$intUserId' && `intMedalId` = '3'";
+                $badgeCheckSql = "SELECT * FROM `medalsEarned` WHERE `strUserId` = '$strUserId' && `intMedalId` = '3'";
                 $badgeCheckResults = $conn->query($badgeCheckSql);
                 $badgeCount = $badgeCheckResults->num_rows;
             
                 if($badgeCount == 0){
                     //earn Stop and Smell the Roses badge
-                    $addBadgeSql = "INSERT INTO `medalsEarned`(`intUserId`, `intMedalId`) VALUES ('$intUserId', '3')";
+                    $addBadgeSql = "INSERT INTO `medalsEarned`(`strUserId`, `intMedalId`) VALUES ('$strUserId', '3')";
                     $addBadgeResult = $conn->query($addBadgeSql);
                 }
             }
@@ -129,55 +127,55 @@
             
             if($timeTotalDuration >= "03:00:00"){
                 //check if badge has been earned previously
-                $badgeCheckSql = "SELECT * FROM `medalsEarned` WHERE `intUserId` = '$intUserId' && `intMedalId` = '6'";
+                $badgeCheckSql = "SELECT * FROM `medalsEarned` WHERE `strUserId` = '$strUserId' && `intMedalId` = '6'";
                 $badgeCheckResults = $conn->query($badgeCheckSql);
                 $badgeCount = $badgeCheckResults->num_rows;
             
                 if($badgeCount == 0){
                     //earn Wheels of Steel badge
-                    $addBadgeSql = "INSERT INTO `medalsEarned`(`intUserId`, `intMedalId`) VALUES ('$intUserId', '6')";
+                    $addBadgeSql = "INSERT INTO `medalsEarned`(`strUserId`, `intMedalId`) VALUES ('$strUserId', '6')";
                     $addBadgeResult = $conn->query($addBadgeSql);
                 }
             }
             
-            $sumDistanceSql = "SELECT sum(`milesTotalDistance`) as sum_TotalDistance FROM `userActivities` WHERE `intUserId` = '$intUserId' && `intActivityType` = '3'";
+            $sumDistanceSql = "SELECT sum(`milesTotalDistance`) as sum_TotalDistance FROM `activities` WHERE `strUserId` = '$strUserId' && `intActivityType` = '3'";
             $sumDistanceResults = $conn->query($sumDistanceSql);
             $results = $sumDistanceResults->fetch_assoc();
             $sumDistance = $results['sum_TotalDistance'];
             
             if($sumDistance >= 25.0){
                 //check if badge has been earned previously
-                $badgeCheckSql = "SELECT * FROM `medalsEarned` WHERE `intUserId` = '$intUserId' && `intMedalId` = '8'";
+                $badgeCheckSql = "SELECT * FROM `medalsEarned` WHERE `strUserId` = '$strUserId' && `intMedalId` = '8'";
                 $badgeCheckResults = $conn->query($badgeCheckSql);
                 $badgeCount = $badgeCheckResults->num_rows;
             
                 if($badgeCount == 0){
                     //earn The Long Haul badge
-                    $addBadgeSql = "INSERT INTO `medalsEarned`(`intUserId`, `intMedalId`) VALUES ('$intUserId', '8')";
+                    $addBadgeSql = "INSERT INTO `medalsEarned`(`strUserId`, `intMedalId`) VALUES ('$strUserId', '8')";
                     $addBadgeResult = $conn->query($addBadgeSql);
                 }
             }
             
         }
         
-        $numActivitiesSql = "SELECT intActivityId FROM `userActivities` WHERE `intUserId` = '$intUserId'";
+        $numActivitiesSql = "SELECT intActivityId FROM `activities` WHERE `strUserId` = '$strUserId'";
         $numActivitiesResults = $conn->query($numActivitiesSql);
         $count = $numActivitiesResults->num_rows;
             
         if($count >= 100){
             //check if badge has been earned previously
-            $badgeCheckSql = "SELECT * FROM `medalsEarned` WHERE `intUserId` = '$intUserId' && `intMedalId` = '10'";
+            $badgeCheckSql = "SELECT * FROM `medalsEarned` WHERE `strUserId` = '$strUserId' && `intMedalId` = '10'";
             $badgeCheckResults = $conn->query($badgeCheckSql);
             $badgeCount = $badgeCheckResults->num_rows;
         
             if($badgeCount == 0){
                 //earn The Wayfinder badge
-                $addBadgeSql = "INSERT INTO `medalsEarned`(`intUserId`, `intMedalId`) VALUES ('$intUserId', '10')";
+                $addBadgeSql = "INSERT INTO `medalsEarned`(`strUserId`, `intMedalId`) VALUES ('$strUserId', '10')";
                 $addBadgeResult = $conn->query($addBadgeSql);
             }
         }
        
-        $countActivitiesSql = "SELECT count(*) FROM `userActivities` 
+        $countActivitiesSql = "SELECT count(*) FROM `activities` 
             WHERE `startDate` >= DATE(NOW()) - INTERVAL 7 DAY
             GROUP BY DATE_FORMAT(`startDate`, '%w')";
         $countActivitiesResults = $conn->query($countActivitiesSql);
@@ -185,19 +183,19 @@
         
         if($count == 7){
             //check if badge has been earned previously
-            $badgeCheckSql = "SELECT * FROM `medalsEarned` WHERE `intUserId` = '$intUserId' && `intMedalId` = '5'";
+            $badgeCheckSql = "SELECT * FROM `medalsEarned` WHERE `strUserId` = '$strUserId' && `intMedalId` = '5'";
             $badgeCheckResults = $conn->query($badgeCheckSql);
             $badgeCount = $badgeCheckResults->num_rows;
         
             if($badgeCount == 0){
                 //earn The Trail Fanatic badge
-                $addBadgeSql = "INSERT INTO `medalsEarned`(`intUserId`, `intMedalId`) VALUES ('$intUserId', '5')";
+                $addBadgeSql = "INSERT INTO `medalsEarned`(`strUserId`, `intMedalId`) VALUES ('$strUserId', '5')";
                 $addBadgeResult = $conn->query($addBadgeSql);
             }
         }
         
        if(isset($intActivityId) && $intActivityId != ''){
-            $sqlEndActivity = "UPDATE `userActivities` 
+            $sqlEndActivity = "UPDATE `activities` 
                                     SET `timeTotalDuration`='$timeTotalDuration', 
                                         `milesTotalDistance` ='$milesTotalDistance', 
                                         `calTotalCalories` = '$calTotalCalories',
@@ -208,7 +206,7 @@
             $resultEndActivity = $conn->query($sqlEndActivity);
             
             //get the just created id
-            $sqlGetResponse = "SELECT endDate, endTime FROM `userActivities` WHERE intActivityId = '$intActivityId'";            
+            $sqlGetResponse = "SELECT endDate, endTime FROM `activities` WHERE intActivityId = '$intActivityId'";            
             $resultGetResponse = $conn->query($sqlGetResponse);
     
     
@@ -225,18 +223,18 @@
         
         if($calTotalCalories >= 500){
             //check if badge has been earned previously
-            $badgeCheckSql = "SELECT * FROM `medalsEarned` WHERE `intUserId` = '$intUserId' && `intMedalId` = '11'";
+            $badgeCheckSql = "SELECT * FROM `medalsEarned` WHERE `strUserId` = '$strUserId' && `intMedalId` = '11'";
             $badgeCheckResults = $conn->query($badgeCheckSql);
             $badgeCount = $badgeCheckResults->num_rows;
             
             if($badgeCount == 0){
                 //earn Feel the Burn badge
-                $addBadgeSql = "INSERT INTO `medalsEarned`(`intUserId`, `intMedalId`) VALUES ('$intUserId', '11')";
+                $addBadgeSql = "INSERT INTO `medalsEarned`(`strUserId`, `intMedalId`) VALUES ('$strUserId', '11')";
                 $addBadgeResult = $conn->query($addBadgeSql);
             }
         }
 
-       $sqlSetInactive = "UPDATE `users` SET `active`= '0' WHERE `intUserId` = '$intUserId'";
+       $sqlSetInactive = "UPDATE `users` SET `active`= '0' WHERE `strUserId` = '$strUserId'";
        $resultSetInactive = $conn->query($sqlSetInactive);
        
     }else{

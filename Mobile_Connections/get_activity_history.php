@@ -31,25 +31,38 @@
     
     //echo $data. "\n";
     
-  /*  $data = '{
-        "userId":"1160"
-        }';
+    // $data = '{
+    //     "userId":"4UM6AgUPuxgZwS3JaPkywSLVrE43"
     
-   */ 
+    //     }';
+    
+  
     if(isset($data)){
         $dataArray = json_decode($data);
-        $intUserId = mysqli_real_escape_string($conn, $dataArray->userId);
+        $userId = mysqli_real_escape_string($conn, $dataArray->userId);
         
-        $activityHistorySql = "SELECT `intActivityId`,`intActivityType`,`startDate`,`startTime` FROM `userActivities` WHERE `intUserId` = '$intUserId'";
+        $sql = "INSERT INTO `databaseTests` (`dataSent`)
+                VALUES ( 'User Id: $userId' );";
+                
+    $result = $conn->query($sql) or die("Query fail");  
+        
+        $activityHistorySql = "SELECT `id`,`intActivityType`,`startDate`,`startTime` FROM `activities` WHERE `userId` = '$userId' order by `id` desc";
         $activityHistoryResults = $conn->query($activityHistorySql);
         
         $activityHistoryObj = array(); // object(stdClass)
         while($row = $activityHistoryResults->fetch_array(MYSQLI_ASSOC)){
             $activityObj = (object)array();
-            $activityObj->activityId = $row['intActivityId'];
+            $activityObj->activityId = $row['id'];
             $activityObj->activityType = $row['intActivityType'];
-            $activityObj->startDate = $row['startDate'];
-            $activityObj->startTime = $row['startTime'];
+            
+            $date = $row['startDate'] . " " . $row['startTime'];
+            $startDateTime = new DateTime($date);
+        $startDateTime->setTimeZone(new DateTimeZone('EST'));
+        $startDate =$startDateTime->format('Y-m-d');
+        $startTime =$startDateTime->format('H:i:s'); 
+        
+            $activityObj->startDate = $startDate;
+            $activityObj->startTime = $startTime;
         array_push($activityHistoryObj, $activityObj);
         }
         $activityHistoryJSON = json_encode($activityHistoryObj);

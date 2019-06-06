@@ -1,16 +1,27 @@
 <?php
-include("../MySQL_Connections/config.php");
-if($_SERVER["REQUEST_METHOD"] == "POST") {
-$sql = "SELECT strFirstName, strLastName, strEmailAddress, intSecurityLevel
-FROM employees WHERE intEmployeeId='".$_POST['id']."'";
 
-$resultset = $conn->query($sql) or die("Query fail");
-$data = array();
-while( $rows = $resultset ->fetch_array(MYSQLI_ASSOC)) {
-$data = $rows;
-}
-echo json_encode($data);
-}else {
-echo 0;
-}
+require '../Mobile_Connections/vendor/autoload.php';
+    include("../MySQL_Connections/config.php");
+    
+    use Kreait\Firebase\Factory;
+    use Kreait\Firebase\ServiceAccount;
+
+    $serviceAccount = ServiceAccount::fromJsonFile('../Mobile_Connections/firebase-adminsdk.json');
+    $firebase = (new Factory)
+        ->withServiceAccount($serviceAccount)
+        ->create();
+    $auth = $firebase->getAuth();
+    
+    $userId = $_POST['id'];
+    
+    $employeesSql = "SELECT * FROM `firebaseusers` WHERE `userId` = '$userId' ";
+    $employeesResults = $conn->query($employeesSql);
+    $employeesObj = array();
+    while ($row = $employeesResults->fetch_array(MYSQLI_ASSOC)) {
+        $user = $auth->getUser($row['userId']);
+       // $employeeObj = $user;
+        $employeeObj = array($user->displayName, $user->email, $row['intSecurityLevel']);
+    }       
+    echo json_encode($employeeObj);      
+               
 ?>

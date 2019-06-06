@@ -1,5 +1,12 @@
 <?php require_once("../Login_System/verifyAuth.php"); ?>
 <?php include "../Dashboard_Pages/navBar.php"; ?>
+<?php
+require '../Mobile_Connections/vendor/autoload.php';
+        include("../MySQL_Connections/config.php");
+        
+        use Kreait\Firebase\Factory;
+        use Kreait\Firebase\ServiceAccount;
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -107,25 +114,31 @@
     $sqlTypes = "SELECT strTicketType\n"
     . "from maintenancetickets\n"
     . "left join tickettypes on tickettypes.intTypeId = maintenancetickets.intTypeId\n"
-    . "WHERE intEmployeeAssigned IS NULL and strTicketType IS NOT NULL GROUP BY strTicketType ";
+    . "WHERE strEmployeeAssigned IS NULL and strTicketType IS NOT NULL GROUP BY strTicketType ";
    
-    $resultTicketTypes = $conn->query($sqlTypes) or die("Query fail");
-    $resultTypes = $conn->query($sqlTypes) or die("Query fail");
+    $resultTicketTypes = $conn->query($sqlTypes) or die("Query fail 1");
+    $resultTypes = $conn->query($sqlTypes) or die("Query fail 2");
 
-    
-    $sqlRangers = "SELECT strFirstName, strLastName, intEmployeeId\n"
-                        . "from employees\n";
+   $serviceAccount = ServiceAccount::fromJsonFile('../Mobile_Connections/firebase-adminsdk.json');
+        $firebase = (new Factory)
+            ->withServiceAccount($serviceAccount)
+            ->create();
+        $auth = $firebase->getAuth();
+        
+        $employeesSql = "SELECT * FROM `firebaseusers` WHERE `intSecurityLevel` < 4";
+        $employeesResults = $conn->query($employeesSql);
+
+    // $sqlRangers = "SELECT strFirstName, strLastName, intEmployeeId\n"
+    //                     . "from fi\n";
                         
-                    $resultRangers = $conn->query($sqlRangers) or die("Query Rangers fail");
+    //                 $resultRangers = $conn->query($sqlRangers) or die("Query Rangers fail");
                     
-                $sqlRangerTickets = "SELECT count(intTicketId) as assignedTickets, strUsername\n"
+                $sqlRangerTickets = "SELECT count(intTicketId) as assignedTickets, strEmployeeAssigned, strEmployeeName\n"
                     . "from maintenancetickets\n"
-                    . "left join employees on employees.intEmployeeId = maintenancetickets.intEmployeeAssigned\n"
-                    . "where dtClosed IS NULL and intEmployeeAssigned IS NOT NULL GROUP BY intEmployeeAssigned LIMIT 0, 30 ";          
-                    
-            
+                    . "left join firebaseusers on firebaseusers.userId = maintenancetickets.strEmployeeAssigned\n"
+                    . "where dtClosed IS NULL and strEmployeeAssigned IS NOT NULL GROUP BY strEmployeeAssigned LIMIT 0, 30 ";          
                
-                $resultRangerTickets = $conn->query($sqlRangerTickets) or die("Query fail");
+                $resultRangerTickets = $conn->query($sqlRangerTickets) or die("Query fail 3");
                 
 ?>
 
@@ -139,27 +152,21 @@
                 Choose Employee: 
                 <select name="assignedEmployee" id="assignedEmployee" onChange="AllowAssign();">
                     <?php 
-                        if($row[intEmployeeAssigned]== NULL){
-                    ?>
-                        <option value="%">Choose Employee</option>
-                    <?php
-                        }else{
-                    ?>
-                        <option value="<?php echo $row['intEmployeeAssigned']?>">
-                            <?php echo "".$row['strFirstName']." ".$row['strLastName']?>
-                        </option>
-                    <?php
-                        }
-                        
-                        while($ranger = $resultRangers->fetch_array(MYSQLI_ASSOC)){ 
-                    ?>   
-                       
-                        <option value="<?php echo $ranger['intEmployeeId']?>;">
-                            <?php echo "".$ranger['strFirstName']." ".$ranger['strLastName']?>
-                        </option>
-                    <?php
-                        }
-                    ?>
+                                 if ($row['strEmployeeAssigned']!=''){
+                                     echo "<option value='".$row['strEmployeeAssigned']."'>".$EmployeeName."</option>";
+                                 }else{
+                                     echo "<option value='%'>Select Employee</option>";
+                                 }
+                                $employeesSql = "SELECT * FROM `firebaseusers` WHERE `intSecurityLevel` < 4";
+                                $employeesResults = $conn->query($employeesSql);
+                                $employeesObj = array();
+                                while ($row2 = $employeesResults->fetch_array(MYSQLI_ASSOC)) {
+                                        $user = $auth->getUser($row2['userId']);
+                                        $userId = $user->uid;
+                                        $displayName = $user->displayName;
+                                        echo "<option value='$userId'> $displayName</option>";
+                                }
+                                ?>
                 </select>
     
             </div>
@@ -169,7 +176,7 @@
                 <ul class="assign_ranger_counts">
                     <?php while($ranger = $resultRangerTickets->fetch_array(MYSQLI_ASSOC)){ ?>
                         <li>
-                            <?php echo $ranger['strUsername'];?>
+                            <?php echo $ranger['strEmployeeName'];?>
                             <br/>
                             <?php echo $ranger['assignedTickets'];?>
                         </li>

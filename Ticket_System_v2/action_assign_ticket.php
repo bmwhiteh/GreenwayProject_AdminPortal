@@ -7,24 +7,23 @@
     //connect to the database
     include("../MySQL_Connections/config.php");
     include("../Emails/assignedProblemEmail.php");
-
+    require '../Mobile_Connections/vendor/autoload.php';
+        
+    use Kreait\Firebase\Factory;
+    use Kreait\Firebase\ServiceAccount;
     
-    //echo $_POST['assignedEmployee'];
-    //var_dump($_POST['assign']);
-    //var_dump($_POST['notification']);
-    //it's an ongoing activity, just track location
+    $serviceAccount = ServiceAccount::fromJsonFile('../Mobile_Connections/firebase-adminsdk.json');
+    $firebase = (new Factory)
+        ->withServiceAccount($serviceAccount)
+        ->create();
+    $auth = $firebase->getAuth();
     
     $assignedEmployee = $_POST['assignedEmployee'];
+    $assignedUser = $auth->getUser($assignedEmployee);
+    $assignedEmployeeName = $assignedUser->displayName;
+    $assignedEmployeeEmail = $assignedUser->email;
     $ticketCount = 0;
     $urgentCount = 0;
-    
-    $sqlGetEmail = "SELECT strEmailAddress FROM employees WHERE intEmployeeId = $assignedEmployee";
-    echo $sqlGetEmail;
-    $resultGetEmail = $conn->query($sqlGetEmail) or die("Get email failed");
-    $row = $resultGetEmail->fetch_array(MYSQLI_ASSOC);
-    $email = $row['strEmailAddress'];
-    
-    
     
     $assignTickets = $_POST['assign'];
     
@@ -37,16 +36,14 @@
         
     
         foreach($assignTickets as $assign) {
-    
-        
-    
-            //Change the intEmployeeAssigned value to that of the selected employee
-            $sqlAssignTicket = "UPDATE `maintenancetickets` SET `intEmployeeAssigned`='".$assignedEmployee."' WHERE `intTicketId`='".$assign."'";
+
+            //Change the strEmployeeAssigned value to that of the selected employee
+            $sqlAssignTicket = "UPDATE `maintenancetickets` SET `strEmployeeAssigned`='".$assignedEmployee."', `strEmployeeName`='".$assignedEmployeeName."' WHERE `intTicketId`='".$assign."'";
             $resultAssignTicket = $conn->query($sqlAssignTicket) or die("Could Not Assign Ticket");
         
             date_default_timezone_set('UTC');
             $date = date('m/d/Y h:i:s a', time());
-           
+            
             $sql = "UPDATE `tasks` SET `lastCompleted`= '$date' WHERE `taskId`= '7'";
             $result = $conn->query($sql) or die("Update fail");
     
@@ -76,7 +73,7 @@
             . "FROM `maintenancetickets` \n"
             . "LEFT JOIN `tickettypes` on tickettypes.intTypeId = maintenancetickets.intTypeId\n"
             . "WHERE `bitUrgent` = '1' \n"
-            . "and `intEmployeeAssigned` IS NULL \n"
+            . "and `strEmployeeAssigned` IS NULL \n"
             . "and `strTicketType` = '$typeSelected' \n"
             . "and `dtClosed` IS NULL";;
         $resultUrgentTickets = $conn->query($sqlUrgentTickets) or die("Could Not Find Urgent Tickets");
@@ -113,6 +110,6 @@
         
     }
     
-    //sendNewAssignmentEmail($email, $ticketCount, $urgentCount);
+    sendNewAssignmentEmail($assignedEmployeeEmail, $ticketCount, $urgentCount);
     header("location: ticket_assignments.php");
 ?>

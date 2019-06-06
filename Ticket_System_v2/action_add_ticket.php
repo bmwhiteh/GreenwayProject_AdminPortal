@@ -8,14 +8,13 @@
 
     //this is the database connection
     include("../MySQL_Connections/config.php");
+    include("../Emails/newProblemEmail.php");
 
     //the database insert is auto-incremented but in order to number the image with the ticket id, we find the next available id and use that
     $sqlGetNextIndex = "SELECT intTicketId FROM maintenancetickets ORDER BY intTicketId DESC LIMIT 0,1";
     $resultGetNextIndex = $conn->query($sqlGetNextIndex) or die("Could Not Get Most Recent Ticket Index.");  
     $row = $resultGetNextIndex->fetch_array(MYSQLI_ASSOC);
     $nextTicketId = $row['intTicketId'] + 1;
-      
-       
       
       
     if($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -202,8 +201,6 @@
                 
             }*/
         //}
-
-        
         /*
         *    now that we've dealt with the image, we now deal with the rest of the info
         */
@@ -244,9 +241,14 @@
         /*
         *   Add the Ticket to the MaintenanceTickets database with all needed fields. If a field is not set, it will appear as ''
         */
-        $sql = "INSERT INTO `maintenancetickets` (intUserId, dtSubmitted, dtEstFinish, time, strTitle, strDescription, strImageFilePath, intTypeId, bitUrgent, gpsLat, gpsLong) 
-        VALUES('$intUserId','$dtSubmitted','$dtEstFinish','$strTime', '$strTitle','$strDescription','$strImageFilePath','$intTypeId','$bitUrgent', '$gpsLat', '$gpsLong')";
+        $user = $_COOKIE['user'];
+        $sql = "INSERT INTO `maintenancetickets` (strUserId, dtSubmitted, dtEstFinish, time, strTitle, strDescription, strImageFilePath, intTypeId, bitUrgent, gpsLat, gpsLong) 
+        VALUES('$user', '$dtSubmitted','$dtEstFinish','$strTime', '$strTitle','$strDescription','$strImageFilePath','$intTypeId','$bitUrgent', '$gpsLat', '$gpsLong')";
         $result = $conn->query($sql) or die("Could Not Add Ticket To Database. Sql Attempted:".$sql."\n");  
+        
+        $ticketTypeSql = "SELECT * FROM `tickettypes` WHERE `intTypeId` = '$intTypeId'";
+        $type = $conn->query($sql) or die ("Could not retrieve ticket type");
+        sendNewProblem($strTitle, $type, $strDescription, $bitUrgent);
         
         
         
@@ -255,11 +257,6 @@
         *   ticket to a default value (since employees don't have user ids) and add a note to the ticket to record who created the ticket.
         */
         
-        //get the EmployeeId
-        $sql = "SELECT intEmployeeId FROM `employees` WHERE `strUsername` = '".$_POST["strEmployeeUsername"]."'";
-        $result = $conn->query($sql) or die("find employee id fail");
-        $row = $result->fetch_array(MYSQLI_ASSOC);
-        $employeeId = $row['intEmployeeId'];
          
         $addDate = $_POST["date"];
         $addDate = mysqli_real_escape_string($conn, $addDate);
@@ -268,8 +265,9 @@
         $fullComment = mysqli_real_escape_string($conn, $fullComment);
     
         //Add the note to the database
-        $sqlAddNote = "INSERT INTO ticketnotes (intTicketId, intEmployeeId, dateAdded, comment) 
-        VALUES('$nextTicketId','$employeeId','$dtSubmitted', 'Added Maintenance Ticket to Records.')";
+        $displayName = $_COOKIE['displayName'];
+        $sqlAddNote = "INSERT INTO ticketnotes (intTicketId, strUserId, strEmployeeName, dateAdded, comment) 
+        VALUES('$nextTicketId','$user','$displayName','$dtSubmitted', 'Added maintenance ticket to records.')";
         $resultAddNote = $conn->query($sqlAddNote) or die("Add note fail. $sqlAddNote");
         
         //add information for tasks page into database

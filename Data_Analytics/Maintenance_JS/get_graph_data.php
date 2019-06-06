@@ -69,15 +69,7 @@
 			$sql = "SELECT intTicketId, strTicketType, dtSubmitted\n"
 			. "FROM `maintenancetickets`\n"
 			. "LEFT JOIN tickettypes on tickettypes.inttypeid = maintenancetickets.inttypeid\n"
-			. "INNER JOIN employees on employees.intEmployeeId = maintenancetickets.intemployeeassigned\n"
-			. "WHERE employees.strUsername = '". $user . "'";
-
-			/*$sql = "SELECT intTicketId, strTicketType, dtSubmitted\n"
-			. "FROM `maintenancetickets`\n"
-			. "LEFT JOIN tickettypes on tickettypes.inttypeid = maintenancetickets.inttypeid\n"
-			. "LEFT JOIN employees on employees.intEmployeeId = maintenancetickets.intemployeeassigned\n"
-			. "WHERE strUsername = 'bmwhiteh'";*/
-
+			. "WHERE strEmployeeAssigned = '". $user . "' and dtClosed is NULL";
 		}
 
 		$payLoad = json_encode(array($sql));

@@ -45,15 +45,15 @@
         //JSON must be decoded using PHP function
         $dataArray = json_decode($data);
         $intActivityId = $dataArray->activityId;
-        $intUserId = $dataArray->userId;
+        $strUserId = $dataArray->userId;
         
-        $sqlDeleteUserActivity = "DELETE FROM `userActivities` WHERE `intActivityId` = '$intActivityId'";
+        $sqlDeleteUserActivity = "DELETE FROM `activities` WHERE `intActivityId` = '$intActivityId'";
         $resultDeleteUserActivity = $conn->query($sqlDeleteUserActivity);
 
         $sqlDeleteLocationData = "DELETE FROM `locationData` WHERE `intActivityId` = '$intActivityId'";
         $resultDeleteLocationData = $conn->query($sqlDeleteLocationData);
         
-        $sqlSetInactive = "UPDATE `users` SET `active`= '0' WHERE `intUserId` = '$intUserId'";
+        $sqlSetInactive = "UPDATE `users` SET `active`= '0' WHERE `strUserId` = '$strUserId'";
         $resultSetInactive = $conn->query($sqlSetInactive);
      }
     

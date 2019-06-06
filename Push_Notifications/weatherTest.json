@@ -12,13 +12,17 @@
 		{
 		"type": "SPE",
 		"description": "Special Statement",
+<<<<<<< HEAD
 		"date": "9:09 PM EST on July 24, 2018",
+=======
+		"date": "3:05 PM EST on April 5, 2019",
+>>>>>>> 156dc189e689e28ed468c7d372c5b27db82ba4fc
 		"date_epoch": "1517105160",
-		"expires": "4:00 PM EST on April 22, 2018",
+		"expires": "4:00 PM EST on April 5, 2019",
 		"expires_epoch": "1517130000",
 		"tz_short":"EST",
 		"tz_long":"America/New_York",
-		"message": "\u000A...Fog expected across the area tonight...\u000A\u000AClear skies, wet ground and light winds will lead to the \u000Adevelopment of widespread fog across the area tonight. The fog \u000Awill become locally dense, especially in valley locations. \u000A\u000AMotorists should use low beam headlights, reduce their speed, and\u000Aallow extra space between cars when encountering fog. Be prepared\u000Afor rapid changes in visibility when traveling tonight.\u000A\u000A\u000A",
+		"message": "\u000A...Hurricanes expected across the area tonight...\u000A\u000AClear skies, wet ground and light winds will lead to the \u000Adevelopment of widespread fog across the area tonight. The fog \u000Awill become locally dense, especially in valley locations. \u000A\u000AMotorists should use low beam headlights, reduce their speed, and\u000Aallow extra space between cars when encountering fog. Be prepared\u000Afor rapid changes in visibility when traveling tonight.\u000A\u000A\u000A",
 		"phenomena": "SP",
 		"significance": "S",
 		"ZONES": [

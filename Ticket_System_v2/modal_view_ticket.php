@@ -5,9 +5,17 @@
                     requiring the user to navigate to a different screen
     *
     */
-
+        require '../Mobile_Connections/vendor/autoload.php';
         include("../MySQL_Connections/config.php");
-         
+        
+        use Kreait\Firebase\Factory;
+        use Kreait\Firebase\ServiceAccount;
+    
+        $serviceAccount = ServiceAccount::fromJsonFile('../Mobile_Connections/firebase-adminsdk.json');
+        $firebase = (new Factory)
+            ->withServiceAccount($serviceAccount)
+            ->create();
+        $auth = $firebase->getAuth();
 
     $id = $_POST['ticketid'];
     
@@ -15,35 +23,32 @@
     $sqlGetTicket = "SELECT * FROM `maintenancetickets` LEFT JOIN `tickettypes` ON tickettypes.intTypeid = maintenancetickets.inttypeid WHERE `intTicketId` = '".$id."'";
     $resultGetTicket = $conn->query($sqlGetTicket);
     $row = $resultGetTicket->fetch_array(MYSQLI_ASSOC);
-    
-    
 
     //Find all of the ticket notes given the ticketid
     $sqlNotes = "SELECT *\n"
             . "from ticketnotes\n"
-            . "left join employees on employees.intEmployeeId = ticketnotes.intEmployeeId\n"
+            . "left join firebaseusers on firebaseusers.userId = ticketnotes.strUserId\n"
             . "WHERE `intTicketId` = '".$id."' \n"
             . "ORDER BY `noteId` desc";
     $resultNotes = $conn->query($sqlNotes) or die("Notes Query Failed"); 
     
     //Get the name of the user that submitted it
-    $sqlUser = "SELECT `strFirstName`, `strLastName` FROM users WHERE intUserId =".$row['intUserId'];
-    $resultUser = $conn->query($sqlUser) or die($sql."\nQuery fail".$id);
-    $User = $resultUser->fetch_array(MYSQLI_ASSOC);
+    $submittedUserId = $row['strUserId'];
+    $submittedByUser = $auth->getUser($submittedUserId);
+    $User = $submittedByUser->displayName;
     
     //Get the name of the employee assigned to the ticket
     $EmployeeName = "Not Assigned";
-    if($row['intEmployeeAssigned']!=''){
-        $sqlEmployeeName = "SELECT `strFirstName`, `strLastName` FROM employees WHERE intEmployeeId =".$row['intEmployeeAssigned'];
-        $resultEmployeeName = $conn->query($sqlEmployeeName);
-        $EmployeeNameResult = $resultEmployeeName->fetch_array(MYSQLI_ASSOC);
-        $EmployeeName = $EmployeeNameResult['strFirstName'] . " " . $EmployeeNameResult[strLastName];
-    }
+     if($row['strEmployeeAssigned']!=''){
+        $employeeAssignedId = $row['strEmployeeAssigned'];
+        $employeeAssigned = $auth->getUser($employeeAssignedId);
+        $EmployeeName = $employeeAssigned->displayName;
+     }
     
     //get the security level of the current user to determine if they can delete ticket notes
     $sqlSecurityLevel = "SELECT intSecurityLevel\n"
-            . "from employees\n"
-            . "WHERE `strUsername` = '".$_COOKIE['user']."' \n"
+            . "from firebaseusers\n"
+            . "WHERE `userId` = '".$_COOKIE['user']."' \n"
             . "LIMIT 1";
             
     $resultSecurityLevel = $conn->query($sqlSecurityLevel) or die("Find Security Level Query Failed"); 
@@ -52,7 +57,6 @@
 
                                             
     if($row['dtClosed'] == ''){ 
-		$submit = "0px"; 
 		$closed = '';	
 		$reopen_close = '<a href="action_close_ticket.php?ticketid='.$ticket.'" class="ticketView">CLOSE</a>';
 	
@@ -76,11 +80,6 @@
 	    $words = "";
 	}
 	$urgentBtn = '<a href="action_set_urgent.php?ticketid='.$ticket.'&urgent='.$switch.'" class="btn_close_urgent">CHANGE TO '.$words.'URGENT</a>';
-    
-    $sqlRangers = "SELECT strFirstName, strLastName, intEmployeeId\n"
-                        . "from employees\n";
-                        
-    $resultRangers = $conn->query($sqlRangers) or die("Query Rangers fail");
                     
 ?>
 
@@ -108,7 +107,9 @@
                     <td class="modal_view_10">&nbsp;</td>
                     <th class="modal_view_15">Submitted By: </th>
                     <td class="modal_view_15">
-                        <?php echo $User['strFirstName']." ".$User['strLastName']; ?>
+                        <?php 
+                        echo $User;
+                        ?>
                     </td>
                 </tr>
                 
@@ -138,13 +139,19 @@
                         <form>
                             <select name="assignedEmployee" id="assignedEmployee" onChange="ReassignTicket(<?php echo $row['intTicketId'];?>);">
                                 <?php 
-                                if ($row['intEmployeeAssigned']!=''){
-                                    echo "<option value='".$row['intEmployeeAssigned']."'>".$EmployeeName."</option>";
-                                }else{
-                                    echo "<option value='%'>Select Employee</option>";
-                                }
-                                while($ranger = $resultRangers->fetch_array(MYSQLI_ASSOC)){ 
-                                    echo "<option value='". $ranger['intEmployeeId']."'>" .$ranger['strFirstName']." ".$ranger['strLastName']."</option>";
+                                 if ($row['strEmployeeAssigned']!=''){
+                                     echo "<option value='".$row['strEmployeeAssigned']."'>".$EmployeeName."</option>";
+                                 }else{
+                                     echo "<option value='%'>Select Employee</option>";
+                                 }
+                                $employeesSql = "SELECT * FROM `firebaseusers` WHERE `intSecurityLevel` < 4";
+                                $employeesResults = $conn->query($employeesSql);
+                                $employeesObj = array();
+                                while ($row2 = $employeesResults->fetch_array(MYSQLI_ASSOC)) {
+                                        $user = $auth->getUser($row2['userId']);
+                                        $userId = $user->uid;
+                                        $displayName = $user->displayName;
+                                        echo "<option value='$userId'> $displayName</option>";
                                 }
                                 ?>
                             </select>
@@ -287,7 +294,7 @@
                                         
                                         <!---Employee who created it--->
                                         <td>
-                                            <?php if ($notes['intEmployeeId'] == ''){ echo 'Deleted User.';} else {echo $notes['strUsername'];}?>
+                                            <?php if ($notes['strUserId'] == ''){ echo 'Deleted User.';} else {echo $notes['strEmployeeName'];}?>
                                         </td>
                                         
                                         <!---Comment--->

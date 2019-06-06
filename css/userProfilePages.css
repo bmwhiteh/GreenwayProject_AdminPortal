@@ -43,7 +43,7 @@ body {
     margin-left: 50px;
 }
 
-#profileInfo {
+.profileInfo {
     -webkit-margin-before: 0em;
     -webkit-margin-after: 0em;
     font-variant: small-caps;
@@ -154,6 +154,9 @@ body {
     height: 25%;
 }
 
-#errorMessages{
+#errorMessages, #resetMessage{
     color: white;
+    text-align: center;
+    font-variant: small-caps;
+    font-family: "Odin Bold";
 }

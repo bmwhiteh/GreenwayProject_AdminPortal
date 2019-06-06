@@ -7,20 +7,72 @@
     <link rel="stylesheet" type="text/css" href=<?php echo $_COOKIE['colorCssLink']; ?>>
     <link rel="shortcut icon" href="../Dashboard_Pages/favicon.png" type="image/x-icon">
     <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
-    
+    <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase.js"></script>
+     <script src="https://cdn.firebase.com/libs/firebaseui/3.2.0/firebaseui.js"></script>
+   <script>
+         // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyD2MKXo--r3wLd-YlpvuAre93fiw154Ukc",
+    authDomain: "greenwaytest-aeb36.firebaseapp.com",
+    databaseURL: "https://greenwaytest-aeb36.firebaseio.com",
+    projectId: "greenwaytest-aeb36",
+    storageBucket: "greenwaytest-aeb36.appspot.com",
+    messagingSenderId: "726052510477"
+  };
+  firebase.initializeApp(config);
+  
+  var authenticator = firebase.auth();
+  authenticator.onAuthStateChanged(function(user) {
+  if (user) {
+    // User is signed in.
+    console.log("Firebase User: " + authenticator.currentUser.displayName);
+    getUser();
+  } else {
+    // No user is signed in.
+  }
+});
+  
+   </script>
+  <script>
+        function logout(){
+            var auth = firebase.auth();
+            firebase.auth().signOut().then(function() {
+                $.ajax({
+  url: "../Dashboard_Pages/logout.php",
+  type: "get", //send it through get method
+  data:{
+  },
+  success: function(response) {
+  	window.location = '../Login_System/fireBaseLogin.html';
+  },
+  error: function(xhr) {
+  	console.log("In error");
+  }
+                });
+                
+              // Sign-out successful.
+            }).catch(function(error) {
+              // An error happened.
+              alert("An error occurred when signing out");
+            });
+        }
+        
+    </script>
 </head>
-<?php require_once("../Login_System/verifyAuth.php"); ?>
-
+<?php
+ require_once("../Login_System/verifyAuth.php");
+ ?>
 <body>
 <div class="container">
 <div class="logo">
     <img src=<?php echo $_COOKIE['bannerLink']; ?> width="100%" height="100%"/>
+    <link rel="stylesheet" href="../css/animate.css">
 </div>
 
 <div class="navigation">
      <?php 
     include("../MySQL_Connections/config.php");
-    include "../User_Accounts/userProfile.php";  
+     include "../User_Accounts/userProfile.php";  
     include "../Color_Switch/chooseColor.php";
 ?>
     <nav>
@@ -53,17 +105,18 @@
 
                 </div>
             </li>
-
+            
+            <li><a href="../Geofences/eventMap.php" class="navBar">Event Map</a></li>
             <li><a href="../Calendar/calendar.php" class="navBar">Calendar</a></li>
             <li><a href="../Push_Notifications/notifications.php" class="navBar">Push Notifications</a></li>
             <li><a href="../Scheduled_Tasks/tasks.php" class="navBar">Tasks</a></li>
 
-            <li style="float:right"><a href="../Dashboard_Pages/logout.php" class="navBar">Log Out</a></li>
+            <li style="float:right"><a onClick="logout()" class="navBar">Log Out</a></li>
             <li style="float:right"><a onclick="openNav()" class="navBar">User Profile</a></li>
             
             <?php 
             $user = $_COOKIE['user'];
-            $sql = "SELECT * FROM `employees` WHERE `intSecurityLevel` = 1 && `strUsername` = '$user'";
+            $sql = "SELECT * FROM `firebaseusers` WHERE `intSecurityLevel` = 1 && `userId` = '$user'";
             $result = $conn->query($sql) or die("Query fail");
     
             $row = $result->fetch_array(MYSQLI_ASSOC);
@@ -77,6 +130,7 @@
                 <div class="dropdown-content">
                     <a href="../Management/manageEmployees.php" class="navBar">Manage Employees</a>
                     <a href="../Management/manageUsers.php" class="navBar">Manage Users</a>
+                    <a href="../Management/manageOverlays.php" class="navBar">Manage Overlays</a>
                     <a href="../Management/appFeedback.php" class="navBar">App Feedback</a>
                     <a onclick="openChangeColor()" class="navBar">Change Color Scheme</a>
                 </div>

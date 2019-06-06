@@ -7,6 +7,7 @@ function getRadarGraph(){
 		
 		var usersFemale = [0,0,0,0,0,0,0,0,0,0,0,0];
 		var usersMale =   [0,0,0,0,0,0,0,0,0,0,0,0];
+		var unspecified =  [0,0,0,0,0,0,0,0,0,0,0,0]; 
 		
 		
 		//serialize the data as a JSON pack and include the other parameters of the form
@@ -39,10 +40,12 @@ function getRadarGraph(){
 					//console.log("month:"+dtMonth + " open:"+countOpen + " close:"+countClosed);
 					//place the count of each month in the bucket corresponding to the month
 					
-					if(strGender == 'Female'){
+					if(strGender == 'F'){
 						usersFemale[dtMonth-1] = countUsers;
-					}else{
+					}else if(strGender == 'M'){
 						usersMale[dtMonth-1] = countUsers;
+					}else{
+						unspecified[dtMonth-1] = countUsers;
 					}
 				}	
 				//console.log(usersFemale);
@@ -81,6 +84,13 @@ function getRadarGraph(){
 							backgroundColor: colorArray[1] ,
 							borderColor: colorArray[1],
 							data: usersMale
+						}
+						,
+						{
+							label: "Unspecified",
+							backgroundColor: colorArray[2] ,
+							borderColor: colorArray[2],
+							data: unspecified
 						}
 	    				]
 				};

@@ -1,5 +1,6 @@
 <?php
     include("../MySQL_Connections/config.php");
+    include("../Emails/newFeedbackEmail.php");
     
     if($_SERVER["REQUEST_METHOD"] == "POST") {
     $feedback = $_POST['feedback'];
@@ -14,6 +15,8 @@
 
     $result = $conn->query($sql) or die("Query fail");  
 
+    sendNewFeedback($errorLocation, $feedback);
+    
     date_default_timezone_set('UTC');
     $date = date('m/d/Y h:i:s a', time());
     $sql = "UPDATE `tasks` SET `lastCompleted`= '$date' WHERE `taskId`= '9'";
