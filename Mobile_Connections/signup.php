@@ -1,6 +1,6 @@
 <?php
     include("../MySQL_Connections/config.php");
-   
+    echo "Test";
     /*To avoid a CORS issue with Ionic include this check*/
     if(isset($_SERVER['HTTP_ORIGIN'])){
         header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");
@@ -38,7 +38,7 @@
     
     
     //$data = '{"emailAddress":"TimmyMan3@gmail.com"}';
-    
+    $data = '{"firstName":"andrea","lastName":"test","emailAddress":"andrea@test.com","userPassword":"Test123!","userBirthdate":"1988-01-01","userHeight":"","userWeight":"150 lbs","userGender":"","userAvatar":"","userLat":"40.4800608","userLng":"-84.6755536","userId":""}';
     if(isset($data)){
                 
 
@@ -267,7 +267,7 @@
                             '".$bitActive."',
                             '".$strImageFilePath."'
                         )";
-                        
+                        echo $sqlAddUser;
                         
                     $resultAddUser = $conn->query($sqlAddUser);
     
