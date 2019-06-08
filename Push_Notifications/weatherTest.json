@@ -12,7 +12,11 @@
 		{
 		"type": "SPE",
 		"description": "Special Statement",
+<<<<<<< HEAD
+		"date": "9:09 PM EST on July 24, 2018",
+=======
 		"date": "3:05 PM EST on April 5, 2019",
+>>>>>>> 156dc189e689e28ed468c7d372c5b27db82ba4fc
 		"date_epoch": "1517105160",
 		"expires": "4:00 PM EST on April 5, 2019",
 		"expires_epoch": "1517130000",

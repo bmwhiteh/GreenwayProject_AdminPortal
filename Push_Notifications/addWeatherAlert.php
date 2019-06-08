@@ -1,8 +1,8 @@
 <?php
 include("../MySQL_Connections/config.php");
 include("../Push_Notifications/sendNotifications.php");
-$json_string = file_get_contents('http://api.wunderground.com/api/c6db81b4b23e7f0e/alerts/q/IN/Fort_Wayne.json');
-//$json_string = file_get_contents('./weatherTest.json');
+//$json_string = file_get_contents('http://api.wunderground.com/api/c6db81b4b23e7f0e/alerts/q/NE/Lovelock.json');
+$json_string = file_get_contents('./weatherTest.json');
 $data = json_decode($json_string, true);
 
 // first create a connection to your database
@@ -33,9 +33,16 @@ foreach ($data['alerts'] as $key => $value) {
         $description = $value['description'];
         $message =  $value['message'];
         $dt = date("y-m-d");
+<<<<<<< HEAD
+        $addNotificationSql = "INSERT INTO `pushnotifications`(`oneSignalId`, `strNotificationType`, `strNotificationContent`, `dtSentToUsers`, `dtReceivedFromAPI`, `strDateTime` ,`intSevereWeatherAlertsSent`, `strJSONMessage`)
+        VALUES ('$oneSignalId','Severe Weather','$description','$dt','$dt','$date',$usersReceivingNotifications,'$message')";
+        echo $addNotificationSql;
+		$addNotificationResult = $conn->query($addNotificationSql) or die("Insert fail");
+=======
         $addNotificationSql = "INSERT INTO `pushnotifications`(`oneSignalId`, `strNotificationType`, `intType`, `strNotificationContent`, `dtSentToUsers`, `dtReceivedFromAPI`, `strDateTime` ,`intSevereWeatherAlertsSent`, `strJSONMessage`)
         VALUES ('$oneSignalId','Severe Weather','3','$description','$dt','$dt','$date',$usersReceivingNotifications,'$message')";
         $addNotificationResult = $conn->query($addNotificationSql) or die("Insert fail");
+>>>>>>> 156dc189e689e28ed468c7d372c5b27db82ba4fc
 
         date_default_timezone_set('UTC');
         $date = date('m/d/Y h:i:s a', time());
