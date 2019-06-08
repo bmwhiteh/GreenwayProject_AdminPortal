@@ -16,7 +16,7 @@
     $employeesObj = array();
     while ($row = $employeesResults->fetch_array(MYSQLI_ASSOC)) {
         $user = $auth->getUser($row['userId']);
-               if($row['bitSendPics'] == 0){
+              if($row['bitSendPics'] == 0){
 ?>
         <tr>
            <td><?php echo $user->displayName?></td>
