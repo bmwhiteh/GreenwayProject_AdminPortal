@@ -338,7 +338,7 @@ function editAccount(){
                     </tr>
                 </tfoot>
                 <tbody>
-                    <?php include "getFirebaseEmployee.php"?>
+                    <?php include "getFirebaseEmployees.php"?>
                 </tbody>
             </table>
         </div>
