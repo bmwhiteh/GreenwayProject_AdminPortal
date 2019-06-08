@@ -22,7 +22,7 @@ require '../Mobile_Connections/vendor/autoload.php';
     
     <link rel="stylesheet" href="../Push_Notifications/customBootstrap/css/bootstrap.css">
     <script src="../js/jquery-3.2.1.min.js"></script>
-   <script src="../Push_Notifications/customBootstrap/js/bootstrap.min.js"></script>
+    <script src="./customBootstrap/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../Push_Notifications/DataTables/datatables.js"></script>
     <link rel="stylesheet" type="text/css" href="../Push_Notifications/DataTables/datatables.css">
     <script>
@@ -141,30 +141,10 @@ function editAccount(){
             <div class="employeeHeader">
                 <h2>Manage Employees</h2>
                 <div class="employeeButtons">
-                    <button class="button" id="addBtn" type="button" onclick="getAddModal()">Add Employee</button>
+                    <button class="button" id="addBtn" type="button">Add Employee</button>
                     <button class="button" id="editBtn" type="button">Edit Employee</button>
                 </div>
-                
             </div>
-            <table class="display" cellspacing="0">
-                <thead class="tableHeader">
-                    <tr>
-                        <th>Username</th>
-                        <th>Email Address</th>
-                        <th>Send Pictures</th>
-                    </tr>
-                </thead>
-                <tfoot class="tableFooter">
-                    <tr>
-                        <th>Username</th>
-                        <th>Email Address</th>
-                        <th>Send Pictures</th>
-                    </tr>
-                </tfoot>
-                <tbody>
-                    <?php include "getFirebaseEmployees.php"?>
-                </tbody>
-            </table>
             
     <div>
              <!-- The Modal -->
@@ -287,38 +267,8 @@ function editAccount(){
 
         </div>
     </div>
-
-            <table class="display" cellspacing="0">
-                <thead class="tableHeader">
-                    <tr>
-                        <th>Name</th>
-                        <th>Email Address</th>
-                        <th>Security Level</th>
-                    </tr>
-                </thead>
-                <tfoot class="tableFooter">
-                    <tr>
-                        <th>Name</th>
-                        <th>Email Address</th>
-                        <th>Security Level</th>
-                    </tr>
-                </tfoot>
-                <tbody>
-                    <?php include "getFirebaseEmployees.php"?>
-                </tbody>
-            </table>
-        </div>
-        
-    </div>
-</div>
-
-</body>
-</html>
-
     
         <script>
-        
-        function getAddModal(){
             // Get the modal
             var modal = document.getElementById('myModal');
 
@@ -344,7 +294,6 @@ function editAccount(){
                     modal.style.display = "none";
                 }
             }
-        }
            
             // Get the modal
             var editModal = document.getElementById('editModal');
@@ -373,3 +322,29 @@ function editAccount(){
             }
             
         </script>
+            <table class="display" cellspacing="0">
+                <thead class="tableHeader">
+                    <tr>
+                        <th>Name</th>
+                        <th>Email Address</th>
+                        <th>Security Level</th>
+                    </tr>
+                </thead>
+                <tfoot class="tableFooter">
+                    <tr>
+                        <th>Name</th>
+                        <th>Email Address</th>
+                        <th>Security Level</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    <?php include "getFirebaseEmployee.php"?>
+                </tbody>
+            </table>
+        </div>
+        
+    </div>
+</div>
+
+</body>
+</html>
