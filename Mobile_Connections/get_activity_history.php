@@ -46,7 +46,7 @@
                 
     $result = $conn->query($sql) or die("Query fail");  
         
-        $activityHistorySql = "SELECT `id`,`intActivityType`,`startDate`,`startTime` FROM `activities` WHERE `userId` = '$userId' order by `id` desc";
+        $activityHistorySql = "SELECT `id`,`intActivityType`,`startDate`,`startTime`, `timeTotalDuration`, `milesTotalDistance`, `calTotalCalories`, `averageSpeed` FROM `activities` WHERE `userId` = '$userId' order by `id` desc";
         $activityHistoryResults = $conn->query($activityHistorySql);
         
         $activityHistoryObj = array(); // object(stdClass)
@@ -63,6 +63,10 @@
         
             $activityObj->startDate = $startDate;
             $activityObj->startTime = $startTime;
+            $activityObj->duration = $row['timeTotalDuration'];
+            $activityObj->distance = $row['milesTotalDistance'];
+            $activityObj->calories = $row['calTotalCalories'];
+            $activityObj->averageSpeed = $row['averageSpeed'];
         array_push($activityHistoryObj, $activityObj);
         }
         $activityHistoryJSON = json_encode($activityHistoryObj);
